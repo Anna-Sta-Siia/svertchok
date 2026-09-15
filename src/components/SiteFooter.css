@@ -1,0 +1,110 @@
+.site-footer {
+  padding: 38px 36px 48px;
+
+  background: #efd9d0;
+  color: #b45c0b;
+}
+
+.site-footer__message {
+  margin: 0 0 38px;
+
+  text-align: center;
+
+  font-size: 1.35rem;
+  line-height: 1.5;
+}
+
+.site-footer__content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+
+  gap: 40px;
+
+  align-items: center;
+}
+
+.site-footer__brand {
+  text-align: center;
+}
+
+.site-footer__svertchok {
+  width: 120px;
+
+  margin-bottom: 20px;
+}
+
+.site-footer__brand p {
+  margin: 0;
+
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.site-footer__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 30px;
+
+  text-align: center;
+}
+
+.site-footer__goodbye {
+  margin: 0;
+
+  font-size: 1.3rem;
+}
+
+.site-footer__actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.site-footer__actions button {
+  border: 0;
+  border-radius: 999px;
+
+  padding: 12px 20px;
+
+  background: #b9650b;
+  color: white;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.site-footer__actions button:hover {
+  transform: translateY(-2px);
+
+  background: #9f5508;
+}
+
+.site-footer__boukovki {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.site-footer__boukovki img {
+  width: min(100%, 220px);
+  max-height: 180px;
+
+  object-fit: contain;
+}
+
+@media (max-width: 750px) {
+  .site-footer__content {
+    grid-template-columns: 1fr;
+
+    gap: 36px;
+  }
+
+  .site-footer__center {
+    order: -1;
+  }
+}

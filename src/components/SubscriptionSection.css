@@ -1,0 +1,42 @@
+.subscription-section {
+  padding: 64px 24px;
+
+  text-align: center;
+
+  background: #f8f4e9;
+}
+
+.subscription-section__text {
+  max-width: 720px;
+
+  margin: 0 auto 28px;
+
+  color: #9a7a19;
+
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.subscription-section__button {
+  border: 0;
+  border-radius: 999px;
+
+  padding: 14px 26px;
+
+  background: #b9650b;
+  color: #fff;
+
+  font-size: 1rem;
+
+  box-shadow: 0 4px 10px rgb(116 66 10 / 18%);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.subscription-section__button:hover {
+  transform: translateY(-2px);
+
+  background: #9f5508;
+}

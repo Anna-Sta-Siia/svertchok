@@ -1,0 +1,165 @@
+.issues-preview {
+  padding: 70px 0;
+}
+
+.issues-preview__heading {
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+.issues-preview__heading h2 {
+  margin: 0 0 16px;
+
+  color: #b9650b;
+
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 500;
+}
+
+.issues-preview__heading p {
+  margin: 0;
+
+  color: #8a701d;
+
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.issues-preview__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.issue-preview-card {
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #fffdf8;
+
+  border-radius: 14px;
+
+  box-shadow: 0 6px 18px rgb(79 67 38 / 8%);
+}
+
+.issue-preview-card__cover {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+
+  object-fit: cover;
+}
+
+.issue-preview-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 18px 16px 20px;
+
+  text-align: center;
+}
+
+.issue-preview-card__date {
+  margin: 0 0 10px;
+
+  color: #b9650b;
+
+  font-size: 1.1rem;
+}
+
+.issue-preview-card__description {
+  flex: 1;
+
+  margin: 0 0 18px;
+
+  color: #7f541a;
+
+  line-height: 1.5;
+}
+
+.issue-preview-card__button,
+.issues-preview__all {
+  border: 0;
+  border-radius: 999px;
+
+  background: #b9650b;
+  color: white;
+
+  padding: 11px 18px;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.issue-preview-card__button:hover,
+.issues-preview__all:hover {
+  transform: translateY(-2px);
+  background: #9f5508;
+}
+
+.issues-preview__all {
+  display: block;
+
+  margin: 34px auto 0;
+}
+.issue-preview-card__cover-link {
+  display: block;
+}
+
+.issue-preview-card__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: auto;
+}
+
+.issue-preview-card__details,
+.issue-preview-card__button {
+  display: inline-block;
+
+  border-radius: 999px;
+  padding: 10px 17px;
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+}
+
+.issue-preview-card__details {
+  background: #b9650b;
+  color: white;
+}
+
+.issue-preview-card__button {
+  border: 1px solid #b9650b;
+
+  background: transparent;
+  color: #b9650b;
+}
+@media (max-width: 950px) {
+  .issues-preview__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .issues-preview {
+    padding: 50px 0;
+  }
+
+  .issues-preview__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .issue-preview-card {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,89 @@
+.home-top {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) 190px;
+
+  gap: 24px;
+  align-items: center;
+
+  padding: 28px 0 40px;
+}
+
+.hero-section {
+  min-width: 0;
+}
+
+.hero-heading {
+  margin: 0 0 28px;
+
+  text-align: center;
+
+  font-size: clamp(0.9rem, 1.4vw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+.hero-main {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+
+  gap: 36px;
+  align-items: center;
+}
+
+.hero-logo {
+  width: 100%;
+  max-width: 260px;
+
+  justify-self: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.hero-title {
+  width: min(100%, 300px);
+  margin-bottom: 18px;
+}
+
+.hero-intro {
+  margin: 0;
+
+  font-size: 1.05rem;
+  line-height: 1.65;
+
+  white-space: pre-line;
+}
+
+@media (max-width: 950px) {
+  .home-top {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section {
+    order: 1;
+  }
+
+  .seasonal-navbar--left {
+    order: 2;
+  }
+
+  .seasonal-navbar--right {
+    order: 3;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-main {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-logo {
+    max-width: 210px;
+  }
+}
