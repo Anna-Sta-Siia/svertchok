@@ -1,12 +1,13 @@
 .issue-card {
-  display: grid;
-  grid-template-columns: minmax(260px, 420px) 1fr;
+  min-width: 0;
 
-  gap: 48px;
+  color: var(--color-text);
+}
 
-  align-items: center;
+.issue-card__cover-link {
+  display: block;
 
-  padding: 70px 24px;
+  text-decoration: none;
 }
 
 .issue-card__cover {
@@ -14,30 +15,48 @@
 
   width: 100%;
 
-  border-radius: 14px;
+  object-fit: contain;
+
+  border-radius: var(--radius-cover);
 }
 
 .issue-card__content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  gap: 16px;
+  min-width: 0;
 }
 
 .issue-card__date {
   margin: 0;
 
-  font-size: 1.2rem;
+  color: var(--color-secondary);
+
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.issue-card__content h2,
-.issue-card__content p {
+.issue-card__title {
   margin: 0;
+
+  color: var(--color-text);
+
+  font-weight: 500;
 }
 
-.issue-card__content p {
-  line-height: 1.7;
+.issue-card__title a {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+.issue-card__title a:hover {
+  color: var(--color-accent);
+}
+
+.issue-card__description {
+  margin: 0;
+
+  color: var(--color-text-soft);
+
+  line-height: 1.6;
 }
 
 .issue-card__actions {
@@ -46,15 +65,219 @@
 
   gap: 12px;
 
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
-.issue-card__cover-link {
-  display: block;
+/* ========================================
+   FEATURED
+   Current issue
+   ======================================== */
+
+.issue-card--featured {
+  display: grid;
+  grid-template-columns:
+    minmax(240px, 390px)
+    minmax(220px, 1fr);
+
+  gap: 42px;
+  align-items: center;
 }
+
+.issue-card--featured
+  .issue-card__cover {
+  max-height: 60vh;
+
+  box-shadow:
+    0 16px 36px rgb(60 50 30 / 12%);
+
+  transition:
+    transform var(--transition-default),
+    box-shadow var(--transition-default);
+}
+
+.issue-card--featured
+  .issue-card__cover-link:hover
+  .issue-card__cover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 20px 42px rgb(60 50 30 / 16%);
+}
+
+.issue-card--featured
+  .issue-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 16px;
+}
+
+.issue-card--featured
+  .issue-card__date {
+  font-size: 1.1rem;
+}
+
+.issue-card--featured
+  .issue-card__title {
+  font-size:
+    clamp(
+      1.6rem,
+      2.4vw,
+      2.2rem
+    );
+}
+
+.issue-card--featured
+  .issue-card__description {
+  max-width: 440px;
+
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ========================================
+   COMPACT
+   Archive / all issues
+   ======================================== */
+
+.issue-card--compact {
+  display: grid;
+  grid-template-columns:
+    92px
+    minmax(0, 1fr);
+
+  gap: 16px;
+  align-items: center;
+
+  padding: 12px;
+
+  border-radius: var(--radius-card);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 72%,
+      transparent
+    );
+
+  transition:
+    transform var(--transition-default),
+    background var(--transition-default),
+    box-shadow var(--transition-default);
+}
+
+.issue-card--clickable {
+  color: inherit;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.issue-card--compact:hover {
+  transform: translateY(-2px);
+
+  background: var(--color-surface);
+
+  box-shadow:
+    0 7px 18px rgb(60 50 30 / 8%);
+}
+
+.issue-card--compact
+  .issue-card__cover {
+  width: 92px;
+
+  aspect-ratio: 3 / 4;
+
+  object-fit: cover;
+}
+
+.issue-card--compact
+  .issue-card__content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.issue-card--compact
+  .issue-card__date {
+  font-size: 0.8rem;
+}
+
+.issue-card--compact
+  .issue-card__title {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.issue-card--compact
+  .issue-card__description {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  font-size: 0.88rem;
+  line-height: 1.45;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* ========================================
+   TABLET
+   ======================================== */
 
 @media (max-width: 750px) {
-  .issue-card {
+  .issue-card--featured {
     grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .issue-card--featured
+    .issue-card__cover-link {
+    width: min(100%, 340px);
+
+    margin: 0 auto;
+  }
+
+  .issue-card--featured
+    .issue-card__cover {
+    max-height: none;
+  }
+
+  .issue-card--featured
+    .issue-card__content {
+    align-items: center;
+
+    text-align: center;
+  }
+
+  .issue-card--featured
+    .issue-card__actions {
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 450px) {
+  .issue-card--compact {
+    grid-template-columns:
+      76px
+      minmax(0, 1fr);
+
+    gap: 12px;
+
+    padding: 10px;
+  }
+
+  .issue-card--compact
+    .issue-card__cover {
+    width: 76px;
   }
 }

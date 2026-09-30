@@ -1,0 +1,193 @@
+.issues-archive {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  padding-left: 32px;
+
+  border-left: 1px solid
+    color-mix(
+      in srgb,
+      var(--color-text) 12%,
+      transparent
+    );
+}
+
+/* HEADING */
+
+.issues-archive__heading {
+  margin-bottom: 22px;
+}
+
+.issues-archive__heading h2 {
+  margin: 0 0 8px;
+
+  color: var(--color-text);
+
+  font-size: 1.55rem;
+  font-weight: 500;
+}
+
+.issues-archive__heading p {
+  margin: 0;
+
+  color: var(--color-text-soft);
+
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* YEAR FILTER */
+
+.issues-archive__filter {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+.issues-archive__filter-label {
+  color: var(--color-text-soft);
+
+  font-size: 0.9rem;
+}
+
+.issues-archive__select {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 9px 34px 9px 12px;
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 35%,
+      transparent
+    );
+
+  border-radius: var(--radius-button);
+
+  background: var(--color-surface);
+  color: var(--color-text);
+
+  font: inherit;
+
+  cursor: pointer;
+
+  transition:
+    border-color var(--transition-default),
+    box-shadow var(--transition-default);
+}
+
+.issues-archive__select:hover {
+  border-color:
+    var(--color-secondary);
+}
+
+.issues-archive__select:focus {
+  outline: none;
+
+  border-color:
+    var(--color-accent);
+
+  box-shadow:
+    0 0 0 3px
+    color-mix(
+      in srgb,
+      var(--color-accent) 12%,
+      transparent
+    );
+}
+
+/* ISSUES */
+
+.issues-archive__list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  max-height: 55vh;
+
+  overflow-y: auto;
+
+  padding-right: 8px;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    color-mix(
+      in srgb,
+      var(--color-secondary) 45%,
+      transparent
+    )
+    transparent;
+}
+
+.issues-archive__list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.issues-archive__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.issues-archive__list::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-secondary) 45%,
+      transparent
+    );
+}
+
+/* CTA */
+
+.issues-archive__all {
+  align-self: flex-start;
+
+  margin-top: 22px;
+}
+
+/* TABLET */
+
+@media (max-width: 950px) {
+  .issues-archive {
+    padding-left: 0;
+
+    border-left: 0;
+  }
+
+  .issues-archive__list {
+    max-height: 420px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 550px) {
+  .issues-archive__heading {
+    text-align: center;
+  }
+
+  .issues-archive__filter {
+    max-width: 300px;
+
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .issues-archive__list {
+    max-height: none;
+  }
+
+  .issues-archive__all {
+    align-self: center;
+  }
+}

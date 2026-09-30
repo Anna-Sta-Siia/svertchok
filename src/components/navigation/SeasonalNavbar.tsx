@@ -1,12 +1,13 @@
 import NavItem from './NavItem'
 
-import './SeasonalNavbar.css'
+import springFlower from '../../assets/seasons/spring-flower.png'
+import summerStrawberry from '../../assets/seasons/summer-berry.png'
+import autumnLeaf from '../../assets/seasons/autumn-leaf.png'
+import winterSnowflake from '../../assets/seasons/winter-snowflake.png'
 
-type Season =
-  | 'spring'
-  | 'summer'
-  | 'autumn'
-  | 'winter'
+import type { Season } from '../../utils/getCurrentSeason'
+
+import './SeasonalNavbar.css'
 
 export type SeasonalNavItem = {
   label: string
@@ -19,29 +20,45 @@ type SeasonalNavbarProps = {
 }
 
 const seasonIcons: Record<Season, string> = {
-  spring: '🌸',
-  summer: '🌿',
-  autumn: '🍂',
-  winter: '❄️',
+  spring: springFlower,
+  summer: summerStrawberry,
+  autumn: autumnLeaf,
+  winter: winterSnowflake,
 }
 
 export default function SeasonalNavbar({
   season,
   items,
 }: SeasonalNavbarProps) {
+  const repeatedItems = [
+    ...items,
+    ...items,
+    ...items,
+  ]
+
   return (
     <nav
       className="seasonal-navbar"
       aria-label="Основная навигация"
     >
       <div className="seasonal-navbar__track">
-        {items.map((item) => (
-          <NavItem
-            key={item.to}
-            label={item.label}
-            to={item.to}
-            icon={seasonIcons[season]}
-          />
+        {repeatedItems.map((item, index) => (
+          <div
+            className="seasonal-navbar__entry"
+            key={`${item.to}-${index}`}
+          >
+            <NavItem
+              label={item.label}
+              to={item.to}
+            />
+
+            <img
+              src={seasonIcons[season]}
+              alt=""
+              aria-hidden="true"
+              className="seasonal-navbar__separator"
+            />
+          </div>
         ))}
       </div>
     </nav>

@@ -1,16 +1,21 @@
 .site-header {
+  position: relative;
+  z-index: 2;
+
   width: 100%;
 
-  background: var(--color-background);
+  background: transparent;
 }
 
 .site-header__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns:
+    minmax(300px, 1fr)
+    minmax(300px, auto)
+    minmax(300px, 1fr);
 
-  gap: 32px;
+  gap: 44px;
+  align-items: center;
 
   width: min(
     var(--content-width),
@@ -19,81 +24,208 @@
 
   margin: 0 auto;
 
-  padding: 18px 0 20px;
+  padding: 26px 0 30px;
+}
 
+/* LEFT */
+
+.site-header__intro {
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+
+  min-width: 0;
+}
+
+.site-header__mascot {
+  width: 118px;
+
+  flex-shrink: 0;
+
+  animation: mascot-greeting 5s ease-in-out infinite;
+}
+
+/* MANUSCRIPT TEXT */
+
+.site-header__speech {
+  font-family: var(--font-accent);
+
+  color: var(--color-logo-green);
+text-align: center;
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.site-header__speech--right {
+  max-width: 360px;
+}
+
+.site-header__speech p {
+  margin: 0;
+}
+
+.site-header__speech p + p {
+  margin-top: 4px;
+}
+
+.site-header__speech-accent {
+  color: var(--color-logo-green);
+  
+}
+
+/* CENTER */
+
+.site-header__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 13px;
+
+  text-align: center;
 }
 
 .site-header__eyebrow {
   margin: 0;
 
-  color: var(--color-text);
+  color: var(--color-logo-green);
 
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  line-height: 1.4;
-}
+  font-family: var(--font-main);
 
-.site-header__brand {
-  display: flex;
-  align-items: flex-end;
+  font-size: 0.76rem;
+  font-weight: 500;
 
-  gap: 10px;
-
-  flex-shrink: 0;
+  letter-spacing: 0.13em;
+  line-height: 1.5;
 }
 
 .site-header__title {
-  width: 170px;
-}
+  width: 225px;
 
-.site-header__mascot {
-  width: 72px;
-
-  transform: translateY(6px);
-}
-
-@media (max-width: 900px) {
-  .site-header__inner {
-    width: min(
-      100%,
-      calc(100% - 40px)
+  filter:
+    drop-shadow(
+      0 4px 6px rgb(70 80 45 / 8%)
     );
+}
+
+/* SOFT MASCOT ANIMATION */
+
+@keyframes mascot-greeting {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(0deg);
   }
 
-  .site-header__title {
-    width: 145px;
+  50% {
+    transform:
+      translateY(-4px)
+      rotate(-1deg);
   }
+}
 
+@media (prefers-reduced-motion: reduce) {
   .site-header__mascot {
-    width: 62px;
+    animation: none;
   }
 }
 
-@media (max-width: 600px) {
+/* TABLET */
+
+@media (max-width: 1050px) {
   .site-header__inner {
-    width: min(
-      100%,
-      calc(100% - 24px)
-    );
+    grid-template-columns: 1fr 1fr;
 
-    gap: 18px;
-  }
+    width: calc(100% - 40px);
 
-  .site-header__eyebrow {
-    max-width: 55%;
-
-    font-size: 0.72rem;
+    gap: 26px;
   }
 
   .site-header__brand {
-    gap: 6px;
+    grid-column: 1 / -1;
+    grid-row: 1;
   }
 
-  .site-header__title {
-    width: 110px;
+  .site-header__intro {
+    grid-column: 1;
+  }
+
+  .site-header__speech--right {
+    grid-column: 2;
+
+    justify-self: end;
   }
 
   .site-header__mascot {
-    width: 48px;
+    width: 95px;
+  }
+
+  .site-header__title {
+    width: 190px;
+  }
+
+  .site-header__speech {
+    font-size: 1.5rem;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .site-header__inner {
+    grid-template-columns: 1fr;
+
+    width: calc(100% - 24px);
+
+    gap: 18px;
+
+    padding: 20px 0 24px;
+  }
+
+  .site-header__brand,
+  .site-header__intro,
+  .site-header__speech--right {
+    grid-column: auto;
+  }
+
+  .site-header__brand {
+    grid-row: auto;
+
+    order: 1;
+  }
+
+  .site-header__intro {
+    order: 2;
+
+    justify-content: center;
+  }
+
+  .site-header__speech--right {
+    order: 3;
+
+    justify-self: center;
+
+    width: min(100%, 340px);
+
+    text-align: center;
+  }
+
+  .site-header__mascot {
+    width: 78px;
+  }
+
+  .site-header__title {
+    width: 165px;
+  }
+
+  .site-header__speech {
+    font-size: 1.35rem;
+  }
+
+  .site-header__eyebrow {
+    font-size: 0.67rem;
   }
 }

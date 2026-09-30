@@ -4,6 +4,14 @@ import Button from './ui/Button'
 
 import './IssueCard.css'
 
+type IssueCardAction = {
+  label: string
+  to?: string
+  href?: string
+  external?: boolean
+  variant?: 'primary' | 'outline' | 'ghost'
+}
+
 type IssueCardProps = {
   slug: string
   monthLabel: string
@@ -12,9 +20,11 @@ type IssueCardProps = {
   title: string
   coverImage: string
   description: string
-  accessType: 'free' | 'paid'
-  accessUrl?: string
-  featured?: boolean
+
+  variant?: 'featured' | 'compact'
+
+  primaryAction?: IssueCardAction
+  secondaryAction?: IssueCardAction
 }
 
 export default function IssueCard({
@@ -25,23 +35,55 @@ export default function IssueCard({
   title,
   coverImage,
   description,
-  accessType,
-  accessUrl,
-  featured = false,
+  variant = 'compact',
+  primaryAction,
+  secondaryAction,
 }: IssueCardProps) {
-  const ctaLabel =
-    accessType === 'paid'
-      ? 'Приобрести номер →'
-      : 'Скачать номер →'
+  const issueUrl = `/issues/${slug}`
+
+  const hasActions =
+    Boolean(primaryAction) ||
+    Boolean(secondaryAction)
+
+  /*
+   * Une petite carte sans CTA peut être
+   * entièrement cliquable.
+   */
+  if (variant === 'compact' && !hasActions) {
+    return (
+      <Link
+        to={issueUrl}
+        className="issue-card issue-card--compact issue-card--clickable"
+      >
+        <img
+          src={coverImage}
+          alt={`Обложка номера ${monthLabel} ${year}`}
+          className="issue-card__cover"
+        />
+
+        <div className="issue-card__content">
+          <p className="issue-card__date">
+            №{String(month).padStart(2, '0')} · {year}
+          </p>
+
+          <h3 className="issue-card__title">
+            {title}
+          </h3>
+
+          <p className="issue-card__description">
+            {description}
+          </p>
+        </div>
+      </Link>
+    )
+  }
 
   return (
     <article
-      className={`issue-card ${
-        featured ? 'issue-card--featured' : ''
-      }`}
+      className={`issue-card issue-card--${variant}`}
     >
       <Link
-        to={`/issues/${slug}`}
+        to={issueUrl}
         className="issue-card__cover-link"
       >
         <img
@@ -53,31 +95,54 @@ export default function IssueCard({
 
       <div className="issue-card__content">
         <p className="issue-card__date">
-          {monthLabel} · {String(month).padStart(2, '0')}/{year}
+          №{String(month).padStart(2, '0')} · {year}
         </p>
 
-        <h2>{title}</h2>
+        <h2 className="issue-card__title">
+          <Link to={issueUrl}>
+            {title}
+          </Link>
+        </h2>
 
-        <p>{description}</p>
+        <p className="issue-card__description">
+          {description}
+        </p>
 
-        <div className="issue-card__actions">
-          <Button
-            variant="primary"
-            to={`/issues/${slug}`}
-          >
-            Перейти к номеру →
-          </Button>
+        {hasActions && (
+          <div className="issue-card__actions">
+            {primaryAction && (
+              <Button
+                variant={
+                  primaryAction.variant ??
+                  'primary'
+                }
+                to={primaryAction.to}
+                href={primaryAction.href}
+                external={
+                  primaryAction.external
+                }
+              >
+                {primaryAction.label}
+              </Button>
+            )}
 
-          {accessUrl && (
-            <Button
-              variant="outline"
-              href={accessUrl}
-              external
-            >
-              {ctaLabel}
-            </Button>
-          )}
-        </div>
+            {secondaryAction && (
+              <Button
+                variant={
+                  secondaryAction.variant ??
+                  'outline'
+                }
+                to={secondaryAction.to}
+                href={secondaryAction.href}
+                external={
+                  secondaryAction.external
+                }
+              >
+                {secondaryAction.label}
+              </Button>
+            )}
+          </div>
+        )}
       </div>
     </article>
   )

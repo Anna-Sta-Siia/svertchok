@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 
-import { issues } from '../data/issues'
-import { contentItems } from '../data/contentItems'
-import { authors } from '../data/authors'
+import { issues } from '../assets/data/issues'
+import { contentItems } from '../assets/data/contentItems'
+import { authors } from '../assets/data/authors'
 
 import './IssuePage.css'
 

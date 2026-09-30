@@ -1,124 +1,58 @@
-.magazine-home {
-  padding: 24px 0 40px;
-}
-
-.magazine-home__header {
-  position: relative;
-
+.home-issues {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(280px, 1fr);
+
+  gap: 52px;
   align-items: start;
 
-  gap: 24px;
-
-  padding: 14px 0 22px;
-
-  border-top: 1px solid var(--color-secondary);
-  border-bottom: 1px solid var(--color-secondary);
+  padding: 38px 0 64px;
 }
 
-.magazine-home__eyebrow {
+/* CURRENT ISSUE */
+
+.home-issues__current {
+  min-width: 0;
+}
+
+.home-issues__heading {
+  margin-bottom: 24px;
+}
+
+
+.home-issues__intro {
   margin: 0;
 
-  color: var(--color-text);
+  color: var(--color-logo-green);
 
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  line-height: 1.4;
+  font-family: var(--font-accent);
+  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  line-height: 1.2;
 }
 
-.magazine-home__title {
-  width: 170px;
-
-  justify-self: end;
-}
-
-.magazine-home__mascot {
-  position: absolute;
-
-  top: 48px;
-  right: 0;
-
-  width: 90px;
-
-  pointer-events: none;
-}
-
-.magazine-home__content {
-  display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
-
-  gap: 34px;
-  align-items: start;
-
-  padding-top: 36px;
-}
-
-.magazine-home__nav {
-  position: sticky;
-  top: 20px;
-
-  min-width: 0;
-}
-
-.magazine-home__issue {
-  min-width: 0;
-}
-
-/* On enlève l'énorme espace interne du IssueCard
-   quand il est utilisé comme grand numéro de home */
-.magazine-home__issue .issue-card {
-  padding-top: 0;
-  padding-bottom: 20px;
-}
+/* TABLET */
 
 @media (max-width: 950px) {
-  .magazine-home__content {
+  .home-issues {
     grid-template-columns: 1fr;
 
-    gap: 24px;
-  }
+    gap: 48px;
 
-  .magazine-home__nav {
-    position: static;
-
-    order: 1;
-  }
-
-  .magazine-home__issue {
-    order: 2;
-  }
-
-  .magazine-home__mascot {
-    width: 72px;
+    padding-top: 32px;
   }
 }
 
-@media (max-width: 650px) {
-  .magazine-home {
-    padding-top: 14px;
+/* MOBILE */
+
+@media (max-width: 550px) {
+  .home-issues {
+    gap: 40px;
+
+    padding: 26px 0 48px;
   }
 
-  .magazine-home__header {
-    grid-template-columns: 1fr;
-
-    padding-right: 70px;
-  }
-
-  .magazine-home__title {
-    width: 140px;
-
-    justify-self: start;
-  }
-
-  .magazine-home__mascot {
-    top: 18px;
-    right: 0;
-
-    width: 62px;
-  }
-
-  .magazine-home__content {
-    padding-top: 24px;
+  .home-issues__heading {
+    text-align: center;
   }
 }

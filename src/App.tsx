@@ -1,40 +1,27 @@
-import { Route, Routes } from 'react-router-dom'
+import {
+  Route,
+  Routes,
+} from 'react-router-dom'
 
 import MainLayout from './layouts/MainLayout'
+
 import HomePage from './pages/HomePage'
 import IssuePage from './pages/IssuePage'
 
-import { getCurrentSeason } from './utils/getCurrentSeason'
-
-function App() {
-const season = getCurrentSeason()
-
+export default function App() {
   return (
-    <div
-      className="app-theme"
-      data-season={season}
-    >
-      <Routes>
+    <Routes>
+      <Route element={<MainLayout />}>
         <Route
           path="/"
-          element={
-            <MainLayout>
-              <HomePage season={season} />
-            </MainLayout>
-          }
+          element={<HomePage />}
         />
 
         <Route
           path="/issues/:slug"
-          element={
-            <MainLayout>
-              <IssuePage />
-            </MainLayout>
-          }
+          element={<IssuePage />}
         />
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   )
 }
-
-export default App

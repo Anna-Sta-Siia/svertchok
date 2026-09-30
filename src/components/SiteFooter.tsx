@@ -1,5 +1,5 @@
-import logoSvertchok from '../assets/logo-svertchok.png'
-import bukovkiLogo from '../assets/Bukovki_logo.svg'
+import logoSvertchok from '../assets/images/logo-svertchok.png'
+import bukovkiLogo from '../assets/images/Bukovki_logo.svg'
 
 import Button from './ui/Button'
 

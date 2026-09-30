@@ -1,7 +1,7 @@
-import march2025Cover from '../assets/Сверчок_cover_032025.png'
-import june2025Cover from '../assets/Сверчок_cover_062025.png'
-import october2025Cover from '../assets/Сверчок_cover_102025.png'
-import december2025Cover from '../assets/Сверчок_cover_122025.png'
+import march2025Cover from './covers/Сверчок_cover_032025.png'
+import june2025Cover from './covers/Сверчок_cover_062025.png'
+import october2025Cover from './covers/Сверчок_cover_102025.png'
+import december2025Cover from './covers/Сверчок_cover_122025.png'
 
 export type Issue = {
   id: string

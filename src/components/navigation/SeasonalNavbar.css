@@ -1,33 +1,115 @@
 .seasonal-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
   width: 100%;
+
+  overflow: hidden;
+
+  padding: 14px 0;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-background) 92%,
+      transparent
+    );
+
+  backdrop-filter: blur(8px);
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 3%,
+    black 97%,
+    transparent
+  );
+   box-shadow:
+    0 4px 14px rgb(50 50 30 / 5%);
 }
 
 .seasonal-navbar__track {
   display: flex;
-  flex-direction: column;
+  align-items: center;
 
-  gap: 12px;
+  width: max-content;
+
+  animation: navbar-marquee 34s linear infinite;
+
+  will-change: transform;
 }
 
-@media (max-width: 950px) {
-  .seasonal-navbar {
-    overflow-x: auto;
+.seasonal-navbar__entry {
+  display: inline-flex;
+  align-items: center;
 
-    scrollbar-width: none;
+  flex: 0 0 auto;
+}
 
-    scroll-snap-type: x proximity;
-  }
+.seasonal-navbar__separator {
+  flex: 0 0 auto;
 
-  .seasonal-navbar::-webkit-scrollbar {
-    display: none;
-  }
+  width: 30px;
+  height: 30px;
 
+  margin: 0 12px;
+
+  object-fit: contain;
+
+  opacity: 0.78;
+
+  animation: separator-float 6s ease-in-out infinite;
+}
+
+/* Pause uniquement pendant l'interaction */
+
+.seasonal-navbar:hover
+  .seasonal-navbar__track,
+.seasonal-navbar:focus-within
   .seasonal-navbar__track {
-    flex-direction: row;
+  animation-play-state: paused;
+}
 
-    width: max-content;
-    min-width: 100%;
+/* 3 copies identiques = 1 groupe = 33.333% */
 
-    gap: 10px;
+@keyframes navbar-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes separator-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-2px) rotate(3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seasonal-navbar__track,
+  .seasonal-navbar__separator {
+    animation: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .seasonal-navbar__track {
+    animation-duration: 28s;
+  }
+
+  .seasonal-navbar__separator {
+    width: 24px;
+    height: 24px;
+
+    margin: 0 7px;
   }
 }

@@ -36,9 +36,11 @@ img {
   max-width: 100%;
 }
 :root {
-  /* COMMON */
   --font-main: Georgia, 'Times New Roman', serif;
-
+  --font-accent:
+    "Allura",
+    cursive;
+  --color-logo-green: #4f8a62;
   --radius-card: 14px;
   --radius-cover: 8px;
   --radius-button: 999px;
