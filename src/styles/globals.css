@@ -42,13 +42,18 @@ img {
   --radius-card: 14px;
   --radius-cover: 8px;
   --radius-button: 999px;
-
-  --content-width: 1000px;
   --section-space: 70px;
-
+--content-width:1280px;
   --transition-default: 0.2s ease;
 }
+.site-layout {
+  width: min(
+    var(--content-width),
+    calc(100% - 100px)
+  );
 
+  margin: 0 auto;
+}
 /* SPRING */
 
 [data-season='spring'] {

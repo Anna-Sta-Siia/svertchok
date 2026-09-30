@@ -1,8 +1,19 @@
 .site-footer {
-  padding: 38px 36px 48px;
+  width: 100%;
 
-  background: #efd9d0;
-  color: #b45c0b;
+  background: var(--color-footer-background);
+  color: var(--color-footer-text);
+}
+
+.site-footer__inner {
+  width: min(
+    var(--content-width),
+    calc(100% - 64px)
+  );
+
+  margin: 0 auto;
+
+  padding: 42px 0 52px;
 }
 
 .site-footer__message {
@@ -18,7 +29,7 @@
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
 
-  gap: 40px;
+  gap: 48px;
 
   align-items: center;
 }
@@ -28,15 +39,15 @@
 }
 
 .site-footer__svertchok {
-  width: 120px;
+  width: 110px;
 
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .site-footer__brand p {
   margin: 0;
 
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   line-height: 1.55;
 }
 
@@ -45,7 +56,7 @@
   flex-direction: column;
   align-items: center;
 
-  gap: 30px;
+  gap: 28px;
 
   text-align: center;
 }
@@ -58,53 +69,84 @@
 
 .site-footer__actions {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
 
-  gap: 14px;
+  gap: 12px;
 }
 
-.site-footer__actions button {
-  border: 0;
-  border-radius: 999px;
-
-  padding: 12px 20px;
-
-  background: #b9650b;
-  color: white;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-}
-
-.site-footer__actions button:hover {
-  transform: translateY(-2px);
-
-  background: #9f5508;
-}
-
-.site-footer__boukovki {
+.site-footer__bukovki {
   display: flex;
 
   justify-content: center;
   align-items: center;
 }
 
-.site-footer__boukovki img {
+.site-footer__bukovki img {
   width: min(100%, 220px);
-  max-height: 180px;
+  max-height: 160px;
 
   object-fit: contain;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 900px) {
+  .site-footer__inner {
+    width: min(
+      100%,
+      calc(100% - 40px)
+    );
+  }
+
   .site-footer__content {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
 
     gap: 36px;
   }
 
   .site-footer__center {
+    grid-column: 1 / -1;
+    grid-row: 1;
+
     order: -1;
+  }
+}
+
+@media (max-width: 650px) {
+  .site-footer__inner {
+    width: min(
+      100%,
+      calc(100% - 24px)
+    );
+
+    padding: 34px 0 40px;
+  }
+
+  .site-footer__message {
+    margin-bottom: 28px;
+
+    font-size: 1.1rem;
+  }
+
+  .site-footer__content {
+    grid-template-columns: 1fr;
+
+    gap: 32px;
+  }
+
+  .site-footer__center {
+    grid-column: auto;
+  }
+
+  .site-footer__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-footer__svertchok {
+    width: 90px;
+  }
+
+  .site-footer__bukovki img {
+    max-width: 180px;
   }
 }

@@ -1,4 +1,30 @@
+.site-shell {
+  min-height: 100vh;
+}
+
 .site-layout {
-  width: min(1000px, calc(100% - 48px));
+  width: min(
+    var(--content-width),
+    calc(100% - 64px)
+  );
+
   margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .site-layout {
+    width: min(
+      100%,
+      calc(100% - 40px)
+    );
+  }
+}
+
+@media (max-width: 600px) {
+  .site-layout {
+    width: min(
+      100%,
+      calc(100% - 24px)
+    );
+  }
 }
