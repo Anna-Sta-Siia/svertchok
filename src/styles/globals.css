@@ -9,12 +9,18 @@ html {
 body {
   margin: 0;
 
-  background: #f8f4e9;
-  color: #556326;
-
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-main);
 }
+.app-theme {
+  min-height: 100vh;
 
+  background: var(--color-background);
+  color: var(--color-text);
+
+  transition:
+    background var(--transition-default),
+    color var(--transition-default);
+}
 button,
 input,
 textarea,
@@ -28,4 +34,101 @@ button {
 
 img {
   max-width: 100%;
+}
+:root {
+  /* COMMON */
+  --font-main: Georgia, 'Times New Roman', serif;
+
+  --radius-card: 14px;
+  --radius-cover: 8px;
+  --radius-button: 999px;
+
+  --content-width: 1000px;
+  --section-space: 70px;
+
+  --transition-default: 0.2s ease;
+}
+
+/* SPRING */
+
+[data-season='spring'] {
+  --color-background: #fbf7ed;
+  --color-surface: #fffdf8;
+  --color-surface-soft: #fff8f3;
+
+  --color-text: #617445;
+  --color-text-soft: #7a835d;
+
+  --color-accent: #c77a8e;
+  --color-accent-hover: #ad6477;
+
+  --color-secondary: #8caf68;
+
+  --color-footer-background: #f3ddd9;
+  --color-footer-text: #a55f70;
+
+  --shadow-card: 0 6px 18px rgb(90 76 60 / 8%);
+}
+
+/* SUMMER */
+
+[data-season='summer'] {
+  --color-background: #f7f4df;
+  --color-surface: #fffdf4;
+  --color-surface-soft: #fbf7df;
+
+  --color-text: #556b32;
+  --color-text-soft: #708052;
+
+  --color-accent: #73964b;
+  --color-accent-hover: #5f803d;
+
+  --color-secondary: #d4a63b;
+
+  --color-footer-background: #e4edcf;
+  --color-footer-text: #637d3e;
+
+  --shadow-card: 0 6px 18px rgb(70 90 45 / 8%);
+}
+
+/* AUTUMN */
+
+[data-season='autumn'] {
+  --color-background: #f8f4e9;
+  --color-surface: #fffdf8;
+  --color-surface-soft: #fffaf0;
+
+  --color-text: #556326;
+  --color-text-soft: #6d7436;
+
+  --color-accent: #b9650b;
+  --color-accent-hover: #9f5508;
+
+  --color-secondary: #9a7a19;
+
+  --color-footer-background: #efd9d0;
+  --color-footer-text: #b45c0b;
+
+  --shadow-card: 0 6px 18px rgb(79 67 38 / 8%);
+}
+
+/* WINTER */
+
+[data-season='winter'] {
+  --color-background: #f3f6f8;
+  --color-surface: #fbfdff;
+  --color-surface-soft: #f1f6fa;
+
+  --color-text: #52697a;
+  --color-text-soft: #708291;
+
+  --color-accent: #6f8fa8;
+  --color-accent-hover: #58778f;
+
+  --color-secondary: #9aaec0;
+
+  --color-footer-background: #dde8ef;
+  --color-footer-text: #627f95;
+
+  --shadow-card: 0 6px 18px rgb(70 90 110 / 8%);
 }

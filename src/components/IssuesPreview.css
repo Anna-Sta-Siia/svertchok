@@ -120,29 +120,6 @@
   margin-top: auto;
 }
 
-.issue-preview-card__details,
-.issue-preview-card__button {
-  display: inline-block;
-
-  border-radius: 999px;
-  padding: 10px 17px;
-
-  text-decoration: none;
-
-  font-size: 0.9rem;
-}
-
-.issue-preview-card__details {
-  background: #b9650b;
-  color: white;
-}
-
-.issue-preview-card__button {
-  border: 1px solid #b9650b;
-
-  background: transparent;
-  color: #b9650b;
-}
 @media (max-width: 950px) {
   .issues-preview__grid {
     grid-template-columns: repeat(2, 1fr);

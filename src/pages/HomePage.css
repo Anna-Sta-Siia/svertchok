@@ -1,89 +1,124 @@
-.home-top {
+.magazine-home {
+  padding: 24px 0 40px;
+}
+
+.magazine-home__header {
+  position: relative;
+
   display: grid;
-  grid-template-columns: 190px minmax(0, 1fr) 190px;
+  grid-template-columns: 1fr auto;
+  align-items: start;
 
   gap: 24px;
-  align-items: center;
 
-  padding: 28px 0 40px;
+  padding: 14px 0 22px;
+
+  border-top: 1px solid var(--color-secondary);
+  border-bottom: 1px solid var(--color-secondary);
 }
 
-.hero-section {
-  min-width: 0;
-}
+.magazine-home__eyebrow {
+  margin: 0;
 
-.hero-heading {
-  margin: 0 0 28px;
+  color: var(--color-text);
 
-  text-align: center;
-
-  font-size: clamp(0.9rem, 1.4vw, 1.15rem);
-  font-weight: 500;
+  font-size: 0.9rem;
   letter-spacing: 0.08em;
   line-height: 1.4;
 }
 
-.hero-main {
+.magazine-home__title {
+  width: 170px;
+
+  justify-self: end;
+}
+
+.magazine-home__mascot {
+  position: absolute;
+
+  top: 48px;
+  right: 0;
+
+  width: 90px;
+
+  pointer-events: none;
+}
+
+.magazine-home__content {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: 190px minmax(0, 1fr);
 
-  gap: 36px;
-  align-items: center;
+  gap: 34px;
+  align-items: start;
+
+  padding-top: 36px;
 }
 
-.hero-logo {
-  width: 100%;
-  max-width: 260px;
+.magazine-home__nav {
+  position: sticky;
+  top: 20px;
 
-  justify-self: center;
+  min-width: 0;
 }
 
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  text-align: center;
+.magazine-home__issue {
+  min-width: 0;
 }
 
-.hero-title {
-  width: min(100%, 300px);
-  margin-bottom: 18px;
-}
-
-.hero-intro {
-  margin: 0;
-
-  font-size: 1.05rem;
-  line-height: 1.65;
-
-  white-space: pre-line;
+/* On enlève l'énorme espace interne du IssueCard
+   quand il est utilisé comme grand numéro de home */
+.magazine-home__issue .issue-card {
+  padding-top: 0;
+  padding-bottom: 20px;
 }
 
 @media (max-width: 950px) {
-  .home-top {
+  .magazine-home__content {
     grid-template-columns: 1fr;
+
+    gap: 24px;
   }
 
-  .hero-section {
+  .magazine-home__nav {
+    position: static;
+
     order: 1;
   }
 
-  .seasonal-navbar--left {
+  .magazine-home__issue {
     order: 2;
   }
 
-  .seasonal-navbar--right {
-    order: 3;
+  .magazine-home__mascot {
+    width: 72px;
   }
 }
 
 @media (max-width: 650px) {
-  .hero-main {
-    grid-template-columns: 1fr;
+  .magazine-home {
+    padding-top: 14px;
   }
 
-  .hero-logo {
-    max-width: 210px;
+  .magazine-home__header {
+    grid-template-columns: 1fr;
+
+    padding-right: 70px;
+  }
+
+  .magazine-home__title {
+    width: 140px;
+
+    justify-self: start;
+  }
+
+  .magazine-home__mascot {
+    top: 18px;
+    right: 0;
+
+    width: 62px;
+  }
+
+  .magazine-home__content {
+    padding-top: 24px;
   }
 }

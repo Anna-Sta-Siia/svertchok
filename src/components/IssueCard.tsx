@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom'
+
+import Button from './ui/Button'
+
 import './IssueCard.css'
 
 type IssueCardProps = {
@@ -58,22 +61,21 @@ export default function IssueCard({
         <p>{description}</p>
 
         <div className="issue-card__actions">
-          <Link
+          <Button
+            variant="primary"
             to={`/issues/${slug}`}
-            className="issue-card__details"
           >
             Перейти к номеру →
-          </Link>
+          </Button>
 
           {accessUrl && (
-            <a
+            <Button
+              variant="outline"
               href={accessUrl}
-              className="issue-card__purchase"
-              target="_blank"
-              rel="noreferrer"
+              external
             >
               {ctaLabel}
-            </a>
+            </Button>
           )}
         </div>
       </div>

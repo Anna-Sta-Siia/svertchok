@@ -1,0 +1,33 @@
+.seasonal-navbar {
+  width: 100%;
+}
+
+.seasonal-navbar__track {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+@media (max-width: 950px) {
+  .seasonal-navbar {
+    overflow-x: auto;
+
+    scrollbar-width: none;
+
+    scroll-snap-type: x proximity;
+  }
+
+  .seasonal-navbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .seasonal-navbar__track {
+    flex-direction: row;
+
+    width: max-content;
+    min-width: 100%;
+
+    gap: 10px;
+  }
+}

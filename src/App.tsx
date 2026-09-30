@@ -4,27 +4,36 @@ import MainLayout from './layouts/MainLayout'
 import HomePage from './pages/HomePage'
 import IssuePage from './pages/IssuePage'
 
-function App() {
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <MainLayout>
-            <HomePage />
-          </MainLayout>
-        }
-      />
+import { getCurrentSeason } from './utils/getCurrentSeason'
 
-      <Route
-        path="/issues/:slug"
-        element={
-          <MainLayout>
-            <IssuePage />
-          </MainLayout>
-        }
-      />
-    </Routes>
+function App() {
+const season = getCurrentSeason()
+
+  return (
+    <div
+      className="app-theme"
+      data-season={season}
+    >
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <MainLayout>
+              <HomePage season={season} />
+            </MainLayout>
+          }
+        />
+
+        <Route
+          path="/issues/:slug"
+          element={
+            <MainLayout>
+              <IssuePage />
+            </MainLayout>
+          }
+        />
+      </Routes>
+    </div>
   )
 }
 
