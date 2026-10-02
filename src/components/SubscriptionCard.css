@@ -1,0 +1,50 @@
+.subscription-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+
+  padding: 38px 40px;
+
+  border-radius: var(--radius-card);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface-soft) 76%,
+      transparent
+    );
+}
+
+.subscription-card h2 {
+  max-width: 430px;
+text-align:center;
+  margin: 0 0 16px;
+
+  color: var(--color-text);
+
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.subscription-card__text {
+  max-width: 440px;
+
+  margin: 0 0 26px;
+
+  color: var(--color-text-soft);
+
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 600px) {
+  .subscription-card {
+   
+
+    padding: 30px 24px;
+
+  }
+}

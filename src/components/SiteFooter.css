@@ -1,7 +1,18 @@
 .site-footer {
+  position: relative;
+  z-index: 2;
+
   width: 100%;
 
-  background: var(--color-footer-background);
+  margin-top: 24px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-footer-bg) 92%,
+      var(--color-background)
+    );
+
   color: var(--color-footer-text);
 }
 
@@ -13,140 +24,195 @@
 
   margin: 0 auto;
 
-  padding: 42px 0 52px;
 }
 
-.site-footer__message {
-  margin: 0 0 38px;
-
-  text-align: center;
-
-  font-size: 1.35rem;
-  line-height: 1.5;
-}
-
-.site-footer__content {
+.site-footer__top {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
-  gap: 48px;
-
+  gap: 40px;
   align-items: center;
+
+  width: 100%;
 }
+
+/* LEFT */
 
 .site-footer__brand {
-  text-align: center;
+  display: flex;
+  align-items: center;
+flex-direction:column;
+  gap: 16px;
+
+  justify-self: start;
 }
 
-.site-footer__svertchok {
-  width: 110px;
+.site-footer__mascot {
+  width: 100px;
+  height: auto;
 
-  margin-bottom: 18px;
+  flex-shrink: 0;
 }
 
-.site-footer__brand p {
-  margin: 0;
-
-  font-size: 0.88rem;
-  line-height: 1.55;
+.site-footer__title {
+  width: 128px;
+  height: auto;
 }
 
-.site-footer__center {
+/* CENTER */
+
+.site-footer__support {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  gap: 28px;
+  gap: 20px;
+
+  justify-self: center;
+
+  max-width: 430px;
 
   text-align: center;
 }
 
-.site-footer__goodbye {
+.site-footer__support p {
   margin: 0;
 
-  font-size: 1.3rem;
+  color: var(--color-footer-text);
+
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
 
-.site-footer__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/* RIGHT */
 
-  gap: 12px;
+.site-footer__bukovki-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  justify-self: end;
+
+  width: 100%;
 }
 
 .site-footer__bukovki {
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-}
-
-.site-footer__bukovki img {
-  width: min(100%, 220px);
-  max-height: 160px;
+  width: 200px;
 
   object-fit: contain;
 }
+/* =========================
+   GOODBYE
+   ========================= */
+
+.site-footer__goodbye {
+  padding-top: 22px;
+  text-align: center;
+}
+
+.site-footer__goodbye-first {
+  margin: 0;
+
+  color: var(--color-footer-text);
+
+  font-family: var(--font-accent);
+  font-size: 1.65rem;
+  line-height: 1.25;
+}
+
+.site-footer__goodbye-second {
+  margin: 5px 0 0;
+ font-family: var(--font-accent);
+color: var(--color-footer-text);
+
+  font-size: 1.65rem;
+}
+
+/* =========================
+   TABLET
+   ========================= */
 
 @media (max-width: 900px) {
   .site-footer__inner {
-    width: min(
-      100%,
-      calc(100% - 40px)
-    );
+    width: calc(100% - 40px);
   }
 
-  .site-footer__content {
+   .site-footer__top {
     grid-template-columns: 1fr 1fr;
-
-    gap: 36px;
-  }
-
-  .site-footer__center {
-    grid-column: 1 / -1;
-    grid-row: 1;
-
-    order: -1;
-  }
-}
-
-@media (max-width: 650px) {
-  .site-footer__inner {
-    width: min(
-      100%,
-      calc(100% - 24px)
-    );
-
-    padding: 34px 0 40px;
-  }
-
-  .site-footer__message {
-    margin-bottom: 28px;
-
-    font-size: 1.1rem;
-  }
-
-  .site-footer__content {
-    grid-template-columns: 1fr;
 
     gap: 32px;
   }
 
-  .site-footer__center {
+
+   .site-footer__support {
+    grid-column: 1 / -1;
+    grid-row: 2;
+
+    justify-self: center;
+  }
+
+  .site-footer__brand {
+    grid-column: 1;
+  }
+
+  .site-footer__bukovki-wrap {
+    grid-column: 2;
+  }
+}
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+  .site-footer__inner {
+    width: calc(100% - 24px);
+
+  }
+
+  .site-footer__top {
+    grid-template-columns: 1fr;
+
+    gap: 26px;
+
+    justify-items: center;
+  }
+
+  .site-footer__brand,
+  .site-footer__support,
+  .site-footer__bukovki-wrap {
     grid-column: auto;
+    grid-row: auto;
+
+    justify-self: center;
   }
 
-  .site-footer__actions {
-    flex-direction: column;
-    align-items: center;
+  .site-footer__bukovki-wrap {
+    justify-content: center;
   }
 
-  .site-footer__svertchok {
-    width: 90px;
+  .site-footer__support {
+    text-align: center;
   }
 
-  .site-footer__bukovki img {
-    max-width: 180px;
+
+  .site-footer__bukovki {
+    width: 110px;
+  }
+
+  .site-footer__support .button {
+    grid-column: auto;
+
+    justify-self: center;
+  }
+
+  .site-footer__goodbye {
+    margin-top: 28px;
+    padding-top: 20px;
+  }
+
+  .site-footer__goodbye-first {
+    font-size: 1.4rem;
   }
 }

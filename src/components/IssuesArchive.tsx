@@ -1,12 +1,14 @@
 import {
+  useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react'
 
 import IssueCard from './IssueCard'
 import Button from './ui/Button'
 
-import { issues as allIssues } from '../assets/data/issues'
+import { issues as allIssues } from "../assets/data/issues"
 
 import './IssuesArchive.css'
 
@@ -16,11 +18,27 @@ type IssuesArchiveProps = {
   issues: Issue[]
 }
 
+type YearValue = number | 'all'
+
+type YearOption = {
+  value: YearValue
+  label: string
+}
+
 export default function IssuesArchive({
   issues,
 }: IssuesArchiveProps) {
   const [selectedYear, setSelectedYear] =
-    useState<number | 'all'>('all')
+    useState<YearValue>('all')
+
+  const [isOpen, setIsOpen] =
+    useState(false)
+
+  const [highlightedIndex, setHighlightedIndex] =
+    useState(0)
+
+  const selectRef =
+    useRef<HTMLDivElement>(null)
 
   const years = useMemo(
     () =>
@@ -29,6 +47,18 @@ export default function IssuesArchive({
       )].sort((a, b) => b - a),
     [issues],
   )
+
+  const yearOptions: YearOption[] = [
+    {
+      value: 'all',
+      label: 'Все годы',
+    },
+
+    ...years.map((year) => ({
+      value: year,
+      label: String(year),
+    })),
+  ]
 
   const filteredIssues = useMemo(() => {
     const result =
@@ -46,6 +76,118 @@ export default function IssuesArchive({
     )
   }, [issues, selectedYear])
 
+  const selectedLabel =
+    selectedYear === 'all'
+      ? 'Все годы'
+      : String(selectedYear)
+
+  function openSelect() {
+    const selectedIndex =
+      yearOptions.findIndex(
+        (option) =>
+          option.value === selectedYear,
+      )
+
+    setHighlightedIndex(
+      selectedIndex >= 0
+        ? selectedIndex
+        : 0,
+    )
+
+    setIsOpen(true)
+  }
+
+  function chooseYear(
+    value: YearValue,
+  ) {
+    setSelectedYear(value)
+    setIsOpen(false)
+  }
+
+  function handleKeyDown(
+    event: React.KeyboardEvent<HTMLButtonElement>,
+  ) {
+    if (
+      event.key === 'Enter' ||
+      event.key === ' '
+    ) {
+      event.preventDefault()
+
+      if (!isOpen) {
+        openSelect()
+        return
+      }
+
+      chooseYear(
+        yearOptions[highlightedIndex].value,
+      )
+
+      return
+    }
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault()
+
+      if (!isOpen) {
+        openSelect()
+        return
+      }
+
+      setHighlightedIndex(
+        (current) =>
+          (current + 1) %
+          yearOptions.length,
+      )
+    }
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault()
+
+      if (!isOpen) {
+        openSelect()
+        return
+      }
+
+      setHighlightedIndex(
+        (current) =>
+          (current - 1 +
+            yearOptions.length) %
+          yearOptions.length,
+      )
+    }
+
+    if (event.key === 'Escape') {
+      setIsOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    function handleOutsideClick(
+      event: MouseEvent,
+    ) {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(
+          event.target as Node,
+        )
+      ) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener(
+      'mousedown',
+      handleOutsideClick,
+    )
+
+    return () => {
+      document.removeEventListener(
+        'mousedown',
+        handleOutsideClick,
+      )
+    }
+  }, [])
+
   return (
     <aside className="issues-archive">
       <div className="issues-archive__heading">
@@ -57,53 +199,112 @@ export default function IssuesArchive({
         </p>
       </div>
 
+      {/* YEAR FILTER */}
+
       <div className="issues-archive__filter">
-        <label
-          htmlFor="archive-year"
-          className="issues-archive__filter-label"
-        >
+        <span className="issues-archive__filter-label">
           Год
-        </label>
+        </span>
 
-        <select
-          id="archive-year"
-          className="issues-archive__select"
-          value={selectedYear}
-          onChange={(event) => {
-            const value = event.target.value
-
-            setSelectedYear(
-              value === 'all'
-                ? 'all'
-                : Number(value),
-            )
-          }}
+        <div
+          ref={selectRef}
+          className="issues-archive__custom-select"
         >
-          <option value="all">
-            Все годы
-          </option>
+          <button
+            type="button"
+            className="issues-archive__select-button"
+            onClick={() => {
+              if (isOpen) {
+                setIsOpen(false)
+              } else {
+                openSelect()
+              }
+            }}
+            onKeyDown={handleKeyDown}
+            aria-haspopup="listbox"
+            aria-expanded={isOpen}
+            aria-controls="archive-year-list"
+          >
+            <span>
+              {selectedLabel}
+            </span>
 
-          {years.map((year) => (
-            <option
-              key={year}
-              value={year}
+            <span
+              className={`issues-archive__chevron ${
+                isOpen
+                  ? 'issues-archive__chevron--open'
+                  : ''
+              }`}
+              aria-hidden="true"
             >
-              {year}
-            </option>
-          ))}
-        </select>
+              ⌄
+            </span>
+          </button>
+
+          {isOpen && (
+            <div
+              id="archive-year-list"
+              className="issues-archive__select-menu"
+              role="listbox"
+              aria-label="Год выпуска"
+            >
+              {yearOptions.map(
+                (option, index) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    role="option"
+                    aria-selected={
+                      selectedYear ===
+                      option.value
+                    }
+                    className={`issues-archive__select-option ${
+                      selectedYear ===
+                      option.value
+                        ? 'issues-archive__select-option--selected'
+                        : ''
+                    } ${
+                      highlightedIndex ===
+                      index
+                        ? 'issues-archive__select-option--highlighted'
+                        : ''
+                    }`}
+                    onPointerEnter={() =>
+                      setHighlightedIndex(
+                        index,
+                      )
+                    }
+                    onClick={() =>
+                      chooseYear(
+                        option.value,
+                      )
+                    }
+                  >
+                    {option.label}
+                  </button>
+                ),
+              )}
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* ISSUES */}
 
       <div className="issues-archive__list">
         {filteredIssues.map((issue) => (
           <IssueCard
             key={issue.id}
             slug={issue.slug}
-            monthLabel={issue.monthLabel}
+            monthLabel={
+              issue.monthLabel
+            }
             month={issue.month}
             year={issue.year}
             title={issue.title}
-            coverImage={issue.coverImage}
+            coverImage={
+              issue.coverImage
+            }
             description={
               issue.shortDescription
             }

@@ -1,6 +1,7 @@
 import IssueCard from '../components/IssueCard'
 import IssuesArchive from '../components/IssuesArchive'
-import SubscriptionSection from '../components/SubscriptionSection'
+import SubscriptionCard from '../components/SubscriptionCard'
+import ContactCard from '../components/ContactCard'
 
 import { issues } from '../assets/data/issues'
 
@@ -65,8 +66,11 @@ export default function HomePage() {
           issues={previousIssues}
         />
       </section>
+<section className="home-connect">
+  <SubscriptionCard to="/subscription" />
 
-      <SubscriptionSection />
+  <ContactCard />
+</section>
     </>
   )
 }
