@@ -55,7 +55,7 @@
 
 .home-issues__intro {
   margin: 0;
-text-align: center;
+
   color: var(--color-logo-green);
 
   font-family: var(--font-accent);
@@ -71,7 +71,7 @@ text-align: center;
 }
 
 /* =========================
-   ISSUE CARD
+   CURRENT ISSUE CARD
    ========================= */
 
 .home-issues__current
@@ -111,19 +111,19 @@ text-align: center;
 }
 
 /* =========================
-   ACTIONS
-
-   Toujours indépendantes
-   de cover / texte.
+   CURRENT ISSUE ACTIONS
    ========================= */
 
+/*
+ * Les CTA sont indépendants
+ * des colonnes cover / texte.
+ */
 .home-issues__actions {
   grid-column: 1 / -1;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
 
   gap: 16px;
 
@@ -158,10 +158,10 @@ text-align: center;
 
 /* =========================
    MEDIUM DESKTOP
+   1280 → 1025 px
 
-   Archive encore à droite.
-   On raccourcit seulement
-   la description.
+   Archive encore à droite,
+   description raccourcie.
    ========================= */
 
 @media (
@@ -188,7 +188,10 @@ text-align: center;
 }
 
 /* =========================
-   ARCHIVE PASSE EN DESSOUS
+   ≤ 1024 px
+
+   Archive sous le numéro.
+   3 colonnes d'archives.
    ========================= */
 
 @media (max-width: 1024px) {
@@ -198,9 +201,13 @@ text-align: center;
     gap: 56px;
   }
 
+  /* -------------------------
+     CURRENT ISSUE
+     ------------------------- */
+
   /*
-   * Toute la largeur revient
-   * au numéro actuel.
+   * L'archive est dessous :
+   * le numéro récupère de la place.
    */
   .home-issues__current
   .issue-card__description {
@@ -216,15 +223,69 @@ text-align: center;
   .issue-card__read-more {
     display: none;
   }
+
+  /* -------------------------
+     ARCHIVE
+     ------------------------- */
+
+  .home-issues
+  .issues-archive {
+    width: 100%;
+    max-width: none;
+
+    justify-self: stretch;
+  }
+
+  .home-issues
+  .issues-archive__list {
+    display: grid;
+
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      30px
+      24px;
+
+    width: 100%;
+
+    max-height: none;
+
+    overflow: visible;
+  }
+
+  /* -------------------------
+     YEAR FILTER
+     ------------------------- */
+
+  .home-issues
+  .issues-archive__filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    width: 100%;
+  }
+
+  .home-issues
+  .issues-archive
+  button[aria-haspopup='listbox'] {
+    width: 220px;
+    max-width: 100%;
+  }
 }
 
 /* =========================
-   TABLET LANDSCAPE
+   850 → 769 px
 
-   850 → 769 :
-   cover + texte restent
-   côte à côte,
-   mais description raccourcie.
+   Cover + texte restent
+   côte à côte.
+   Description à 8 lignes.
    ========================= */
 
 @media (
@@ -251,13 +312,15 @@ text-align: center;
 }
 
 /* =========================
-   TABLET / MOBILE
+   ≤ 768 px
 
-   IssueCard passe
-   en une seule colonne.
+   Issue actuel en colonne.
+   Archive en 2 colonnes.
    ========================= */
 
 @media (max-width: 768px) {
+  /* CURRENT ISSUE */
+
   .home-issues__current {
     grid-template-columns: 1fr;
 
@@ -281,10 +344,8 @@ text-align: center;
     margin: 0 auto;
   }
 
-  /*
-   * Les CTA passent en colonne,
-   * mais restent de taille raisonnable.
-   */
+  /* CTA */
+
   .home-issues__actions {
     grid-column: 1;
 
@@ -301,10 +362,25 @@ text-align: center;
       320px
     );
   }
+
+  /* ARCHIVE */
+
+  .home-issues
+  .issues-archive__list {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      26px
+      24px;
+  }
 }
 
 /* =========================
-   MOBILE
+   ≤ 700 px
    ========================= */
 
 @media (max-width: 700px) {
@@ -331,13 +407,16 @@ text-align: center;
 }
 
 /* =========================
-   SMALL MOBILE
+   ≤ 550 px
 
-   Moins de scroll :
-   8 lignes + read more.
+   Petit mobile :
+   archive en 1 colonne
+   + description raccourcie.
    ========================= */
 
 @media (max-width: 550px) {
+  /* CURRENT ISSUE */
+
   .home-issues__current
   .issue-card__description {
     display: -webkit-box;
@@ -360,5 +439,32 @@ text-align: center;
       100%,
       300px
     );
+  }
+
+  /* ARCHIVE */
+
+  .home-issues
+  .issues-archive__list {
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+  .home-issues
+  .issues-archive__list
+  .issue-card--compact {
+    width: min(
+      100%,
+      320px
+    );
+
+    justify-self: center;
+  }
+
+  /* FILTER */
+
+  .home-issues
+  .issues-archive__filter {
+    flex-wrap: wrap;
   }
 }

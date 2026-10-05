@@ -41,29 +41,37 @@ export default function IssueContentsOverlay({
         aria-modal="true"
         aria-label="Содержание номера"
       >
-        <div className="issue-contents-overlay__top">
-          {issueMeta && (
-            <div className="issue-contents-overlay__issue">
-              <img
-                src={issueMeta.coverImage}
-                alt=""
-                className="issue-contents-overlay__cover"
-              />
+        <header className="issue-contents-overlay__top">
+          <div className="issue-contents-overlay__header-content">
+            {issueMeta && (
+              <div className="issue-contents-overlay__issue">
+                <img
+                  src={issueMeta.coverImage}
+                  alt=""
+                  className="issue-contents-overlay__cover"
+                />
 
-              <div>
-                <p className="issue-contents-overlay__number">
-                  №
-                  {String(issueMeta.month).padStart(2, '0')}
-                  {' · '}
-                  {issueMeta.year}
-                </p>
+                <div className="issue-contents-overlay__meta">
+                  <p className="issue-contents-overlay__number">
+                    №
+                    {String(issueMeta.month).padStart(2, '0')}
+                    {' · '}
+                    {issueMeta.year}
+                  </p>
 
-                <p className="issue-contents-overlay__title">
-                  {issueMeta.title}
-                </p>
+                  <p className="issue-contents-overlay__issue-title">
+                    {issueMeta.title}
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+
+            <div className="issue-contents-overlay__divider" />
+
+            <h2 className="issue-contents-overlay__heading">
+              Содержание номера
+            </h2>
+          </div>
 
           <button
             type="button"
@@ -73,7 +81,7 @@ export default function IssueContentsOverlay({
           >
             ×
           </button>
-        </div>
+        </header>
 
         <div className="issue-contents-overlay__body">
           {children}

@@ -1,9 +1,8 @@
+/* =========================
+   OVERLAY
+   ========================= */
+
 .issue-contents-overlay {
-  /*
-   * Le nav reste visible au-dessus.
-   * Si sa hauteur change un jour,
-   * on ne modifie qu'ici.
-   */
   --overlay-nav-offset: 92px;
 
   position: fixed;
@@ -19,10 +18,15 @@
   align-items: flex-start;
   justify-content: center;
 
-  padding: 24px 32px 20px;
+  padding:
+    24px
+    32px
+    20px;
 }
 
-/* BACKDROP */
+/* =========================
+   BACKDROP
+   ========================= */
 
 .issue-contents-overlay__backdrop {
   position: absolute;
@@ -38,7 +42,9 @@
   cursor: pointer;
 }
 
-/* PANEL */
+/* =========================
+   PANEL
+   ========================= */
 
 .issue-contents-overlay__panel {
   position: relative;
@@ -47,12 +53,11 @@
   display: flex;
   flex-direction: column;
 
-  width: min(1120px, 100%);
+  width: min(
+    1120px,
+    100%
+  );
 
-  /*
-   * 100dvh est plus fiable que 100vh,
-   * surtout sur les petits écrans.
-   */
   max-height:
     calc(
       100dvh -
@@ -79,12 +84,14 @@
     );
 
   box-shadow:
-    0 24px 70px
+    0
+    24px
+    70px
     rgb(40 35 20 / 22%);
 }
 
 /* =========================
-   FIXED OVERLAY HEADER
+   HEADER
    ========================= */
 
 .issue-contents-overlay__top {
@@ -96,9 +103,11 @@
 
   gap: 24px;
 
-  min-height: 84px;
+  min-height: 92px;
 
-  padding: 12px 20px;
+  padding:
+    12px
+    24px;
 
   border-bottom: 1px solid
     color-mix(
@@ -115,13 +124,30 @@
     );
 }
 
+/* LEFT SIDE:
+   mini cover + issue meta + title */
+
+.issue-contents-overlay__header-content {
+  display: flex;
+  align-items: center;
+
+  gap: 22px;
+
+  min-width: 0;
+}
+
+/* =========================
+   ISSUE META
+   ========================= */
+
 .issue-contents-overlay__issue {
   display: flex;
   align-items: center;
 
-  min-width: 0;
-
   gap: 14px;
+
+  min-width: 0;
+  flex-shrink: 0;
 }
 
 .issue-contents-overlay__cover {
@@ -135,12 +161,21 @@
   border-radius: 6px;
 
   box-shadow:
-    0 5px 14px
+    0
+    5px
+    14px
     rgb(40 35 20 / 12%);
 }
 
+.issue-contents-overlay__meta {
+  min-width: 0;
+}
+
 .issue-contents-overlay__number {
-  margin: 0 0 3px;
+  margin:
+    0
+    0
+    3px;
 
   color: var(--color-accent);
 
@@ -150,7 +185,7 @@
   letter-spacing: 0.04em;
 }
 
-.issue-contents-overlay__title {
+.issue-contents-overlay__issue-title {
   margin: 0;
 
   overflow: hidden;
@@ -164,7 +199,49 @@
   white-space: nowrap;
 }
 
-/* CLOSE */
+/* =========================
+   DIVIDER
+   ========================= */
+
+.issue-contents-overlay__divider {
+  width: 1px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-text) 14%,
+      transparent
+    );
+}
+
+/* =========================
+   "СОДЕРЖАНИЕ НОМЕРА"
+   ========================= */
+
+.issue-contents-overlay__heading {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size:
+    clamp(
+      1.35rem,
+      2vw,
+      1.8rem
+    );
+
+  font-weight: 500;
+  line-height: 1.1;
+
+  white-space: nowrap;
+}
+
+/* =========================
+   CLOSE BUTTON
+   ========================= */
 
 .issue-contents-overlay__close {
   display: grid;
@@ -225,30 +302,29 @@
     );
 }
 
+.issue-contents-overlay__close:focus-visible {
+  outline: 2px solid
+    var(--color-accent);
+
+  outline-offset: 3px;
+}
+
 /* =========================
    SCROLLABLE BODY
    ========================= */
 
 .issue-contents-overlay__body {
-  /*
-   * Très important dans un enfant flex :
-   * sinon le scroll peut dépasser / être mangé.
-   */
   min-height: 0;
   flex: 1 1 auto;
 
   overflow-y: auto;
   overscroll-behavior: contain;
 
-  /*
-   * Laisse la place au scrollbar
-   * sans déplacer le contenu.
-   */
   scrollbar-gutter: stable;
 
   padding:
-    26px
-    30px
+    28px
+    34px
     56px;
 
   scrollbar-width: auto;
@@ -266,7 +342,10 @@
     );
 }
 
-/* CHROME / EDGE / SAFARI */
+/* =========================
+   SCROLLBAR
+   Chrome / Edge / Safari
+   ========================= */
 
 .issue-contents-overlay__body::-webkit-scrollbar {
   width: 12px;
@@ -333,6 +412,25 @@
         34px
       );
   }
+
+  .issue-contents-overlay__top {
+    gap: 18px;
+
+    padding:
+      10px
+      18px;
+  }
+
+  .issue-contents-overlay__header-content {
+    gap: 16px;
+  }
+
+  .issue-contents-overlay__body {
+    padding:
+      24px
+      26px
+      48px;
+  }
 }
 
 /* =========================
@@ -341,10 +439,6 @@
 
 @media (max-width: 650px) {
   .issue-contents-overlay {
-    /*
-     * On garde quand même la navbar
-     * visible sur mobile.
-     */
     --overlay-nav-offset: 76px;
 
     padding: 8px;
@@ -364,11 +458,17 @@
   }
 
   .issue-contents-overlay__top {
-    min-height: 72px;
+    min-height: 76px;
+
+    gap: 12px;
 
     padding:
       8px
       12px;
+  }
+
+  .issue-contents-overlay__header-content {
+    gap: 12px;
   }
 
   .issue-contents-overlay__cover {
@@ -380,13 +480,31 @@
     font-size: 0.8rem;
   }
 
-  .issue-contents-overlay__title {
-    font-size: 0.95rem;
+  /*
+   * Sur petit écran :
+   * on garde le numéro,
+   * mais on retire "Сверчок"
+   * pour économiser la place.
+   */
+  .issue-contents-overlay__issue-title {
+    display: none;
+  }
+
+  .issue-contents-overlay__divider {
+    height: 32px;
+  }
+
+  .issue-contents-overlay__heading {
+    font-size: 1.15rem;
+
+    white-space: normal;
   }
 
   .issue-contents-overlay__close {
     width: 38px;
     height: 38px;
+
+    font-size: 1.4rem;
   }
 
   .issue-contents-overlay__body {

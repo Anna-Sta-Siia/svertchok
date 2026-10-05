@@ -193,11 +193,6 @@ color: var(--color-footer-text);
     text-align: center;
   }
 
-
-  .site-footer__bukovki {
-    width: 110px;
-  }
-
   .site-footer__support .button {
     grid-column: auto;
 

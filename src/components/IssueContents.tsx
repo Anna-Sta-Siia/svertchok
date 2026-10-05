@@ -110,17 +110,12 @@ export default function IssueContents({
                 №{String(issueMeta.month).padStart(2, '0')} ·{' '}
                 {issueMeta.year}
               </p>
-
               <p className="issue-contents__issue-title">
                 {issueMeta.title}
               </p>
             </div>
           </div>
         )}
-
-        <div className="issue-contents__heading-block">
-          <h2>Содержание номера</h2>
-        </div>
       </header>
 
       <div className="issue-contents__groups">

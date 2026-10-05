@@ -39,7 +39,7 @@ export default function SiteFooter() {
 
     <Button
       variant="outline"
-      to="/support"
+      to="https://www.helloasso.com/associations/association-des-amateurs-de-la-litterature-russophone-pour-les-enfants-et-la-jeunesse-boukovki/formulaires/1"
     >
       Поддержать альманах →
     </Button>
