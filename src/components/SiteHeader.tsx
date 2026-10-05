@@ -43,7 +43,9 @@ export default function SiteHeader() {
           </p>
 
           <p className="site-header__speech-accent">
-            и я расскажу тебе свои истории…
+            и я расскажу тебе
+             <br />
+    свои истории…
           </p>
         </div>
       </div>

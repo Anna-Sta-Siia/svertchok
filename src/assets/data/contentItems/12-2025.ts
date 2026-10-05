@@ -1,0 +1,287 @@
+import type { ContentItem } from './types.ts'
+
+export const december2025ContentItems: ContentItem[] = [
+  {
+  id: 'december-2025-intro',
+  issueId: '12-2025',
+  title: 'Вводное слово',
+  type: 'other',
+  page: 11,
+  order: 1,
+},
+
+  /* =========================
+     ПОЭТИЧЕСКИЕ ЧУДЕСА
+     ========================= */
+
+  {
+    id: 'december-2025-yasnov-chudetstvo',
+    issueId: '12-2025',
+    authorId: 'mikhail-yasnov',
+    title: 'Чудетство',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 13,
+    order: 2,
+  },
+  {
+    id: 'december-2025-yasnov-chudak',
+    issueId: '12-2025',
+    authorId: 'mikhail-yasnov',
+    title: 'Однажды в лесу объявился чудак',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 14,
+    order: 3,
+  },
+  {
+    id: 'december-2025-yasnov-cup',
+    issueId: '12-2025',
+    authorId: 'mikhail-yasnov',
+    title: 'Вышла чашка погулять',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 16,
+    order: 4,
+  },
+  {
+    id: 'december-2025-yasnov-glass',
+    issueId: '12-2025',
+    authorId: 'mikhail-yasnov',
+    title: 'Увеличительное стекло',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 18,
+    order: 5,
+  },
+  {
+    id: 'december-2025-shamsutdinov-kite',
+    issueId: '12-2025',
+    authorId: 'nikolay-shamsutdinov',
+    title: 'Непослушный змей воздушный',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 19,
+    order: 6,
+  },
+  {
+    id: 'december-2025-nikiforov-globe',
+    issueId: '12-2025',
+    authorId: 'sergey-nikiforov',
+    title: 'Про глобус и автобус',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 21,
+    order: 7,
+  },
+  {
+    id: 'december-2025-varlamova-miracle',
+    issueId: '12-2025',
+    authorId: 'tatyana-varlamova',
+    title: 'В ожидании чуда',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 22,
+    order: 8,
+  },
+  {
+    id: 'december-2025-son-daisy-rain',
+    issueId: '12-2025',
+    authorId: 'svetlana-son',
+    title: 'Маргаритковый дождь',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 23,
+    order: 9,
+  },
+  {
+    id: 'december-2025-son-sky-boot',
+    issueId: '12-2025',
+    authorId: 'svetlana-son',
+    title: 'Башмак-небоход',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 24,
+    order: 10,
+  },
+  {
+    id: 'december-2025-son-chepukhay',
+    issueId: '12-2025',
+    authorId: 'svetlana-son',
+    title: 'Зима-летний Чепухай',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 25,
+    order: 11,
+  },
+  {
+    id: 'december-2025-son-upside-down',
+    issueId: '12-2025',
+    authorId: 'svetlana-son',
+    title: 'Планета Вверх-ногамия',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 26,
+    order: 12,
+  },
+  {
+    id: 'december-2025-son-lady-kochka',
+    issueId: '12-2025',
+    authorId: 'svetlana-son',
+    title: 'Комплименты леди Кочке',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 28,
+    order: 13,
+  },
+  {
+    id: 'december-2025-son-red-cat',
+    issueId: '12-2025',
+    authorId: 'svetlana-son',
+    title: 'Конопато-рыжий Кот',
+    type: 'poetry',
+    section: 'ПОЭТИЧЕСКИЕ ЧУДЕСА',
+    page: 29,
+    order: 14,
+  },
+
+  /* =========================
+     ИГРОВАЯ
+     ========================= */
+
+  {
+    id: 'december-2025-stetsenko-riddles',
+    issueId: '12-2025',
+    authorId: 'galina-stetsenko',
+    title: 'Загадки',
+    type: 'game',
+    section: 'ИГРОВАЯ',
+    page: 32,
+    order: 15,
+  },
+  {
+    id: 'december-2025-krasovskaya-crossword',
+    issueId: '12-2025',
+    authorId: 'nadya-krasovskaya',
+    title: 'Кроссворд',
+    type: 'game',
+    section: 'ИГРОВАЯ',
+    page: 33,
+    order: 16,
+  },
+
+  /* =========================
+     ПРОЗАИЧЕСКИЕ ЧУДЕСА
+     ========================= */
+
+  {
+    id: 'december-2025-cherkasova-shop',
+    issueId: '12-2025',
+    authorId: 'anna-cherkasova',
+    title: 'Сказочный магазин',
+    type: 'prose',
+    section: 'ПРОЗАИЧЕСКИЕ ЧУДЕСА',
+    page: 35,
+    order: 17,
+  },
+  {
+    id: 'december-2025-pugina-drakufik',
+    issueId: '12-2025',
+    authorId: 'irina-pugina',
+    title: 'Дракуфик и школа волшебных зверей',
+    type: 'prose',
+    section: 'ПРОЗАИЧЕСКИЕ ЧУДЕСА',
+    page: 39,
+    order: 18,
+  },
+  {
+    id: 'december-2025-pugina-classny',
+    issueId: '12-2025',
+    authorId: 'irina-pugina',
+    title: 'Классный',
+    type: 'prose',
+    section: 'ПРОЗАИЧЕСКИЕ ЧУДЕСА',
+    page: 51,
+    order: 19,
+  },
+  {
+    id: 'december-2025-chepiga-mama',
+    issueId: '12-2025',
+    authorId: 'valya-chepiga',
+    title: 'Мама Таню уложила спать',
+    type: 'prose',
+    section: 'ПРОЗАИЧЕСКИЕ ЧУДЕСА',
+    page: 79,
+    order: 20,
+  },
+  {
+    id: 'december-2025-georg-yolkich',
+    issueId: '12-2025',
+    authorId: 'tatyana-georg',
+    title: 'Ёлкич и девочка',
+    type: 'prose',
+    section: 'ПРОЗАИЧЕСКИЕ ЧУДЕСА',
+    page: 97,
+    order: 21,
+  },
+  {
+    id: 'december-2025-georg-step-counter',
+    issueId: '12-2025',
+    authorId: 'tatyana-georg',
+    title: 'Шагомер',
+    type: 'prose',
+    section: 'ПРОЗАИЧЕСКИЕ ЧУДЕСА',
+    page: 101,
+    order: 22,
+  },
+  {
+    id: 'december-2025-georg-new-year-miracle',
+    issueId: '12-2025',
+    authorId: 'tatyana-georg',
+    title: 'Чудо новогоднее',
+    type: 'prose',
+    section: 'ПРОЗАИЧЕСКИЕ ЧУДЕСА',
+    page: 103,
+    order: 23,
+  },
+  {
+    id: 'december-2025-miranova-dreamer',
+    issueId: '12-2025',
+    authorId: 'gulnara-miranova',
+    title: 'Маленькая мечтательница',
+    type: 'prose',
+    section: 'ПРОЗАИЧЕСКИЕ ЧУДЕСА',
+    page: 106,
+    order: 24,
+  },
+
+  /* =========================
+     БЕСЕДЫ «СВЕРЧКА»
+     ========================= */
+
+  {
+    id: 'december-2025-simbirskaya-interview',
+    issueId: '12-2025',
+    authorId: 'yulia-simbirskaya',
+    title: 'Беседа с Юлией Симбирской',
+    type: 'interview',
+    section: 'БЕСЕДЫ «СВЕРЧКА»',
+    page: 113,
+    order: 25,
+  },
+
+  /* =========================
+     МЕТОДКАБИНЕТ
+     ========================= */
+
+  {
+    id: 'december-2025-methodical-shop',
+    issueId: '12-2025',
+    title:
+      'Весёлые задания по тексту сказки Анны Черкасовой «Сказочный магазин»',
+    type: 'methodical',
+    section: 'МЕТОДКАБИНЕТ',
+    page: 121,
+    order: 26,
+  },
+]

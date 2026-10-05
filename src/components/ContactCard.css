@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+text-align: center;
 padding:38px 40px;
   min-width: 0;
 
@@ -22,7 +22,6 @@ padding:38px 40px;
   max-width: 430px;
 
   margin: 0 0 16px;
-text-align:center;
   color: var(--color-text);
 
   font-size: clamp(1.35rem, 2vw, 1.75rem);

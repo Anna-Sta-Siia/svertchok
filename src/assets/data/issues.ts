@@ -6,15 +6,15 @@ import december2025Cover from './covers/Сверчок_cover_122025.png'
 export type Issue = {
   id: string
   slug: string
+
   month: number
   monthLabel: string
   year: number
+
   title: string
   coverImage: string
+
   shortDescription: string
-  longDescription: string
-  introLabel?: string
-  introText?: string
 
   accessType: 'free' | 'paid'
   accessUrl?: string
@@ -33,12 +33,9 @@ export const issues: Issue[] = [
     coverImage: march2025Cover,
 
     shortDescription:
-      'Если с другом вышел в путь... Весёлые и мудрые истории о настоящей дружбе.',
-
-    longDescription:
-      'Весёлые и мудрые истории о дружбе, взаимопомощи и тех, кто всегда рядом.',
-
+  'Номер о дружбе — настоящей, неожиданной, весёлой и непростой.',
     accessType: 'paid',
+     accessUrl: 'https://www.helloasso.com/associations/association-des-amateurs-de-la-litterature-russophone-pour-les-enfants-et-la-jeunesse-boukovki/boutiques/svertchok',
     isCurrent: false,
   },
 
@@ -50,19 +47,11 @@ export const issues: Issue[] = [
     year: 2025,
     title: 'Сверчок — Подросток',
     coverImage: june2025Cover,
-
     shortDescription:
       'Для тех, кто уже почти взрослый и всё ещё немного ребёнок.',
-
-    longDescription:
-      'Этот номер — о подростках и для подростков. О дружбе и первой любви, школьной жизни, выборе, обидах и примирениях. А ещё здесь вас ждут стихи и рассказы, игры, книжные рекомендации, «Методкабинет» и новые беседы «Сверчка».',
-
     accessType: 'paid',
+     accessUrl: 'https://www.helloasso.com/associations/association-des-amateurs-de-la-litterature-russophone-pour-les-enfants-et-la-jeunesse-boukovki/boutiques/svertchok',
     isCurrent: false,
-    introLabel: 'Друзья мои',
-
-introText:
-  'Отрывок из стихотворения «19 октября».',
   },
 
   {
@@ -77,10 +66,8 @@ introText:
     shortDescription:
       'Стихи, истории, путешествия и новые встречи со «Сверчком».',
 
-    longDescription:
-      'Осенний номер со стихами, прозой, литературными путешествиями и беседами с авторами.',
-
     accessType: 'paid',
+     accessUrl: 'https://www.helloasso.com/associations/association-des-amateurs-de-la-litterature-russophone-pour-les-enfants-et-la-jeunesse-boukovki/boutiques/svertchok',
     isCurrent: false,
   },
 
@@ -96,10 +83,8 @@ introText:
     shortDescription:
       'Там, где начинается чудо. Сказки, стихи и истории для зимних вечеров.',
 
-    longDescription:
-      'Зимний выпуск со сказками, стихами и историями для долгих уютных вечеров.',
-
     accessType: 'paid',
+     accessUrl: 'https://www.helloasso.com/associations/association-des-amateurs-de-la-litterature-russophone-pour-les-enfants-et-la-jeunesse-boukovki/boutiques/svertchok',
     isCurrent: true,
   },
 ]

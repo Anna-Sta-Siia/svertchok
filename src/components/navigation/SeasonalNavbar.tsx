@@ -1,9 +1,9 @@
 import NavItem from './NavItem'
 
-import springFlower from '../../assets/seasons/spring-flower.png'
-import summerStrawberry from '../../assets/seasons/summer-berry.png'
-import autumnLeaf from '../../assets/seasons/autumn-leaf.png'
-import winterSnowflake from '../../assets/seasons/winter-snowflake.png'
+import springFlower from '../../assets/images/seasons/spring-flower.png'
+import summerStrawberry from '../../assets/images/seasons/summer-berry.png'
+import autumnLeaf from '../../assets/images/seasons/autumn-leaf.png'
+import winterSnowflake from '../../assets/images/seasons/winter-snowflake.png'
 
 import type { Season } from '../../utils/getCurrentSeason'
 

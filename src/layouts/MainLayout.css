@@ -12,14 +12,8 @@
 .site-layout {
   position: relative;
   z-index: 2;
-
-  width: min(
-    var(--content-width),
-    calc(100% - 64px)
-  );
-
-  margin: 0 auto;
-  margin-top:32px;
+padding:5%;
+  margin: 32px auto 0;
 }
 
 /* =========================

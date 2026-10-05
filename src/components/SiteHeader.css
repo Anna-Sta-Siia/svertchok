@@ -17,10 +17,7 @@
   gap: 44px;
   align-items: center;
 
-  width: min(
-    var(--content-width),
-    calc(100% - 64px)
-  );
+  width: 90%;
 
   margin: 0 auto;
 
@@ -135,7 +132,7 @@ text-align: center;
 
 /* TABLET */
 
-@media (max-width: 1050px) {
+@media (max-width: 1024px) {
   .site-header__inner {
     grid-template-columns: 1fr 1fr;
 

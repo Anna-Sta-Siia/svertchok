@@ -1,143 +1,112 @@
-import { Link, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+
+import IssueCard from '../components/IssueCard'
+import IssueContents from '../components/IssueContents'
+import IssueContentsOverlay from '../components/IssueContentsOverlay'
+import Button from '../components/ui/Button'
 
 import { issues } from '../assets/data/issues'
-import { contentItems } from '../assets/data/contentItems'
-import { authors } from '../assets/data/authors'
+import {
+  contentItems,
+  getIssueLongDescription,
+} from '../assets/data/contentItems'
 
 import './IssuePage.css'
-
-const typeLabels = {
-  poetry: 'Поэзия',
-  prose: 'Проза',
-  interview: 'Беседы',
-  review: 'Рецензии',
-  game: 'Игровая',
-  methodical: 'Методкабинет',
-  other: 'Другое',
-}
 
 export default function IssuePage() {
   const { slug } = useParams()
 
-  const issue = issues.find((item) => item.slug === slug)
+  const [isContentsOpen, setIsContentsOpen] =
+    useState(false)
+
+  const issue = issues.find(
+    (item) => item.slug === slug,
+  )
 
   if (!issue) {
     return (
       <section className="issue-page__not-found">
         <h1>Номер не найден</h1>
-
-        <Link to="/">
-          Вернуться на главную
-        </Link>
       </section>
     )
   }
 
-  const issueContent = contentItems
-    .filter((item) => item.issueId === issue.id)
-    .sort((a, b) => a.order - b.order)
+  const longDescription =
+    getIssueLongDescription(issue.id) ??
+    issue.shortDescription
 
-  const ctaLabel =
+  const issueContent = contentItems
+    .filter(
+      (item) =>
+        item.issueId === issue.id,
+    )
+    .sort(
+      (a, b) =>
+        a.order - b.order,
+    )
+
+  const accessLabel =
     issue.accessType === 'paid'
       ? 'Приобрести номер →'
       : 'Скачать номер →'
 
   return (
-    <article className="issue-page">
-      <Link to="/" className="issue-page__back">
-        ← Вернуться на главную
-      </Link>
+    <>
+      <article className="issue-page">
+        <section className="issue-page__presentation">
+          <div className="issue-page__card-column">
+            <IssueCard
+              slug={issue.slug}
+              monthLabel={issue.monthLabel}
+              month={issue.month}
+              year={issue.year}
+              title={issue.title}
+              coverImage={issue.coverImage}
+              description={longDescription}
+              variant="featured"
+            />
 
-      <header className="issue-page__hero">
-        <div className="issue-page__cover-wrapper">
-          <img
-            src={issue.coverImage}
-            alt={`Обложка «Сверчка», ${issue.monthLabel} ${issue.year}`}
-            className="issue-page__cover"
-          />
-        </div>
-
-        <div className="issue-page__hero-content">
-          <p className="issue-page__date">
-            №{String(issue.month).padStart(2, '0')} · {issue.year}
-          </p>
-
-          <h1>{issue.title}</h1>
-
-          <p className="issue-page__description">
-            {issue.longDescription}
-          </p>
-
-          <div className="issue-page__actions">
-            <a href="#contents" className="issue-page__secondary-action">
-              Посмотреть содержание ↓
-            </a>
-
-            <button type="button" className="issue-page__primary-action">
-              {ctaLabel}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {issue.introLabel && (
-        <section className="issue-page__intro">
-          <p className="issue-page__intro-label">
-            {issue.introLabel}
-          </p>
-
-          {issue.introText && (
-            <p className="issue-page__intro-text">
-              {issue.introText}
-            </p>
-          )}
-        </section>
-      )}
-
-      <section id="contents" className="issue-contents">
-        <header className="issue-contents__header">
-          <p>Заглянем внутрь?</p>
-          <h2>Содержание номера</h2>
-        </header>
-
-        <div className="issue-contents__list">
-          {issueContent.map((item) => {
-            const author = authors.find(
-              (author) => author.id === item.authorId,
-            )
-
-            return (
-              <article
-                className="issue-content-item"
-                key={item.id}
+            <div className="issue-page__actions issue-page__actions--under-card">
+              <Button
+                variant="outline"
+                onClick={() =>
+                  setIsContentsOpen(true)
+                }
               >
-                <div>
-                  <span className="issue-content-item__type">
-                    {typeLabels[item.type]}
-                  </span>
+                Посмотреть содержание →
+              </Button>
 
-                  <h3>{item.title}</h3>
+              {issue.accessUrl && (
+                <Button
+                  variant="primary"
+                  href={issue.accessUrl}
+                  external
+                >
+                  {accessLabel}
+                </Button>
+              )}
+            </div>
+          </div>
+        </section>
+      </article>
 
-                  {author && (
-                    <button
-                      type="button"
-                      className="issue-content-item__author"
-                    >
-                      {author.firstName} {author.lastName}
-                    </button>
-                  )}
-                </div>
-
-                {item.page && (
-                  <span className="issue-content-item__page">
-                    {item.page}
-                  </span>
-                )}
-              </article>
-            )
-          })}
-        </div>
-      </section>
-    </article>
+     <IssueContentsOverlay
+  isOpen={isContentsOpen}
+  onClose={() =>
+    setIsContentsOpen(false)
+  }
+  issueMeta={{
+    coverImage: issue.coverImage,
+    title: issue.title,
+    month: issue.month,
+    year: issue.year,
+  }}
+>
+  <IssueContents
+    items={issueContent}
+  />
+</IssueContentsOverlay>
+    </>
   )
 }

@@ -1,83 +1,364 @@
+/* =========================
+   ISSUES
+   ========================= */
+
 .home-issues {
   display: grid;
+
   grid-template-columns:
     minmax(0, 2fr)
-    minmax(280px, 1fr);
+    minmax(340px, 1fr);
 
-  gap: 52px;
+  gap: clamp(
+    40px,
+    5vw,
+    72px
+  );
+
   align-items: start;
 
-  padding: 10px 0 64px;
+  width: 100%;
 }
 
-/* CURRENT ISSUE */
+/* =========================
+   CURRENT ISSUE
+   ========================= */
 
 .home-issues__current {
+  --home-cover-column:
+    minmax(220px, 360px);
+
+  --home-issue-gap:
+    clamp(26px, 3vw, 46px);
+
+  display: grid;
+
+  grid-template-columns:
+    var(--home-cover-column)
+    minmax(0, 1fr);
+
+  column-gap:
+    var(--home-issue-gap);
+
   min-width: 0;
 }
 
+/* =========================
+   HEADING
+   ========================= */
+
 .home-issues__heading {
+  grid-column: 1 / -1;
+
   margin-bottom: 24px;
 }
 
-
 .home-issues__intro {
   margin: 0;
-
+text-align: center;
   color: var(--color-logo-green);
 
   font-family: var(--font-accent);
-  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+
+  font-size:
+    clamp(
+      1.5rem,
+      2.2vw,
+      1.9rem
+    );
+
   line-height: 1.2;
 }
+
+/* =========================
+   ISSUE CARD
+   ========================= */
+
+.home-issues__current
+.issue-card {
+  grid-column: 1 / -1;
+}
+
+.home-issues__current
+.issue-card--featured {
+  grid-template-columns:
+    var(--home-cover-column)
+    minmax(0, 1fr);
+
+  gap:
+    var(--home-issue-gap);
+
+  align-items: start;
+}
+
+/* =========================
+   DESCRIPTION — DEFAULT
+   ========================= */
+
+.home-issues__current
+.issue-card__description {
+  display: block;
+
+  overflow: visible;
+
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+}
+
+.home-issues__current
+.issue-card__read-more {
+  display: none;
+}
+
+/* =========================
+   ACTIONS
+
+   Toujours indépendantes
+   de cover / texte.
+   ========================= */
+
+.home-issues__actions {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+
+  gap: 16px;
+
+  width: 100%;
+
+  margin-top: 26px;
+}
+
+.home-issues__actions .button {
+  width: auto;
+
+  white-space: nowrap;
+}
+
 /* =========================
    SUBSCRIPTION + CONTACT
    ========================= */
 
 .home-connect {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
 
   gap: 24px;
 
-  padding: 18px 0 0;
+  padding-top: 18px;
 }
 
-@media (max-width: 800px) {
-  .home-connect {
-    grid-template-columns: 1fr;
+/* =========================
+   MEDIUM DESKTOP
 
-    gap: 18px;
+   Archive encore à droite.
+   On raccourcit seulement
+   la description.
+   ========================= */
+
+@media (
+  min-width: 1025px
+) and (
+  max-width: 1280px
+) {
+  .home-issues__current
+  .issue-card__description {
+    display: -webkit-box;
+
+    overflow: hidden;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 12;
+
+    line-clamp: 12;
+  }
+
+  .home-issues__current
+  .issue-card__read-more {
+    display: inline-flex;
   }
 }
 
-@media (max-width: 550px) {
-  .home-connect {
-    padding-bottom: 48px;
-  }
-}
-/* TABLET */
+/* =========================
+   ARCHIVE PASSE EN DESSOUS
+   ========================= */
 
-@media (max-width: 950px) {
+@media (max-width: 1024px) {
   .home-issues {
     grid-template-columns: 1fr;
 
-    gap: 48px;
+    gap: 56px;
+  }
 
-    padding-top: 32px;
+  /*
+   * Toute la largeur revient
+   * au numéro actuel.
+   */
+  .home-issues__current
+  .issue-card__description {
+    display: block;
+
+    overflow: visible;
+
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
+
+  .home-issues__current
+  .issue-card__read-more {
+    display: none;
   }
 }
 
-/* MOBILE */
+/* =========================
+   TABLET LANDSCAPE
 
-@media (max-width: 550px) {
+   850 → 769 :
+   cover + texte restent
+   côte à côte,
+   mais description raccourcie.
+   ========================= */
+
+@media (
+  min-width: 769px
+) and (
+  max-width: 850px
+) {
+  .home-issues__current
+  .issue-card__description {
+    display: -webkit-box;
+
+    overflow: hidden;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+
+    line-clamp: 8;
+  }
+
+  .home-issues__current
+  .issue-card__read-more {
+    display: inline-flex;
+  }
+}
+
+/* =========================
+   TABLET / MOBILE
+
+   IssueCard passe
+   en une seule colonne.
+   ========================= */
+
+@media (max-width: 768px) {
+  .home-issues__current {
+    grid-template-columns: 1fr;
+
+    column-gap: 0;
+  }
+
+  .home-issues__current
+  .issue-card--featured {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .home-issues__current
+  .issue-card__cover-link {
+    width: min(
+      100%,
+      430px
+    );
+
+    margin: 0 auto;
+  }
+
+  /*
+   * Les CTA passent en colonne,
+   * mais restent de taille raisonnable.
+   */
+  .home-issues__actions {
+    grid-column: 1;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 24px;
+  }
+
+  .home-issues__actions .button {
+    width: min(
+      100%,
+      320px
+    );
+  }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
   .home-issues {
     gap: 40px;
 
-    padding: 26px 0 48px;
+    padding:
+      26px
+      0
+      48px;
   }
 
   .home-issues__heading {
     text-align: center;
+  }
+
+  .home-connect {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+
+    padding-bottom: 48px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+
+   Moins de scroll :
+   8 lignes + read more.
+   ========================= */
+
+@media (max-width: 550px) {
+  .home-issues__current
+  .issue-card__description {
+    display: -webkit-box;
+
+    overflow: hidden;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+
+    line-clamp: 8;
+  }
+
+  .home-issues__current
+  .issue-card__read-more {
+    display: inline-flex;
+  }
+
+  .home-issues__actions .button {
+    width: min(
+      100%,
+      300px
+    );
   }
 }

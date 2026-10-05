@@ -17,10 +17,7 @@
 }
 
 .site-footer__inner {
-  width: min(
-    var(--content-width),
-    calc(100% - 64px)
-  );
+  width: 90%;
 
   margin: 0 auto;
 
@@ -159,7 +156,7 @@ color: var(--color-footer-text);
     grid-column: 2;
   }
 }
-}
+
 
 /* =========================
    MOBILE

@@ -1,30 +1,21 @@
 import { Link } from 'react-router-dom'
 
-import Button from './ui/Button'
-
 import './IssueCard.css'
-
-type IssueCardAction = {
-  label: string
-  to?: string
-  href?: string
-  external?: boolean
-  variant?: 'primary' | 'outline' | 'ghost'
-}
 
 type IssueCardProps = {
   slug: string
   monthLabel: string
   month: number
   year: number
-  title: string
+
+  title?: string
+
   coverImage: string
   description: string
 
-  variant?: 'featured' | 'compact'
+  variant?: 'featured' | 'compact' | 'detail'
 
-  primaryAction?: IssueCardAction
-  secondaryAction?: IssueCardAction
+  readMoreTo?: string
 }
 
 export default function IssueCard({
@@ -35,25 +26,24 @@ export default function IssueCard({
   title,
   coverImage,
   description,
-  variant = 'compact',
-  primaryAction,
-  secondaryAction,
+  variant = 'featured',
+  readMoreTo,
 }: IssueCardProps) {
   const issueUrl = `/issues/${slug}`
 
-  const hasActions =
-    Boolean(primaryAction) ||
-    Boolean(secondaryAction)
-
   /*
-   * Une petite carte sans CTA peut être
-   * entièrement cliquable.
+   * Les cartes compactes de l'archive
+   * sont entièrement cliquables.
    */
-  if (variant === 'compact' && !hasActions) {
+  if (variant === 'compact') {
     return (
       <Link
         to={issueUrl}
-        className="issue-card issue-card--compact issue-card--clickable"
+        className="
+          issue-card
+          issue-card--compact
+          issue-card--clickable
+        "
       >
         <img
           src={coverImage}
@@ -66,9 +56,11 @@ export default function IssueCard({
             №{String(month).padStart(2, '0')} · {year}
           </p>
 
-          <h3 className="issue-card__title">
-            {title}
-          </h3>
+          {title && (
+            <h2 className="issue-card__title">
+              {title}
+            </h2>
+          )}
 
           <p className="issue-card__description">
             {description}
@@ -98,50 +90,23 @@ export default function IssueCard({
           №{String(month).padStart(2, '0')} · {year}
         </p>
 
-        <h2 className="issue-card__title">
-          <Link to={issueUrl}>
+        {title && (
+          <h2 className="issue-card__title">
             {title}
-          </Link>
-        </h2>
+          </h2>
+        )}
 
         <p className="issue-card__description">
           {description}
         </p>
 
-        {hasActions && (
-          <div className="issue-card__actions">
-            {primaryAction && (
-              <Button
-                variant={
-                  primaryAction.variant ??
-                  'primary'
-                }
-                to={primaryAction.to}
-                href={primaryAction.href}
-                external={
-                  primaryAction.external
-                }
-              >
-                {primaryAction.label}
-              </Button>
-            )}
-
-            {secondaryAction && (
-              <Button
-                variant={
-                  secondaryAction.variant ??
-                  'outline'
-                }
-                to={secondaryAction.to}
-                href={secondaryAction.href}
-                external={
-                  secondaryAction.external
-                }
-              >
-                {secondaryAction.label}
-              </Button>
-            )}
-          </div>
+        {readMoreTo && (
+          <Link
+            to={readMoreTo}
+            className="issue-card__read-more"
+          >
+            Читать далее →
+          </Link>
         )}
       </div>
     </article>

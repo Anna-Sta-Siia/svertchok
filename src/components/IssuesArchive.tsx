@@ -195,7 +195,7 @@ export default function IssuesArchive({
 
         <p>
           Выбирай номер и отправляйся
-          читать.
+          читать
         </p>
       </div>
 

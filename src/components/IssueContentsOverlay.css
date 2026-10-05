@@ -1,0 +1,398 @@
+.issue-contents-overlay {
+  /*
+   * Le nav reste visible au-dessus.
+   * Si sa hauteur change un jour,
+   * on ne modifie qu'ici.
+   */
+  --overlay-nav-offset: 92px;
+
+  position: fixed;
+
+  top: var(--overlay-nav-offset);
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: 100;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding: 24px 32px 20px;
+}
+
+/* BACKDROP */
+
+.issue-contents-overlay__backdrop {
+  position: absolute;
+  inset: 0;
+
+  border: 0;
+
+  background:
+    rgb(45 40 25 / 34%);
+
+  backdrop-filter: blur(3px);
+
+  cursor: pointer;
+}
+
+/* PANEL */
+
+.issue-contents-overlay__panel {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(1120px, 100%);
+
+  /*
+   * 100dvh est plus fiable que 100vh,
+   * surtout sur les petits écrans.
+   */
+  max-height:
+    calc(
+      100dvh -
+      var(--overlay-nav-offset) -
+      44px
+    );
+
+  overflow: hidden;
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--color-text) 8%,
+      transparent
+    );
+
+  border-radius: 24px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 97%,
+      transparent
+    );
+
+  box-shadow:
+    0 24px 70px
+    rgb(40 35 20 / 22%);
+}
+
+/* =========================
+   FIXED OVERLAY HEADER
+   ========================= */
+
+.issue-contents-overlay__top {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  min-height: 84px;
+
+  padding: 12px 20px;
+
+  border-bottom: 1px solid
+    color-mix(
+      in srgb,
+      var(--color-text) 10%,
+      transparent
+    );
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 98%,
+      transparent
+    );
+}
+
+.issue-contents-overlay__issue {
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+
+  gap: 14px;
+}
+
+.issue-contents-overlay__cover {
+  width: 46px;
+  height: 62px;
+
+  flex-shrink: 0;
+
+  object-fit: cover;
+
+  border-radius: 6px;
+
+  box-shadow:
+    0 5px 14px
+    rgb(40 35 20 / 12%);
+}
+
+.issue-contents-overlay__number {
+  margin: 0 0 3px;
+
+  color: var(--color-accent);
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+}
+
+.issue-contents-overlay__title {
+  margin: 0;
+
+  overflow: hidden;
+
+  color: var(--color-text);
+
+  font-size: 1.05rem;
+  font-weight: 500;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* CLOSE */
+
+.issue-contents-overlay__close {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--color-text) 10%,
+      transparent
+    );
+
+  border-radius: 50%;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface-soft) 75%,
+      transparent
+    );
+
+  color: var(--color-text);
+
+  font: inherit;
+  font-size: 1.55rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--transition-default),
+    background var(--transition-default),
+    border-color var(--transition-default);
+}
+
+.issue-contents-overlay__close:hover {
+  transform: rotate(90deg);
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--color-accent) 30%,
+      transparent
+    );
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-secondary) 15%,
+      var(--color-surface)
+    );
+}
+
+/* =========================
+   SCROLLABLE BODY
+   ========================= */
+
+.issue-contents-overlay__body {
+  /*
+   * Très important dans un enfant flex :
+   * sinon le scroll peut dépasser / être mangé.
+   */
+  min-height: 0;
+  flex: 1 1 auto;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /*
+   * Laisse la place au scrollbar
+   * sans déplacer le contenu.
+   */
+  scrollbar-gutter: stable;
+
+  padding:
+    26px
+    30px
+    56px;
+
+  scrollbar-width: auto;
+
+  scrollbar-color:
+    color-mix(
+      in srgb,
+      var(--color-accent) 65%,
+      var(--color-text)
+    )
+    color-mix(
+      in srgb,
+      var(--color-text) 8%,
+      transparent
+    );
+}
+
+/* CHROME / EDGE / SAFARI */
+
+.issue-contents-overlay__body::-webkit-scrollbar {
+  width: 12px;
+}
+
+.issue-contents-overlay__body::-webkit-scrollbar-track {
+  margin-block: 8px;
+
+  border-radius: 999px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-text) 8%,
+      transparent
+    );
+}
+
+.issue-contents-overlay__body::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+
+  border-radius: 999px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-accent) 62%,
+      var(--color-text)
+    );
+
+  background-clip: padding-box;
+}
+
+.issue-contents-overlay__body::-webkit-scrollbar-thumb:hover {
+  background:
+    color-mix(
+      in srgb,
+      var(--color-accent) 80%,
+      var(--color-text)
+    );
+
+  background-clip: padding-box;
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 900px) {
+  .issue-contents-overlay {
+    --overlay-nav-offset: 88px;
+
+    padding:
+      18px
+      20px
+      16px;
+  }
+
+  .issue-contents-overlay__panel {
+    max-height:
+      calc(
+        100dvh -
+        var(--overlay-nav-offset) -
+        34px
+      );
+  }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 650px) {
+  .issue-contents-overlay {
+    /*
+     * On garde quand même la navbar
+     * visible sur mobile.
+     */
+    --overlay-nav-offset: 76px;
+
+    padding: 8px;
+  }
+
+  .issue-contents-overlay__panel {
+    width: 100%;
+
+    max-height:
+      calc(
+        100dvh -
+        var(--overlay-nav-offset) -
+        16px
+      );
+
+    border-radius: 18px;
+  }
+
+  .issue-contents-overlay__top {
+    min-height: 72px;
+
+    padding:
+      8px
+      12px;
+  }
+
+  .issue-contents-overlay__cover {
+    width: 38px;
+    height: 52px;
+  }
+
+  .issue-contents-overlay__number {
+    font-size: 0.8rem;
+  }
+
+  .issue-contents-overlay__title {
+    font-size: 0.95rem;
+  }
+
+  .issue-contents-overlay__close {
+    width: 38px;
+    height: 38px;
+  }
+
+  .issue-contents-overlay__body {
+    padding:
+      20px
+      18px
+      48px;
+  }
+}
