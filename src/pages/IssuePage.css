@@ -1,133 +1,586 @@
+/* =========================
+   ISSUE PAGE
+   ========================= */
+
 .issue-page {
   width: 100%;
 
   padding:
     24px
     0
-    80px;
+    72px;
 }
 
-.issue-page__presentation {
+/* =========================
+   MAIN LAYOUT
+
+   numéro | archive
+   ========================= */
+
+.issue-page__main {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(340px, 1fr);
+
+  gap:
+    clamp(
+      40px,
+      5vw,
+      72px
+    );
+
+  align-items: start;
+
   width: 100%;
-  padding: 0 80px;
 }
 
-.issue-page__card-column {
+/* =========================
+   SELECTED ISSUE
+   ========================= */
+
+.issue-page__current {
   min-width: 0;
 }
 
-.issue-page__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
+/*
+ * Important :
+ * on scope uniquement la grande
+ * carte du numéro sélectionné.
+ *
+ * Les petites cartes de l'archive
+ * ne sont pas concernées.
+ */
 
-.issue-page__actions--under-card {
-  margin-top: 18px;
-}
-
-.issue-page .issue-card {
+.issue-page__current
+.issue-card--featured {
   display: grid;
-  grid-template-columns: minmax(280px, 480px) 1fr;
-  gap: 36px;
+
+  grid-template-columns:
+    minmax(280px, 420px)
+    minmax(0, 1fr);
+
+  gap:
+    clamp(
+      32px,
+      4vw,
+      56px
+    );
+
   align-items: start;
-  
-}
 
-.issue-page .issue-card__cover-link {
-  display: block;
-}
-
-.issue-page .issue-card__cover {
-  display: block;
   width: 100%;
 }
 
-.issue-page .issue-card__content {
+/* =========================
+   COVER
+   ========================= */
+
+.issue-page__current
+.issue-card__cover-link {
+  display: block;
+
+  width: 100%;
+}
+
+.issue-page__current
+.issue-card__cover {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0
+    16px
+    34px
+    rgb(70 55 30 / 10%);
+}
+
+/* =========================
+   ISSUE CONTENT
+   ========================= */
+
+.issue-page__current
+.issue-card__content {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+
   gap: 18px;
-  padding-top: 0;
-  justify-self: center;
-}
 
-.issue-page .issue-card__date {
-  margin: 0;
-  color: #b9650b;
-  font-size: 1.15rem;
-  letter-spacing: 0.04em;
-}
+  min-width: 0;
 
-.issue-page .issue-card__content p {
-  margin: 0;
-  color: #5e6630;
-  font-size: 1.4rem;
-  line-height: 1.75;
+  padding-top: 4px;
+
   text-align: center;
 }
 
-.issue-page .issue-card__actions {
+/* DATE */
+
+.issue-page__current
+.issue-card__date {
+  margin: 0;
+
+  color: var(--color-accent);
+
+  font-size: 1.15rem;
+
+  letter-spacing: 0.04em;
+}
+
+/* TITLE */
+
+.issue-page__current
+.issue-card__title {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size:
+    clamp(
+      2.5rem,
+      4vw,
+      4.2rem
+    );
+
+  font-weight: 500;
+
+  line-height: 1.05;
+}
+
+/* DESCRIPTION */
+
+.issue-page__current
+.issue-card__description {
+  width: 100%;
+
+  margin: 0;
+
+  color: var(--color-text-soft);
+
+  font-size:
+    clamp(
+      1.08rem,
+      1.35vw,
+      1.35rem
+    );
+
+  line-height: 1.75;
+
+  text-align: center;
+}
+
+/*
+ * Ici on est déjà sur la page
+ * complète du numéro.
+ */
+.issue-page__current
+.issue-card__read-more {
   display: none;
 }
 
+/* =========================
+   ACTIONS
+   ========================= */
+
+.issue-page__actions {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+  width: 100%;
+
+  margin-top: 28px;
+}
+
+.issue-page__actions .button {
+  width: auto;
+
+  white-space: nowrap;
+}
+
+/* =========================
+   ARCHIVE
+   ========================= */
+
+.issue-page__archive {
+  min-width: 0;
+
+  scroll-margin-top: 100px;
+}
+
+/* =========================
+   SUBSCRIPTION + CONTACT
+   ========================= */
+
+.issue-page__connect {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 24px;
+
+  padding-top: 18px;
+}
+
+/* =========================
+   NOT FOUND
+   ========================= */
+
 .issue-page__not-found {
-  width: min(900px, calc(100% - 40px));
+  width:
+    min(
+      900px,
+      calc(100% - 40px)
+    );
+
   margin: 0 auto;
-  padding: 80px 0;
+
+  padding:
+    80px
+    0;
 }
 
 .issue-page__not-found h1 {
   margin: 0;
-  color: #556326;
+
+  color: var(--color-text);
+
   font-size: 2rem;
+
   text-align: center;
 }
 
-/* TABLET */
+/* =========================
+   ≤ 1024 px
 
-@media (max-width: 1100px) {
-  .issue-page {
-    width: min(100%, calc(100% - 32px));
-  }
+   Archive en dessous.
+   Trois colonnes.
+   ========================= */
 
-  .issue-page__presentation {
+@media (max-width: 1024px) {
+  .issue-page__main {
     grid-template-columns: 1fr;
-    gap: 30px;
+
+    gap: 56px;
   }
 
+  /* -------------------------
+     SELECTED ISSUE
+     ------------------------- */
 
-  .issue-page .issue-card {
-    grid-template-columns: minmax(240px, 360px) 1fr;
+  .issue-page__current
+  .issue-card--featured {
+    grid-template-columns:
+      minmax(260px, 360px)
+      minmax(0, 1fr);
+
+    gap:
+      clamp(
+        28px,
+        4vw,
+        46px
+      );
+  }
+
+  .issue-page__current
+  .issue-card__title {
+    font-size:
+      clamp(
+        2.3rem,
+        5vw,
+        3.5rem
+      );
+  }
+
+  .issue-page__current
+  .issue-card__description {
+    font-size: 1.08rem;
+
+    line-height: 1.7;
+  }
+
+  /* -------------------------
+     ARCHIVE
+     ------------------------- */
+
+  .issue-page__archive
+  .issues-archive {
+    width: 100%;
+    max-width: none;
+
+    justify-self: stretch;
+  }
+
+  .issue-page__archive
+  .issues-archive__list {
+    display: grid;
+
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      30px
+      24px;
+
+    width: 100%;
+
+    max-height: none;
+
+    overflow: visible;
+  }
+
+  /* FILTER */
+
+  .issue-page__archive
+  .issues-archive__filter {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    width: 100%;
+  }
+
+  .issue-page__archive
+  .issues-archive
+  button[aria-haspopup='listbox'] {
+    width: 220px;
+    max-width: 100%;
   }
 }
 
-/* MOBILE */
+/* =========================
+   850 → 769 px
 
-@media (max-width: 760px) {
+   On garde cover + texte,
+   mais on évite une description
+   interminable.
+   ========================= */
+
+@media (
+  min-width: 769px
+) and (
+  max-width: 850px
+) {
+  .issue-page__current
+  .issue-card__description {
+    display: -webkit-box;
+
+    overflow: hidden;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+
+    line-clamp: 8;
+  }
+
+  /*
+   * Pas de read more ici :
+   * nous sommes déjà sur la page
+   * du numéro.
+   */
+}
+
+/* =========================
+   ≤ 768 px
+
+   Numéro en colonne.
+   Archive en 2 colonnes.
+   ========================= */
+
+@media (max-width: 768px) {
   .issue-page {
-    width: calc(100% - 24px);
-    padding: 20px 0 60px;
+    padding:
+      20px
+      0
+      60px;
   }
 
-  .issue-page .issue-card {
+  /* -------------------------
+     SELECTED ISSUE
+     ------------------------- */
+
+  .issue-page__current
+  .issue-card--featured {
     grid-template-columns: 1fr;
-    gap: 24px;
+
+    gap: 28px;
   }
 
-  .issue-page .issue-card__cover-link {
-    max-width: 340px;
+  .issue-page__current
+  .issue-card__cover-link {
+    width:
+      min(
+        100%,
+        430px
+      );
+
     margin: 0 auto;
   }
 
-  .issue-page .issue-card__content {
+  .issue-page__current
+  .issue-card__content {
+    width: 100%;
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    padding: 0;
+  }
+
+  /*
+   * Une fois le texte sous l'image,
+   * on le réaffiche entièrement.
+   */
+  .issue-page__current
+  .issue-card__description {
+    display: block;
+
+    overflow: visible;
+
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
+
+  /* ACTIONS */
+
+  .issue-page__actions {
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 24px;
+  }
+
+  .issue-page__actions .button {
+    width:
+      min(
+        100%,
+        320px
+      );
+  }
+
+  /* -------------------------
+     ARCHIVE
+     ------------------------- */
+
+  .issue-page__archive
+  .issues-archive__list {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      26px
+      24px;
+  }
+}
+
+/* =========================
+   ≤ 700 px
+   ========================= */
+
+@media (max-width: 700px) {
+  .issue-page__connect {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+
+    padding-bottom: 48px;
+  }
+}
+
+/* =========================
+   ≤ 550 px
+
+   Archive en 1 colonne.
+   ========================= */
+
+@media (max-width: 550px) {
+  /* -------------------------
+     CURRENT ISSUE
+     ------------------------- */
+
+  .issue-page__current
+  .issue-card__cover-link {
+    width:
+      min(
+        100%,
+        360px
+      );
+  }
+
+  .issue-page__current
+  .issue-card__content {
+    align-items: flex-start;
+
     text-align: left;
   }
 
-  .issue-page .issue-card__content h2 {
-    font-size: clamp(2rem, 10vw, 3.2rem);
+  .issue-page__current
+  .issue-card__date,
+  .issue-page__current
+  .issue-card__title,
+  .issue-page__current
+  .issue-card__description {
+    text-align: left;
   }
 
-  .issue-page__actions,
-  .issue-page__actions--under-card {
-    justify-content: flex-start;
+  .issue-page__actions .button {
+    width:
+      min(
+        100%,
+        300px
+      );
   }
 
+  /* -------------------------
+     ARCHIVE
+     ------------------------- */
+
+  .issue-page__archive
+  .issues-archive__list {
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+  .issue-page__archive
+  .issues-archive__list
+  .issue-card--compact {
+    width:
+      min(
+        100%,
+        320px
+      );
+
+    justify-self: center;
+  }
+
+  .issue-page__archive
+  .issues-archive__filter {
+    flex-wrap: wrap;
+  }
 }

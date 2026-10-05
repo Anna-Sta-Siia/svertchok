@@ -1,4 +1,5 @@
 import {
+  Navigate,
   Route,
   Routes,
 } from 'react-router-dom'
@@ -22,6 +23,15 @@ export default function App() {
           element={<IssuePage />}
         />
       </Route>
+      <Route
+  path="/issues"
+  element={
+    <Navigate
+      to="/#issues-archive"
+      replace
+    />
+  }
+/>
     </Routes>
   )
 }
