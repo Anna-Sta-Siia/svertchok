@@ -3,11 +3,15 @@ import { useEffect } from 'react'
 import {
   Outlet,
   useLocation,
+  useNavigate,
 } from 'react-router-dom'
 
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import SeasonalNavbar from '../components/navigation/SeasonalNavbar'
+
+import ContactOverlay from '../components/ContactOverlay'
+import ContactForm from '../components/ContactForm'
 
 import { getNavItems } from '../assets/data/navItems'
 
@@ -32,6 +36,7 @@ const seasonImages: Record<Season, string> = {
 
 export default function MainLayout() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const season = getCurrentSeason()
 
@@ -41,11 +46,29 @@ export default function MainLayout() {
     seasonImages[season]
 
   /* =========================
-     SCROLL TO HASH
+     CONTACT OVERLAY
+     ========================= */
+
+  const isContactOpen =
+    location.hash === '#contact'
+
+  /* =========================
+     SCROLL TO NORMAL HASH
      ========================= */
 
   useEffect(() => {
     if (!location.hash) {
+      return
+    }
+
+    /*
+     * #contact ouvre un overlay.
+     * Ce n'est pas une section
+     * vers laquelle on doit scroller.
+     */
+    if (
+      location.hash === '#contact'
+    ) {
       return
     }
 
@@ -75,6 +98,32 @@ export default function MainLayout() {
     location.hash,
     location.key,
   ])
+
+  /* =========================
+     CLOSE CONTACT
+     ========================= */
+
+  function closeContact() {
+    /*
+     * On enlève uniquement #contact.
+     *
+     * /issues/10-2025#contact
+     * devient
+     * /issues/10-2025
+     */
+    navigate(
+      {
+        pathname:
+          location.pathname,
+
+        search:
+          location.search,
+      },
+      {
+        replace: true,
+      },
+    )
+  }
 
   return (
     <div
@@ -132,6 +181,17 @@ export default function MainLayout() {
           ===================== */}
 
       <SiteFooter />
+
+      {/* =====================
+          GLOBAL CONTACT
+          ===================== */}
+
+      <ContactOverlay
+        isOpen={isContactOpen}
+        onClose={closeContact}
+      >
+        <ContactForm />
+      </ContactOverlay>
     </div>
   )
 }

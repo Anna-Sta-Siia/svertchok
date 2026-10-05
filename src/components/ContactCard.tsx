@@ -2,16 +2,10 @@ import Button from './ui/Button'
 
 import './ContactCard.css'
 
-type ContactCardProps = {
-  to?: string
-}
-
-export default function ContactCard({
-  to = '/contact',
-}: ContactCardProps) {
+export default function ContactCard() {
   return (
     <article className="contact-card">
-      <h2>
+      <h2 className="contact-card__title">
         Есть вопрос, идея или просто хочется написать?
       </h2>
 
@@ -21,7 +15,7 @@ export default function ContactCard({
 
       <Button
         variant="outline"
-        to={to}
+        to="#contact"
       >
         Написать Сверчку →
       </Button>

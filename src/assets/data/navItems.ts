@@ -28,7 +28,7 @@ export function getNavItems(
     },
     {
       label: 'Написать Сверчку',
-      to: '/contact',
+      to: '#contact',
     },
   ]
 }
