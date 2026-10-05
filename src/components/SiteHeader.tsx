@@ -7,6 +7,9 @@ export default function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
+          <p className="site-header__eyebrow">
+          ЛИТЕРАТУРНЫЙ АЛЬМАНАХ ДЛЯ ДЕТЕЙ И РОДИТЕЛЕЙ
+        </p>
         <div className="site-header__intro">
           <img
             src={logoSvertchok}
@@ -26,9 +29,7 @@ export default function SiteHeader() {
         </div>
 
         <div className="site-header__brand">
-          <p className="site-header__eyebrow">
-            ЛИТЕРАТУРНЫЙ АЛЬМАНАХ ДЛЯ ДЕТЕЙ И РОДИТЕЛЕЙ
-          </p>
+       
 
           <img
             src={titleSvertchok}

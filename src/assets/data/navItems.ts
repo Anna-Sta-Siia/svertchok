@@ -4,7 +4,6 @@ export type NavItemData = {
 }
 
 export function getNavItems(
-  currentIssueSlug: string,
 ): NavItemData[] {
   return [
     {
@@ -13,7 +12,7 @@ export function getNavItems(
     },
     {
       label: 'Новый номер',
-      to: `/issues/${currentIssueSlug}`,
+      to: '/#current-issue',
     },
     {
       label: 'Авторы и художники',

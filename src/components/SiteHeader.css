@@ -1,3 +1,7 @@
+/* =========================
+   HEADER
+   ========================= */
+
 .site-header {
   position: relative;
   z-index: 2;
@@ -7,28 +11,79 @@
   background: transparent;
 }
 
+/* =========================
+   DESKTOP
+   ========================= */
+
 .site-header__inner {
   display: grid;
-  grid-template-columns:
-    minmax(300px, 1fr)
-    minmax(300px, auto)
-    minmax(300px, 1fr);
 
-  gap: 44px;
+  /*
+   * Les deux colonnes extérieures
+   * ont exactement le même poids :
+   * le logo reste donc réellement
+   * au centre du header.
+   */
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+
+  grid-template-areas:
+    "eyebrow eyebrow eyebrow"
+    "intro brand right";
+
+  column-gap: 44px;
+  row-gap: 16px;
+
   align-items: center;
 
   width: 90%;
 
   margin: 0 auto;
 
-  padding: 26px 0 30px;
+  padding:
+    20px
+    0
+    30px;
 }
 
-/* LEFT */
+/* =========================
+   EYEBROW
+   Toujours tout en haut
+   ========================= */
+
+.site-header__eyebrow {
+  grid-area: eyebrow;
+
+  justify-self: center;
+
+  margin: 0;
+
+  color: var(--color-logo-green);
+
+  font-family: var(--font-main);
+
+  font-size: 0.76rem;
+  font-weight: 500;
+
+  letter-spacing: 0.13em;
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+/* =========================
+   INTRO — LEFT
+   ========================= */
 
 .site-header__intro {
+  grid-area: intro;
+
   display: flex;
   align-items: center;
+
+  justify-self: start;
 
   gap: 20px;
 
@@ -40,23 +95,28 @@
 
   flex-shrink: 0;
 
-  animation: mascot-greeting 5s ease-in-out infinite;
+  animation:
+    mascot-greeting
+    5s
+    ease-in-out
+    infinite;
 }
 
-/* MANUSCRIPT TEXT */
+/* =========================
+   SPEECH
+   ========================= */
 
 .site-header__speech {
+  color: var(--color-logo-green);
+
   font-family: var(--font-accent);
 
-  color: var(--color-logo-green);
-text-align: center;
   font-size: 1.75rem;
   font-weight: 400;
-  line-height: 1.2;
-}
 
-.site-header__speech--right {
-  max-width: 360px;
+  line-height: 1.2;
+
+  text-align: center;
 }
 
 .site-header__speech p {
@@ -69,45 +129,56 @@ text-align: center;
 
 .site-header__speech-accent {
   color: var(--color-logo-green);
-  
 }
 
-/* CENTER */
+/* RIGHT SPEECH */
 
-.site-header__brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.site-header__speech--right {
+  grid-area: right;
 
-  gap: 13px;
+  justify-self: end;
+
+  width: min(
+    100%,
+    360px
+  );
 
   text-align: center;
 }
 
-.site-header__eyebrow {
-  margin: 0;
+/* =========================
+   BRAND
+   ========================= */
 
-  color: var(--color-logo-green);
+.site-header__brand {
+  grid-area: brand;
 
-  font-family: var(--font-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  font-size: 0.76rem;
-  font-weight: 500;
-
-  letter-spacing: 0.13em;
-  line-height: 1.5;
+  justify-self: center;
 }
 
 .site-header__title {
+  display: block;
+
   width: 225px;
+
+  height: auto;
+
+  margin: 0 auto;
 
   filter:
     drop-shadow(
-      0 4px 6px rgb(70 80 45 / 8%)
+      0 4px 6px
+      rgb(70 80 45 / 8%)
     );
 }
 
-/* SOFT MASCOT ANIMATION */
+/* =========================
+   MASCOT ANIMATION
+   ========================= */
 
 @keyframes mascot-greeting {
   0%,
@@ -130,99 +201,247 @@ text-align: center;
   }
 }
 
-/* TABLET */
+/* =========================
+   1024 → 769 px
 
-@media (max-width: 1024px) {
+   eyebrow
+   brand
+   texte + mascotte | texte droit
+   ========================= */
+
+@media (
+  min-width: 769px
+) and (
+  max-width: 1024px
+) {
   .site-header__inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    grid-template-areas:
+      "eyebrow eyebrow"
+      "brand brand"
+      "intro right";
+
+    column-gap: 36px;
+    row-gap: 22px;
 
     width: calc(100% - 40px);
 
-    gap: 26px;
+    padding:
+      20px
+      0
+      28px;
   }
+
+  /* BRAND CENTRÉ */
 
   .site-header__brand {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
-  .site-header__intro {
-    grid-column: 1;
-  }
-
-  .site-header__speech--right {
-    grid-column: 2;
-
-    justify-self: end;
-  }
-
-  .site-header__mascot {
-    width: 95px;
+    justify-self: center;
   }
 
   .site-header__title {
     width: 190px;
   }
 
-  .site-header__speech {
-    font-size: 1.5rem;
-  }
-}
+  /*
+   * DOM :
+   * mascotte + texte
+   *
+   * Visuellement :
+   * texte + mascotte
+   */
+  .site-header__intro {
+    flex-direction: row-reverse;
 
-/* MOBILE */
-
-@media (max-width: 650px) {
-  .site-header__inner {
-    grid-template-columns: 1fr;
-
-    width: calc(100% - 24px);
+    justify-self: center;
+    justify-content: center;
 
     gap: 18px;
 
-    padding: 20px 0 24px;
+    width: 100%;
   }
 
-  .site-header__brand,
-  .site-header__intro,
+  .site-header__mascot {
+    width: 95px;
+  }
+
+  .site-header__speech--left {
+    text-align: center;
+  }
+
   .site-header__speech--right {
-    grid-column: auto;
+    justify-self: center;
+
+    width: min(
+      100%,
+      350px
+    );
   }
 
-  .site-header__brand {
-    grid-row: auto;
+  .site-header__speech {
+    font-size:
+      clamp(
+        1.35rem,
+        2.6vw,
+        1.6rem
+      );
+  }
 
-    order: 1;
+  .site-header__eyebrow {
+    font-size: 0.72rem;
+  }
+}
+
+/* =========================
+   ≤ 768 px
+
+   1. eyebrow
+   2. mascotte + texte | logo
+   3. deuxième texte
+   ========================= */
+
+@media (max-width: 768px) {
+  .site-header__inner {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "eyebrow"
+      "intro"
+      "brand"
+      "right";
+    width: calc(100% - 24px);
+
+    padding:
+      18px
+      0
+      26px;
+  }
+
+  .site-header__eyebrow {
+    width: 100%;
   }
 
   .site-header__intro {
-    order: 2;
-
-    justify-content: center;
-  }
-
-  .site-header__speech--right {
-    order: 3;
-
     justify-self: center;
 
-    width: min(100%, 340px);
-
-    text-align: center;
+    width: min(
+      100%,
+      480px
+    );
   }
 
   .site-header__mascot {
     width: 78px;
   }
 
+  .site-header__brand {
+    justify-self: center;
+  }
+
   .site-header__title {
-    width: 165px;
+    width: 155px;
+  }
+
+  .site-header__speech--right {
+    width: min(
+      100%,
+      360px
+    );
+    justify-self: center;
+  }
+}
+
+/* =========================
+   ≤ 500 px
+
+   eyebrow
+
+   mascot | premier texte
+          | logo
+
+   deuxième texte
+   ========================= */
+
+@media (max-width: 500px) {
+  /*
+   * On libère les deux enfants
+   * de intro dans le grid principal.
+   */
+  .site-header__intro {
+    display: contents;
+  }
+
+  .site-header__inner {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr);
+
+    grid-template-areas:
+      "eyebrow eyebrow"
+      "mascot left"
+      "mascot brand"
+      "right right";
+
+    column-gap: 16px;
+    width: calc(100% - 24px);
+
+    padding:
+      18px
+      0
+      24px;
+  }
+
+  /* EYEBROW */
+
+  .site-header__eyebrow {
+    grid-area: eyebrow;
+
+    font-size: 0.62rem;
+  }
+
+  /* MASCOTTE */
+
+  .site-header__mascot {
+    grid-area: mascot;
+
+    align-self: center;
+
+    width: 70px;
+  }
+
+  /* PREMIER TEXTE */
+
+  .site-header__speech--left {
+    grid-area: left;
+
+    align-self: end;
+
+    text-align: center;
+  }
+
+  /* LOGO SOUS LE PREMIER TEXTE */
+
+  .site-header__brand {
+    grid-area: brand;
+
+    justify-self: center;
+  }
+
+  .site-header__title {
+    width: 145px;
+  }
+
+  /* DEUXIÈME TEXTE */
+
+  .site-header__speech--right {
+    grid-area: right;
+
+    margin-top: 4px;
   }
 
   .site-header__speech {
-    font-size: 1.35rem;
-  }
-
-  .site-header__eyebrow {
-    font-size: 0.67rem;
+    font-size: 1.25rem;
   }
 }

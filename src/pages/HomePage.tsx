@@ -1,13 +1,21 @@
-import { useState } from 'react'
-import Button from '../components/ui/Button'
+import {
+  useState,
+} from 'react'
+
 import IssueCard from '../components/IssueCard'
 import IssuesArchive from '../components/IssuesArchive'
 import SubscriptionCard from '../components/SubscriptionCard'
 import ContactCard from '../components/ContactCard'
+
 import IssueContents from '../components/IssueContents'
 import IssueContentsOverlay from '../components/IssueContentsOverlay'
 
-import { issues } from '../assets/data/issues'
+import Button from '../components/ui/Button'
+
+import {
+  issues,
+} from '../assets/data/issues'
+
 import {
   contentItems,
   getIssueLongDescription,
@@ -21,10 +29,16 @@ export default function HomePage() {
     setIsContentsOpen,
   ] = useState(false)
 
+  /* =========================
+     CURRENT ISSUE
+     ========================= */
+
   const currentIssue =
     issues.find(
-      (issue) => issue.isCurrent,
-    ) ?? issues[0]
+      (issue) =>
+        issue.isCurrent,
+    ) ??
+    issues[0]
 
   if (!currentIssue) {
     return null
@@ -57,56 +71,96 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="home-issues">
-        {/* CURRENT ISSUE */}
+      {/* =====================
+          ISSUES
+          ===================== */}
 
-        <div className="home-issues__current">
+      <section className="home-issues">
+        {/* ===================
+            CURRENT ISSUE
+            =================== */}
+
+        <div
+          id="current-issue"
+          className="home-issues__current"
+        >
           <div className="home-issues__heading">
             <p className="home-issues__intro">
               А вот и мой новый номер
             </p>
           </div>
 
-     <IssueCard
-  slug={currentIssue.slug}
-  monthLabel={currentIssue.monthLabel}
-  month={currentIssue.month}
-  year={currentIssue.year}
-  coverImage={currentIssue.coverImage}
-  description={currentIssueLongDescription}
-  variant="featured"
-  readMoreTo={`/issues/${currentIssue.slug}`}
-/>
-          <div className="home-issues__actions">
-  {currentIssue.accessUrl && (
-    <Button
-      variant="primary"
-      href={currentIssue.accessUrl}
-      external
-    >
-      {currentIssue.accessType === 'paid'
-        ? 'Приобрести номер →'
-        : 'Скачать номер →'}
-    </Button>
-  )}
+          <IssueCard
+            slug={currentIssue.slug}
+            monthLabel={
+              currentIssue.monthLabel
+            }
+            month={
+              currentIssue.month
+            }
+            year={
+              currentIssue.year
+            }
+            title={
+              currentIssue.title
+            }
+            coverImage={
+              currentIssue.coverImage
+            }
+            description={
+              currentIssueLongDescription
+            }
+            variant="featured"
+            readMoreTo={
+              `/issues/${currentIssue.slug}`
+            }
+          />
 
-  <Button
-    variant="outline"
-    onClick={() =>
-      setIsContentsOpen(true)
-    }
-  >
-    Посмотреть содержание →
-  </Button>
-</div>
+          {/* =================
+              ACTIONS
+              ================= */}
+
+          <div className="home-issues__actions">
+            {currentIssue.accessUrl && (
+              <Button
+                variant="primary"
+                href={
+                  currentIssue.accessUrl
+                }
+                external
+              >
+                {currentIssue.accessType ===
+                'paid'
+                  ? 'Приобрести номер →'
+                  : 'Скачать номер →'}
+              </Button>
+            )}
+
+            <Button
+              variant="outline"
+              onClick={() =>
+                setIsContentsOpen(
+                  true,
+                )
+              }
+            >
+              Посмотреть содержание →
+            </Button>
+          </div>
         </div>
 
-        {/* ARCHIVE */}
+        {/* ===================
+            ARCHIVE
+            =================== */}
 
         <IssuesArchive
           issues={previousIssues}
         />
       </section>
+
+      {/* =====================
+          CONTACT / SUBSCRIBE
+          ===================== */}
 
       <section className="home-connect">
         <SubscriptionCard
@@ -115,6 +169,10 @@ export default function HomePage() {
 
         <ContactCard />
       </section>
+
+      {/* =====================
+          CONTENTS OVERLAY
+          ===================== */}
 
       <IssueContentsOverlay
         isOpen={isContentsOpen}

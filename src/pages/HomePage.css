@@ -1,7 +1,9 @@
 /* =========================
    ISSUES
    ========================= */
-
+#current-issue {
+  scroll-margin-top: 100px;
+}
 .home-issues {
   display: grid;
 
@@ -55,7 +57,7 @@
 
 .home-issues__intro {
   margin: 0;
-
+text-align: center;
   color: var(--color-logo-green);
 
   font-family: var(--font-accent);
