@@ -10,14 +10,22 @@ type ButtonVariant =
 
 type ButtonProps = {
   children: ReactNode
+
   variant?: ButtonVariant
 
+  /* Navigation interne */
   to?: string
-  href?: string
 
+  /* Lien externe */
+  href?: string
+  external?: boolean
+
+  /* Vrai bouton */
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
   onClick?: () => void
 
-  external?: boolean
+  /* Optionnel */
   className?: string
 }
 
@@ -26,11 +34,13 @@ export default function Button({
   variant = 'primary',
   to,
   href,
-  onClick,
   external = false,
+  type = 'button',
+  disabled = false,
+  onClick,
   className = '',
 }: ButtonProps) {
-  const classes = [
+  const buttonClassName = [
     'button',
     `button--${variant}`,
     className,
@@ -38,34 +48,57 @@ export default function Button({
     .filter(Boolean)
     .join(' ')
 
+  /* =========================
+     INTERNAL LINK
+     ========================= */
+
   if (to) {
     return (
       <Link
         to={to}
-        className={classes}
+        className={buttonClassName}
+        onClick={onClick}
       >
         {children}
       </Link>
     )
   }
 
+  /* =========================
+     EXTERNAL / NORMAL LINK
+     ========================= */
+
   if (href) {
     return (
       <a
         href={href}
-        className={classes}
-        target={external ? '_blank' : undefined}
-        rel={external ? 'noreferrer' : undefined}
+        className={buttonClassName}
+        target={
+          external
+            ? '_blank'
+            : undefined
+        }
+        rel={
+          external
+            ? 'noopener noreferrer'
+            : undefined
+        }
+        onClick={onClick}
       >
         {children}
       </a>
     )
   }
 
+  /* =========================
+     BUTTON
+     ========================= */
+
   return (
     <button
-      type="button"
-      className={classes}
+      type={type}
+      className={buttonClassName}
+      disabled={disabled}
       onClick={onClick}
     >
       {children}

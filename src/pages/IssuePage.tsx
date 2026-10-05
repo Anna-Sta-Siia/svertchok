@@ -101,7 +101,6 @@ export default function IssuePage() {
               }
               month={issue.month}
               year={issue.year}
-              title={issue.title}
               coverImage={
                 issue.coverImage
               }
@@ -176,10 +175,6 @@ export default function IssuePage() {
         issueMeta={{
           coverImage:
             issue.coverImage,
-
-          title:
-            issue.title,
-
           month:
             issue.month,
 

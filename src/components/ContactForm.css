@@ -1,0 +1,285 @@
+.contact-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+/* =========================
+   FIELD
+   ========================= */
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.contact-form__field label {
+  color: var(--color-text);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.contact-form__field label span {
+  color: var(--color-accent);
+}
+
+/* =========================
+   INPUTS
+   ========================= */
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+
+  border:
+    1px solid
+    rgb(117 111 67 / 25%);
+
+  border-radius: 12px;
+
+  background:
+    rgb(255 255 255 / 62%);
+
+  color: var(--color-text);
+
+  font: inherit;
+}
+
+.contact-form input,
+.contact-form select {
+  min-height: 44px;
+
+  padding:
+    9px
+    13px;
+}
+
+.contact-form textarea {
+  min-height: 150px;
+
+  padding:
+    12px
+    13px;
+
+  line-height: 1.55;
+
+  resize: vertical;
+}
+
+.contact-form input:hover,
+.contact-form select:hover,
+.contact-form textarea:hover {
+  border-color:
+    rgb(185 101 11 / 45%);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+
+  border-color:
+    var(--color-accent);
+
+  box-shadow:
+    0 0 0 3px
+    rgb(185 101 11 / 10%);
+}
+
+/* =========================
+   FAQ CONSENT
+   ========================= */
+
+.contact-form__faq {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding:
+    16px
+    18px;
+
+  border-radius: 14px;
+
+  background:
+    rgb(255 255 255 / 34%);
+
+  cursor: pointer;
+}
+
+.contact-form__faq input {
+  width: 18px;
+  height: 18px;
+
+  min-height: 0;
+
+  margin-top: 2px;
+
+  flex-shrink: 0;
+
+  accent-color:
+    var(--color-accent);
+}
+
+.contact-form__faq span {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.contact-form__faq strong {
+  color: var(--color-text);
+
+  font-size: 0.92rem;
+
+  line-height: 1.45;
+}
+
+.contact-form__faq small {
+  color:
+    var(--color-text-soft);
+
+  font-size: 0.78rem;
+
+  line-height: 1.5;
+}
+
+/* =========================
+   MESSAGE
+   ========================= */
+
+.contact-form__message {
+  margin: 0;
+
+  color: var(--color-accent);
+
+  font-size: 0.88rem;
+
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+/* =========================
+   ACTION
+   ========================= */
+
+.contact-form__actions {
+  display: flex;
+
+  justify-content: center;
+
+  padding-top: 4px;
+}
+
+.contact-form__actions .button {
+  width:
+    min(
+      100%,
+      260px
+    );
+}
+/* =========================
+   SUCCESS
+   ========================= */
+
+.contact-form__success {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 14px;
+
+  width: 100%;
+
+  padding:
+    36px
+    20px
+    30px;
+
+  text-align: center;
+}
+
+.contact-form__success-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 58px;
+
+  margin-bottom: 4px;
+
+  border:
+    1px solid
+    var(--color-logo-green);
+
+  border-radius: 50%;
+
+  color:
+    var(--color-logo-green);
+
+  font-size: 1.7rem;
+}
+
+.contact-form__success h3 {
+  margin: 0;
+
+  color:
+    var(--color-text);
+
+  font-size:
+    clamp(
+      1.5rem,
+      3vw,
+      2rem
+    );
+
+  font-weight: 500;
+}
+
+.contact-form__success p {
+  margin: 0;
+
+  color:
+    var(--color-text-soft);
+
+  line-height: 1.6;
+}
+
+.contact-form__success-note {
+  font-size: 0.9rem;
+}
+
+.contact-form__success .button {
+  margin-top: 12px;
+}
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 550px) {
+  .contact-form {
+    gap: 17px;
+  }
+
+  .contact-form__faq {
+    padding:
+      14px
+      15px;
+  }
+}

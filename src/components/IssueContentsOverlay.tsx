@@ -4,7 +4,6 @@ import './IssueContentsOverlay.css'
 
 type IssueMeta = {
   coverImage: string
-  title: string
   month: number
   year: number
 }
@@ -59,9 +58,6 @@ export default function IssueContentsOverlay({
                     {issueMeta.year}
                   </p>
 
-                  <p className="issue-contents-overlay__issue-title">
-                    {issueMeta.title}
-                  </p>
                 </div>
               </div>
             )}

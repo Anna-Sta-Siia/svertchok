@@ -9,7 +9,6 @@ type IssueContentsProps = {
   items: ContentItem[]
   issueMeta?: {
     coverImage: string
-    title: string
     monthLabel: string
     month: number
     year: number
@@ -109,9 +108,6 @@ export default function IssueContents({
               <p className="issue-contents__issue-date">
                 №{String(issueMeta.month).padStart(2, '0')} ·{' '}
                 {issueMeta.year}
-              </p>
-              <p className="issue-contents__issue-title">
-                {issueMeta.title}
               </p>
             </div>
           </div>
