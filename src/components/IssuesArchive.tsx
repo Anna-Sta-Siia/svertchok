@@ -301,7 +301,6 @@ export default function IssuesArchive({
             }
             month={issue.month}
             year={issue.year}
-            title={issue.title}
             coverImage={
               issue.coverImage
             }

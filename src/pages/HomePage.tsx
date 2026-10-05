@@ -101,9 +101,7 @@ export default function HomePage() {
             year={
               currentIssue.year
             }
-            title={
-              currentIssue.title
-            }
+           
             coverImage={
               currentIssue.coverImage
             }
@@ -182,9 +180,6 @@ export default function HomePage() {
         issueMeta={{
           coverImage:
             currentIssue.coverImage,
-
-          title:
-            currentIssue.title,
 
           month:
             currentIssue.month,
