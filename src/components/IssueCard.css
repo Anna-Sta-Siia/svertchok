@@ -198,7 +198,7 @@ flex-wrap: wrap;
 .issue-card__content {
   display: flex;
   flex-direction: column;
-
+align-self: flex-start;
   gap: 5px;
 }
 

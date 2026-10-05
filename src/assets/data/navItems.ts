@@ -15,7 +15,7 @@ export function getNavItems(
       to: '/#current-issue',
     },
     {
-      label: 'Авторы и художники',
+      label: 'Авторы',
       to: '/authors',
     },
     {

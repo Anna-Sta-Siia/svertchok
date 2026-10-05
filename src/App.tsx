@@ -8,6 +8,7 @@ import MainLayout from './layouts/MainLayout'
 
 import HomePage from './pages/HomePage'
 import IssuePage from './pages/IssuePage'
+import AuthorsPage from './pages/AuthorsPage'
 
 export default function App() {
   return (
@@ -22,16 +23,22 @@ export default function App() {
           path="/issues/:slug"
           element={<IssuePage />}
         />
+
+        <Route
+          path="/issues"
+          element={
+            <Navigate
+              to="/#issues-archive"
+              replace
+            />
+          }
+        />
+
+        <Route
+          path="/authors"
+          element={<AuthorsPage />}
+        />
       </Route>
-      <Route
-  path="/issues"
-  element={
-    <Navigate
-      to="/#issues-archive"
-      replace
-    />
-  }
-/>
     </Routes>
   )
 }

@@ -1,0 +1,580 @@
+/* =========================
+   AUTHORS PAGE
+   ========================= */
+
+.authors-page {
+  width: 100%;
+
+  padding:
+    34px
+    0
+    80px;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.authors-page__header {
+  width:
+    min(
+      760px,
+      100%
+    );
+
+  margin:
+    0
+    auto
+    42px;
+
+  text-align: center;
+}
+
+.authors-page__eyebrow {
+  margin:
+    0
+    0
+    8px;
+
+  color:
+    var(--color-logo-green);
+
+  font-family:
+    var(--font-accent);
+
+  font-size:
+    clamp(
+      1.45rem,
+      2.2vw,
+      1.9rem
+    );
+
+  line-height: 1.2;
+}
+
+.authors-page__title {
+  margin:
+    0
+    0
+    16px;
+
+  color:
+    var(--color-text);
+
+  font-size:
+    clamp(
+      2.5rem,
+      5vw,
+      4.3rem
+    );
+
+  font-weight: 500;
+
+  line-height: 1.05;
+}
+
+.authors-page__intro {
+  margin: 0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size: 1.08rem;
+
+  line-height: 1.65;
+}
+
+/* =========================
+   FILTERS
+   ========================= */
+
+.authors-page__filters {
+  display: grid;
+
+  grid-template-columns:
+    auto
+    auto
+    auto;
+
+  align-items: end;
+  justify-content: center;
+
+  gap:
+    28px
+    clamp(
+      28px,
+      4vw,
+      58px
+    );
+
+  width: 100%;
+
+  margin-bottom: 24px;
+
+  padding:
+    22px
+    28px;
+
+  border:
+    1px
+    solid
+    rgb(120 110 70 / 12%);
+
+  border-radius:
+    var(--radius-card);
+
+  background:
+    rgb(255 255 255 / 26%);
+
+  backdrop-filter:
+    blur(3px);
+}
+
+/* =========================
+   FILTER GROUP
+   ========================= */
+
+.authors-page__filter-group {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.authors-page__filter-label {
+  margin: 0;
+
+  color:
+    var(--color-logo-green);
+
+  font-size: 0.82rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+}
+
+/* =========================
+   FILTER OPTIONS
+   ========================= */
+
+.authors-page__filter-options {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 8px;
+}
+
+.authors-page__filter-button {
+  appearance: none;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 38px;
+
+  padding:
+    7px
+    15px;
+
+  border:
+    1px
+    solid
+    rgb(117 111 67 / 24%);
+
+  border-radius: 999px;
+
+  background:
+    rgb(255 255 255 / 45%);
+
+  color:
+    var(--color-text);
+
+  font: inherit;
+
+  font-size: 0.9rem;
+
+  cursor: pointer;
+
+  transition:
+    background
+      var(--transition-default),
+    border-color
+      var(--transition-default),
+    color
+      var(--transition-default),
+    transform
+      var(--transition-default);
+}
+
+.authors-page__filter-button:hover {
+  border-color:
+    var(--color-accent);
+
+  transform:
+    translateY(-1px);
+}
+
+.authors-page__filter-button:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset: 3px;
+}
+
+.authors-page__filter-button--active {
+  border-color:
+    var(--color-accent);
+
+  background:
+    var(--color-accent);
+
+  color: white;
+}
+
+/* =========================
+   ISSUE SELECT
+   ========================= */
+
+.authors-page__filter-group--issue {
+  min-width: 200px;
+}
+
+.authors-page__select-wrap {
+  position: relative;
+
+  width: 210px;
+
+  max-width: 100%;
+}
+
+.authors-page__select-wrap select {
+  appearance: none;
+
+  width: 100%;
+
+  min-height: 40px;
+
+  padding:
+    8px
+    40px
+    8px
+    16px;
+
+  border:
+    1px
+    solid
+    rgb(117 111 67 / 24%);
+
+  border-radius: 999px;
+
+  background:
+    rgb(255 255 255 / 52%);
+
+  color:
+    var(--color-text);
+
+  font: inherit;
+
+  font-size: 0.9rem;
+
+  cursor: pointer;
+
+  transition:
+    border-color
+      var(--transition-default),
+    background
+      var(--transition-default);
+}
+
+.authors-page__select-wrap select:hover {
+  border-color:
+    var(--color-accent);
+}
+
+.authors-page__select-wrap select:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset: 3px;
+}
+
+.authors-page__select-arrow {
+  position: absolute;
+
+  top: 50%;
+  right: 16px;
+
+  transform:
+    translateY(-52%);
+
+  color:
+    var(--color-accent);
+
+  font-size: 0.9rem;
+
+  pointer-events: none;
+}
+
+/* =========================
+   RESULTS
+   ========================= */
+
+.authors-page__results {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  min-height: 32px;
+
+  margin-bottom: 22px;
+}
+
+.authors-page__count {
+  margin: 0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size: 0.88rem;
+}
+
+.authors-page__count strong {
+  color:
+    var(--color-text);
+
+  font-weight: 600;
+}
+
+.authors-page__reset {
+  appearance: none;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color:
+    var(--color-accent);
+
+  font: inherit;
+
+  font-size: 0.88rem;
+
+  cursor: pointer;
+
+  text-decoration: underline;
+
+  text-decoration-color:
+    transparent;
+
+  text-underline-offset: 4px;
+
+  transition:
+    text-decoration-color
+      var(--transition-default);
+}
+
+.authors-page__reset:hover {
+  text-decoration-color:
+    currentColor;
+}
+
+.authors-page__reset:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset: 4px;
+
+  border-radius: 2px;
+}
+
+/* =========================
+   AUTHORS GRID
+   ========================= */
+
+.authors-page__grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    26px
+    24px;
+
+  width: 100%;
+}
+
+/* =========================
+   EMPTY
+   ========================= */
+
+.authors-page__empty {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 16px;
+
+  width:
+    min(
+      600px,
+      100%
+    );
+
+  margin:
+    48px
+    auto;
+
+  text-align: center;
+}
+
+.authors-page__empty p {
+  margin: 0;
+
+  color:
+    var(--color-text-soft);
+
+  line-height: 1.6;
+}
+
+/* =========================
+   TABLET
+   ≤ 1024px
+   ========================= */
+
+@media (max-width: 1024px) {
+  .authors-page__filters {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, auto)
+      );
+
+    gap:
+      24px
+      40px;
+  }
+
+  .authors-page__filter-group--issue {
+    grid-column: 1 / -1;
+  }
+
+  .authors-page__grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+}
+
+/* =========================
+   MOBILE
+   ≤ 700px
+   ========================= */
+
+@media (max-width: 700px) {
+  .authors-page {
+    padding:
+      26px
+      0
+      60px;
+  }
+
+  .authors-page__header {
+    margin-bottom: 30px;
+  }
+
+  .authors-page__filters {
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+
+    padding:
+      22px
+      18px;
+  }
+
+  .authors-page__filter-group,
+  .authors-page__filter-group--issue {
+    grid-column: auto;
+
+    width: 100%;
+  }
+
+  .authors-page__select-wrap {
+    width:
+      min(
+        100%,
+        240px
+      );
+  }
+
+  .authors-page__results {
+    flex-wrap: wrap;
+
+    gap:
+      8px
+      16px;
+  }
+
+  .authors-page__grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+   ≤ 480px
+   ========================= */
+
+@media (max-width: 480px) {
+  .authors-page__filter-options {
+    gap: 7px;
+  }
+
+  .authors-page__filter-button {
+    min-height: 36px;
+
+    padding:
+      6px
+      12px;
+
+    font-size: 0.84rem;
+  }
+
+  .authors-page__intro {
+    font-size: 1rem;
+  }
+}

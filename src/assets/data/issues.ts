@@ -10,8 +10,6 @@ export type Issue = {
   month: number
   monthLabel: string
   year: number
-
-  title: string
   coverImage: string
 
   shortDescription: string
@@ -29,7 +27,6 @@ export const issues: Issue[] = [
     month: 3,
     monthLabel: 'Март',
     year: 2025,
-    title: 'Сверчок',
     coverImage: march2025Cover,
 
     shortDescription:
@@ -45,7 +42,6 @@ export const issues: Issue[] = [
     month: 6,
     monthLabel: 'Июнь',
     year: 2025,
-    title: 'Сверчок — Подросток',
     coverImage: june2025Cover,
     shortDescription:
       'Для тех, кто уже почти взрослый и всё ещё немного ребёнок.',
@@ -60,7 +56,6 @@ export const issues: Issue[] = [
     month: 10,
     monthLabel: 'Октябрь',
     year: 2025,
-    title: 'Сверчок',
     coverImage: october2025Cover,
 
     shortDescription:
@@ -77,7 +72,6 @@ export const issues: Issue[] = [
     month: 12,
     monthLabel: 'Декабрь',
     year: 2025,
-    title: 'Сверчок',
     coverImage: december2025Cover,
 
     shortDescription:
