@@ -294,6 +294,7 @@ authorId: 'marina-mayboroda',
   {
     id: '12-2021-25',
     issueId: '12-2021',
+    authorId: 'maya-lazarenskaya',
     title: 'Беседа с Майей Лазаренской',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

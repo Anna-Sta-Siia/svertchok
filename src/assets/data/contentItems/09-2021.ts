@@ -410,6 +410,7 @@ export const contentItems092021: ContentItem[] = [
   {
     id: '09-2021-36',
     issueId: '09-2021',
+    authorId:'boris-kuznetsov',
     title: 'Беседа с Борисом Кузнецовым',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
@@ -420,6 +421,7 @@ export const contentItems092021: ContentItem[] = [
   {
     id: '09-2021-37',
     issueId: '09-2021',
+    authorId: 'ksenia-valakhanovich',
     title: 'Беседа с Ксенией Валаханович',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

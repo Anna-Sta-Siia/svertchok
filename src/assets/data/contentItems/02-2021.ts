@@ -574,6 +574,7 @@ export const contentItems022021: ContentItem[] = [
   {
     id: '02-2021-50',
     issueId: '02-2021',
+    authorId:'anna-zenkova',
     title: 'Беседа с Анной Зеньковой',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
@@ -584,6 +585,7 @@ export const contentItems022021: ContentItem[] = [
   {
     id: '02-2021-51',
     issueId: '02-2021',
+    authorId:'sergey-belozerov',
     title: 'Беседа с Сергеем Белозёровым',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

@@ -233,6 +233,7 @@ export const contentItems012020: ContentItem[] = [
   {
     id: '01-2020-20',
     issueId: '01-2020',
+    authorId:'maria-bershadskaya',
     title: 'Интервью с Марией Бершадской',
     type: 'interview',
     section: 'НАШИ БЕСЕДЫ',
@@ -243,6 +244,7 @@ export const contentItems012020: ContentItem[] = [
   {
     id: '01-2020-21',
     issueId: '01-2020',
+    authorId:'polina-sorel',
     title: 'Интервью с Полиной Сорель',
     type: 'interview',
     section: 'НАШИ БЕСЕДЫ',

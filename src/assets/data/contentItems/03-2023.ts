@@ -612,6 +612,7 @@ export const contentItems032023: ContentItem[] = [
   {
     id: '03-2023-59',
     issueId: '03-2023',
+      authorId: 'alexandra-ivoylova',
     title: 'Беседа с Александрой Ивойловой',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
@@ -621,6 +622,7 @@ export const contentItems032023: ContentItem[] = [
   {
     id: '03-2023-60',
     issueId: '03-2023',
+    authorId:'alexandra-vasilkova',
     title: 'Беседа с Александрой Васильковой',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

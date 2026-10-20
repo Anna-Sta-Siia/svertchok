@@ -384,6 +384,7 @@ export const contentItems052021: ContentItem[] = [
   {
     id: '05-2021-33',
     issueId: '05-2021',
+    authorId:'olga-gromova',
     title: 'Беседа с Ольгой Громовой',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
@@ -394,6 +395,7 @@ export const contentItems052021: ContentItem[] = [
   {
     id: '05-2021-34',
     issueId: '05-2021',
+    authorId: 'tatyana-shiposhina',
     title: 'Беседа с Татьяной Шипошиной',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

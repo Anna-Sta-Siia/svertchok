@@ -840,6 +840,7 @@ export const contentItems102024: ContentItem[] = [
   {
     id: '10-2024-82',
     issueId: '10-2024',
+    authorId: 'natalya-mavlevich',
     title: 'Беседа с Наталией Самойловной Мавлевич',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
@@ -849,6 +850,7 @@ export const contentItems102024: ContentItem[] = [
   {
     id: '10-2024-83',
     issueId: '10-2024',
+    authorId: 'asya-kravchenko',
     title: 'Беседа с Асей Кравченко',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

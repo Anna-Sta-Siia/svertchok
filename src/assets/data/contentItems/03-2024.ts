@@ -601,6 +601,7 @@ export const contentItems032024: ContentItem[] = [
   {
     id: '03-2024-58',
     issueId: '03-2024',
+    authorId:'alexandra-rubinstein',
     title: 'Беседа с Александрой Рубинштейн',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

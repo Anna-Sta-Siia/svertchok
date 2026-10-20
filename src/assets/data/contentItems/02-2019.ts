@@ -283,6 +283,7 @@ export const contentItems022019: ContentItem[] = [
   {
     id: '02-2019-25',
     issueId: '02-2019',
+    authorId:'aya-en',
     title: 'Встреча с писателем Ая Эн',
     type: 'interview',
     section: 'ПАПАМ И МАМАМ',

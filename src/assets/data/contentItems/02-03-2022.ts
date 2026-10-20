@@ -343,6 +343,7 @@ export const contentItems02032022: ContentItem[] = [
   {
     id: '02-03-2022-33',
     issueId: '02-03-2022',
+    authorId: 'tamara-kryukova',
     title: 'Беседа с Тамарой Крюковой',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
@@ -353,6 +354,7 @@ export const contentItems02032022: ContentItem[] = [
   {
     id: '02-03-2022-34',
     issueId: '02-03-2022',
+    authorId: 'asia-petrova',
     title: 'Беседа с Асей Петровой',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

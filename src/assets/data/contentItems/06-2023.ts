@@ -264,6 +264,7 @@ export const contentItems062023: ContentItem[] = [
   {
     id: '06-2023-26',
     issueId: '06-2023',
+    authorId:'alina-popova',
     title: 'Беседа с Алиной Поповой',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

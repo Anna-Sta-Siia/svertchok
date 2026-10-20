@@ -310,6 +310,7 @@ export const contentItems062024: ContentItem[] = [
   {
     id: '06-2024-30',
     issueId: '06-2024',
+    authorId:'maria-boteva',
     title: 'Беседа с писательницей Марией Ботевой',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
@@ -319,6 +320,7 @@ export const contentItems062024: ContentItem[] = [
   {
     id: '06-2024-31',
     issueId: '06-2024',
+    authorId:'maya-bessonova',
     title: 'Беседа с писательницей Майей Бессоновой',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

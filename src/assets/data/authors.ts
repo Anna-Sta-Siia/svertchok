@@ -1581,4 +1581,187 @@ export const authors: Author[] = [
   lastName: 'Амлинская',
   types: ['other'],
 },
+{
+  id: 'maria-bershadskaya',
+  firstName: 'Мария',
+  lastName: 'Бершадская',
+  types: ['other'],
+  interviews: ['01-2020'],
+},
+
+{
+  id: 'polina-sorel',
+  firstName: 'Полина',
+  lastName: 'Сорель',
+  types: ['other'],
+  interviews: ['01-2020'],
+},
+
+{
+  id: 'anna-zenkova',
+  firstName: 'Анна',
+  lastName: 'Зенькова',
+  types: ['other'],
+  interviews: ['02-2021'],
+},
+
+{
+  id: 'sergey-belozerov',
+  firstName: 'Сергей',
+  lastName: 'Белозёров',
+  types: ['other'],
+  interviews: ['02-2021'],
+},
+
+{
+  id: 'alexandra-vasilkova',
+  firstName: 'Александра',
+  lastName: 'Василькова',
+  types: ['other'],
+  interviews: ['03-2023'],
+},
+
+{
+  id: 'alexandra-rubinstein',
+  firstName: 'Александра',
+  lastName: 'Рубинштейн',
+  types: ['other'],
+  interviews: ['03-2024'],
+},
+
+{
+  id: 'galina-kabakova',
+  firstName: 'Галина',
+  lastName: 'Кабакова',
+  types: ['other'],
+  interviews: ['04-2020'],
+},
+
+{
+  id: 'olga-gromova',
+  firstName: 'Ольга',
+  lastName: 'Громова',
+  types: ['other'],
+  interviews: ['05-2021'],
+},
+
+{
+  id: 'maria-boteva',
+  firstName: 'Мария',
+  lastName: 'Ботева',
+  types: ['other'],
+  interviews: ['06-2024'],
+},
+
+{
+  id: 'maya-bessonova',
+  firstName: 'Майя',
+  lastName: 'Бессонова',
+  types: ['other'],
+  interviews: ['06-2024'],
+},
+
+{
+  id: 'alina-popova',
+  firstName: 'Алина',
+  lastName: 'Попова',
+  types: ['other'],
+  interviews: ['06-2023'],
+},
+
+{
+  id: 'boris-kuznetsov',
+  firstName: 'Борис',
+  lastName: 'Кузнецов',
+  types: ['other'],
+  interviews: ['09-2021'],
+},
+
+{
+  id: 'vitaliy-zyusko',
+  firstName: 'Виталий',
+  lastName: 'Зюсько',
+  types: ['other'],
+  interviews: ['10-2019'],
+},
+
+{
+  id: 'larisa-tulupova',
+  firstName: 'Лариса',
+  lastName: 'Тулупова',
+  types: ['other'],
+  interviews: ['10-2019'],
+},
+
+{
+  id: 'alyona-turtie',
+  firstName: 'Алёна',
+  lastName: 'Туртье',
+  types: ['other'],
+  interviews: ['10-2023'],
+},
+
+{
+  id: 'elena-bolgova',
+  firstName: 'Елена',
+  lastName: 'Болгова',
+  types: ['other'],
+  interviews: ['10-2023'],
+},
+
+{
+  id: 'ksenia-kovalenko',
+  firstName: 'Ксения',
+  lastName: 'Коваленко',
+  types: ['other'],
+  interviews: ['12-2020'],
+},
+
+{
+  id: 'nikolay-dzhumakuliev',
+  firstName: 'Николай',
+  lastName: 'Джумакулиев',
+  types: ['other'],
+  interviews: ['12-2022'],
+},
+
+{
+  id: 'sofya-remez',
+  firstName: 'Софья',
+  lastName: 'Ремез',
+  types: ['other'],
+  interviews: ['12-2022'],
+},
+
+{
+  id: 'evgeniy-rudashevskiy',
+  firstName: 'Евгений',
+  lastName: 'Рудашевский',
+  types: ['other'],
+  interviews: ['12-2023'],
+},
+
+{
+  id: 'olga-de-lakrua',
+  firstName: 'Ольга',
+  lastName: 'дё Лакруа',
+  types: ['other'],
+  interviews: ['12-2023'],
+},
+
+{
+  id: 'nina-dashevskaya',
+  firstName: 'Нина',
+  lastName: 'Дашевская',
+  types: ['other'],
+  interviews: ['12-2024'],
+},
+
+{
+  id: 'pavel-klementyev',
+  firstName: 'Павел',
+  lastName: 'Клементьев',
+  types: ['other'],
+  interviews: ['12-2024'],
+},
 ]

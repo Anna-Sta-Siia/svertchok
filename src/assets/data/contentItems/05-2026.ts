@@ -261,6 +261,7 @@ export const contentItems052026: ContentItem[] = [
   {
     id: '05-2026-25',
     issueId: '05-2026',
+    authorId: 'grigory-kruzhkov',
     title: 'Беседа с поэтом Григорием Кружковым',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',

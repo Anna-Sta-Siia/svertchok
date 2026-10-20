@@ -308,6 +308,7 @@ export const contentItems122020: ContentItem[] = [
   {
     id: '12-2020-27',
     issueId: '12-2020',
+    authorId:'ksenia-kovalenko',
     title: 'Беседа с издателем и переводчиком Ксенией Коваленко',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
@@ -318,6 +319,7 @@ export const contentItems122020: ContentItem[] = [
   {
     id: '12-2020-28',
     issueId: '12-2020',
+    authorId: 'zulya-stadnik',
     title: 'Беседа с писательницей Зулей Стадник',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
