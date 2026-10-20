@@ -3,12 +3,8 @@ import { useState } from 'react'
 import AuthorCard from '../components/AuthorCard'
 
 import { authors } from '../assets/data/authors'
-import {
-  issues,
-  type Issue,
-} from '../assets/data/issues'
-
-import { contentItems } from '../assets/data/contentItems'
+import { publishedIssues } from '../assets/data/issues'
+import { getIssuesByAuthorId } from '../assets/data/selectors'
 
 import './AuthorsPage.css'
 
@@ -97,42 +93,13 @@ export default function AuthorsPage() {
     setSelectedIssue,
   ] = useState('all')
 
-  /* =========================
-     ISSUES
-     ========================= */
-
-  const sortedIssues = [...issues].sort(
+  const sortedIssues = [
+    ...publishedIssues,
+  ].sort(
     (a, b) =>
       b.year - a.year ||
       b.month - a.month,
   )
-
-  /* =========================
-     AUTHORS → ISSUES
-     ========================= */
-
-  function getAuthorIssues(
-    authorId: string,
-  ): Issue[] {
-    const issueIds = new Set<string>()
-
-    contentItems.forEach((item) => {
-      if (
-        item.authorId === authorId
-      ) {
-        issueIds.add(item.issueId)
-      }
-    })
-
-    return sortedIssues.filter(
-      (issue) =>
-        issueIds.has(issue.id),
-    )
-  }
-
-  /* =========================
-     LETTER FILTER
-     ========================= */
 
   function matchesLetterRange(
     lastName: string,
@@ -168,12 +135,6 @@ export default function AuthorsPage() {
         endLetter,
       )
 
-    /*
-     * Si jamais un nom ne commence
-     * pas par une lettre cyrillique,
-     * on ne l'affiche pas dans un
-     * groupe alphabétique précis.
-     */
     if (letterIndex === -1) {
       return false
     }
@@ -183,10 +144,6 @@ export default function AuthorsPage() {
       letterIndex <= endIndex
     )
   }
-
-  /* =========================
-     FILTER + SORT
-     ========================= */
 
   const filteredAuthors = authors
     .filter((author) => {
@@ -203,7 +160,7 @@ export default function AuthorsPage() {
         )
 
       const authorIssues =
-        getAuthorIssues(
+        getIssuesByAuthorId(
           author.id,
         )
 
@@ -221,19 +178,28 @@ export default function AuthorsPage() {
         matchesIssue
       )
     })
-    .sort((a, b) =>
-      a.lastName.localeCompare(
-        b.lastName,
+    .sort((a, b) => {
+      const lastNameComparison =
+        a.lastName.localeCompare(
+          b.lastName,
+          'ru',
+          {
+            sensitivity: 'base',
+          },
+        )
+
+      if (lastNameComparison !== 0) {
+        return lastNameComparison
+      }
+
+      return a.firstName.localeCompare(
+        b.firstName,
         'ru',
         {
           sensitivity: 'base',
         },
-      ),
-    )
-
-  /* =========================
-     RESET
-     ========================= */
+      )
+    })
 
   const hasActiveFilters =
     selectedType !== 'all' ||
@@ -248,10 +214,6 @@ export default function AuthorsPage() {
 
   return (
     <section className="authors-page">
-      {/* =====================
-          INTRO
-          ===================== */}
-
       <header className="authors-page__header">
         <p className="authors-page__eyebrow">
           Люди «Сверчка»
@@ -268,13 +230,7 @@ export default function AuthorsPage() {
         </p>
       </header>
 
-      {/* =====================
-          FILTERS
-          ===================== */}
-
       <div className="authors-page__filters">
-        {/* TYPE */}
-
         <div className="authors-page__filter-group">
           <p className="authors-page__filter-label">
             По жанру
@@ -309,8 +265,6 @@ export default function AuthorsPage() {
           </div>
         </div>
 
-        {/* ALPHABET */}
-
         <div className="authors-page__filter-group">
           <p className="authors-page__filter-label">
             По алфавиту
@@ -344,8 +298,6 @@ export default function AuthorsPage() {
             )}
           </div>
         </div>
-
-        {/* ISSUE */}
 
         <div className="authors-page__filter-group authors-page__filter-group--issue">
           <label
@@ -399,10 +351,6 @@ export default function AuthorsPage() {
         </div>
       </div>
 
-      {/* =====================
-          RESULTS INFO
-          ===================== */}
-
       <div className="authors-page__results">
         <p className="authors-page__count">
           Авторов:{' '}
@@ -422,10 +370,6 @@ export default function AuthorsPage() {
         )}
       </div>
 
-      {/* =====================
-          AUTHORS
-          ===================== */}
-
       {filteredAuthors.length > 0 ? (
         <div className="authors-page__grid">
           {filteredAuthors.map(
@@ -434,7 +378,7 @@ export default function AuthorsPage() {
                 key={author.id}
                 author={author}
                 authorIssues={
-                  getAuthorIssues(
+                  getIssuesByAuthorId(
                     author.id,
                   )
                 }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import IssueCard from '../components/IssueCard'
-import IssuesArchive from '../components/IssuesArchive'
+import RecentIssues from '../components/RecentIssues'
 import IssueContents from '../components/IssueContents'
 import IssueContentsOverlay from '../components/IssueContentsOverlay'
 
@@ -11,7 +11,9 @@ import ContactCard from '../components/ContactCard'
 
 import Button from '../components/ui/Button'
 
-import { issues } from '../assets/data/issues'
+import {
+  publishedIssues,
+} from '../assets/data/issues'
 
 import {
   contentItems,
@@ -32,11 +34,11 @@ export default function IssuePage() {
      SELECTED ISSUE
      ========================= */
 
-  const issue = issues.find(
+const issue =
+  publishedIssues.find(
     (item) =>
       item.slug === slug,
   )
-
   if (!issue) {
     return (
       <section className="issue-page__not-found">
@@ -70,11 +72,17 @@ export default function IssuePage() {
      ARCHIVE
      ========================= */
 
-  const otherIssues =
-    issues.filter(
-      (item) =>
-        item.id !== issue.id,
-    )
+ const recentIssues = [...publishedIssues]
+  .filter(
+    (item) =>
+      item.id !== issue.id,
+  )
+  .sort(
+    (a, b) =>
+      b.year - a.year ||
+      b.month - a.month,
+  )
+  .slice(0, 3)
 
   /* =========================
      ACCESS
@@ -135,19 +143,18 @@ export default function IssuePage() {
               </Button>
             </div>
           </div>
+  {/* ===================
+    RECENT ISSUES
+    =================== */}
 
-          {/* =================
-              ARCHIVE
-              ================= */}
-
-          <div
-            id="issues-archive"
-            className="issue-page__archive"
-          >
-            <IssuesArchive
-              issues={otherIssues}
-            />
-          </div>
+<div
+  id="recent-issues"
+  className="issue-page__recent"
+>
+  <RecentIssues
+    issues={recentIssues}
+  />
+</div>
         </section>
       </article>
 
@@ -182,9 +189,12 @@ export default function IssuePage() {
             issue.year,
         }}
       >
-        <IssueContents
-          items={issueContent}
-        />
+     <IssueContents
+  items={issueContent}
+  onNavigate={() =>
+    setIsContentsOpen(false)
+  }
+/>
       </IssueContentsOverlay>
     </>
   )

@@ -207,7 +207,7 @@ export const december2025ContentItems: ContentItem[] = [
   {
     id: 'december-2025-chepiga-mama',
     issueId: '12-2025',
-    authorId: 'valya-chepiga',
+    authorId: 'valentina-chepiga',
     title: 'Мама Таню уложила спать',
     type: 'prose',
     section: 'ПРОЗАИЧЕСКИЕ ЧУДЕСА',

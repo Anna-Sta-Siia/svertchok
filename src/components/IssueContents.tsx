@@ -1,18 +1,26 @@
-import { useMemo, useState } from 'react'
+import {
+  useMemo,
+  useState,
+} from 'react'
 
-import { authors } from '../assets/data/authors'
+import { Link } from 'react-router-dom'
+
+import {getAuthorsByContentItem,} from '../assets/data/selectors'
 import type { ContentItem } from '../assets/data/contentItems/types'
 
 import './IssueContents.css'
 
 type IssueContentsProps = {
   items: ContentItem[]
+
   issueMeta?: {
     coverImage: string
     monthLabel: string
     month: number
     year: number
   }
+
+  onNavigate?: () => void
 }
 
 type ContentGroup = {
@@ -26,12 +34,21 @@ const INITIAL_VISIBLE_ITEMS = 3
 export default function IssueContents({
   items,
   issueMeta,
+  onNavigate,
 }: IssueContentsProps) {
-  const [expandedSections, setExpandedSections] =
-    useState<Set<string>>(new Set())
+  const [
+    expandedSections,
+    setExpandedSections,
+  ] = useState<Set<string>>(
+    new Set(),
+  )
 
-  const [openItems, setOpenItems] =
-    useState<Set<string>>(new Set())
+  const [
+    openItems,
+    setOpenItems,
+  ] = useState<Set<string>>(
+    new Set(),
+  )
 
   const groups = useMemo(() => {
     const result: ContentGroup[] = []
@@ -42,16 +59,20 @@ export default function IssueContents({
           key: item.id,
           items: [item],
         })
+
         return
       }
 
-      const lastGroup = result[result.length - 1]
+      const lastGroup =
+        result[result.length - 1]
 
       if (
         lastGroup &&
-        lastGroup.label === item.section
+        lastGroup.label ===
+          item.section
       ) {
         lastGroup.items.push(item)
+
         return
       }
 
@@ -65,23 +86,31 @@ export default function IssueContents({
     return result
   }, [items])
 
-  function toggleSection(key: string) {
-    setExpandedSections((current) => {
-      const next = new Set(current)
+  function toggleSection(
+    key: string,
+  ) {
+    setExpandedSections(
+      (current) => {
+        const next =
+          new Set(current)
 
-      if (next.has(key)) {
-        next.delete(key)
-      } else {
-        next.add(key)
-      }
+        if (next.has(key)) {
+          next.delete(key)
+        } else {
+          next.add(key)
+        }
 
-      return next
-    })
+        return next
+      },
+    )
   }
 
-  function toggleItem(id: string) {
+  function toggleItem(
+    id: string,
+  ) {
     setOpenItems((current) => {
-      const next = new Set(current)
+      const next =
+        new Set(current)
 
       if (next.has(id)) {
         next.delete(id)
@@ -99,14 +128,23 @@ export default function IssueContents({
         {issueMeta && (
           <div className="issue-contents__issue-meta">
             <img
-              src={issueMeta.coverImage}
+              src={
+                issueMeta.coverImage
+              }
               alt={`Обложка номера ${issueMeta.monthLabel} ${issueMeta.year}`}
               className="issue-contents__mini-cover"
             />
 
             <div className="issue-contents__issue-text">
               <p className="issue-contents__issue-date">
-                №{String(issueMeta.month).padStart(2, '0')} ·{' '}
+                №
+                {String(
+                  issueMeta.month,
+                ).padStart(
+                  2,
+                  '0',
+                )}
+                {' · '}
                 {issueMeta.year}
               </p>
             </div>
@@ -117,14 +155,17 @@ export default function IssueContents({
       <div className="issue-contents__groups">
         {groups.map((group) => {
           const isExpanded =
-            expandedSections.has(group.key)
+            expandedSections.has(
+              group.key,
+            )
 
           const hasMore =
             group.items.length >
             INITIAL_VISIBLE_ITEMS
 
           const visibleItems =
-            !hasMore || isExpanded
+            !hasMore ||
+            isExpanded
               ? group.items
               : group.items.slice(
                   0,
@@ -147,86 +188,116 @@ export default function IssueContents({
               )}
 
               <div className="issue-content-group__items">
-                {visibleItems.map((item) => {
-                  const author = authors.find(
-                    (author) =>
-                      author.id === item.authorId,
-                  )
+                {visibleItems.map(
+                  (item) => {
+                   const itemAuthors =
+  getAuthorsByContentItem(
+    item,
+  )
 
-                  const isItemOpen =
-                    openItems.has(item.id)
+                    const isItemOpen =
+                      openItems.has(
+                        item.id,
+                      )
 
-                  const canPreview =
-                    item.previewAllowed &&
-                    Boolean(item.excerpt)
+                    const canPreview =
+                      item.previewAllowed &&
+                      Boolean(
+                        item.excerpt,
+                      )
 
-                  return (
-                    <article
-                      className="issue-content-item"
-                      key={item.id}
-                    >
-                      <div className="issue-content-item__top">
-                        <div className="issue-content-item__main">
-                          <h4>{item.title}</h4>
+                    return (
+                      <article
+                        className="issue-content-item"
+                        key={item.id}
+                      >
+                        <div className="issue-content-item__top">
+                          <div className="issue-content-item__main">
+                            <h4>
+                              {
+                                item.title
+                              }
+                            </h4>
+{itemAuthors.length > 0 && (
+  <div className="issue-content-item__authors">
+    {itemAuthors.map(
+      (author, index) => (
+        <span key={author.id}>
+          {index > 0 && ', '}
 
-                          {author && (
-                            <button
-                              type="button"
-                              className="issue-content-item__author"
-                            >
-                              {author.firstName}{' '}
-                              {author.lastName}
-                            </button>
+          <Link
+            to={`/authors/${author.id}`}
+            className="issue-content-item__author"
+            onClick={onNavigate}
+          >
+            {author.firstName}{' '}
+            {author.lastName}
+          </Link>
+        </span>
+      ),
+    )}
+  </div>
+)}
+                          </div>
+
+                          {item.page && (
+                            <span className="issue-content-item__page">
+                              {
+                                item.page
+                              }
+                            </span>
                           )}
                         </div>
 
-                        {item.page && (
-                          <span className="issue-content-item__page">
-                            {item.page}
-                          </span>
+                        {canPreview && (
+                          <>
+                            <p
+                              className={`issue-content-item__excerpt ${
+                                isItemOpen
+                                  ? 'issue-content-item__excerpt--open'
+                                  : ''
+                              }`}
+                            >
+                              {
+                                item.excerpt
+                              }
+                            </p>
+
+                            <button
+                              type="button"
+                              className="issue-content-item__excerpt-toggle"
+                              aria-expanded={
+                                isItemOpen
+                              }
+                              onClick={() =>
+                                toggleItem(
+                                  item.id,
+                                )
+                              }
+                            >
+                              {isItemOpen
+                                ? 'Свернуть ↑'
+                                : 'Читать отрывок ↓'}
+                            </button>
+                          </>
                         )}
-                      </div>
-
-                      {canPreview && (
-                        <>
-                          <p
-                            className={`issue-content-item__excerpt ${
-                              isItemOpen
-                                ? 'issue-content-item__excerpt--open'
-                                : ''
-                            }`}
-                          >
-                            {item.excerpt}
-                          </p>
-
-                          <button
-                            type="button"
-                            className="issue-content-item__excerpt-toggle"
-                            aria-expanded={
-                              isItemOpen
-                            }
-                            onClick={() =>
-                              toggleItem(item.id)
-                            }
-                          >
-                            {isItemOpen
-                              ? 'Свернуть ↑'
-                              : 'Читать отрывок ↓'}
-                          </button>
-                        </>
-                      )}
-                    </article>
-                  )
-                })}
+                      </article>
+                    )
+                  },
+                )}
               </div>
 
               {hasMore && (
                 <button
                   type="button"
                   className="issue-content-group__toggle"
-                  aria-expanded={isExpanded}
+                  aria-expanded={
+                    isExpanded
+                  }
                   onClick={() =>
-                    toggleSection(group.key)
+                    toggleSection(
+                      group.key,
+                    )
                   }
                 >
                   {isExpanded

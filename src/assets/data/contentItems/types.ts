@@ -12,16 +12,13 @@ export type ContentItem = {
   issueId: string
 
   authorId?: string
+  authorIds?: string[]
 
   title: string
-
   type: ContentType
-
   section?: string
-
   page?: number
   order: number
-
   excerpt?: string
   previewAllowed?: boolean
 }

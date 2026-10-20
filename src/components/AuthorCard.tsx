@@ -23,8 +23,13 @@ export default function AuthorCard({
     <article className="author-card">
       <header className="author-card__header">
         <h2 className="author-card__name">
-          {author.firstName}{' '}
-          {author.lastName}
+          <Link
+            to={`/authors/${author.id}`}
+            className="author-card__name-link"
+          >
+            {author.firstName}{' '}
+            {author.lastName}
+          </Link>
         </h2>
 
         {author.types.length > 0 && (
@@ -102,8 +107,13 @@ export default function AuthorCard({
                       Беседа в №
                       {String(
                         issue.month,
-                      ).padStart(2, '0')}
-                      ·{issue.year} →
+                      ).padStart(
+                        2,
+                        '0',
+                      )}
+                      {' · '}
+                      {issue.year}
+                      {' →'}
                     </Link>
                   )
                 },
@@ -111,6 +121,13 @@ export default function AuthorCard({
             </div>
           </div>
         )}
+
+      <Link
+        to={`/authors/${author.id}`}
+        className="author-card__details-link"
+      >
+        Страница автора →
+      </Link>
     </article>
   )
 }

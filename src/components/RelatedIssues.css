@@ -1,0 +1,60 @@
+.related-issues {
+  width: 100%;
+}
+
+.related-issues__title {
+  margin: 0 0 24px;
+
+  font-family: Georgia, serif;
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.related-issues__list {
+  display: grid;
+  gap: 24px;
+}
+
+/* =========================
+   ROW
+   ========================= */
+
+.related-issues--row .related-issues__list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.related-issues--sidebar .related-issues__list {
+  grid-template-columns: 1fr;
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 1024px) {
+  .related-issues--row .related-issues__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+  .related-issues--row .related-issues__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 550px) {
+  .related-issues--row .related-issues__list {
+    grid-template-columns: 1fr;
+  }
+}

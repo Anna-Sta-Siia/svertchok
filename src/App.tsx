@@ -9,6 +9,7 @@ import MainLayout from './layouts/MainLayout'
 import HomePage from './pages/HomePage'
 import IssuePage from './pages/IssuePage'
 import AuthorsPage from './pages/AuthorsPage'
+import AuthorPage from './pages/AuthorPage'
 
 export default function App() {
   return (
@@ -37,6 +38,11 @@ export default function App() {
         <Route
           path="/authors"
           element={<AuthorsPage />}
+        />
+
+        <Route
+          path="/authors/:authorId"
+          element={<AuthorPage />}
         />
       </Route>
     </Routes>

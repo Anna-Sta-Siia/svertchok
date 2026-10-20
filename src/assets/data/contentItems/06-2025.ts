@@ -17,7 +17,7 @@ export const june2025ContentItems: ContentItem[] = [
   {
     id: 'june-2025-petrova-life-series',
     issueId: '06-2025',
-    authorId: 'asya-petrova',
+    authorId: 'asia-petrova',
     title: 'Моя жизнь – сериал',
     type: 'prose',
     section: 'СТРОЧКИ СВЕРЧКА',
@@ -27,7 +27,7 @@ export const june2025ContentItems: ContentItem[] = [
   {
     id: 'june-2025-petrova-does-not-like-me',
     issueId: '06-2025',
-    authorId: 'asya-petrova',
+    authorId: 'asia-petrova',
     title: 'Я ей не нравлюсь',
     type: 'prose',
     section: 'СТРОЧКИ СВЕРЧКА',
@@ -37,7 +37,7 @@ export const june2025ContentItems: ContentItem[] = [
   {
     id: 'june-2025-petrova-instagram',
     issueId: '06-2025',
-    authorId: 'asya-petrova',
+    authorId: 'asia-petrova',
     title: 'Инстаграм Марины Станиславовны',
     type: 'prose',
     section: 'СТРОЧКИ СВЕРЧКА',
@@ -322,15 +322,26 @@ export const june2025ContentItems: ContentItem[] = [
   /* =========================
      ЧИТАЛЬНЯ СВЕРЧКА
      ========================= */
-
   {
     id: 'june-2025-reviews',
     issueId: '06-2025',
+    authorId:'yulia-utochkina',
     title: 'Рецензии',
     type: 'review',
     section: 'ЧИТАЛЬНЯ СВЕРЧКА',
     page: 85,
     order: 31,
+  },
+
+  {
+    id: 'june-2025-reviews',
+    issueId: '06-2025',
+    authorId: 'denis-egorov',
+    title: 'Рецензии',
+    type: 'review',
+    section: 'ЧИТАЛЬНЯ СВЕРЧКА',
+    page: 87,
+    order: 32,
   },
 
   /* =========================
@@ -345,7 +356,7 @@ export const june2025ContentItems: ContentItem[] = [
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
     page: 91,
-    order: 32,
+    order: 33,
   },
   {
     id: 'june-2025-mavlevich-penny-talk',
@@ -355,7 +366,7 @@ export const june2025ContentItems: ContentItem[] = [
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
     page: 91,
-    order: 33,
+    order: 34,
   },
   {
     id: 'june-2025-mavlevich-hands-feet',
@@ -365,7 +376,7 @@ export const june2025ContentItems: ContentItem[] = [
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
     page: 95,
-    order: 34,
+    order: 35,
   },
 
   /* =========================
@@ -380,7 +391,7 @@ export const june2025ContentItems: ContentItem[] = [
     type: 'interview',
     section: 'БЕСЕДЫ СВЕРЧКА',
     page: 101,
-    order: 35,
+    order: 36,
   },
   {
     id: 'june-2025-veselov-interview',
@@ -390,7 +401,7 @@ export const june2025ContentItems: ContentItem[] = [
     type: 'interview',
     section: 'БЕСЕДЫ СВЕРЧКА',
     page: 114,
-    order: 36,
+    order: 37,
   },
 
   /* =========================
@@ -404,6 +415,6 @@ export const june2025ContentItems: ContentItem[] = [
       'Ответы на задания и викторины мартовского номера',
     type: 'other',
     page: 118,
-    order: 37,
+    order: 38,
   },
 ]

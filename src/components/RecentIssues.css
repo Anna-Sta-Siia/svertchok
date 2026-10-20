@@ -1,0 +1,46 @@
+.recent-issues {
+  width: 100%;
+}
+
+.recent-issues__footer {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 24px;
+}
+
+.recent-issues__all-link {
+  display: inline-flex;
+  align-items: center;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  color: inherit;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.recent-issues__all-link:hover {
+  opacity: 0.72;
+  transform: translateX(3px);
+}
+
+.recent-issues__all-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 550px) {
+  .recent-issues__footer {
+    justify-content: flex-start;
+  }
+}

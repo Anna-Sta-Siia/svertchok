@@ -1,6 +1,6 @@
 import logoSvertchok from '../assets/images/logo-svertchok.png'
 import titleSvertchok from '../assets/images/title-svertchok.png'
-import bukovkiLogo from '../assets/images/Bukovki_logo.svg'
+import bukovkiLogo from '../assets/images/Bukovki_logo.png'
 
 import Button from './ui/Button'
 

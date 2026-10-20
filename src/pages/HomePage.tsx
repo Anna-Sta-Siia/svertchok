@@ -3,7 +3,7 @@ import {
 } from 'react'
 
 import IssueCard from '../components/IssueCard'
-import IssuesArchive from '../components/IssuesArchive'
+import RecentIssues from '../components/RecentIssues'
 import SubscriptionCard from '../components/SubscriptionCard'
 import ContactCard from '../components/ContactCard'
 
@@ -13,7 +13,7 @@ import IssueContentsOverlay from '../components/IssueContentsOverlay'
 import Button from '../components/ui/Button'
 
 import {
-  issues,
+  publishedIssues,
 } from '../assets/data/issues'
 
 import {
@@ -33,13 +33,12 @@ export default function HomePage() {
      CURRENT ISSUE
      ========================= */
 
-  const currentIssue =
-    issues.find(
-      (issue) =>
-        issue.isCurrent,
-    ) ??
-    issues[0]
-
+const currentIssue =
+  publishedIssues.find(
+    (issue) =>
+      issue.isCurrent,
+  ) ??
+  publishedIssues[0]
   if (!currentIssue) {
     return null
   }
@@ -62,12 +61,17 @@ export default function HomePage() {
           a.order - b.order,
       )
 
-  const previousIssues =
-    issues.filter(
-      (issue) =>
-        issue.id !==
-        currentIssue.id,
-    )
+ const recentIssues = [...publishedIssues]
+  .filter(
+    (issue) =>
+      issue.id !== currentIssue.id,
+  )
+  .sort(
+    (a, b) =>
+      b.year - a.year ||
+      b.month - a.month,
+  )
+  .slice(0, 3)
 
   return (
     <>
@@ -148,12 +152,11 @@ export default function HomePage() {
         </div>
 
         {/* ===================
-            ARCHIVE
+            RECENT ISSUES
             =================== */}
-
-        <IssuesArchive
-          issues={previousIssues}
-        />
+<RecentIssues
+  issues={recentIssues}
+/>
       </section>
 
       {/* =====================
@@ -188,11 +191,14 @@ export default function HomePage() {
             currentIssue.year,
         }}
       >
-        <IssueContents
-          items={
-            currentIssueContent
-          }
-        />
+    <IssueContents
+  items={
+    currentIssueContent
+  }
+  onNavigate={() =>
+    setIsContentsOpen(false)
+  }
+/>
       </IssueContentsOverlay>
     </>
   )
