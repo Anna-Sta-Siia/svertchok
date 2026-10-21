@@ -93,30 +93,13 @@ const currentIssue =
               А вот и мой новый номер
             </p>
           </div>
-
-          <IssueCard
-            slug={currentIssue.slug}
-            monthLabel={
-              currentIssue.monthLabel
-            }
-            month={
-              currentIssue.month
-            }
-            year={
-              currentIssue.year
-            }
-           
-            coverImage={
-              currentIssue.coverImage
-            }
-            description={
-              currentIssueLongDescription
-            }
-            variant="featured"
-            readMoreTo={
-              `/issues/${currentIssue.slug}`
-            }
-          />
+<IssueCard
+  issue={currentIssue}
+  longDescription={
+    currentIssueLongDescription
+  }
+  variant="featured"
+/>
 
           {/* =================
               ACTIONS

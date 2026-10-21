@@ -293,22 +293,11 @@ export default function IssuesArchive({
 
       <div className="issues-archive__list">
         {filteredIssues.map((issue) => (
-          <IssueCard
-            key={issue.id}
-            slug={issue.slug}
-            monthLabel={
-              issue.monthLabel
-            }
-            month={issue.month}
-            year={issue.year}
-            coverImage={
-              issue.coverImage
-            }
-            description={
-              issue.shortDescription
-            }
-            variant="compact"
-          />
+         <IssueCard
+  key={issue.id}
+  issue={issue}
+  variant="compact"
+/>
         ))}
       </div>
 

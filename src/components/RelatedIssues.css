@@ -1,45 +1,99 @@
+/* =========================
+   RELATED ISSUES
+   ========================= */
+
 .related-issues {
   width: 100%;
+  min-width: 0;
 }
 
-.related-issues__title {
-  margin: 0 0 24px;
+/* =========================
+   TITLE
+   ========================= */
 
-  font-family: Georgia, serif;
-  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+.related-issues__title {
+  margin:
+    0
+    0
+    24px;
+
+  color:
+    var(--color-text);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      1.55rem,
+      2.2vw,
+      2.2rem
+    );
+
   font-weight: 500;
+
   line-height: 1.2;
 }
 
+/* =========================
+   LIST
+   ========================= */
+
 .related-issues__list {
   display: grid;
+
   gap: 24px;
+
+  min-width: 0;
 }
 
 /* =========================
    ROW
+
+   Utilisé quand le composant
+   dispose d'une vraie largeur.
    ========================= */
 
-.related-issues--row .related-issues__list {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.related-issues--row
+.related-issues__list {
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
 }
 
 /* =========================
    SIDEBAR
+
+   Page auteur.
    ========================= */
 
-.related-issues--sidebar .related-issues__list {
+.related-issues--sidebar
+.related-issues__list {
   grid-template-columns: 1fr;
+}
+
+.related-issues--sidebar
+.issue-card--compact {
+  width: 100%;
 }
 
 /* =========================
    TABLET
    ========================= */
 
-@media (max-width: 1024px) {
-  .related-issues--row .related-issues__list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+@media (max-width: 768px) {
+  .related-issues--row
+  .related-issues__list {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 20px;
   }
 }
 
@@ -47,14 +101,20 @@
    MOBILE
    ========================= */
 
-@media (max-width: 768px) {
-  .related-issues--row .related-issues__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 550px) {
-  .related-issues--row .related-issues__list {
+  .related-issues--row
+  .related-issues__list {
     grid-template-columns: 1fr;
+  }
+
+  .related-issues--row
+  .issue-card--compact {
+    width:
+      min(
+        100%,
+        320px
+      );
+
+    justify-self: center;
   }
 }

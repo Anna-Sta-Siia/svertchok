@@ -1,26 +1,40 @@
+/* =========================
+   GLOBAL
+   ========================= */
+
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+
+  background: #fff;
 }
 
 body {
   margin: 0;
 
-  font-family: var(--font-main);
+  background:
+    var(--color-background);
+
+  color:
+    var(--color-text);
+
+  font-family:
+    var(--font-main);
 }
+
 .app-theme {
   min-height: 100vh;
 
-  background: var(--color-background);
-  color: var(--color-text);
+  background:
+    var(--color-background);
 
-  transition:
-    background var(--transition-default),
-    color var(--transition-default);
+  color:
+    var(--color-text);
 }
+
 button,
 input,
 textarea,
@@ -35,22 +49,47 @@ button {
 img {
   max-width: 100%;
 }
+
+
+/* =========================
+   GLOBAL VARIABLES
+   ========================= */
+
 :root {
-  --font-main: Georgia, 'Times New Roman', serif;
+  --font-main:
+    Georgia,
+    'Times New Roman',
+    serif;
+
   --font-accent:
-    "Allura",
+    'Allura',
     cursive;
+
+  /*
+   * Le fond général du site
+   * reste blanc quelle que soit
+   * la saison.
+   */
+  --color-background: #ffffff;
+
   --color-logo-green: #4f8a62;
+
   --radius-card: 14px;
   --radius-cover: 8px;
   --radius-button: 999px;
+
   --section-space: 70px;
-  --transition-default: 0.2s ease;
+
+  --transition-default:
+    0.2s ease;
 }
-/* SPRING */
+
+
+/* =========================
+   SPRING
+   ========================= */
 
 [data-season='spring'] {
-  --color-background: #fbf7ed;
   --color-surface: #fffdf8;
   --color-surface-soft: #fff8f3;
 
@@ -65,13 +104,19 @@ img {
   --color-footer-background: #f3ddd9;
   --color-footer-text: #a55f70;
 
-  --shadow-card: 0 6px 18px rgb(90 76 60 / 8%);
+  --shadow-card:
+    0
+    6px
+    18px
+    rgb(90 76 60 / 8%);
 }
 
-/* SUMMER */
+
+/* =========================
+   SUMMER
+   ========================= */
 
 [data-season='summer'] {
-  --color-background: #f7f4df;
   --color-surface: #fffdf4;
   --color-surface-soft: #fbf7df;
 
@@ -86,13 +131,19 @@ img {
   --color-footer-background: #e4edcf;
   --color-footer-text: #637d3e;
 
-  --shadow-card: 0 6px 18px rgb(70 90 45 / 8%);
+  --shadow-card:
+    0
+    6px
+    18px
+    rgb(70 90 45 / 8%);
 }
 
-/* AUTUMN */
+
+/* =========================
+   AUTUMN
+   ========================= */
 
 [data-season='autumn'] {
-  --color-background: #f8f4e9;
   --color-surface: #fffdf8;
   --color-surface-soft: #fffaf0;
 
@@ -107,13 +158,19 @@ img {
   --color-footer-background: #efd9d0;
   --color-footer-text: #b45c0b;
 
-  --shadow-card: 0 6px 18px rgb(79 67 38 / 8%);
+  --shadow-card:
+    0
+    6px
+    18px
+    rgb(79 67 38 / 8%);
 }
 
-/* WINTER */
+
+/* =========================
+   WINTER
+   ========================= */
 
 [data-season='winter'] {
-  --color-background: #f3f6f8;
   --color-surface: #fbfdff;
   --color-surface-soft: #f1f6fa;
 
@@ -128,5 +185,9 @@ img {
   --color-footer-background: #dde8ef;
   --color-footer-text: #627f95;
 
-  --shadow-card: 0 6px 18px rgb(70 90 110 / 8%);
+  --shadow-card:
+    0
+    6px
+    18px
+    rgb(70 90 110 / 8%);
 }

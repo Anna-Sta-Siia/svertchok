@@ -102,22 +102,11 @@ const issue =
               ================= */}
 
           <div className="issue-page__current">
-            <IssueCard
-              slug={issue.slug}
-              monthLabel={
-                issue.monthLabel
-              }
-              month={issue.month}
-              year={issue.year}
-              coverImage={
-                issue.coverImage
-              }
-              description={
-                longDescription
-              }
-              variant="featured"
-            />
-
+           <IssueCard
+  issue={issue}
+  longDescription={longDescription}
+  variant="featured"
+/>
             <div className="issue-page__actions">
               {issue.accessUrl && (
                 <Button

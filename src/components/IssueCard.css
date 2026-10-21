@@ -3,15 +3,42 @@
    ========================= */
 
 .issue-card {
-  color: var(--color-text);
+  /*
+   * Très transparent :
+   * les éléments saisonniers
+   * restent visibles.
+   */
+  --issue-card-surface:
+    color-mix(
+      in srgb,
+      var(--color-surface) 28%,
+      transparent
+    );
+
+  --issue-card-border:
+    color-mix(
+      in srgb,
+      var(--color-secondary) 16%,
+      transparent
+    );
+
+  /*
+   * Cover et contenu du featured
+   * ont exactement la même hauteur.
+   */
+  --featured-height:
+    clamp(
+      400px,
+      29vw,
+      510px
+    );
+
+  color:
+    var(--color-text);
 }
 
 .issue-card__cover-link {
   display: block;
-
-  overflow: hidden;
-
-  border-radius: var(--radius-cover);
 
   text-decoration: none;
 }
@@ -19,12 +46,10 @@
 .issue-card__cover {
   display: block;
 
-  width: 100%;
-  height: auto;
+  max-width: 100%;
 
-  object-fit: cover;
-
-  border-radius: inherit;
+  border-radius:
+    var(--radius-cover);
 }
 
 .issue-card__content {
@@ -34,325 +59,555 @@
 .issue-card__date {
   margin: 0;
 
-  color: var(--color-accent);
+  color:
+    var(--color-accent);
 
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
+
   letter-spacing: 0.04em;
 }
 
-.issue-card__content h2 {
+.issue-card__description {
   margin: 0;
 
-  color: var(--color-text);
-
-  font-weight: 500;
-  line-height: 1.1;
-}
-
-.issue-card__content p {
-  margin: 0;
-
-  color: var(--color-text-soft);
+  color:
+    var(--color-text-soft);
 
   line-height: 1.65;
 }
 
-.issue-card__actions {
-  display: flex;
-flex-wrap: wrap;
-  gap: 12px;
-
-  margin-top: 8px;
-}
 
 /* =========================
    FEATURED
-   Home / numéro principal
    ========================= */
 
 .issue-card--featured {
   display: grid;
 
   grid-template-columns:
-    minmax(220px, 360px)
+    minmax(250px, 39%)
     minmax(0, 1fr);
 
-  gap: clamp(
-    26px,
-    3vw,
-    46px
-  );
+  gap:
+    clamp(
+      32px,
+      4vw,
+      56px
+    );
 
-  align-items: center;
+  align-items: start;
 
   width: 100%;
+
+  padding:
+    clamp(
+      20px,
+      2.3vw,
+      28px
+    );
+
+  border:
+    1px
+    solid
+    var(--issue-card-border);
+
+  border-radius:
+    var(--radius-card);
+
+  background:
+    var(--issue-card-surface);
+
+  box-shadow:
+    0
+    12px
+    30px
+    rgb(55 45 20 / 4%);
 }
+
+
+/* =========================
+   FEATURED COVER
+
+   Aucun cadre.
+   Aucun fond.
+   Juste la couverture.
+   ========================= */
 
 .issue-card--featured
 .issue-card__cover-link {
-  width: 100%;
-  max-width: 360px;
+  display: block;
+
+  justify-self: start;
+
+  width: auto;
+  max-width: 100%;
+
+  height:
+    var(--featured-height);
+
+  background: transparent;
 }
 
 .issue-card--featured
 .issue-card__cover {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
 
-  max-height: 60vh;
+  height: 100%;
+  max-height: 100%;
 
   object-fit: contain;
 
+  border-radius:
+    var(--radius-cover);
+
   box-shadow:
-    0 14px 32px
-    rgb(55 45 20 / 10%);
+    0
+    14px
+    28px
+    rgb(55 45 20 / 15%);
 }
+
+
+/* =========================
+   FEATURED CONTENT
+
+   Même hauteur que la cover.
+   ========================= */
 
 .issue-card--featured
 .issue-card__content {
   display: flex;
-  flex-direction: column;
 
-  gap: 18px;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 16px;
 
   width: 100%;
+  min-width: 0;
+
+  height:
+    var(--featured-height);
+
+  min-height: 0;
+
+  padding:
+    3px
+    0;
+
+  text-align: left;
 }
 
-.issue-card--featured
-.issue-card__content h2 {
-  font-size:
-    clamp(
-      2.2rem,
-      3.5vw,
-      3.8rem
-    );
-}
+
+/* DATE */
 
 .issue-card--featured
-.issue-card__content p {
-  max-width: 680px;
+.issue-card__date {
+  flex-shrink: 0;
+
+  width: 100%;
 
   font-size:
     clamp(
       1rem,
-      1.2vw,
+      1.15vw,
       1.15rem
     );
+
+  text-align: left;
 }
+
 
 /* =========================
-   COMPACT
-   Archive
+   FEATURED DESCRIPTION
+
+   Scroll uniquement si
+   le texte dépasse.
    ========================= */
 
-.issue-card--compact {
-  display: grid;
-
-  grid-template-columns:
-    92px
-    minmax(0, 1fr);
-
-  gap: 16px;
-
-  align-items: center;
+.issue-card--featured
+.issue-card__description {
+  flex: 1;
 
   width: 100%;
+  min-height: 0;
 
-  padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
-  border-radius: 14px;
+  padding-right: 10px;
 
-  text-decoration: none;
+  color:
+    var(--color-text-soft);
 
-  transition:
-    transform var(--transition-default),
-    background var(--transition-default);
+  font-size:
+    clamp(
+      1rem,
+      1.08vw,
+      1.12rem
+    );
+
+  line-height: 1.68;
+
+  text-align: left;
+
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+
+  overscroll-behavior: contain;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    color-mix(
+      in srgb,
+      var(--color-accent) 38%,
+      transparent
+    )
+    transparent;
 }
 
-.issue-card--compact:hover {
-  transform: translateY(-1px);
+
+/* Chrome / Edge / Safari */
+
+.issue-card--featured
+.issue-card__description::-webkit-scrollbar {
+  width: 5px;
+}
+
+.issue-card--featured
+.issue-card__description::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.issue-card--featured
+.issue-card__description::-webkit-scrollbar-thumb {
+  border-radius: 999px;
 
   background:
     color-mix(
       in srgb,
-      var(--color-surface-soft) 65%,
+      var(--color-accent) 34%,
       transparent
     );
 }
 
+.issue-card--featured
+.issue-card__description::-webkit-scrollbar-thumb:hover {
+  background:
+    color-mix(
+      in srgb,
+      var(--color-accent) 52%,
+      transparent
+    );
+}
+
+
+/* =========================
+   COMPACT
+   ========================= */
+
+.issue-card--compact {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  width:
+    min(
+      100%,
+      280px
+    );
+
+  min-width: 0;
+
+  padding:
+    13px
+    14px
+    15px;
+
+  border:
+    1px
+    solid
+    var(--issue-card-border);
+
+  border-radius:
+    var(--radius-card);
+
+  background:
+    var(--issue-card-surface);
+
+  color:
+    var(--color-text);
+
+  text-decoration: none;
+
+  box-shadow:
+    0
+    7px
+    18px
+    rgb(55 45 20 / 4%);
+
+  transition:
+    transform
+      var(--transition-default),
+    border-color
+      var(--transition-default),
+    box-shadow
+      var(--transition-default);
+}
+
+.issue-card--compact:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--color-secondary) 30%,
+      transparent
+    );
+
+  box-shadow:
+    0
+    11px
+    24px
+    rgb(55 45 20 / 7%);
+}
+
+.issue-card--compact:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset: 4px;
+}
+
+
+/* =========================
+   COMPACT DATE
+   ========================= */
+
 .issue-card--compact
-.issue-card__cover-link {
-  width: 92px;
+.issue-card__date {
+  width: 100%;
+
+  font-size: 0.88rem;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+
+/* =========================
+   COMPACT COVER
+   ========================= */
+
+.issue-card__compact-cover {
+  width: 100%;
+
+  margin: 0;
 }
 
 .issue-card--compact
 .issue-card__cover {
-  width: 92px;
+  display: block;
 
-  aspect-ratio: 3 / 4;
+  width: 100%;
+  height: auto;
 
-  object-fit: cover;
+  object-fit: contain;
+
+  border-radius:
+    var(--radius-cover);
+
+  box-shadow:
+    0
+    9px
+    20px
+    rgb(55 45 20 / 12%);
 }
 
-.issue-card--compact
-.issue-card__content {
-  display: flex;
-  flex-direction: column;
-align-self: flex-start;
-  gap: 5px;
-}
+
+/* =========================
+   COMPACT DESCRIPTION
+
+   Même largeur que la cover.
+   ========================= */
 
 .issue-card--compact
-.issue-card__date {
-  font-size: 0.8rem;
-}
-
-.issue-card--compact
-.issue-card__content h2 {
-  font-size: 1.05rem;
-}
-
-.issue-card--compact
-.issue-card__content p {
+.issue-card__description {
   display: -webkit-box;
+
+  width: 100%;
 
   overflow: hidden;
 
-  font-size: 0.9rem;
-  line-height: 1.45;
+  margin: 0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size: 0.97rem;
+
+  line-height: 1.5;
+
+  text-align: left;
+
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
 
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
+
+  line-clamp: 3;
 }
+
 
 /* =========================
-   DETAIL
-   si on le réutilise plus tard
+   1180 → 901
    ========================= */
 
-.issue-card--detail {
-  display: flex;
-  flex-direction: column;
-
-  gap: 24px;
-}
-
-.issue-card--detail
-.issue-card__cover-link {
-  width: min(
-    100%,
-    420px
-  );
-}
-
-.issue-card--detail
-.issue-card__content {
-  display: flex;
-  flex-direction: column;
-
-  gap: 18px;
-}
-.issue-card__read-more {
-  width: fit-content;
-
-  color: var(--color-accent);
-
-  font-size: 0.95rem;
-  font-weight: 500;
-
-  text-decoration: none;
-
-  transition:
-    opacity var(--transition-default);
-}
-
-.issue-card__read-more:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.issue-card__read-more:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-/* =========================
-   TABLET
-   ========================= */
-
-@media (max-width: 900px) {
-  .issue-card--featured {
-    grid-template-columns:
-      minmax(200px, 300px)
-      minmax(0, 1fr);
-
-    gap: 28px;
+@media (
+  min-width: 901px
+) and (
+  max-width: 1180px
+) {
+  .issue-card {
+    --featured-height:
+      clamp(
+        390px,
+        41vw,
+        470px
+      );
   }
 
-  .issue-card--featured
-  .issue-card__content h2 {
-    font-size:
+  .issue-card--featured {
+    grid-template-columns:
+      minmax(230px, 37%)
+      minmax(0, 1fr);
+
+    gap:
       clamp(
-        2rem,
-        5vw,
-        3rem
+        28px,
+        4vw,
+        44px
       );
   }
 }
 
+
 /* =========================
-   MOBILE
+   900 → 769
    ========================= */
 
-@media (max-width: 650px) {
+@media (
+  min-width: 769px
+) and (
+  max-width: 900px
+) {
+  .issue-card {
+    --featured-height:
+      390px;
+  }
+
+  .issue-card--featured {
+    grid-template-columns:
+      minmax(210px, 290px)
+      minmax(0, 1fr);
+
+    gap: 26px;
+
+    padding: 20px;
+  }
+
+  .issue-card--featured
+  .issue-card__description {
+    font-size: 0.98rem;
+
+    line-height: 1.6;
+  }
+}
+
+
+/* =========================
+   ≤ 768
+
+   Featured vertical :
+   plus de hauteur imposée,
+   plus de scroll.
+   ========================= */
+
+@media (max-width: 768px) {
   .issue-card--featured {
     grid-template-columns: 1fr;
 
-    gap: 24px;
+    gap: 26px;
+
+    padding: 18px;
   }
 
   .issue-card--featured
   .issue-card__cover-link {
-    width: min(
-      100%,
-      340px
-    );
+    justify-self: center;
 
-    margin: 0 auto;
+    width:
+      min(
+        100%,
+        420px
+      );
+
+    height: auto;
+
+    margin:
+      0
+      auto;
   }
 
   .issue-card--featured
   .issue-card__cover {
-    max-height: none;
+    width: 100%;
+    height: auto;
   }
 
   .issue-card--featured
   .issue-card__content {
-    width: 100%;
+    height: auto;
+
+    padding: 0;
   }
 
   .issue-card--featured
-  .issue-card__content h2 {
-    font-size:
-      clamp(
-        2rem,
-        10vw,
-        3rem
-      );
+  .issue-card__description {
+    overflow: visible;
+
+    padding-right: 0;
+  }
+}
+
+
+/* =========================
+   ≤ 550
+   ========================= */
+
+@media (max-width: 550px) {
+  .issue-card--featured {
+    gap: 22px;
+
+    padding: 15px;
   }
 
   .issue-card--compact {
-    grid-template-columns:
-      76px
-      minmax(0, 1fr);
-
-    gap: 12px;
-  }
-
-  .issue-card--compact
-  .issue-card__cover-link,
-  .issue-card--compact
-  .issue-card__cover {
-    width: 76px;
+    width:
+      min(
+        100%,
+        280px
+      );
   }
 }

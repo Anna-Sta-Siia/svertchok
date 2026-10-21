@@ -1,40 +1,43 @@
 import { Link } from 'react-router-dom'
 
+import type { Issue } from '../assets/data/issues'
+
 import './IssueCard.css'
 
 type IssueCardProps = {
-  slug: string
-  monthLabel: string
-  month: number
-  year: number
+  issue: Issue
 
-  title?: string
+  variant?:
+    | 'featured'
+    | 'compact'
+    | 'archive'
 
-  coverImage: string
-  description: string
-
-  variant?: 'featured' | 'compact' | 'detail'
-
-  readMoreTo?: string
+  longDescription?: string
 }
 
 export default function IssueCard({
-  slug,
-  monthLabel,
-  month,
-  year,
-  title,
-  coverImage,
-  description,
+  issue,
   variant = 'featured',
-  readMoreTo,
+  longDescription,
 }: IssueCardProps) {
-  const issueUrl = `/issues/${slug}`
+  const issueUrl =
+    `/issues/${issue.slug}`
+
+  const issueNumber =
+    `№${String(issue.month).padStart(2, '0')} · ${issue.year}`
 
   /*
-   * Les cartes compactes de l'archive
-   * sont entièrement cliquables.
+   * =========================
+   * COMPACT
+   *
+   * RelatedIssues / RecentIssues
+   * Auteur sidebar
+   *
+   * Toujours shortDescription.
+   * Toute la carte est cliquable.
+   * =========================
    */
+
   if (variant === 'compact') {
     return (
       <Link
@@ -45,30 +48,42 @@ export default function IssueCard({
           issue-card--clickable
         "
       >
-        <img
-          src={coverImage}
-          alt={`Обложка номера ${monthLabel} ${year}`}
-          className="issue-card__cover"
-        />
+        <p className="issue-card__date">
+          {issueNumber}
+        </p>
 
-        <div className="issue-card__content">
-          <p className="issue-card__date">
-            №{String(month).padStart(2, '0')} · {year}
-          </p>
-
-          {title && (
-            <h2 className="issue-card__title">
-              {title}
-            </h2>
-          )}
-
-          <p className="issue-card__description">
-            {description}
-          </p>
+        <div className="issue-card__compact-cover">
+          <img
+            src={issue.coverImage}
+            alt={`Обложка номера ${issue.monthLabel} ${issue.year}`}
+            className="issue-card__cover"
+          />
         </div>
+
+        <p className="issue-card__description">
+          {issue.shortDescription}
+        </p>
       </Link>
     )
   }
+
+  /*
+   * =========================
+   * FEATURED / ARCHIVE
+   *
+   * Archive aura sa propre
+   * structure à l'étape suivante.
+   *
+   * Pour l'instant il n'est pas
+   * encore utilisé dans le site.
+   * =========================
+   */
+
+  const description =
+    variant === 'featured'
+      ? longDescription ??
+        issue.shortDescription
+      : issue.shortDescription
 
   return (
     <article
@@ -79,35 +94,21 @@ export default function IssueCard({
         className="issue-card__cover-link"
       >
         <img
-          src={coverImage}
-          alt={`Обложка номера ${monthLabel} ${year}`}
+          src={issue.coverImage}
+          alt={`Обложка номера ${issue.monthLabel} ${issue.year}`}
           className="issue-card__cover"
         />
       </Link>
 
       <div className="issue-card__content">
         <p className="issue-card__date">
-          №{String(month).padStart(2, '0')} · {year}
+          {issueNumber}
         </p>
-
-        {title && (
-          <h2 className="issue-card__title">
-            {title}
-          </h2>
-        )}
 
         <p className="issue-card__description">
           {description}
         </p>
 
-        {readMoreTo && (
-          <Link
-            to={readMoreTo}
-            className="issue-card__read-more"
-          >
-            Читать далее →
-          </Link>
-        )}
       </div>
     </article>
   )

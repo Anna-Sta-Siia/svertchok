@@ -37,16 +37,10 @@ export default function RelatedIssues({
       <div className="related-issues__list">
         {issues.map((issue) => (
           <IssueCard
-            key={issue.id}
-            slug={issue.slug}
-            monthLabel={issue.monthLabel}
-            month={issue.month}
-            year={issue.year}
-            title={issue.title}
-            coverImage={issue.coverImage}
-            description={issue.shortDescription}
-            variant="compact"
-          />
+  key={issue.id}
+  issue={issue}
+  variant="compact"
+/>
         ))}
       </div>
     </section>
