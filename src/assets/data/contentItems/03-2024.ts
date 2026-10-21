@@ -167,7 +167,7 @@ export const contentItems032024: ContentItem[] = [
   {
     id: '03-2024-17',
     issueId: '03-2024',
-    authorId: 'natalia-volkova',
+    authorId: 'natalya-volkova',
     title: 'Счастье',
     type: 'poetry',
     section: 'НОВЫЕ СТРОФЫ',
@@ -177,7 +177,7 @@ export const contentItems032024: ContentItem[] = [
   {
     id: '03-2024-18',
     issueId: '03-2024',
-    authorId: 'natalia-volkova',
+    authorId: 'natalya-volkova',
     title: 'Круг',
     type: 'poetry',
     section: 'НОВЫЕ СТРОФЫ',
@@ -187,7 +187,7 @@ export const contentItems032024: ContentItem[] = [
   {
     id: '03-2024-19',
     issueId: '03-2024',
-    authorId: 'natalia-volkova',
+    authorId: 'natalya-volkova',
     title: 'Без моря',
     type: 'poetry',
     section: 'НОВЫЕ СТРОФЫ',

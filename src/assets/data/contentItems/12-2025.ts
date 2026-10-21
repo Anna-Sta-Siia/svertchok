@@ -2,7 +2,7 @@ import type { ContentItem } from './types.ts'
 
 export const december2025ContentItems: ContentItem[] = [
   {
-  id: 'december-2025-intro',
+  id: '12-2025-01',
   issueId: '12-2025',
   title: 'Вводное слово',
   type: 'other',
@@ -15,7 +15,7 @@ export const december2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'december-2025-yasnov-chudetstvo',
+    id: '12-2025-02',
     issueId: '12-2025',
     authorId: 'mikhail-yasnov',
     title: 'Чудетство',
@@ -25,7 +25,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 2,
   },
   {
-    id: 'december-2025-yasnov-chudak',
+    id: '12-2025-03',
     issueId: '12-2025',
     authorId: 'mikhail-yasnov',
     title: 'Однажды в лесу объявился чудак',
@@ -35,7 +35,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 3,
   },
   {
-    id: 'december-2025-yasnov-cup',
+    id: '12-2025-04',
     issueId: '12-2025',
     authorId: 'mikhail-yasnov',
     title: 'Вышла чашка погулять',
@@ -45,7 +45,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 4,
   },
   {
-    id: 'december-2025-yasnov-glass',
+    id: '12-2025-05',
     issueId: '12-2025',
     authorId: 'mikhail-yasnov',
     title: 'Увеличительное стекло',
@@ -55,7 +55,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 5,
   },
   {
-    id: 'december-2025-shamsutdinov-kite',
+    id: '12-2025-06',
     issueId: '12-2025',
     authorId: 'nikolay-shamsutdinov',
     title: 'Непослушный змей воздушный',
@@ -65,7 +65,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 6,
   },
   {
-    id: 'december-2025-nikiforov-globe',
+    id: '12-2025-07',
     issueId: '12-2025',
     authorId: 'sergey-nikiforov',
     title: 'Про глобус и автобус',
@@ -75,7 +75,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 7,
   },
   {
-    id: 'december-2025-varlamova-miracle',
+    id: '12-2025-08',
     issueId: '12-2025',
     authorId: 'tatyana-varlamova',
     title: 'В ожидании чуда',
@@ -85,7 +85,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 8,
   },
   {
-    id: 'december-2025-son-daisy-rain',
+    id: '12-2025-09',
     issueId: '12-2025',
     authorId: 'svetlana-son',
     title: 'Маргаритковый дождь',
@@ -95,7 +95,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 9,
   },
   {
-    id: 'december-2025-son-sky-boot',
+    id: '12-2025-10',
     issueId: '12-2025',
     authorId: 'svetlana-son',
     title: 'Башмак-небоход',
@@ -105,7 +105,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 10,
   },
   {
-    id: 'december-2025-son-chepukhay',
+    id: '12-2025-11',
     issueId: '12-2025',
     authorId: 'svetlana-son',
     title: 'Зима-летний Чепухай',
@@ -115,7 +115,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 11,
   },
   {
-    id: 'december-2025-son-upside-down',
+    id: '12-2025-12',
     issueId: '12-2025',
     authorId: 'svetlana-son',
     title: 'Планета Вверх-ногамия',
@@ -125,7 +125,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 12,
   },
   {
-    id: 'december-2025-son-lady-kochka',
+    id: '12-2025-13',
     issueId: '12-2025',
     authorId: 'svetlana-son',
     title: 'Комплименты леди Кочке',
@@ -135,7 +135,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 13,
   },
   {
-    id: 'december-2025-son-red-cat',
+    id: '12-2025-14',
     issueId: '12-2025',
     authorId: 'svetlana-son',
     title: 'Конопато-рыжий Кот',
@@ -150,7 +150,7 @@ export const december2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'december-2025-stetsenko-riddles',
+    id: '12-2025-15',
     issueId: '12-2025',
     authorId: 'galina-stetsenko',
     title: 'Загадки',
@@ -160,7 +160,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 15,
   },
   {
-    id: 'december-2025-krasovskaya-crossword',
+    id: '12-2025-16',
     issueId: '12-2025',
     authorId: 'nadya-krasovskaya',
     title: 'Кроссворд',
@@ -175,7 +175,7 @@ export const december2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'december-2025-cherkasova-shop',
+    id: '12-2025-17',
     issueId: '12-2025',
     authorId: 'anna-cherkasova',
     title: 'Сказочный магазин',
@@ -185,7 +185,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 17,
   },
   {
-    id: 'december-2025-pugina-drakufik',
+    id: '12-2025-18',
     issueId: '12-2025',
     authorId: 'irina-pugina',
     title: 'Дракуфик и школа волшебных зверей',
@@ -195,7 +195,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 18,
   },
   {
-    id: 'december-2025-pugina-classny',
+    id: '12-2025-19',
     issueId: '12-2025',
     authorId: 'irina-pugina',
     title: 'Классный',
@@ -205,7 +205,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 19,
   },
   {
-    id: 'december-2025-chepiga-mama',
+    id: '12-2025-20',
     issueId: '12-2025',
     authorId: 'valentina-chepiga',
     title: 'Мама Таню уложила спать',
@@ -215,7 +215,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 20,
   },
   {
-    id: 'december-2025-georg-yolkich',
+    id: '12-2025-21',
     issueId: '12-2025',
     authorId: 'tatyana-georg',
     title: 'Ёлкич и девочка',
@@ -225,7 +225,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 21,
   },
   {
-    id: 'december-2025-georg-step-counter',
+    id: '12-2025-22',
     issueId: '12-2025',
     authorId: 'tatyana-georg',
     title: 'Шагомер',
@@ -235,7 +235,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 22,
   },
   {
-    id: 'december-2025-georg-new-year-miracle',
+    id: '12-2025-23',
     issueId: '12-2025',
     authorId: 'tatyana-georg',
     title: 'Чудо новогоднее',
@@ -245,7 +245,7 @@ export const december2025ContentItems: ContentItem[] = [
     order: 23,
   },
   {
-    id: 'december-2025-miranova-dreamer',
+    id: '12-2025-24',
     issueId: '12-2025',
     authorId: 'gulnara-miranova',
     title: 'Маленькая мечтательница',
@@ -260,7 +260,7 @@ export const december2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'december-2025-simbirskaya-interview',
+    id: '12-2025-25',
     issueId: '12-2025',
     authorId: 'yulia-simbirskaya',
     title: 'Беседа с Юлией Симбирской',
@@ -275,7 +275,7 @@ export const december2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'december-2025-methodical-shop',
+    id: '12-2025-26',
     issueId: '12-2025',
     title:
       'Весёлые задания по тексту сказки Анны Черкасовой «Сказочный магазин»',

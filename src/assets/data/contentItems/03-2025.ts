@@ -2,7 +2,7 @@ import type { ContentItem } from './types'
 
 export const march2025ContentItems: ContentItem[] = [
   {
-    id: 'march-2025-intro',
+    id: '03-2025-01',
     issueId: '03-2025',
     title: 'Вводное слово',
     type: 'other',
@@ -15,7 +15,7 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-chepiga-dragon',
+    id: '03-2025-02',
     issueId: '03-2025',
     authorId: 'valentina-chepiga',
     title: 'Драконовы нечудеса. Городская сказка',
@@ -25,7 +25,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 2,
   },
   {
-    id: 'march-2025-soroka-excavator',
+    id: '03-2025-03',
     issueId: '03-2025',
     authorId: 'svetlana-soroka',
     title: 'Экскаватор',
@@ -35,7 +35,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 3,
   },
   {
-    id: 'march-2025-soroka-medicine',
+    id: '03-2025-04',
     issueId: '03-2025',
     authorId: 'svetlana-soroka',
     title: 'Доброе лекарство',
@@ -45,7 +45,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 4,
   },
   {
-    id: 'march-2025-pugina-bicycle',
+    id: '03-2025-05',
     issueId: '03-2025',
     authorId: 'irina-pugina',
     title: 'Велосипедный секрет',
@@ -55,7 +55,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 5,
   },
   {
-    id: 'march-2025-belches-flask',
+    id: '03-2025-06',
     issueId: '03-2025',
     authorId: 'ekaterina-belches',
     title: 'Фляжка',
@@ -65,7 +65,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 6,
   },
   {
-    id: 'march-2025-valakhanovich-camel',
+    id: '03-2025-07',
     issueId: '03-2025',
     authorId: 'ksenia-valakhanovich',
     title: 'Старушка и верблюд',
@@ -75,7 +75,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 7,
   },
   {
-    id: 'march-2025-valakhanovich-cat',
+    id: '03-2025-08',
     issueId: '03-2025',
     authorId: 'ksenia-valakhanovich',
     title: 'Подарок котику',
@@ -85,7 +85,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 8,
   },
   {
-    id: 'march-2025-valakhanovich-sister-brother',
+    id: '03-2025-09',
     issueId: '03-2025',
     authorId: 'ksenia-valakhanovich',
     title: 'Подарите мне сестру, подарите брата!',
@@ -95,7 +95,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 9,
   },
   {
-    id: 'march-2025-kagramanova-astronomers',
+    id: '03-2025-10',
     issueId: '03-2025',
     authorId: 'ekaterina-kagramanova',
     title: 'Астрономы',
@@ -105,7 +105,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 10,
   },
   {
-    id: 'march-2025-son-just-because',
+    id: '03-2025-11',
     issueId: '03-2025',
     authorId: 'svetlana-son',
     title: 'Просто так!',
@@ -115,7 +115,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 11,
   },
   {
-    id: 'march-2025-son-beetle',
+    id: '03-2025-12',
     issueId: '03-2025',
     authorId: 'svetlana-son',
     title: 'Я и Жук',
@@ -125,7 +125,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 12,
   },
   {
-    id: 'march-2025-son-friends',
+    id: '03-2025-13',
     issueId: '03-2025',
     authorId: 'svetlana-son',
     title: 'Хорошо иметь друзей',
@@ -135,7 +135,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 13,
   },
   {
-    id: 'march-2025-son-kitten',
+    id: '03-2025-14',
     issueId: '03-2025',
     authorId: 'svetlana-son',
     title: 'Котёнок и Чирик',
@@ -150,7 +150,7 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-sportzal',
+    id: '03-2025-15',
     issueId: '03-2025',
     title: 'СПОРТЗАЛ',
     type: 'other',
@@ -163,7 +163,7 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-egorov-quiz',
+    id: '03-2025-16',
     issueId: '03-2025',
     authorId: 'denis-egorov',
     title: 'Литературная викторина для родителей',
@@ -178,7 +178,7 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-shelemetyeva-tumanovka',
+    id: '03-2025-17',
     issueId: '03-2025',
     authorId: 'ekaterina-shelemetyeva',
     title: 'Дело было в Тумановке',
@@ -188,7 +188,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 17,
   },
   {
-    id: 'march-2025-lederman-eight-year-old',
+    id: '03-2025-18',
     issueId: '03-2025',
     authorId: 'viktoria-lederman',
     title: 'Восьмилетний человек',
@@ -203,7 +203,7 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-grimm-fox',
+    id: '03-2025-19',
     issueId: '03-2025',
     authorId: 'brothers-grimm',
     title: 'Лис и госпожа кума',
@@ -218,7 +218,7 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-chepiga-inbarisna',
+    id: '03-2025-20',
     issueId: '03-2025',
     authorId: 'valentina-chepiga',
     title: 'Инбарисна. Детективная игра-загадка',
@@ -233,7 +233,7 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-shiposhina-march-cat',
+    id: '03-2025-21',
     issueId: '03-2025',
     authorId: 'tatyana-shiposhina',
     title: 'Песня мартовского кота',
@@ -243,7 +243,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 21,
   },
   {
-    id: 'march-2025-pankratova-friend-song',
+    id: '03-2025-22',
     issueId: '03-2025',
     authorId: 'elena-pankratova',
     title: 'Песенка о друге',
@@ -253,7 +253,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 22,
   },
   {
-    id: 'march-2025-pankratova-best-friends',
+    id: '03-2025-23',
     issueId: '03-2025',
     authorId: 'elena-pankratova',
     title: 'Закадычные друзья',
@@ -263,7 +263,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 23,
   },
   {
-    id: 'march-2025-ermakova-friend',
+    id: '03-2025-24',
     issueId: '03-2025',
     authorId: 'tatyana-ermakova',
     title: 'Друг',
@@ -273,7 +273,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 24,
   },
   {
-    id: 'march-2025-vayner-friendship-song',
+    id: '03-2025-25',
     issueId: '03-2025',
     authorId: 'boris-vayner',
     title: 'Песенка о дружбе',
@@ -283,7 +283,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 25,
   },
   {
-    id: 'march-2025-vayner-remora',
+    id: '03-2025-26',
     issueId: '03-2025',
     authorId: 'boris-vayner',
     title: 'Рыба прилипала',
@@ -293,7 +293,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 26,
   },
   {
-    id: 'march-2025-varlamova-shared',
+    id: '03-2025-27',
     issueId: '03-2025',
     authorId: 'tatyana-varlamova',
     title: 'Всё делили пополам?',
@@ -303,7 +303,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 27,
   },
   {
-    id: 'march-2025-shubnaya-snails',
+    id: '03-2025-28',
     issueId: '03-2025',
     authorId: 'lyubov-shubnaya',
     title: 'Улитки-подружки',
@@ -313,7 +313,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 28,
   },
   {
-    id: 'march-2025-cherkasova-meeting',
+    id: '03-2025-29',
     issueId: '03-2025',
     authorId: 'anna-cherkasova',
     title: 'Вот так встреча!',
@@ -323,7 +323,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 29,
   },
   {
-    id: 'march-2025-cherkasova-offense',
+    id: '03-2025-30',
     issueId: '03-2025',
     authorId: 'anna-cherkasova',
     title: 'Обида',
@@ -333,7 +333,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 30,
   },
   {
-    id: 'march-2025-shiposhina-medal',
+    id: '03-2025-31',
     issueId: '03-2025',
     authorId: 'tatyana-shiposhina',
     title: 'Медаль',
@@ -343,7 +343,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 31,
   },
   {
-    id: 'march-2025-vayner-pasha-kesha',
+    id: '03-2025-32',
     issueId: '03-2025',
     authorId: 'boris-vayner',
     title: 'Паша и Кеша',
@@ -353,7 +353,7 @@ export const march2025ContentItems: ContentItem[] = [
     order: 32,
   },
   {
-    id: 'march-2025-popova-goodwin',
+    id: '03-2025-33',
     issueId: '03-2025',
     authorId: 'tatyana-popova',
     title: 'Гудвин исполняет желания',
@@ -368,7 +368,7 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-sportzal-second',
+    id: '03-2025-34',
     issueId: '03-2025',
     title: 'СПОРТЗАЛ',
     type: 'other',
@@ -381,9 +381,9 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-mavlevich-roots',
+    id: '03-2025-35',
     issueId: '03-2025',
-    authorId: 'natalya-mavlevich',
+    authorId: 'nataliya-mavlevich',
     title: 'Игра в корешки',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -391,9 +391,9 @@ export const march2025ContentItems: ContentItem[] = [
     order: 35,
   },
   {
-    id: 'march-2025-mavlevich-oxen',
+    id: '03-2025-36',
     issueId: '03-2025',
-    authorId: 'natalya-mavlevich',
+    authorId: 'nataliya-mavlevich',
     title: 'Супруг волов и мелкий прузик',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -401,9 +401,9 @@ export const march2025ContentItems: ContentItem[] = [
     order: 36,
   },
   {
-    id: 'march-2025-mavlevich-priest-doctor',
+    id: '03-2025-37',
     issueId: '03-2025',
-    authorId: 'natalya-mavlevich',
+    authorId: 'nataliya-mavlevich',
     title: 'Жрец жрёт, а врач врёт?',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -416,7 +416,7 @@ export const march2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'march-2025-exhibition',
+    id: '03-2025-38',
     issueId: '03-2025',
     title: 'ВЫСТАВОЧНЫЙ ЗАЛ «СВЕРЧКА»',
     type: 'other',

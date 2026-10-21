@@ -2,7 +2,7 @@ import type { ContentItem } from './types'
 
 export const june2025ContentItems: ContentItem[] = [
   {
-    id: 'june-2025-friends',
+    id: '06-2025-01',
     issueId: '06-2025',
     title: 'Друзья мои',
     type: 'other',
@@ -15,7 +15,7 @@ export const june2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'june-2025-petrova-life-series',
+    id: '06-2025-02',
     issueId: '06-2025',
     authorId: 'asia-petrova',
     title: 'Моя жизнь – сериал',
@@ -25,7 +25,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 2,
   },
   {
-    id: 'june-2025-petrova-does-not-like-me',
+    id: '06-2025-03',
     issueId: '06-2025',
     authorId: 'asia-petrova',
     title: 'Я ей не нравлюсь',
@@ -35,7 +35,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 3,
   },
   {
-    id: 'june-2025-petrova-instagram',
+    id: '06-2025-04',
     issueId: '06-2025',
     authorId: 'asia-petrova',
     title: 'Инстаграм Марины Станиславовны',
@@ -46,7 +46,7 @@ export const june2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'june-2025-soroka-golden-girl',
+    id: '06-2025-05',
     issueId: '06-2025',
     authorId: 'svetlana-soroka',
     title: 'Золотая девчонка',
@@ -56,7 +56,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 5,
   },
   {
-    id: 'june-2025-soroka-marinka',
+    id: '06-2025-06',
     issueId: '06-2025',
     authorId: 'svetlana-soroka',
     title: 'Маринка-половинка',
@@ -67,7 +67,7 @@ export const june2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'june-2025-pugina-racist',
+    id: '06-2025-07',
     issueId: '06-2025',
     authorId: 'irina-pugina',
     title: 'Расистка',
@@ -78,7 +78,7 @@ export const june2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'june-2025-makhotin-local-cat',
+    id: '06-2025-08',
     issueId: '06-2025',
     authorId: 'sergey-makhotin',
     title: 'Местный кот',
@@ -88,7 +88,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 8,
   },
   {
-    id: 'june-2025-makhotin-pushkin',
+    id: '06-2025-09',
     issueId: '06-2025',
     authorId: 'sergey-makhotin',
     title: 'Пушкин',
@@ -98,7 +98,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 9,
   },
   {
-    id: 'june-2025-makhotin-homework',
+    id: '06-2025-10',
     issueId: '06-2025',
     authorId: 'sergey-makhotin',
     title: 'Домашнее задание',
@@ -108,7 +108,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 10,
   },
   {
-    id: 'june-2025-makhotin-sea-in-jar',
+    id: '06-2025-11',
     issueId: '06-2025',
     authorId: 'sergey-makhotin',
     title: 'Море в банке',
@@ -118,7 +118,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 11,
   },
   {
-    id: 'june-2025-makhotin-new-boy',
+    id: '06-2025-12',
     issueId: '06-2025',
     authorId: 'sergey-makhotin',
     title: 'Новенький',
@@ -128,7 +128,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 12,
   },
   {
-    id: 'june-2025-makhotin-makarov',
+    id: '06-2025-13',
     issueId: '06-2025',
     authorId: 'sergey-makhotin',
     title: 'Повлияй на Макарова',
@@ -139,7 +139,7 @@ export const june2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'june-2025-yasnov-mistakes',
+    id: '06-2025-14',
     issueId: '06-2025',
     authorId: 'mikhail-yasnov',
     title: 'На прашлагодние ашибки',
@@ -149,7 +149,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 14,
   },
   {
-    id: 'june-2025-yasnov-prepositions',
+    id: '06-2025-15',
     issueId: '06-2025',
     authorId: 'mikhail-yasnov',
     title: 'Предлоги',
@@ -159,7 +159,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 15,
   },
   {
-    id: 'june-2025-yasnov-scarf',
+    id: '06-2025-16',
     issueId: '06-2025',
     authorId: 'mikhail-yasnov',
     title: 'Шарф потерялся',
@@ -169,7 +169,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 16,
   },
   {
-    id: 'june-2025-yasnov-owner-returned',
+    id: '06-2025-17',
     issueId: '06-2025',
     authorId: 'mikhail-yasnov',
     title: 'Хозяин вернулся',
@@ -179,7 +179,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 17,
   },
   {
-    id: 'june-2025-yasnov-tail',
+    id: '06-2025-18',
     issueId: '06-2025',
     authorId: 'mikhail-yasnov',
     title: 'Хвост',
@@ -189,7 +189,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 18,
   },
   {
-    id: 'june-2025-yasnov-first-love',
+    id: '06-2025-19',
     issueId: '06-2025',
     authorId: 'mikhail-yasnov',
     title: 'Первая любовь',
@@ -204,7 +204,7 @@ export const june2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'june-2025-khrebtyugov-riddles',
+    id: '06-2025-20',
     issueId: '06-2025',
     authorId: 'anatoly-khrebtyugov',
     title: 'Загадки',
@@ -214,7 +214,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 20,
   },
   {
-    id: 'june-2025-chernyaeva-rebuses',
+    id: '06-2025-21',
     issueId: '06-2025',
     authorId: 'valentina-chernyaeva',
     title: 'Ребусы',
@@ -229,7 +229,7 @@ export const june2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'june-2025-vayner-friendship-song',
+    id: '06-2025-22',
     issueId: '06-2025',
     authorId: 'boris-vayner',
     title: 'Песенка о дружбе',
@@ -239,7 +239,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 22,
   },
   {
-    id: 'june-2025-makaryina-without-friend',
+    id: '06-2025-23',
     issueId: '06-2025',
     authorId: 'svetlana-makaryina',
     title: 'Без друга',
@@ -249,7 +249,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 23,
   },
   {
-    id: 'june-2025-karapetyan-button',
+    id: '06-2025-24',
     issueId: '06-2025',
     authorId: 'rustam-karapetyan',
     title: 'Кнопка',
@@ -259,7 +259,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 24,
   },
   {
-    id: 'june-2025-karapetyan-sos',
+    id: '06-2025-25',
     issueId: '06-2025',
     authorId: 'rustam-karapetyan',
     title: 'SOS',
@@ -269,7 +269,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 25,
   },
   {
-    id: 'june-2025-karapetyan-friendship',
+    id: '06-2025-26',
     issueId: '06-2025',
     authorId: 'rustam-karapetyan',
     title: 'Настоящая дружба',
@@ -279,7 +279,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 26,
   },
   {
-    id: 'june-2025-ovsyannikova-hounds',
+    id: '06-2025-27',
     issueId: '06-2025',
     authorId: 'elena-ovsyannikova',
     title: 'Гончие псы',
@@ -289,7 +289,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 27,
   },
   {
-    id: 'june-2025-shiposhina-mountain-secret',
+    id: '06-2025-28',
     issueId: '06-2025',
     authorId: 'tatyana-shiposhina',
     title: 'Тайна горы',
@@ -299,7 +299,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 28,
   },
   {
-    id: 'june-2025-cherkasova-alisa',
+    id: '06-2025-29',
     issueId: '06-2025',
     authorId: 'anna-cherkasova',
     title: 'Как я проведывал Алису',
@@ -309,7 +309,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 29,
   },
   {
-    id: 'june-2025-miranova-treasure',
+    id: '06-2025-30',
     issueId: '06-2025',
     authorId: 'gulnara-miranova',
     title: 'Клад',
@@ -323,7 +323,7 @@ export const june2025ContentItems: ContentItem[] = [
      ЧИТАЛЬНЯ СВЕРЧКА
      ========================= */
   {
-    id: 'june-2025-reviews',
+    id: '06-2025-31',
     issueId: '06-2025',
     authorId:'yulia-utochkina',
     title: 'Рецензии',
@@ -334,7 +334,7 @@ export const june2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'june-2025-reviews',
+    id: '06-2025-32',
     issueId: '06-2025',
     authorId: 'denis-egorov',
     title: 'Рецензии',
@@ -349,9 +349,9 @@ export const june2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'june-2025-mavlevich-roots',
+    id: '06-2025-33',
     issueId: '06-2025',
-    authorId: 'natalya-mavlevich',
+    authorId: 'nataliya-mavlevich',
     title: 'Игра в Корешки',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -359,9 +359,9 @@ export const june2025ContentItems: ContentItem[] = [
     order: 33,
   },
   {
-    id: 'june-2025-mavlevich-penny-talk',
+    id: '06-2025-34',
     issueId: '06-2025',
-    authorId: 'natalya-mavlevich',
+    authorId: 'nataliya-mavlevich',
     title: 'Грошовый разговор',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -369,9 +369,9 @@ export const june2025ContentItems: ContentItem[] = [
     order: 34,
   },
   {
-    id: 'june-2025-mavlevich-hands-feet',
+    id: '06-2025-35',
     issueId: '06-2025',
-    authorId: 'natalya-mavlevich',
+    authorId: 'nataliya-mavlevich',
     title: 'С руками и ногами',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -384,7 +384,7 @@ export const june2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'june-2025-gasin-interview',
+    id: '06-2025-36',
     issueId: '06-2025',
     authorId: 'dmitry-gasin',
     title: 'Беседа с Дмитрием Гасиным',
@@ -394,7 +394,7 @@ export const june2025ContentItems: ContentItem[] = [
     order: 36,
   },
   {
-    id: 'june-2025-veselov-interview',
+    id: '06-2025-37',
     issueId: '06-2025',
     authorId: 'denis-veselov',
     title: 'Беседа с Денисом Веселовым',
@@ -409,7 +409,7 @@ export const june2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'june-2025-march-answers',
+    id: '06-2025-38',
     issueId: '06-2025',
     title:
       'Ответы на задания и викторины мартовского номера',

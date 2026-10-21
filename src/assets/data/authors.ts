@@ -11,8 +11,6 @@ export type Author = {
   shortBio?: string
 
   types: AuthorType[]
-
-  interviews?: string[]
 }
 
 export const authors: Author[] = [
@@ -77,7 +75,6 @@ export const authors: Author[] = [
     firstName: 'Тамара',
     lastName: 'Крюкова',
     types: ['poet', 'prose'],
-    interviews: ['02-03-2022'],
   },
 
   {
@@ -617,7 +614,6 @@ export const authors: Author[] = [
     firstName: 'Юлия',
     lastName: 'Симбирская',
     types: ['prose'],
-    interviews: ['12-2025'],
   },
 
   {
@@ -646,7 +642,6 @@ export const authors: Author[] = [
     firstName: 'Валентина',
     lastName: 'Чепига',
     types: ['poet', 'prose'],
-    interviews: ['05-06-2022'],
   },
 
   {
@@ -675,7 +670,6 @@ export const authors: Author[] = [
     firstName: 'Ася',
     lastName: 'Петрова',
     types: ['prose'],
-    interviews: ['02-03-2022'],
   },
 
   {
@@ -690,7 +684,6 @@ export const authors: Author[] = [
     firstName: 'Сергей',
     lastName: 'Махотин',
     types: ['poet'],
-    interviews: ['05-06-2022'],
   },
 
   {
@@ -698,7 +691,6 @@ export const authors: Author[] = [
     firstName: 'Екатерина',
     lastName: 'Каграманова',
     types: ['poet'],
-    interviews: ['10-2022'],
   },
 
   {
@@ -839,7 +831,6 @@ export const authors: Author[] = [
     firstName: 'Григорий',
     lastName: 'Кружков',
     types: ['poet'],
-    interviews: ['05-2026'],
   },
 
   {
@@ -847,7 +838,6 @@ export const authors: Author[] = [
     firstName: 'Юлия',
     lastName: 'Тимур',
     types: ['prose'],
-    interviews: ['10-2025'],
   },
 
   {
@@ -1075,7 +1065,7 @@ export const authors: Author[] = [
   },
 
   {
-    id: 'natalia-volkova',
+    id: 'natalya-volkova',
     firstName: 'Наталия',
     lastName: 'Волкова',
     types: ['poet', 'prose'],
@@ -1345,7 +1335,6 @@ export const authors: Author[] = [
     firstName: 'Лилия',
     lastName: 'Газизова',
     types: ['poet'],
-    interviews: ['10-2025'],
   },
 
   {
@@ -1586,7 +1575,6 @@ export const authors: Author[] = [
   firstName: 'Мария',
   lastName: 'Бершадская',
   types: ['other'],
-  interviews: ['01-2020'],
 },
 
 {
@@ -1594,7 +1582,6 @@ export const authors: Author[] = [
   firstName: 'Полина',
   lastName: 'Сорель',
   types: ['other'],
-  interviews: ['01-2020'],
 },
 
 {
@@ -1602,7 +1589,6 @@ export const authors: Author[] = [
   firstName: 'Анна',
   lastName: 'Зенькова',
   types: ['other'],
-  interviews: ['02-2021'],
 },
 
 {
@@ -1610,7 +1596,6 @@ export const authors: Author[] = [
   firstName: 'Сергей',
   lastName: 'Белозёров',
   types: ['other'],
-  interviews: ['02-2021'],
 },
 
 {
@@ -1618,7 +1603,6 @@ export const authors: Author[] = [
   firstName: 'Александра',
   lastName: 'Василькова',
   types: ['other'],
-  interviews: ['03-2023'],
 },
 
 {
@@ -1626,7 +1610,6 @@ export const authors: Author[] = [
   firstName: 'Александра',
   lastName: 'Рубинштейн',
   types: ['other'],
-  interviews: ['03-2024'],
 },
 
 {
@@ -1634,7 +1617,6 @@ export const authors: Author[] = [
   firstName: 'Галина',
   lastName: 'Кабакова',
   types: ['other'],
-  interviews: ['04-2020'],
 },
 
 {
@@ -1642,7 +1624,6 @@ export const authors: Author[] = [
   firstName: 'Ольга',
   lastName: 'Громова',
   types: ['other'],
-  interviews: ['05-2021'],
 },
 
 {
@@ -1650,7 +1631,6 @@ export const authors: Author[] = [
   firstName: 'Мария',
   lastName: 'Ботева',
   types: ['other'],
-  interviews: ['06-2024'],
 },
 
 {
@@ -1658,7 +1638,6 @@ export const authors: Author[] = [
   firstName: 'Майя',
   lastName: 'Бессонова',
   types: ['other'],
-  interviews: ['06-2024'],
 },
 
 {
@@ -1666,7 +1645,6 @@ export const authors: Author[] = [
   firstName: 'Алина',
   lastName: 'Попова',
   types: ['other'],
-  interviews: ['06-2023'],
 },
 
 {
@@ -1674,7 +1652,6 @@ export const authors: Author[] = [
   firstName: 'Борис',
   lastName: 'Кузнецов',
   types: ['other'],
-  interviews: ['09-2021'],
 },
 
 {
@@ -1682,7 +1659,6 @@ export const authors: Author[] = [
   firstName: 'Виталий',
   lastName: 'Зюсько',
   types: ['other'],
-  interviews: ['10-2019'],
 },
 
 {
@@ -1690,7 +1666,6 @@ export const authors: Author[] = [
   firstName: 'Лариса',
   lastName: 'Тулупова',
   types: ['other'],
-  interviews: ['10-2019'],
 },
 
 {
@@ -1698,7 +1673,6 @@ export const authors: Author[] = [
   firstName: 'Алёна',
   lastName: 'Туртье',
   types: ['other'],
-  interviews: ['10-2023'],
 },
 
 {
@@ -1706,7 +1680,6 @@ export const authors: Author[] = [
   firstName: 'Елена',
   lastName: 'Болгова',
   types: ['other'],
-  interviews: ['10-2023'],
 },
 
 {
@@ -1714,7 +1687,6 @@ export const authors: Author[] = [
   firstName: 'Ксения',
   lastName: 'Коваленко',
   types: ['other'],
-  interviews: ['12-2020'],
 },
 
 {
@@ -1722,7 +1694,6 @@ export const authors: Author[] = [
   firstName: 'Николай',
   lastName: 'Джумакулиев',
   types: ['other'],
-  interviews: ['12-2022'],
 },
 
 {
@@ -1730,7 +1701,6 @@ export const authors: Author[] = [
   firstName: 'Софья',
   lastName: 'Ремез',
   types: ['other'],
-  interviews: ['12-2022'],
 },
 
 {
@@ -1738,7 +1708,6 @@ export const authors: Author[] = [
   firstName: 'Евгений',
   lastName: 'Рудашевский',
   types: ['other'],
-  interviews: ['12-2023'],
 },
 
 {
@@ -1746,22 +1715,25 @@ export const authors: Author[] = [
   firstName: 'Ольга',
   lastName: 'дё Лакруа',
   types: ['other'],
-  interviews: ['12-2023'],
 },
 
 {
-  id: 'nina-dashevskaya',
-  firstName: 'Нина',
-  lastName: 'Дашевская',
+  id: 'dmitry-gasin',
+  firstName: 'Дмитрий',
+  lastName: 'Гасин',
   types: ['other'],
-  interviews: ['12-2024'],
 },
 
 {
-  id: 'pavel-klementyev',
-  firstName: 'Павел',
-  lastName: 'Клементьев',
+  id: 'nataliya-mavlevich',
+  firstName: 'Наталия',
+  lastName: 'Мавлевич',
   types: ['other'],
-  interviews: ['12-2024'],
+},
+{
+  id: 'denis-veselov',
+  firstName: 'Денис',
+  lastName: 'Веселов',
+  types: ['other'],
 },
 ]

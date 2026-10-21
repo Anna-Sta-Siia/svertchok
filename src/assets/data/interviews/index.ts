@@ -1,11 +1,2 @@
-import { dmitryGasinInterview } from './dmitry-gasin'
-
-export const interviews = [
-  dmitryGasinInterview,
- 
-]
-
-export type {
-  Interview,
-  InterviewQuestion,
-} from './types'
+export type { Interview } from './types'
+export { interviews } from './interviews'

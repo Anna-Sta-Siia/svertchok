@@ -109,7 +109,7 @@ authorId: 'olga-sharkova',
     order: 10,
   },
   {
-    id: '12-2022-10',
+    id: '12-2022-11',
     issueId: '12-2022',
 authorId: 'vera-shipunova',
     title: 'Загадка',
@@ -120,7 +120,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-11',
+    id: '12-2022-12',
     issueId: '12-2022',
 authorId: 'vera-shipunova',
     title: 'Загадки',
@@ -131,7 +131,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-12',
+    id: '12-2022-13',
     issueId: '12-2022',
     authorId: 'nina-agoshkova',
     title: 'Стрелки',
@@ -142,7 +142,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-13',
+    id: '12-2022-14',
     issueId: '12-2022',
     authorId: 'nina-agoshkova',
     title: 'Как Время в отпуск уходило',
@@ -153,7 +153,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-14',
+    id: '12-2022-15',
     issueId: '12-2022',
     authorId: 'irina-druzhaeva',
     title: 'Куда идёт время?',
@@ -164,7 +164,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-15',
+    id: '12-2022-16',
     issueId: '12-2022',
     authorId: 'boris-vayner',
     title: 'Краткая история табуретки',
@@ -175,7 +175,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-16',
+    id: '12-2022-17',
     issueId: '12-2022',
     authorId: 'svetlana-son',
     title: 'Секунда-скороход',
@@ -186,7 +186,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-17',
+    id: '12-2022-18',
     issueId: '12-2022',
     authorId: 'zinaida-popova',
     title: 'Петушок-хвастунишка',
@@ -197,7 +197,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-18',
+    id: '12-2022-19',
     issueId: '12-2022',
     authorId: 'boris-vayner',
     title: 'Ёлочный шар',
@@ -208,7 +208,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-19',
+    id: '12-2022-20',
     issueId: '12-2022',
     authorId: 'andrey-bogdarin',
     title: 'Три сестры',
@@ -219,7 +219,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-20',
+    id: '12-2022-21',
     issueId: '12-2022',
     authorId: 'elena-dolgikh',
     title: 'Странное время',
@@ -230,7 +230,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-21',
+    id: '12-2022-22',
     issueId: '12-2022',
     authorId: 'sergey-nikiforov',
     title: 'Куда бежит время?',
@@ -241,7 +241,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-22',
+    id: '12-2022-23',
     issueId: '12-2022',
     authorId: 'anastasia-antonova',
     title: 'Задача',
@@ -252,7 +252,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-23',
+    id: '12-2022-24',
     issueId: '12-2022',
     authorId: 'lev-rakhlis',
     title: 'От пункта «А»...',
@@ -263,7 +263,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-24',
+    id: '12-2022-25',
     issueId: '12-2022',
     authorId: 'lev-rakhlis',
     title: 'Кто стучал ко мне в окно?',
@@ -274,7 +274,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-25',
+    id: '12-2022-26',
     issueId: '12-2022',
 authorId: 'vera-shipunova',
     title: 'Загадки',
@@ -285,7 +285,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-26',
+    id: '12-2022-27',
     issueId: '12-2022',
     authorId: 'dina-sabitova',
     title: 'Мышь Гликерия и хорошие сны',
@@ -296,7 +296,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-27',
+    id: '12-2022-28',
     issueId: '12-2022',
     authorId:'dmitry-oreshkin',
     title: 'Какое время на Южном полюсе?',
@@ -307,7 +307,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-28',
+    id: '12-2022-29',
     issueId: '12-2022',
     authorId: 'artur-givargizov',
     title: 'Михаил Михайлович как маленький',
@@ -318,7 +318,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-29',
+    id: '12-2022-30',
     issueId: '12-2022',
     authorId: 'mikhail-yasnov',
     title: 'Мы живём в обратной перспективе',
@@ -329,7 +329,7 @@ authorId: 'vera-shipunova',
   },
 
   {
-    id: '12-2022-30',
+    id: '12-2022-31',
     issueId: '12-2022',
 authorId: 'mikhail-yasnov',
     title: 'C’est dans la perspective inversée qu’on vit',
@@ -340,7 +340,7 @@ authorId: 'mikhail-yasnov',
   },
 
   {
-    id: '12-2022-31',
+    id: '12-2022-32',
     issueId: '12-2022',
     authorId: 'mikhail-yasnov',
     title: 'В этот мир предсмертный посланы',
@@ -351,7 +351,7 @@ authorId: 'mikhail-yasnov',
   },
 
   {
-    id: '12-2022-32',
+    id: '12-2022-33',
     issueId: '12-2022',
 authorId: 'mikhail-yasnov',
     title: 'Nous sommes dans ce monde avant la fin',
@@ -362,7 +362,7 @@ authorId: 'mikhail-yasnov',
   },
 
   {
-    id: '12-2022-33',
+    id: '12-2022-34',
     issueId: '12-2022',
     authorId: 'mikhail-yasnov',
     title: 'Черепаха вышла на дорогу',
@@ -373,7 +373,7 @@ authorId: 'mikhail-yasnov',
   },
 
   {
-    id: '12-2022-34',
+    id: '12-2022-35',
     issueId: '12-2022',
 authorId: 'mikhail-yasnov',
     title: 'Une tortue s’en va sur la grand’route',
@@ -384,7 +384,7 @@ authorId: 'mikhail-yasnov',
   },
 
   {
-    id: '12-2022-35',
+    id: '12-2022-36',
     issueId: '12-2022',
     authorId:'nikolay-dzhumakuliev',
     title: 'Беседа с Николаем Джумакулиевым',
@@ -395,7 +395,7 @@ authorId: 'mikhail-yasnov',
   },
 
   {
-    id: '12-2022-36',
+    id: '12-2022-37',
     issueId: '12-2022',
     authorId:'sofya-remez',
     title: 'Беседа с Софьей Ремез',

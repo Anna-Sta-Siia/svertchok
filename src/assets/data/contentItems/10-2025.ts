@@ -2,7 +2,7 @@ import type { ContentItem } from './types'
 
 export const october2025ContentItems: ContentItem[] = [
   {
-    id: 'october-2025-intro',
+    id: '10-2025-01',
     issueId: '10-2025',
     title: 'Вводное слово',
     type: 'other',
@@ -15,9 +15,9 @@ export const october2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'october-2025-volkova-running',
+    id: '10-2025-02',
     issueId: '10-2025',
-    authorId: 'natalia-volkova',
+    authorId: 'natalya-volkova',
     title: 'Я бегу',
     type: 'poetry',
     section: 'ПОЭТИЧЕСКИЕ ПУТЕШЕСТВИЯ',
@@ -25,9 +25,9 @@ export const october2025ContentItems: ContentItem[] = [
     order: 2,
   },
   {
-    id: 'october-2025-volkova-trains',
+    id: '10-2025-03',
     issueId: '10-2025',
-    authorId: 'natalia-volkova',
+    authorId: 'natalya-volkova',
     title: 'Электрички',
     type: 'poetry',
     section: 'ПОЭТИЧЕСКИЕ ПУТЕШЕСТВИЯ',
@@ -35,9 +35,9 @@ export const october2025ContentItems: ContentItem[] = [
     order: 3,
   },
   {
-    id: 'october-2025-volkova-my-day',
+    id: '10-2025-04',
     issueId: '10-2025',
-    authorId: 'natalia-volkova',
+    authorId: 'natalya-volkova',
     title: 'Мой день',
     type: 'poetry',
     section: 'ПОЭТИЧЕСКИЕ ПУТЕШЕСТВИЯ',
@@ -45,9 +45,9 @@ export const october2025ContentItems: ContentItem[] = [
     order: 4,
   },
   {
-    id: 'october-2025-volkova-ski-track',
+    id: '10-2025-05',
     issueId: '10-2025',
-    authorId: 'natalia-volkova',
+    authorId: 'natalya-volkova',
     title: 'Бесконечная лыжня',
     type: 'poetry',
     section: 'ПОЭТИЧЕСКИЕ ПУТЕШЕСТВИЯ',
@@ -56,7 +56,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-gazizova-city',
+    id: '10-2025-06',
     issueId: '10-2025',
     authorId: 'lilia-gazizova',
     title: 'Город',
@@ -66,7 +66,7 @@ export const october2025ContentItems: ContentItem[] = [
     order: 6,
   },
   {
-    id: 'october-2025-gazizova-forest',
+    id: '10-2025-07',
     issueId: '10-2025',
     authorId: 'lilia-gazizova',
     title: 'Лес',
@@ -76,7 +76,7 @@ export const october2025ContentItems: ContentItem[] = [
     order: 7,
   },
   {
-    id: 'october-2025-gazizova-twilight',
+    id: '10-2025-08',
     issueId: '10-2025',
     authorId: 'lilia-gazizova',
     title: 'Сумерки',
@@ -87,7 +87,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-son-giraffe',
+    id: '10-2025-09',
     issueId: '10-2025',
     authorId: 'svetlana-son',
     title: 'Мечтатель жираф',
@@ -98,7 +98,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-vesnushkina-lighthouses',
+    id: '10-2025-10',
     issueId: '10-2025',
     authorId: 'mila-vesnushkina',
     title: 'Маяки',
@@ -108,7 +108,7 @@ export const october2025ContentItems: ContentItem[] = [
     order: 10,
   },
   {
-    id: 'october-2025-vesnushkina-ship-counting-rhyme',
+    id: '10-2025-11',
     issueId: '10-2025',
     authorId: 'mila-vesnushkina',
     title: 'Считалка с корабликом',
@@ -119,7 +119,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-shubnaya-voyage',
+    id: '10-2025-12',
     issueId: '10-2025',
     authorId: 'lyubov-shubnaya',
     title: 'Вояж',
@@ -129,7 +129,7 @@ export const october2025ContentItems: ContentItem[] = [
     order: 12,
   },
   {
-    id: 'october-2025-shubnaya-giraffe-carriage',
+    id: '10-2025-13',
     issueId: '10-2025',
     authorId: 'lyubov-shubnaya',
     title: 'Вагон для жирафа',
@@ -139,7 +139,7 @@ export const october2025ContentItems: ContentItem[] = [
     order: 13,
   },
   {
-    id: 'october-2025-shubnaya-train',
+    id: '10-2025-14',
     issueId: '10-2025',
     authorId: 'lyubov-shubnaya',
     title: 'В поезде',
@@ -150,7 +150,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-nikiforov-traveler',
+    id: '10-2025-15',
     issueId: '10-2025',
     authorId: 'sergey-nikiforov',
     title: 'Путешественник',
@@ -160,7 +160,7 @@ export const october2025ContentItems: ContentItem[] = [
     order: 15,
   },
   {
-    id: 'october-2025-nikiforov-crow',
+    id: '10-2025-16',
     issueId: '10-2025',
     authorId: 'sergey-nikiforov',
     title: 'Что ответила ворона',
@@ -171,7 +171,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-vayner-borneo',
+    id: '10-2025-17',
     issueId: '10-2025',
     authorId: 'boris-vayner',
     title:
@@ -183,7 +183,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-shiposhina-history',
+    id: '10-2025-18',
     issueId: '10-2025',
     authorId: 'tatyana-shiposhina',
     title: 'Жила-была история',
@@ -198,9 +198,9 @@ export const october2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'october-2025-volkova-never-return',
+    id: '10-2025-19',
     issueId: '10-2025',
-    authorId: 'natalia-volkova',
+    authorId: 'natalya-volkova',
     title: 'Никогда не возвращаешься прежним',
     type: 'prose',
     section: 'ПРОЗАИЧЕСКИЕ ПУТЕШЕСТВИЯ',
@@ -209,7 +209,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-shapiro-giraffe-hug',
+    id: '10-2025-20',
     issueId: '10-2025',
     authorId: 'evgenia-shapiro',
     title: 'Как обнять жирафа',
@@ -220,7 +220,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-cherkasova-dacha',
+    id: '10-2025-21',
     issueId: '10-2025',
     authorId: 'anna-cherkasova',
     title: 'Неудачливая дачница',
@@ -231,7 +231,7 @@ export const october2025ContentItems: ContentItem[] = [
   },
 
   {
-    id: 'october-2025-shiposhina-silver-elephant',
+    id: '10-2025-22',
     issueId: '10-2025',
     authorId: 'tatyana-shiposhina',
     title: 'Путешествия серебряного слоника',
@@ -247,7 +247,7 @@ export const october2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'october-2025-pesochinskaya-time',
+    id: '10-2025-23',
     issueId: '10-2025',
     authorId: 'natalya-pesochinskaya',
     title: 'Амалия Коко де Нель в погоне за временем',
@@ -257,7 +257,7 @@ export const october2025ContentItems: ContentItem[] = [
     order: 23,
   },
   {
-    id: 'october-2025-pesochinskaya-flight',
+    id: '10-2025-24',
     issueId: '10-2025',
     authorId: 'natalya-pesochinskaya',
     title: 'Амалия Коко встаёт на крыло',
@@ -272,7 +272,7 @@ export const october2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'october-2025-repetur-chik-chak',
+    id: '10-2025-25',
     issueId: '10-2025',
     authorId: 'lena-repetur',
     title: 'Чик-Чак: история Супергероя',
@@ -287,7 +287,7 @@ export const october2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'october-2025-timur-interview',
+    id: '10-2025-26',
     issueId: '10-2025',
     authorId: 'yulia-timur',
     title: 'Беседа с Юлией Тимур',
@@ -297,7 +297,7 @@ export const october2025ContentItems: ContentItem[] = [
     order: 26,
   },
   {
-    id: 'october-2025-gazizova-interview',
+    id: '10-2025-27',
     issueId: '10-2025',
     authorId: 'lilia-gazizova',
     title: 'Беседа с Лилией Газизовой о верлибре для детей',
@@ -312,7 +312,7 @@ export const october2025ContentItems: ContentItem[] = [
      ========================= */
 
   {
-    id: 'october-2025-methodical-volkova',
+    id: '10-2025-28',
     issueId: '10-2025',
     title:
       'Игры и задания по тексту рассказа Наталии Волковой «Никогда не возвращаешься прежним»',

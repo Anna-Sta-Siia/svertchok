@@ -664,7 +664,7 @@ export const contentItems102024: ContentItem[] = [
   {
     id: '10-2024-65',
     issueId: '10-2024',
-     authorId: 'natalya-mavlevich',
+     authorId: 'nataliya-mavlevich',
     title: 'Игра в корешки',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -674,7 +674,7 @@ export const contentItems102024: ContentItem[] = [
   {
     id: '10-2024-66',
     issueId: '10-2024',
-     authorId: 'natalya-mavlevich',
+     authorId: 'nataliya-mavlevich',
     title: 'Глаз-окошко',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -684,7 +684,7 @@ export const contentItems102024: ContentItem[] = [
   {
     id: '10-2024-67',
     issueId: '10-2024',
-     authorId: 'natalya-mavlevich',
+     authorId: 'nataliya-mavlevich',
     title: 'Ступеньки',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -694,7 +694,7 @@ export const contentItems102024: ContentItem[] = [
   {
     id: '10-2024-68',
     issueId: '10-2024',
-     authorId: 'natalya-mavlevich',
+     authorId: 'nataliya-mavlevich',
     title: 'О вороне и вещем Олеге',
     type: 'methodical',
     section: 'МЕТОДКАБИНЕТ',
@@ -840,7 +840,7 @@ export const contentItems102024: ContentItem[] = [
   {
     id: '10-2024-82',
     issueId: '10-2024',
-    authorId: 'natalya-mavlevich',
+    authorId: 'nataliya-mavlevich',
     title: 'Беседа с Наталией Самойловной Мавлевич',
     type: 'interview',
     section: 'БЕСЕДЫ «СВЕРЧКА»',
