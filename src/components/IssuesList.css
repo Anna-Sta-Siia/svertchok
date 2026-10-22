@@ -1,0 +1,264 @@
+/* =========================
+   ISSUES LIST
+   ========================= */
+
+.issues-list {
+  width:
+    100%;
+
+  min-width:
+    0;
+}
+
+
+/* =========================
+   TITLE
+   ========================= */
+
+.issues-list__title {
+  margin:
+    0
+    0
+    24px;
+
+  color:
+    var(--color-text);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      1.55rem,
+      2.2vw,
+      2.2rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.2;
+
+  text-align:
+    center;
+}
+
+
+/* =========================
+   ITEMS
+   ========================= */
+
+.issues-list__items {
+  display:
+    grid;
+
+  gap:
+    22px;
+
+  width:
+    100%;
+
+  min-width:
+    0;
+}
+
+
+/* =========================
+   RECENT
+
+   Desktop :
+   une colonne à droite.
+
+   Sous 880px :
+   les cartes passent dessous
+   et utilisent plusieurs colonnes.
+   ========================= */
+
+.issues-list--recent
+.issues-list__items {
+  grid-template-columns:
+    1fr;
+}
+
+
+.issues-list--recent
+.issue-card--compact {
+  width:
+    min(
+      100%,
+      280px
+    );
+
+  justify-self:
+    center;
+}
+
+
+/* =========================
+   SIDEBAR
+
+   Page auteur.
+   ========================= */
+
+.issues-list--sidebar
+.issues-list__items {
+  grid-template-columns:
+    1fr;
+}
+
+
+.issues-list--sidebar
+.issue-card--compact {
+  width:
+    100%;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.issues-list__footer {
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  margin-top:
+    24px;
+}
+
+
+.issues-list__all-link {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  color:
+    var(--color-text);
+
+  font-size:
+    0.95rem;
+
+  font-weight:
+    600;
+
+  text-decoration:
+    none;
+
+  transition:
+    color
+      var(--transition-default),
+    transform
+      var(--transition-default);
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .issues-list__all-link:hover {
+    color:
+      var(--color-accent);
+
+    transform:
+      translateX(3px);
+  }
+}
+
+
+.issues-list__all-link:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset:
+    4px;
+
+  border-radius:
+    4px;
+}
+
+
+/* =========================
+   ≤ 880px
+   ========================= */
+
+@media (max-width: 880px) {
+  .issues-list--recent
+  .issues-list__items {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+
+
+  .issues-list__footer {
+    justify-content:
+      flex-end;
+  }
+}
+
+
+/* =========================
+   ≤ 768px
+   ========================= */
+
+@media (max-width: 768px) {
+  .issues-list--recent
+  .issues-list__items {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+}
+
+
+/* =========================
+   ≤ 550px
+   ========================= */
+
+@media (max-width: 550px) {
+  .issues-list--recent
+  .issues-list__items {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      20px;
+  }
+
+
+  .issues-list--recent
+  .issue-card--compact {
+    width:
+      min(
+        100%,
+        280px
+      );
+  }
+
+
+  .issues-list__footer {
+    justify-content:
+      center;
+  }
+}

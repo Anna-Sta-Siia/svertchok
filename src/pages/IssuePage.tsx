@@ -1,8 +1,15 @@
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import {
+  useState,
+} from 'react'
+
+import {
+  useParams,
+} from 'react-router-dom'
+
 import IssueShowcase from '../components/IssueShowcase'
 import IssueCard from '../components/IssueCard'
-import RecentIssues from '../components/RecentIssues'
+import IssuesList from '../components/IssuesList'
+
 import IssueContents from '../components/IssueContents'
 import IssueContentsOverlay from '../components/IssueContentsOverlay'
 
@@ -22,36 +29,48 @@ import {
 
 import './IssuePage.css'
 
+
 export default function IssuePage() {
-  const { slug } = useParams()
+  const {
+    slug,
+  } = useParams()
+
 
   const [
     isContentsOpen,
     setIsContentsOpen,
   ] = useState(false)
 
+
   /* =========================
      SELECTED ISSUE
      ========================= */
 
-const issue =
-  publishedIssues.find(
-    (item) =>
-      item.slug === slug,
-  )
+  const issue =
+    publishedIssues.find(
+      (item) =>
+        item.slug ===
+        slug,
+    )
+
+
   if (!issue) {
     return (
       <section className="issue-page__not-found">
-        <h1>Номер не найден</h1>
+        <h1>
+          Номер не найден
+        </h1>
       </section>
     )
   }
+
 
   const longDescription =
     getIssueLongDescription(
       issue.id,
     ) ??
     issue.shortDescription
+
 
   /* =========================
      CONTENTS
@@ -61,84 +80,120 @@ const issue =
     contentItems
       .filter(
         (item) =>
-          item.issueId === issue.id,
+          item.issueId ===
+          issue.id,
       )
       .sort(
         (a, b) =>
-          a.order - b.order,
+          a.order -
+          b.order,
       )
 
+
   /* =========================
-     ARCHIVE
+     RECENT ISSUES
      ========================= */
 
- const recentIssues = [...publishedIssues]
-  .filter(
-    (item) =>
-      item.id !== issue.id,
-  )
-  .sort(
-    (a, b) =>
-      b.year - a.year ||
-      b.month - a.month,
-  )
-  .slice(0, 3)
+  const recentIssues = [
+    ...publishedIssues,
+  ]
+    .filter(
+      (item) =>
+        item.id !==
+        issue.id,
+    )
+    .sort(
+      (a, b) =>
+        b.year -
+          a.year ||
+        b.month -
+          a.month,
+    )
+    .slice(
+      0,
+      3,
+    )
+
 
   /* =========================
      ACCESS
      ========================= */
 
   const accessLabel =
-    issue.accessType === 'paid'
+    issue.accessType ===
+    'paid'
       ? 'Приобрести номер →'
       : 'Скачать номер →'
 
+
   return (
     <>
-    <article className="issue-page">
-  <IssueShowcase
-    featured={
-      <div className="issue-page__current">
-        <IssueCard
-          issue={issue}
-          variant="featured"
-          longDescription={longDescription}
-        />
+      <article className="issue-page">
 
-        <div className="issue-page__actions">
-          {issue.accessUrl && (
-            <Button
-              variant="primary"
-              href={issue.accessUrl}
-              external
+        <IssueShowcase
+
+          secondaryHeading={
+            <h2 className="issue-showcase__heading-title">
+              Наши номера
+            </h2>
+          }
+
+          featured={
+            <div className="issue-page__current">
+              <IssueCard
+                issue={
+                  issue
+                }
+                variant="featured"
+                longDescription={
+                  longDescription
+                }
+              />
+
+              <div className="issue-page__actions">
+                {issue.accessUrl && (
+                  <Button
+                    variant="primary"
+                    href={
+                      issue.accessUrl
+                    }
+                    external
+                  >
+                    {accessLabel}
+                  </Button>
+                )}
+
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    setIsContentsOpen(
+                      true,
+                    )
+                  }
+                >
+                  Посмотреть содержание →
+                </Button>
+              </div>
+            </div>
+          }
+
+          secondary={
+            <div
+              id="recent-issues"
+              className="issue-page__recent"
             >
-              {accessLabel}
-            </Button>
-          )}
-
-          <Button
-            variant="outline"
-            onClick={() =>
-              setIsContentsOpen(true)
-            }
-          >
-            Посмотреть содержание →
-          </Button>
-        </div>
-      </div>
-    }
-    secondary={
-      <div
-        id="recent-issues"
-        className="issue-page__recent"
-      >
-        <RecentIssues
-          issues={recentIssues}
+              <IssuesList
+                issues={
+                  recentIssues
+                }
+                variant="recent"
+                showAllLink
+              />
+            </div>
+          }
         />
-      </div>
-    }
-  />
-</article>
+      </article>
+
 
       {/* =====================
           SUBSCRIBE / CONTACT
@@ -152,18 +207,24 @@ const issue =
         <ContactCard />
       </section>
 
+
       {/* =====================
           CONTENTS OVERLAY
           ===================== */}
 
       <IssueContentsOverlay
-        isOpen={isContentsOpen}
+        isOpen={
+          isContentsOpen
+        }
         onClose={() =>
-          setIsContentsOpen(false)
+          setIsContentsOpen(
+            false,
+          )
         }
         issueMeta={{
           coverImage:
             issue.coverImage,
+
           month:
             issue.month,
 
@@ -171,12 +232,16 @@ const issue =
             issue.year,
         }}
       >
-     <IssueContents
-  items={issueContent}
-  onNavigate={() =>
-    setIsContentsOpen(false)
-  }
-/>
+        <IssueContents
+          items={
+            issueContent
+          }
+          onNavigate={() =>
+            setIsContentsOpen(
+              false,
+            )
+          }
+        />
       </IssueContentsOverlay>
     </>
   )

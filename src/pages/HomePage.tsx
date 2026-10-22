@@ -1,9 +1,11 @@
 import {
   useState,
 } from 'react'
+
 import IssueShowcase from '../components/IssueShowcase'
 import IssueCard from '../components/IssueCard'
-import RecentIssues from '../components/RecentIssues'
+import IssuesList from '../components/IssuesList'
+
 import SubscriptionCard from '../components/SubscriptionCard'
 import ContactCard from '../components/ContactCard'
 
@@ -23,31 +25,37 @@ import {
 
 import './HomePage.css'
 
+
 export default function HomePage() {
   const [
     isContentsOpen,
     setIsContentsOpen,
   ] = useState(false)
 
+
   /* =========================
      CURRENT ISSUE
      ========================= */
 
-const currentIssue =
-  publishedIssues.find(
-    (issue) =>
-      issue.isCurrent,
-  ) ??
-  publishedIssues[0]
+  const currentIssue =
+    publishedIssues.find(
+      (issue) =>
+        issue.isCurrent,
+    ) ??
+    publishedIssues[0]
+
+
   if (!currentIssue) {
     return null
   }
+
 
   const currentIssueLongDescription =
     getIssueLongDescription(
       currentIssue.id,
     ) ??
     currentIssue.shortDescription
+
 
   const currentIssueContent =
     contentItems
@@ -58,20 +66,35 @@ const currentIssue =
       )
       .sort(
         (a, b) =>
-          a.order - b.order,
+          a.order -
+          b.order,
       )
 
- const recentIssues = [...publishedIssues]
-  .filter(
-    (issue) =>
-      issue.id !== currentIssue.id,
-  )
-  .sort(
-    (a, b) =>
-      b.year - a.year ||
-      b.month - a.month,
-  )
-  .slice(0, 3)
+
+  /* =========================
+     RECENT ISSUES
+     ========================= */
+
+  const recentIssues = [
+    ...publishedIssues,
+  ]
+    .filter(
+      (issue) =>
+        issue.id !==
+        currentIssue.id,
+    )
+    .sort(
+      (a, b) =>
+        b.year -
+          a.year ||
+        b.month -
+          a.month,
+    )
+    .slice(
+      0,
+      3,
+    )
+
 
   return (
     <>
@@ -80,53 +103,77 @@ const currentIssue =
           ===================== */}
 
       <IssueShowcase
-  featured={
-    <div
-      id="current-issue"
-      className="home-issues__current"
-    >
-      <div className="home-issues__heading">
-        <p className="home-issues__intro">
-          А вот и мой новый номер
-        </p>
-      </div>
 
-     <IssueCard
-  issue={currentIssue}
-  variant="featured"
-  longDescription={currentIssueLongDescription}
-/>
+        featuredHeading={
+          <p className="home-issues__intro">
+            А вот и мой новый номер
+          </p>
+        }
 
-      <div className="home-issues__actions">
-        {currentIssue.accessUrl && (
-          <Button
-            variant="primary"
-            href={currentIssue.accessUrl}
-            external
+        secondaryHeading={
+          <h2 className="issue-showcase__heading-title">
+            Наши номера
+          </h2>
+        }
+
+        featured={
+          <div
+            id="current-issue"
+            className="home-issues__current"
           >
-            {currentIssue.accessType === 'paid'
-              ? 'Приобрести номер →'
-              : 'Скачать номер →'}
-          </Button>
-        )}
+            <IssueCard
+              issue={
+                currentIssue
+              }
+              variant="featured"
+              longDescription={
+                currentIssueLongDescription
+              }
+            />
 
-        <Button
-          variant="outline"
-          onClick={() =>
-            setIsContentsOpen(true)
-          }
-        >
-          Посмотреть содержание →
-        </Button>
-      </div>
-    </div>
-  }
-  secondary={
-    <RecentIssues
-      issues={recentIssues}
-    />
-  }
-/>
+            <div className="home-issues__actions">
+              {currentIssue.accessUrl && (
+                <Button
+                  variant="primary"
+                  href={
+                    currentIssue.accessUrl
+                  }
+                  external
+                >
+                  {
+                    currentIssue.accessType ===
+                    'paid'
+                      ? 'Приобрести номер →'
+                      : 'Скачать номер →'
+                  }
+                </Button>
+              )}
+
+              <Button
+                variant="outline"
+                onClick={() =>
+                  setIsContentsOpen(
+                    true,
+                  )
+                }
+              >
+                Посмотреть содержание →
+              </Button>
+            </div>
+          </div>
+        }
+
+        secondary={
+          <IssuesList
+            issues={
+              recentIssues
+            }
+            variant="recent"
+            showAllLink
+          />
+        }
+      />
+
 
       {/* =====================
           CONTACT / SUBSCRIBE
@@ -140,14 +187,19 @@ const currentIssue =
         <ContactCard />
       </section>
 
+
       {/* =====================
           CONTENTS OVERLAY
           ===================== */}
 
       <IssueContentsOverlay
-        isOpen={isContentsOpen}
+        isOpen={
+          isContentsOpen
+        }
         onClose={() =>
-          setIsContentsOpen(false)
+          setIsContentsOpen(
+            false,
+          )
         }
         issueMeta={{
           coverImage:
@@ -160,14 +212,16 @@ const currentIssue =
             currentIssue.year,
         }}
       >
-    <IssueContents
-  items={
-    currentIssueContent
-  }
-  onNavigate={() =>
-    setIsContentsOpen(false)
-  }
-/>
+        <IssueContents
+          items={
+            currentIssueContent
+          }
+          onNavigate={() =>
+            setIsContentsOpen(
+              false,
+            )
+          }
+        />
       </IssueContentsOverlay>
     </>
   )

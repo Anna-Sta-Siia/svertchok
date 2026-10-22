@@ -1,60 +1,145 @@
 /* =========================
    ISSUE SHOWCASE
 
-   Layout commun pour :
-   - HomePage
-   - IssuePage
+   Desktop:
+
+   heading | heading
+   ------- | -------
+   featured| secondary
+
+   La hauteur de la première
+   ligne est commune aux
+   deux colonnes.
    ========================= */
 
 .issue-showcase {
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     minmax(0, 7fr)
     minmax(260px, 3fr);
 
-  gap:
+  grid-template-areas:
+    "featured-heading secondary-heading"
+    "featured secondary";
+
+  column-gap:
     clamp(
       36px,
       4vw,
       56px
     );
 
-  align-items: start;
+  row-gap:
+    24px;
 
-  width: 100%;
+  align-items:
+    start;
+
+  width:
+    100%;
 }
 
 
 /* =========================
-   FEATURED
+   HEADINGS
+   ========================= */
+.issue-showcase__heading-title {
+  margin:
+    0;
+
+  color:
+    var(--color-text);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      1.6rem,
+      2.2vw,
+      2.2rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.2;
+
+  text-align:
+    center;
+}
+.issue-showcase__featured-heading {
+  grid-area:
+    featured-heading;
+
+  min-width:
+    0;
+}
+
+
+.issue-showcase__secondary-heading {
+  grid-area:
+    secondary-heading;
+
+  min-width:
+    0;
+}
+
+
+/* =========================
+   CONTENT
    ========================= */
 
 .issue-showcase__featured {
-  min-width: 0;
+  grid-area:
+    featured;
+
+  min-width:
+    0;
 }
 
 
-/* =========================
-   SECONDARY
-   ========================= */
-
 .issue-showcase__secondary {
-  min-width: 0;
+  grid-area:
+    secondary;
+
+  min-width:
+    0;
 }
 
 
 /* =========================
    ≤ 880px
 
-   Le bloc secondaire passe
-   sous le featured.
+   Les deux parties passent
+   l'une sous l'autre.
    ========================= */
 
 @media (max-width: 880px) {
   .issue-showcase {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
 
-    gap: 48px;
+    grid-template-areas:
+      "featured-heading"
+      "featured"
+      "secondary-heading"
+      "secondary";
+
+    column-gap:
+      0;
+
+    row-gap:
+      24px;
+  }
+
+
+  .issue-showcase__secondary-heading {
+    margin-top:
+      24px;
   }
 }

@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 
 import RelatedAuthors from '../components/RelatedAuthors'
-import RelatedIssues from '../components/RelatedIssues'
+import IssuesList from '../components/IssuesList'
 
 import {
   getAuthorById,
@@ -93,11 +93,11 @@ export default function AuthorPage() {
 
       <div className="author-page__layout">
         <aside className="author-page__sidebar">
-          <RelatedIssues
-            title="Номера с автором"
-            issues={authorIssues}
-            variant="sidebar"
-          />
+       <IssuesList
+  title="Номера с автором"
+  issues={authorIssues}
+  variant="sidebar"
+/>
         </aside>
 
         <main className="author-page__main">

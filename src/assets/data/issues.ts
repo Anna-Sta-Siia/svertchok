@@ -85,6 +85,25 @@ export type IssueAccessType =
   | 'free'
   | 'paid'
 
+export type IssueTheme =
+  | 'Зима'
+  | 'Весна'
+  | 'Лето'
+  | 'Осень'
+  | 'Новый год'
+  | 'Путешествия'
+  | 'Подростки'
+  | 'Животные'
+  | 'Дружба'
+  | 'Фантазия и сказки'
+  | 'Школа'
+  | 'Времена года'
+  | 'Любовь'
+  | 'Семья'
+  | 'Музыка'
+  | 'Творчество'
+  | 'Другое'
+
 export type Issue = {
   id: string
   slug: string
@@ -96,7 +115,7 @@ export type Issue = {
   title: string
 
   editionLabel?: string
-  theme?: string
+  theme: IssueTheme
 
   coverImage: string
 
@@ -136,7 +155,7 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
-    theme: 'Зимние истории',
+    theme: 'Зима',
 
     coverImage:
       february2019Cover,
@@ -160,6 +179,9 @@ export const issues: Issue[] = [
     year: 2019,
 
     title: 'Сверчок',
+
+
+    theme: 'Путешествия',
 
     coverImage:
       october2019Cover,
@@ -188,6 +210,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Подростки',
+
     coverImage:
       january2020Cover,
 
@@ -210,6 +235,9 @@ export const issues: Issue[] = [
     year: 2020,
 
     title: 'Сверчок',
+
+
+    theme: 'Животные',
 
     coverImage:
       april2020Cover,
@@ -234,6 +262,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Фантазия и сказки',
+
     coverImage:
       september2020Cover,
 
@@ -256,6 +287,9 @@ export const issues: Issue[] = [
     year: 2020,
 
     title: 'Сверчок',
+
+
+    theme: 'Фантазия и сказки',
 
     coverImage:
       december2020Cover,
@@ -284,6 +318,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Путешествия',
+
     coverImage:
       february2021Cover,
 
@@ -306,6 +343,9 @@ export const issues: Issue[] = [
     year: 2021,
 
     title: 'Сверчок',
+
+
+    theme: 'Школа',
 
     coverImage:
       may2021Cover,
@@ -335,6 +375,9 @@ export const issues: Issue[] = [
 
   title: 'Сверчок',
 
+
+  theme: 'Осень',
+
   coverImage:
     september2021Cover,
 
@@ -357,6 +400,9 @@ export const issues: Issue[] = [
     year: 2021,
 
     title: 'Сверчок',
+
+
+    theme: 'Новый год',
 
     coverImage:
       december2021Cover,
@@ -384,6 +430,9 @@ export const issues: Issue[] = [
   year: 2022,
 
   title: 'Сверчок',
+
+
+  theme: 'Другое',
 
   coverImage: march2022Cover,
 
@@ -413,6 +462,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Дружба',
+
     coverImage:
       mayJune2022Cover,
 
@@ -436,6 +488,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Лето',
+
     coverImage:
       october2022Cover,
 
@@ -458,6 +513,9 @@ export const issues: Issue[] = [
     year: 2022,
 
     title: 'Сверчок',
+
+
+    theme: 'Времена года',
 
     coverImage:
       december2022Cover,
@@ -486,6 +544,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Весна',
+
     coverImage:
       march2023Cover,
 
@@ -511,6 +572,9 @@ export const issues: Issue[] = [
     year: 2023,
 
     title: 'Сверчок',
+
+
+    theme: 'Любовь',
 
     coverImage:
       june2023Cover,
@@ -538,6 +602,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Животные',
+
     coverImage:
       october2023Cover,
 
@@ -563,6 +630,9 @@ export const issues: Issue[] = [
     year: 2023,
 
     title: 'Сверчок',
+
+
+    theme: 'Семья',
 
     coverImage:
       december2023Cover,
@@ -594,6 +664,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Весна',
+
     coverImage:
       march2024Cover,
 
@@ -623,6 +696,9 @@ export const issues: Issue[] = [
     editionLabel:
       'Подросток',
 
+
+    theme: 'Подростки',
+
     coverImage:
       june2024Cover,
 
@@ -649,6 +725,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Животные',
+
     coverImage:
       october2024Cover,
 
@@ -674,6 +753,9 @@ export const issues: Issue[] = [
     year: 2024,
 
     title: 'Сверчок',
+
+
+    theme: 'Музыка',
 
     coverImage:
       december2024Cover,
@@ -705,6 +787,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Дружба',
+
     coverImage:
       march2025Cover,
 
@@ -730,6 +815,9 @@ export const issues: Issue[] = [
     year: 2025,
 
     title: 'Сверчок',
+
+
+    theme: 'Подростки',
 
     coverImage:
       june2025Cover,
@@ -757,6 +845,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Путешествия',
+
     coverImage:
       october2025Cover,
 
@@ -783,6 +874,9 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
+
+    theme: 'Зима',
+
     coverImage:
       december2025Cover,
 
@@ -808,7 +902,7 @@ export const issues: Issue[] = [
 
   title: 'Сверчок',
 
-  theme: 'Творить, натворить и сотворить',
+  theme: 'Творчество',
 
   coverImage: may2026Cover,
 
@@ -842,6 +936,7 @@ export function isIssueReady(
     issue.monthLabel &&
     issue.year &&
     issue.title &&
+    issue.theme &&
     issue.coverImage &&
     issue.shortDescription &&
     issue.accessType,
