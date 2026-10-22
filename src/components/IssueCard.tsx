@@ -1,6 +1,14 @@
-import { Link } from 'react-router-dom'
+import {
+  useState,
+} from 'react'
 
-import type { Issue } from '../assets/data/issues'
+import {
+  Link,
+} from 'react-router-dom'
+
+import type {
+  Issue,
+} from '../assets/data/issues'
 
 import './IssueCard.css'
 
@@ -20,14 +28,28 @@ export default function IssueCard({
   variant = 'featured',
   longDescription,
 }: IssueCardProps) {
+  const [
+    isArchiveOpen,
+    setIsArchiveOpen,
+  ] = useState(false)
+
   const issueUrl =
     `/issues/${issue.slug}`
 
   const issueNumber =
-    `№${String(issue.month).padStart(2, '0')} · ${issue.year}`
+    `№${String(
+      issue.month,
+    ).padStart(
+      2,
+      '0',
+    )} · ${issue.year}`
+
 
   /* =========================
      COMPACT
+
+     RecentIssues
+     RelatedIssues
 
      Date
      Cover | shortDescription
@@ -35,7 +57,10 @@ export default function IssueCard({
      Toute la carte est cliquable.
      ========================= */
 
-  if (variant === 'compact') {
+  if (
+    variant ===
+    'compact'
+  ) {
     return (
       <Link
         to={issueUrl}
@@ -52,47 +77,197 @@ export default function IssueCard({
         <div className="issue-card__compact-body">
           <div className="issue-card__compact-cover">
             <img
-              src={issue.coverImage}
+              src={
+                issue.coverImage
+              }
               alt={`Обложка номера ${issue.monthLabel} ${issue.year}`}
               className="issue-card__cover"
             />
           </div>
 
           <p className="issue-card__description">
-            {issue.shortDescription}
+            {
+              issue.shortDescription
+            }
           </p>
         </div>
       </Link>
     )
   }
 
+
   /* =========================
-     FEATURED / ARCHIVE
+     ARCHIVE
 
-     Featured :
-     longDescription si disponible.
+     Desktop :
+     front / back.
 
-     Archive :
-     shortDescription pour l'instant.
-     Le flip viendra plus tard.
+     Mobile :
+     même structure,
+     mais le CSS la transformera
+     en accordéon.
+
+     Toujours shortDescription.
+     ========================= */
+
+  if (
+    variant ===
+    'archive'
+  ) {
+    return (
+      <article
+        className={`
+          issue-card
+          issue-card--archive
+          ${
+            isArchiveOpen
+              ? 'issue-card--archive-open'
+              : ''
+          }
+        `}
+      >
+        <div className="issue-card__archive-inner">
+
+          {/* FRONT */}
+
+          <div
+            className="
+              issue-card__archive-face
+              issue-card__archive-front
+            "
+          >
+            <p className="issue-card__date">
+              {issueNumber}
+            </p>
+
+            <div className="issue-card__archive-cover">
+              <img
+                src={
+                  issue.coverImage
+                }
+                alt={`Обложка номера ${issue.monthLabel} ${issue.year}`}
+                className="issue-card__cover"
+              />
+            </div>
+
+            <div className="issue-card__archive-actions">
+              <button
+                type="button"
+                className="issue-card__archive-toggle"
+                aria-expanded={
+                  isArchiveOpen
+                }
+                onClick={() =>
+                  setIsArchiveOpen(
+                    true,
+                  )
+                }
+              >
+                <span>
+                  Подробнее
+                </span>
+
+                <span
+                  className="issue-card__archive-chevron"
+                  aria-hidden="true"
+                >
+                  ⌄
+                </span>
+              </button>
+
+              <Link
+                to={issueUrl}
+                className="issue-card__archive-link"
+              >
+                Перейти к номеру →
+              </Link>
+            </div>
+          </div>
+
+
+          {/* BACK */}
+
+          <div
+            className="
+              issue-card__archive-face
+              issue-card__archive-back
+            "
+          >
+            <p className="issue-card__date">
+              {issueNumber}
+            </p>
+
+            <p className="issue-card__archive-description">
+              {
+                issue.shortDescription
+              }
+            </p>
+
+            <div className="issue-card__archive-actions">
+              <button
+                type="button"
+                className="
+                  issue-card__archive-toggle
+                  issue-card__archive-toggle--back
+                "
+                onClick={() =>
+                  setIsArchiveOpen(
+                    false,
+                  )
+                }
+              >
+                ← Вернуться
+              </button>
+
+              <Link
+                to={issueUrl}
+                className="issue-card__archive-link"
+              >
+                Перейти к номеру →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </article>
+    )
+  }
+
+
+  /* =========================
+     FEATURED
+
+     HomePage / IssuePage
+
+     La carte ne contient
+     aucun titre de page.
+
+     HomePage décide elle-même
+     d'afficher par exemple :
+     "А вот и мой новый номер".
+
+     Ici :
+     Cover | longDescription
      ========================= */
 
   const description =
-    variant === 'featured'
-      ? longDescription ??
-        issue.shortDescription
-      : issue.shortDescription
+    longDescription ??
+    issue.shortDescription
 
   return (
     <article
-      className={`issue-card issue-card--${variant}`}
+      className="
+        issue-card
+        issue-card--featured
+      "
     >
       <Link
         to={issueUrl}
         className="issue-card__cover-link"
       >
         <img
-          src={issue.coverImage}
+          src={
+            issue.coverImage
+          }
           alt={`Обложка номера ${issue.monthLabel} ${issue.year}`}
           className="issue-card__cover"
         />

@@ -4,12 +4,14 @@ import {
 } from 'react'
 
 import IssueCard from '../components/IssueCard'
+import CustomSelect from '../components/filters/CustomSelect'
 
 import {
   publishedIssues,
 } from '../assets/data/issues'
 
 import './IssuesPage.css'
+
 
 type YearFilter =
   | 'all'
@@ -24,42 +26,100 @@ type SortOrder =
   | 'newest'
   | 'oldest'
 
+
 export default function IssuesPage() {
   const [
     selectedYear,
     setSelectedYear,
-  ] = useState<YearFilter>('all')
+  ] = useState<YearFilter>(
+    'all',
+  )
 
   const [
     selectedAccess,
     setSelectedAccess,
-  ] = useState<AccessFilter>('all')
+  ] = useState<AccessFilter>(
+    'all',
+  )
 
   const [
     sortOrder,
     setSortOrder,
-  ] = useState<SortOrder>('newest')
+  ] = useState<SortOrder>(
+    'newest',
+  )
 
 
   /* =========================
      YEARS
      ========================= */
 
-  const years = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          publishedIssues.map(
-            (issue) =>
-              issue.year,
+  const years =
+    useMemo(
+      () =>
+        Array.from(
+          new Set(
+            publishedIssues.map(
+              (issue) =>
+                issue.year,
+            ),
           ),
+        ).sort(
+          (a, b) =>
+            b - a,
         ),
-      ).sort(
-        (a, b) =>
-          b - a,
-      ),
-    [],
-  )
+      [],
+    )
+
+
+  /* =========================
+     SELECT OPTIONS
+     ========================= */
+
+  const yearOptions = [
+    {
+      value: 'all',
+      label: 'Все годы',
+    },
+
+    ...years.map(
+      (year) => ({
+        value:
+          String(year),
+
+        label:
+          String(year),
+      }),
+    ),
+  ]
+
+
+  const accessOptions = [
+    {
+      value: 'all',
+      label: 'Все номера',
+    },
+    {
+      value: 'free',
+      label: 'Бесплатные',
+    },
+    {
+      value: 'paid',
+      label: 'Платные',
+    },
+  ]
+
+
+  const sortOptions = [
+    {
+      value: 'newest',
+      label: 'Сначала новые',
+    },
+    {
+      value: 'oldest',
+      label: 'Сначала старые',
+    },
+  ]
 
 
   /* =========================
@@ -135,6 +195,7 @@ export default function IssuesPage() {
     sortOrder !==
       'newest'
 
+
   function resetFilters() {
     setSelectedYear(
       'all',
@@ -161,6 +222,7 @@ export default function IssuesPage() {
         <p className="issues-page__eyebrow">
           Архив «Сверчка»
         </p>
+
         <p className="issues-page__description">
           Здесь собраны все выпуски
           литературного альманаха
@@ -180,128 +242,83 @@ export default function IssuesPage() {
         className="issues-page__filters"
         aria-label="Фильтры номеров"
       >
-        <div className="issues-page__filter">
-          <label
-            htmlFor="issues-year"
-            className="issues-page__filter-label"
-          >
-            Год
-          </label>
 
-          <select
-            id="issues-year"
-            className="issues-page__select"
-            value={
-              selectedYear
-            }
-            onChange={(
-              event,
-            ) => {
-              const value =
-                event.target
-                  .value
+        {/* YEAR */}
 
-              setSelectedYear(
-                value ===
-                  'all'
-                  ? 'all'
-                  : Number(
-                      value,
-                    ),
-              )
-            }}
-          >
-            <option value="all">
-              Все годы
-            </option>
-
-            {years.map(
-              (year) => (
-                <option
-                  key={year}
-                  value={year}
-                >
-                  {year}
-                </option>
-              ),
-            )}
-          </select>
-        </div>
+        <CustomSelect
+          id="issues-year"
+          label="Год"
+          value={
+            selectedYear ===
+            'all'
+              ? 'all'
+              : String(
+                  selectedYear,
+                )
+          }
+          options={
+            yearOptions
+          }
+          onChange={(
+            value,
+          ) => {
+            setSelectedYear(
+              value ===
+                'all'
+                ? 'all'
+                : Number(
+                    value,
+                  ),
+            )
+          }}
+        />
 
 
-        <div className="issues-page__filter">
-          <label
-            htmlFor="issues-access"
-            className="issues-page__filter-label"
-          >
-            Доступ
-          </label>
+        {/* ACCESS */}
 
-          <select
-            id="issues-access"
-            className="issues-page__select"
-            value={
-              selectedAccess
-            }
-            onChange={(
-              event,
-            ) =>
-              setSelectedAccess(
-                event.target
-                  .value as
-                  AccessFilter,
-              )
-            }
-          >
-            <option value="all">
-              Все номера
-            </option>
-
-            <option value="free">
-              Бесплатные
-            </option>
-
-            <option value="paid">
-              Платные
-            </option>
-          </select>
-        </div>
+        <CustomSelect
+          id="issues-access"
+          label="Доступ"
+          value={
+            selectedAccess
+          }
+          options={
+            accessOptions
+          }
+          onChange={(
+            value,
+          ) => {
+            setSelectedAccess(
+              value as
+                AccessFilter,
+            )
+          }}
+        />
 
 
-        <div className="issues-page__filter">
-          <label
-            htmlFor="issues-sort"
-            className="issues-page__filter-label"
-          >
-            Порядок
-          </label>
+        {/* SORT */}
 
-          <select
-            id="issues-sort"
-            className="issues-page__select"
-            value={
-              sortOrder
-            }
-            onChange={(
-              event,
-            ) =>
-              setSortOrder(
-                event.target
-                  .value as
-                  SortOrder,
-              )
-            }
-          >
-            <option value="newest">
-              Сначала новые
-            </option>
+        <CustomSelect
+          id="issues-sort"
+          label="Порядок"
+          value={
+            sortOrder
+          }
+          options={
+            sortOptions
+          }
+          onChange={(
+            value,
+          ) => {
+            setSortOrder(
+              value as
+                SortOrder,
+            )
+          }}
+        />
 
-            <option value="oldest">
-              Сначала старые
-            </option>
-          </select>
-        </div>
 
+        {/* RESET */}
 
         {hasActiveFilters && (
           <button
@@ -324,6 +341,7 @@ export default function IssuesPage() {
       <div className="issues-page__results-heading">
         <p className="issues-page__count">
           Найдено:{' '}
+
           <strong>
             {
               filteredIssues.length
@@ -343,8 +361,12 @@ export default function IssuesPage() {
           {filteredIssues.map(
             (issue) => (
               <IssueCard
-                key={issue.id}
-                issue={issue}
+                key={
+                  issue.id
+                }
+                issue={
+                  issue
+                }
                 variant="archive"
               />
             ),
@@ -353,7 +375,8 @@ export default function IssuesPage() {
       ) : (
         <div className="issues-page__empty">
           <p>
-            По выбранным фильтрам номеров пока нет
+            По выбранным фильтрам
+            номеров пока нет.
           </p>
 
           <button

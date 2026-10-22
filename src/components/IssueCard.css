@@ -892,16 +892,659 @@
 /* ==================================================
    ARCHIVE
 
-   Temporaire.
+   Desktop :
+   flip front / back.
 
-   Le flip desktop
-   et l'accordéon mobile
-   viendront avec la page archive.
+   Mobile :
+   accordéon.
+
+   La carte archive est autonome :
+   elle n'utilise pas IssueShowcase.
    ================================================== */
 
 .issue-card--archive {
   width:
     100%;
+
+  min-width:
+    0;
+
+  aspect-ratio:
+    0.55;
+
+  perspective:
+    1400px;
+}
+
+
+/* =========================
+   ARCHIVE INNER
+   ========================= */
+
+.issue-card__archive-inner {
+  position:
+    relative;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  transform-style:
+    preserve-3d;
+
+  transition:
+    transform
+    0.55s
+    ease;
+}
+
+.issue-card--archive-open
+.issue-card__archive-inner {
+  transform:
+    rotateY(180deg);
+}
+
+
+/* =========================
+   ARCHIVE FACES
+   ========================= */
+
+.issue-card__archive-face {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    16px;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-width:
+    0;
+
+  padding:
+    18px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px
+    solid
+    var(--issue-card-border);
+
+  border-radius:
+    var(--radius-card);
+
+  background:
+    var(--issue-card-surface);
+
+  box-shadow:
+    0
+    10px
+    26px
+    rgb(55 45 20 / 5%);
+
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
+}
+
+
+/* =========================
+   ARCHIVE FRONT / BACK
+   ========================= */
+
+.issue-card__archive-front {
+  transform:
+    rotateY(0deg);
+}
+
+.issue-card__archive-back {
+  transform:
+    rotateY(180deg);
+}
+
+
+/* =========================
+   ARCHIVE DATE
+   ========================= */
+
+.issue-card--archive
+.issue-card__date {
+  flex:
+    0
+    0
+    auto;
+
+  width:
+    100%;
+
+  margin:
+    0;
+
+  color:
+    var(--color-accent);
+
+  font-size:
+    clamp(
+      1rem,
+      1.08vw,
+      1.12rem
+    );
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.04em;
+
+  text-align:
+    center;
+}
+
+
+/* =========================
+   ARCHIVE COVER
+   ========================= */
+
+.issue-card__archive-cover {
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  flex:
+    1
+    1
+    auto;
+
+  width:
+    100%;
+
+  min-height:
+    0;
+
+  overflow:
+    hidden;
+}
+
+.issue-card--archive
+.issue-card__cover {
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    0;
+
+  object-fit:
+    contain;
+
+  border-radius:
+    var(--radius-cover);
+
+  box-shadow:
+    0
+    10px
+    22px
+    rgb(55 45 20 / 11%);
+}
+
+
+/* =========================
+   ARCHIVE DESCRIPTION
+   ========================= */
+
+.issue-card__archive-description {
+  flex:
+    1
+    1
+    auto;
+
+  width:
+    100%;
+
+  min-height:
+    0;
+
+  margin:
+    0;
+
+  padding-right:
+    6px;
+
+  overflow-y:
+    auto;
+
+  overflow-x:
+    hidden;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    clamp(
+      1rem,
+      1.05vw,
+      1.12rem
+    );
+
+  line-height:
+    1.65;
+
+  text-align:
+    left;
+
+  scrollbar-width:
+    thin;
+
+  scrollbar-color:
+    color-mix(
+      in srgb,
+      var(--color-accent) 32%,
+      transparent
+    )
+    transparent;
+}
+
+.issue-card__archive-description::-webkit-scrollbar {
+  width:
+    4px;
+}
+
+.issue-card__archive-description::-webkit-scrollbar-track {
+  background:
+    transparent;
+}
+
+.issue-card__archive-description::-webkit-scrollbar-thumb {
+  border-radius:
+    999px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-accent) 30%,
+      transparent
+    );
+}
+
+
+/* =========================
+   ARCHIVE ACTIONS
+   ========================= */
+
+.issue-card__archive-actions {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    10px;
+
+  flex:
+    0
+    0
+    auto;
+
+  width:
+    100%;
+}
+
+.issue-card__archive-toggle,
+.issue-card__archive-link {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    6px;
+
+  min-height:
+    42px;
+
+  padding:
+    9px
+    12px;
+
+  border:
+    1px
+    solid
+    var(--color-accent);
+
+  border-radius:
+    var(--radius-button);
+
+  background:
+    transparent;
+
+  color:
+    var(--color-accent);
+
+  font:
+    inherit;
+
+  font-size:
+    0.88rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.25;
+
+  text-align:
+    center;
+
+  text-decoration:
+    none;
+
+  cursor:
+    pointer;
+
+  transition:
+    background
+      var(--transition-default),
+    color
+      var(--transition-default),
+    transform
+      var(--transition-default);
+}
+
+.issue-card__archive-link {
+  background:
+    var(--color-accent);
+
+  color:
+    var(--color-surface);
+}
+
+.issue-card__archive-toggle:focus-visible,
+.issue-card__archive-link:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset:
+    3px;
+}
+
+
+/* =========================
+   ARCHIVE CHEVRON
+   ========================= */
+
+.issue-card__archive-chevron {
+  display:
+    inline-block;
+
+  transition:
+    transform
+    var(--transition-default);
+}
+
+.issue-card--archive-open
+.issue-card__archive-chevron {
+  transform:
+    rotate(180deg);
+}
+
+
+/* =========================
+   ARCHIVE HOVER
+   ========================= */
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .issue-card__archive-toggle:hover {
+    background:
+      color-mix(
+        in srgb,
+        var(--color-accent) 9%,
+        transparent
+      );
+
+    transform:
+      translateY(-1px);
+  }
+
+  .issue-card__archive-link:hover {
+    background:
+      var(--color-accent-hover);
+
+    border-color:
+      var(--color-accent-hover);
+
+    transform:
+      translateY(-1px);
+  }
+}
+
+
+/* ==================================================
+   ARCHIVE — MOBILE / ACCORDÉON
+
+   Plus de flip :
+   le front reste visible
+   et la description s'ouvre dessous.
+   ================================================== */
+
+@media (max-width: 700px) {
+  .issue-card--archive {
+    aspect-ratio:
+      auto;
+
+    perspective:
+      none;
+  }
+
+  .issue-card__archive-inner {
+    position:
+      static;
+
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    width:
+      100%;
+
+    height:
+      auto;
+
+    transform:
+      none;
+
+    transform-style:
+      flat;
+
+    transition:
+      none;
+  }
+
+  .issue-card--archive-open
+  .issue-card__archive-inner {
+    transform:
+      none;
+  }
+
+  .issue-card__archive-face {
+    position:
+      static;
+
+    inset:
+      auto;
+
+    width:
+      100%;
+
+    height:
+      auto;
+
+    transform:
+      none;
+
+    backface-visibility:
+      visible;
+
+    -webkit-backface-visibility:
+      visible;
+  }
+
+  .issue-card__archive-front {
+    gap:
+      14px;
+  }
+
+  .issue-card__archive-back {
+    display:
+      none;
+
+    gap:
+      14px;
+
+    margin-top:
+      -1px;
+
+    padding-top:
+      18px;
+
+    border-top-left-radius:
+      0;
+
+    border-top-right-radius:
+      0;
+
+    box-shadow:
+      none;
+  }
+
+  .issue-card--archive-open
+  .issue-card__archive-back {
+    display:
+      flex;
+  }
+
+  .issue-card--archive
+  .issue-card__archive-cover {
+    flex:
+      none;
+
+    width:
+      100%;
+
+    min-height:
+      0;
+  }
+
+  .issue-card--archive
+  .issue-card__cover {
+    width:
+      100%;
+
+    height:
+      auto;
+
+    max-height:
+      none;
+
+    object-fit:
+      contain;
+  }
+
+  .issue-card__archive-actions {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      10px;
+  }
+
+  .issue-card__archive-link {
+    order:
+      1;
+  }
+
+  .issue-card__archive-toggle {
+    order:
+      2;
+  }
+
+  .issue-card__archive-back
+  .issue-card__date {
+    display:
+      none;
+  }
+
+  .issue-card__archive-back
+  .issue-card__archive-link {
+    display:
+      none;
+  }
+
+  .issue-card__archive-back
+  .issue-card__archive-actions {
+    display:
+      block;
+  }
+
+  .issue-card__archive-toggle--back {
+    width:
+      100%;
+  }
+
+  .issue-card__archive-description {
+    overflow:
+      visible;
+
+    padding-right:
+      0;
+
+    font-size:
+      1rem;
+
+    line-height:
+      1.6;
+  }
 }
 
 
@@ -913,7 +1556,11 @@
   prefers-reduced-motion:
   reduce
 ) {
-  .issue-card--compact {
+  .issue-card--compact,
+  .issue-card__archive-inner,
+  .issue-card__archive-toggle,
+  .issue-card__archive-link,
+  .issue-card__archive-chevron {
     transition:
       none;
   }
