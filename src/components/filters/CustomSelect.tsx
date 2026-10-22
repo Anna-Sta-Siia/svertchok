@@ -13,16 +13,11 @@ export type CustomSelectOption = {
 
 type CustomSelectProps = {
   id: string
-
   label: string
-
   value: string
-
   options: CustomSelectOption[]
-
-  onChange: (
-    value: string,
-  ) => void
+  onChange: (value: string) => void
+  className?: string
 }
 
 export default function CustomSelect({
@@ -31,11 +26,10 @@ export default function CustomSelect({
   value,
   options,
   onChange,
+  className = '',
 }: CustomSelectProps) {
-  const [
-    isOpen,
-    setIsOpen,
-  ] = useState(false)
+  const [isOpen, setIsOpen] =
+    useState(false)
 
   const [
     highlightedIndex,
@@ -43,9 +37,7 @@ export default function CustomSelect({
   ] = useState(0)
 
   const selectRef =
-    useRef<HTMLDivElement>(
-      null,
-    )
+    useRef<HTMLDivElement>(null)
 
   const selectedOption =
     options.find(
@@ -57,7 +49,6 @@ export default function CustomSelect({
     selectedOption?.label ??
     options[0]?.label ??
     ''
-
 
   function openSelect() {
     const selectedIndex =
@@ -75,20 +66,16 @@ export default function CustomSelect({
     setIsOpen(true)
   }
 
-
   function closeSelect() {
     setIsOpen(false)
   }
-
 
   function chooseOption(
     optionValue: string,
   ) {
     onChange(optionValue)
-
     closeSelect()
   }
-
 
   function handleKeyDown(
     event:
@@ -102,15 +89,17 @@ export default function CustomSelect({
 
       if (!isOpen) {
         openSelect()
-
         return
       }
 
-      chooseOption(
-        options[
-          highlightedIndex
-        ].value,
-      )
+      const option =
+        options[highlightedIndex]
+
+      if (option) {
+        chooseOption(
+          option.value,
+        )
+      }
 
       return
     }
@@ -123,7 +112,6 @@ export default function CustomSelect({
 
       if (!isOpen) {
         openSelect()
-
         return
       }
 
@@ -132,6 +120,8 @@ export default function CustomSelect({
           (current + 1) %
           options.length,
       )
+
+      return
     }
 
     if (
@@ -142,7 +132,6 @@ export default function CustomSelect({
 
       if (!isOpen) {
         openSelect()
-
         return
       }
 
@@ -155,6 +144,8 @@ export default function CustomSelect({
           ) %
           options.length,
       )
+
+      return
     }
 
     if (
@@ -164,7 +155,6 @@ export default function CustomSelect({
       closeSelect()
     }
   }
-
 
   useEffect(() => {
     function handleOutsideClick(
@@ -193,9 +183,13 @@ export default function CustomSelect({
     }
   }, [])
 
-
   return (
-    <div className="custom-select-field">
+    <div
+      className={`
+        custom-select-field
+        ${className}
+      `.trim()}
+    >
       <label
         htmlFor={id}
         className="custom-select-field__label"
@@ -214,18 +208,16 @@ export default function CustomSelect({
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           aria-controls={`${id}-listbox`}
-          onClick={() => {
-            if (isOpen) {
-              closeSelect()
-            } else {
-              openSelect()
-            }
-          }}
+          onClick={() =>
+            isOpen
+              ? closeSelect()
+              : openSelect()
+          }
           onKeyDown={
             handleKeyDown
           }
         >
-          <span>
+          <span className="custom-select__value">
             {selectedLabel}
           </span>
 
@@ -268,14 +260,12 @@ export default function CustomSelect({
                   }
                   className={`
                     custom-select__option
-
                     ${
                       value ===
                       option.value
                         ? 'custom-select__option--selected'
                         : ''
                     }
-
                     ${
                       highlightedIndex ===
                       index

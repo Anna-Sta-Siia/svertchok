@@ -19,7 +19,8 @@ export default function SiteHeader() {
 
           <div className="site-header__speech site-header__speech--left">
             <p className="site-header__speech-accent">
-              Разрешите представиться,
+              Разрешите 
+              <br />представиться,
             </p>
 
             <p>

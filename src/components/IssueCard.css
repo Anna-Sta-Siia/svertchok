@@ -888,18 +888,16 @@
   }
 }
 
-
 /* ==================================================
-   ARCHIVE
+   ARCHIVE — COMPACT
 
-   Desktop :
-   flip front / back.
+   FRONT:
+   vertical number | cover
+   one action below
 
-   Mobile :
-   accordéon.
-
-   La carte archive est autonome :
-   elle n'utilise pas IssueShowcase.
+   BACK:
+   vertical number | description
+   two actions below
    ================================================== */
 
 .issue-card--archive {
@@ -909,8 +907,8 @@
   min-width:
     0;
 
-  aspect-ratio:
-    0.55;
+  min-height:
+    325px;
 
   perspective:
     1400px;
@@ -918,7 +916,7 @@
 
 
 /* =========================
-   ARCHIVE INNER
+   INNER
    ========================= */
 
 .issue-card__archive-inner {
@@ -931,6 +929,9 @@
   height:
     100%;
 
+  min-height:
+    325px;
+
   transform-style:
     preserve-3d;
 
@@ -940,15 +941,21 @@
     ease;
 }
 
+
 .issue-card--archive-open
 .issue-card__archive-inner {
   transform:
-    rotateY(180deg);
+    rotateY(
+      180deg
+    );
 }
 
 
 /* =========================
-   ARCHIVE FACES
+   FACES
+
+   number | cover / description
+   actions below
    ========================= */
 
 .issue-card__archive-face {
@@ -959,13 +966,30 @@
     0;
 
   display:
-    flex;
+    grid;
 
-  flex-direction:
-    column;
+  grid-template-columns:
+    30px
+    minmax(
+      0,
+      1fr
+    );
 
-  gap:
-    16px;
+  grid-template-rows:
+    minmax(
+      0,
+      1fr
+    )
+    auto;
+
+  column-gap:
+    8px;
+
+  row-gap:
+    10px;
+
+  align-items:
+    stretch;
 
   width:
     100%;
@@ -977,7 +1001,7 @@
     0;
 
   padding:
-    18px;
+    11px;
 
   overflow:
     hidden;
@@ -991,12 +1015,16 @@
     var(--radius-card);
 
   background:
-    var(--issue-card-surface);
+    color-mix(
+      in srgb,
+      var(--color-surface) 52%,
+      transparent
+    );
 
   box-shadow:
     0
-    10px
-    26px
+    7px
+    18px
     rgb(55 45 20 / 5%);
 
   backface-visibility:
@@ -1007,84 +1035,170 @@
 }
 
 
-/* =========================
-   ARCHIVE FRONT / BACK
-   ========================= */
-
 .issue-card__archive-front {
   transform:
-    rotateY(0deg);
+    rotateY(
+      0deg
+    );
 }
+
 
 .issue-card__archive-back {
   transform:
-    rotateY(180deg);
+    rotateY(
+      180deg
+    );
 }
 
 
 /* =========================
-   ARCHIVE DATE
+   VERTICAL NUMBER
+
+   №
+   0
+   5
+   ·
+   2
+   0
+   2
+   6
    ========================= */
 
-.issue-card--archive
-.issue-card__date {
-  flex:
-    0
-    0
-    auto;
+.issue-card__archive-number {
+  grid-column:
+    1;
 
-  width:
-    100%;
+  grid-row:
+    1;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    1px;
+
+  min-width:
+    0;
 
   margin:
     0;
 
+  padding:
+    0;
+
+  border:
+    0;
+
   color:
     var(--color-accent);
-
-  font-size:
-    clamp(
-      1rem,
-      1.08vw,
-      1.12rem
-    );
-
-  font-weight:
-    600;
-
-  letter-spacing:
-    0.04em;
 
   text-align:
     center;
 }
 
 
+.issue-card__archive-number-symbol,
+.issue-card__archive-number-digit,
+.issue-card__archive-year-digit {
+  display:
+    block;
+
+  line-height:
+    1;
+}
+
+
+.issue-card__archive-number-symbol {
+  margin-bottom:
+    2px;
+
+  font-size:
+    0.78rem;
+
+  font-weight:
+    600;
+}
+
+
+.issue-card__archive-number-digit {
+  font-size:
+    0.9rem;
+
+  font-weight:
+    600;
+}
+
+
+.issue-card__archive-separator {
+  display:
+    block;
+
+  margin:
+    2px
+    0;
+
+  color:
+    var(--color-secondary);
+
+  font-size:
+    0.82rem;
+
+  line-height:
+    0.8;
+}
+
+
+.issue-card__archive-year-digit {
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    0.76rem;
+
+  font-weight:
+    600;
+}
+
+
 /* =========================
-   ARCHIVE COVER
+   COVER
    ========================= */
 
 .issue-card__archive-cover {
+  grid-column:
+    2;
+
+  grid-row:
+    1;
+
   display:
     grid;
 
   place-items:
     center;
 
-  flex:
-    1
-    1
-    auto;
-
-  width:
-    100%;
+  min-width:
+    0;
 
   min-height:
     0;
 
   overflow:
     hidden;
+
+  border-radius:
+    var(--radius-cover);
 }
+
 
 .issue-card--archive
 .issue-card__cover {
@@ -1108,24 +1222,25 @@
 
   box-shadow:
     0
-    10px
-    22px
-    rgb(55 45 20 / 11%);
+    7px
+    16px
+    rgb(55 45 20 / 9%);
 }
 
 
 /* =========================
-   ARCHIVE DESCRIPTION
+   DESCRIPTION
    ========================= */
 
 .issue-card__archive-description {
-  flex:
-    1
-    1
-    auto;
+  grid-column:
+    2;
 
-  width:
-    100%;
+  grid-row:
+    1;
+
+  min-width:
+    0;
 
   min-height:
     0;
@@ -1133,8 +1248,11 @@
   margin:
     0;
 
-  padding-right:
-    6px;
+  padding:
+    4px
+    5px
+    4px
+    0;
 
   overflow-y:
     auto;
@@ -1146,14 +1264,10 @@
     var(--color-text-soft);
 
   font-size:
-    clamp(
-      1rem,
-      1.05vw,
-      1.12rem
-    );
+    0.9rem;
 
   line-height:
-    1.65;
+    1.52;
 
   text-align:
     left;
@@ -1164,21 +1278,24 @@
   scrollbar-color:
     color-mix(
       in srgb,
-      var(--color-accent) 32%,
+      var(--color-accent) 42%,
       transparent
     )
     transparent;
 }
 
+
 .issue-card__archive-description::-webkit-scrollbar {
   width:
-    4px;
+    5px;
 }
+
 
 .issue-card__archive-description::-webkit-scrollbar-track {
   background:
     transparent;
 }
+
 
 .issue-card__archive-description::-webkit-scrollbar-thumb {
   border-radius:
@@ -1187,42 +1304,50 @@
   background:
     color-mix(
       in srgb,
-      var(--color-accent) 30%,
+      var(--color-accent) 38%,
       transparent
     );
 }
 
 
 /* =========================
-   ARCHIVE ACTIONS
+   ACTIONS
    ========================= */
 
 .issue-card__archive-actions {
-  display:
-    grid;
+  grid-column:
+    1 / -1;
 
-  grid-template-columns:
-    repeat(
-      2,
-      minmax(0, 1fr)
-    );
+  grid-row:
+    2;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
 
   gap:
-    10px;
-
-  flex:
-    0
-    0
-    auto;
+    6px;
 
   width:
-    100%;
+    min(
+      100%,
+      142px
+    );
+
+  justify-self:
+    center;
 }
+
 
 .issue-card__archive-toggle,
 .issue-card__archive-link {
   display:
-    inline-flex;
+    flex;
 
   align-items:
     center;
@@ -1230,15 +1355,15 @@
   justify-content:
     center;
 
-  gap:
-    6px;
+  width:
+    100%;
 
   min-height:
-    42px;
+    34px;
 
   padding:
-    9px
-    12px;
+    6px
+    10px;
 
   border:
     1px
@@ -1264,7 +1389,7 @@
     600;
 
   line-height:
-    1.25;
+    1.15;
 
   text-align:
     center;
@@ -1284,6 +1409,7 @@
       var(--transition-default);
 }
 
+
 .issue-card__archive-link {
   background:
     var(--color-accent);
@@ -1291,6 +1417,7 @@
   color:
     var(--color-surface);
 }
+
 
 .issue-card__archive-toggle:focus-visible,
 .issue-card__archive-link:focus-visible {
@@ -1305,27 +1432,7 @@
 
 
 /* =========================
-   ARCHIVE CHEVRON
-   ========================= */
-
-.issue-card__archive-chevron {
-  display:
-    inline-block;
-
-  transition:
-    transform
-    var(--transition-default);
-}
-
-.issue-card--archive-open
-.issue-card__archive-chevron {
-  transform:
-    rotate(180deg);
-}
-
-
-/* =========================
-   ARCHIVE HOVER
+   HOVER
    ========================= */
 
 @media (
@@ -1342,8 +1449,11 @@
       );
 
     transform:
-      translateY(-1px);
+      translateY(
+        -1px
+      );
   }
+
 
   .issue-card__archive-link:hover {
     background:
@@ -1353,43 +1463,36 @@
       var(--color-accent-hover);
 
     transform:
-      translateY(-1px);
+      translateY(
+        -1px
+      );
   }
 }
 
 
-/* ==================================================
-   ARCHIVE — MOBILE / ACCORDÉON
+/* =========================
+   MOBILE
+   ========================= */
 
-   Plus de flip :
-   le front reste visible
-   et la description s'ouvre dessous.
-   ================================================== */
-
-@media (max-width: 700px) {
+@media (max-width: 560px) {
   .issue-card--archive {
-    aspect-ratio:
-      auto;
+    min-height:
+      0;
 
     perspective:
       none;
   }
 
+
   .issue-card__archive-inner {
     position:
       static;
 
-    display:
-      flex;
-
-    flex-direction:
-      column;
-
-    width:
-      100%;
-
     height:
       auto;
+
+    min-height:
+      0;
 
     transform:
       none;
@@ -1401,11 +1504,13 @@
       none;
   }
 
+
   .issue-card--archive-open
   .issue-card__archive-inner {
     transform:
       none;
   }
+
 
   .issue-card__archive-face {
     position:
@@ -1414,11 +1519,34 @@
     inset:
       auto;
 
+    grid-template-columns:
+      28px
+      minmax(
+        0,
+        1fr
+      );
+
+    grid-template-rows:
+      auto
+      auto;
+
+    column-gap:
+      7px;
+
+    row-gap:
+      10px;
+
     width:
       100%;
 
     height:
       auto;
+
+    min-height:
+      0;
+
+    padding:
+      10px;
 
     transform:
       none;
@@ -1430,51 +1558,32 @@
       visible;
   }
 
-  .issue-card__archive-front {
-    gap:
-      14px;
-  }
 
   .issue-card__archive-back {
     display:
       none;
+  }
 
-    gap:
-      14px;
 
-    margin-top:
-      -1px;
-
-    padding-top:
-      18px;
-
-    border-top-left-radius:
-      0;
-
-    border-top-right-radius:
-      0;
-
-    box-shadow:
+  .issue-card--archive-open
+  .issue-card__archive-front {
+    display:
       none;
   }
+
 
   .issue-card--archive-open
   .issue-card__archive-back {
     display:
-      flex;
+      grid;
   }
 
-  .issue-card--archive
+
   .issue-card__archive-cover {
-    flex:
-      none;
-
-    width:
-      100%;
-
     min-height:
-      0;
+      205px;
   }
+
 
   .issue-card--archive
   .issue-card__cover {
@@ -1482,68 +1591,35 @@
       100%;
 
     height:
-      auto;
-
-    max-height:
-      none;
+      100%;
 
     object-fit:
       contain;
   }
 
-  .issue-card__archive-actions {
-    grid-template-columns:
-      1fr;
-
-    gap:
-      10px;
-  }
-
-  .issue-card__archive-link {
-    order:
-      1;
-  }
-
-  .issue-card__archive-toggle {
-    order:
-      2;
-  }
-
-  .issue-card__archive-back
-  .issue-card__date {
-    display:
-      none;
-  }
-
-  .issue-card__archive-back
-  .issue-card__archive-link {
-    display:
-      none;
-  }
-
-  .issue-card__archive-back
-  .issue-card__archive-actions {
-    display:
-      block;
-  }
-
-  .issue-card__archive-toggle--back {
-    width:
-      100%;
-  }
 
   .issue-card__archive-description {
     overflow:
       visible;
 
-    padding-right:
-      0;
+    padding:
+      3px
+      2px;
 
     font-size:
-      1rem;
+      0.9rem;
 
     line-height:
-      1.6;
+      1.5;
+  }
+
+
+  .issue-card__archive-actions {
+    width:
+      min(
+        100%,
+        142px
+      );
   }
 }
 
@@ -1559,8 +1635,7 @@
   .issue-card--compact,
   .issue-card__archive-inner,
   .issue-card__archive-toggle,
-  .issue-card__archive-link,
-  .issue-card__archive-chevron {
+  .issue-card__archive-link {
     transition:
       none;
   }

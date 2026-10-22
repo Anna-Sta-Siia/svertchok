@@ -4,29 +4,30 @@ import {
   useParams,
 } from 'react-router-dom'
 
+import AuthorCard from '../components/AuthorCard'
 import RelatedAuthors from '../components/RelatedAuthors'
-import IssuesList from '../components/IssuesList'
 
 import {
   getAuthorById,
   getAuthorsByIssueId,
-  getAuthorsByType,
   getContentItemsByAuthorId,
-  getIssueById,
   getIssuesByAuthorId,
 } from '../assets/data/selectors'
 
 import './AuthorPage.css'
 
-const typeLabels = {
-  poet: 'Поэзия',
-  prose: 'Проза',
-} as const
 
 export default function AuthorPage() {
-  const { authorId } = useParams<{
+  const {
+    authorId,
+  } = useParams<{
     authorId: string
   }>()
+
+
+  /* =========================
+     AUTHOR
+     ========================= */
 
   if (!authorId) {
     return (
@@ -37,8 +38,12 @@ export default function AuthorPage() {
     )
   }
 
+
   const author =
-    getAuthorById(authorId)
+    getAuthorById(
+      authorId,
+    )
+
 
   if (!author) {
     return (
@@ -49,41 +54,50 @@ export default function AuthorPage() {
     )
   }
 
+
+  /* =========================
+     AUTHOR CONTENT
+     ========================= */
+
   const publications =
     getContentItemsByAuthorId(
       author.id,
     )
 
+
   const authorIssues =
     getIssuesByAuthorId(
       author.id,
-      3,
     )
 
-  const primaryType =
-    author.types[0]
 
-  const sameTypeAuthors =
-    primaryType
-      ? getAuthorsByType(
-          primaryType,
-          author.id,
-        ).slice(0, 3)
-      : []
+  /* =========================
+     AUTHORS FROM SAME ISSUE
+     ========================= */
 
   const latestAuthorIssue =
     authorIssues[0]
+
 
   const sameIssueAuthors =
     latestAuthorIssue
       ? getAuthorsByIssueId(
           latestAuthorIssue.id,
           author.id,
-        ).slice(0, 3)
+        ).slice(
+          0,
+          3,
+        )
       : []
+
 
   return (
     <section className="author-page">
+
+      {/* =====================
+          BACK
+          ===================== */}
+
       <Link
         to="/authors"
         className="author-page__back"
@@ -91,128 +105,57 @@ export default function AuthorPage() {
         ← Все авторы
       </Link>
 
-      <div className="author-page__layout">
-        <aside className="author-page__sidebar">
-       <IssuesList
-  title="Номера с автором"
-  issues={authorIssues}
-  variant="sidebar"
-/>
-        </aside>
 
-        <main className="author-page__main">
-          <header className="author-page__header">
-            <p className="author-page__eyebrow">
-              Автор «Сверчка»
-            </p>
+      {/* =====================
+          SHOWCASE
+          ===================== */}
 
-            <h1 className="author-page__title">
-              {author.firstName}{' '}
-              {author.lastName}
-            </h1>
+      <div
+        className={`
+          author-page__showcase
+          ${
+            sameIssueAuthors.length === 0
+              ? 'author-page__showcase--single'
+              : ''
+          }
+        `}
+      >
 
-            <div className="author-page__types">
-              {author.types.map(
-                (type) => (
-                  <span
-                    key={type}
-                    className="author-page__type"
-                  >
-                    {typeLabels[type]}
-                  </span>
-                ),
-              )}
-            </div>
+        {/* ===================
+            RELATED AUTHORS
+            =================== */}
 
-            {author.shortBio && (
-              <p className="author-page__bio">
-                {author.shortBio}
-              </p>
-            )}
-          </header>
+        {latestAuthorIssue &&
+          sameIssueAuthors.length >
+            0 && (
+          <aside className="author-page__related">
+            <RelatedAuthors
+              title={`Также в номере ${latestAuthorIssue.monthLabel} ${latestAuthorIssue.year}`}
+              authors={
+                sameIssueAuthors
+              }
+            />
+          </aside>
+        )}
 
-          <section className="author-page__publications">
-            <h2 className="author-page__section-title">
-              Публикации в «Сверчке»
-            </h2>
 
-            {publications.length > 0 ? (
-              <div className="author-page__publication-list">
-                {publications.map(
-                  (publication) => {
-                    const issue =
-                      getIssueById(
-                        publication.issueId,
-                      )
+        {/* ===================
+            FEATURED AUTHOR
+            =================== */}
 
-                    return (
-                      <article
-                        key={publication.id}
-                        className="author-page__publication"
-                      >
-                        <div className="author-page__publication-content">
-                          <h3 className="author-page__publication-title">
-                            {publication.title}
-                          </h3>
-
-                          {publication.section && (
-                            <p className="author-page__publication-section">
-                              {
-                                publication.section
-                              }
-                            </p>
-                          )}
-                        </div>
-
-                        {issue && (
-                          <Link
-                            to={`/issues/${issue.slug}`}
-                            className="author-page__publication-issue"
-                          >
-                            {
-                              issue.monthLabel
-                            }{' '}
-                            {issue.year} →
-                          </Link>
-                        )}
-                      </article>
-                    )
-                  },
-                )}
-              </div>
-            ) : (
-              <p className="author-page__empty">
-                Публикации пока не
-                добавлены.
-              </p>
-            )}
-          </section>
-
-          <div className="author-page__related">
-            {sameTypeAuthors.length > 0 && (
-              <RelatedAuthors
-                title={
-                  primaryType === 'poet'
-                    ? 'Другие авторы поэзии'
-                    : 'Другие авторы прозы'
-                }
-                authors={
-                  sameTypeAuthors
-                }
-              />
-            )}
-
-            {latestAuthorIssue &&
-              sameIssueAuthors.length >
-                0 && (
-                <RelatedAuthors
-                  title={`Также в номере ${latestAuthorIssue.monthLabel} ${latestAuthorIssue.year}`}
-                  authors={
-                    sameIssueAuthors
-                  }
-                />
-              )}
-          </div>
+        <main className="author-page__featured">
+          <AuthorCard
+            author={
+              author
+            }
+            authorIssues={
+              authorIssues
+            }
+            publications={
+              publications
+            }
+            variant="featured"
+          />
         </main>
       </div>
     </section>

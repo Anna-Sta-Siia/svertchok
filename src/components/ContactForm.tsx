@@ -1,9 +1,10 @@
 import {
   useState,
-  type FormEvent,
+  type SyntheticEvent,
 } from 'react'
 
 import Button from './ui/Button'
+import CustomSelect from './filters/CustomSelect'
 
 import './ContactForm.css'
 
@@ -22,6 +23,34 @@ const initialFormData: ContactFormData = {
   message: '',
   allowFaqPublication: false,
 }
+
+
+const subjectOptions = [
+  {
+    value: 'general',
+    label: 'Общий вопрос',
+  },
+  {
+    value: 'issue',
+    label: 'Вопрос об альманахе',
+  },
+  {
+    value: 'authors',
+    label: 'Для авторов',
+  },
+  {
+    value: 'subscription',
+    label: 'Подписка',
+  },
+  {
+    value: 'collaboration',
+    label: 'Сотрудничество',
+  },
+  {
+    value: 'other',
+    label: 'Другое',
+  },
+]
 
 export default function ContactForm() {
   const [
@@ -47,7 +76,7 @@ export default function ContactForm() {
   ] = useState('')
 
   async function handleSubmit(
-    event: FormEvent<HTMLFormElement>,
+    event: SyntheticEvent<HTMLFormElement>,
   ) {
     event.preventDefault()
 
@@ -209,49 +238,28 @@ export default function ContactForm() {
           SUBJECT
           ===================== */}
 
-      <div className="contact-form__field">
-        <label htmlFor="contact-subject">
-          Тема
-        </label>
-
-        <select
-          id="contact-subject"
-          value={formData.subject}
-          onChange={(event) =>
-            setFormData(
-              (current) => ({
-                ...current,
-                subject:
-                  event.target.value,
-              }),
-            )
-          }
-        >
-          <option value="general">
-            Общий вопрос
-          </option>
-
-          <option value="issue">
-            Вопрос об альманахе
-          </option>
-
-          <option value="authors">
-            Для авторов
-          </option>
-
-          <option value="subscription">
-            Подписка
-          </option>
-
-          <option value="collaboration">
-            Сотрудничество
-          </option>
-
-          <option value="other">
-            Другое
-          </option>
-        </select>
-      </div>
+      <CustomSelect
+        id="contact-subject"
+        label="Тема"
+        value={
+          formData.subject
+        }
+        options={
+          subjectOptions
+        }
+        className="contact-form__custom-select-field"
+        onChange={(
+          value,
+        ) =>
+          setFormData(
+            (current) => ({
+              ...current,
+              subject:
+                value,
+            }),
+          )
+        }
+      />
 
       {/* =====================
           MESSAGE

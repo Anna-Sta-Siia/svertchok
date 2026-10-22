@@ -12,6 +12,7 @@ import type {
 
 import './IssueCard.css'
 
+
 type IssueCardProps = {
   issue: Issue
 
@@ -23,6 +24,88 @@ type IssueCardProps = {
   longDescription?: string
 }
 
+
+type ArchiveNumberProps = {
+  monthNumber: string
+  year: number
+  issueNumber: string
+}
+
+
+/* =========================
+   ARCHIVE NUMBER
+
+   Important:
+   ce composant reste EN DEHORS
+   de IssueCard.
+
+   Ainsi React ne le recrée pas
+   à chaque render.
+   ========================= */
+
+function ArchiveNumber({
+  monthNumber,
+  year,
+  issueNumber,
+}: ArchiveNumberProps) {
+  return (
+    <div
+      className="issue-card__archive-number"
+      aria-label={
+        issueNumber
+      }
+    >
+      <span className="issue-card__archive-number-symbol">
+        №
+      </span>
+
+      {monthNumber
+        .split('')
+        .map(
+          (
+            digit,
+            index,
+          ) => (
+            <span
+              key={`month-${index}`}
+              className="issue-card__archive-number-digit"
+            >
+              {digit}
+            </span>
+          ),
+        )}
+
+      <span
+        className="issue-card__archive-separator"
+        aria-hidden="true"
+      >
+        ·
+      </span>
+
+      {String(year)
+        .split('')
+        .map(
+          (
+            digit,
+            index,
+          ) => (
+            <span
+              key={`year-${index}`}
+              className="issue-card__archive-year-digit"
+            >
+              {digit}
+            </span>
+          ),
+        )}
+    </div>
+  )
+}
+
+
+/* =========================
+   ISSUE CARD
+   ========================= */
+
 export default function IssueCard({
   issue,
   variant = 'featured',
@@ -33,28 +116,26 @@ export default function IssueCard({
     setIsArchiveOpen,
   ] = useState(false)
 
+
   const issueUrl =
     `/issues/${issue.slug}`
 
-  const issueNumber =
-    `№${String(
+
+  const monthNumber =
+    String(
       issue.month,
     ).padStart(
       2,
       '0',
-    )} · ${issue.year}`
+    )
+
+
+  const issueNumber =
+    `№${monthNumber} · ${issue.year}`
 
 
   /* =========================
      COMPACT
-
-     RecentIssues
-     RelatedIssues
-
-     Date
-     Cover | shortDescription
-
-     Toute la carte est cliquable.
      ========================= */
 
   if (
@@ -98,16 +179,6 @@ export default function IssueCard({
 
   /* =========================
      ARCHIVE
-
-     Desktop :
-     front / back.
-
-     Mobile :
-     même structure,
-     mais le CSS la transformera
-     en accordéon.
-
-     Toujours shortDescription.
      ========================= */
 
   if (
@@ -128,17 +199,22 @@ export default function IssueCard({
       >
         <div className="issue-card__archive-inner">
 
-          {/* FRONT */}
+          {/* =================
+              FRONT
+              ================= */}
 
-          <div
-            className="
-              issue-card__archive-face
-              issue-card__archive-front
-            "
-          >
-            <p className="issue-card__date">
-              {issueNumber}
-            </p>
+          <div className="issue-card__archive-face issue-card__archive-front">
+            <ArchiveNumber
+              monthNumber={
+                monthNumber
+              }
+              year={
+                issue.year
+              }
+              issueNumber={
+                issueNumber
+              }
+            />
 
             <div className="issue-card__archive-cover">
               <img
@@ -163,39 +239,28 @@ export default function IssueCard({
                   )
                 }
               >
-                <span>
-                  Подробнее
-                </span>
-
-                <span
-                  className="issue-card__archive-chevron"
-                  aria-hidden="true"
-                >
-                  ⌄
-                </span>
+                Подробнее
               </button>
-
-              <Link
-                to={issueUrl}
-                className="issue-card__archive-link"
-              >
-                Перейти к номеру →
-              </Link>
             </div>
           </div>
 
 
-          {/* BACK */}
+          {/* =================
+              BACK
+              ================= */}
 
-          <div
-            className="
-              issue-card__archive-face
-              issue-card__archive-back
-            "
-          >
-            <p className="issue-card__date">
-              {issueNumber}
-            </p>
+          <div className="issue-card__archive-face issue-card__archive-back">
+            <ArchiveNumber
+              monthNumber={
+                monthNumber
+              }
+              year={
+                issue.year
+              }
+              issueNumber={
+                issueNumber
+              }
+            />
 
             <p className="issue-card__archive-description">
               {
@@ -216,14 +281,14 @@ export default function IssueCard({
                   )
                 }
               >
-                ← Вернуться
+                Вернуться
               </button>
 
               <Link
                 to={issueUrl}
                 className="issue-card__archive-link"
               >
-                Перейти к номеру →
+                Перейти к номеру
               </Link>
             </div>
           </div>
@@ -235,31 +300,15 @@ export default function IssueCard({
 
   /* =========================
      FEATURED
-
-     HomePage / IssuePage
-
-     La carte ne contient
-     aucun titre de page.
-
-     HomePage décide elle-même
-     d'afficher par exemple :
-     "А вот и мой новый номер".
-
-     Ici :
-     Cover | longDescription
      ========================= */
 
   const description =
     longDescription ??
     issue.shortDescription
 
+
   return (
-    <article
-      className="
-        issue-card
-        issue-card--featured
-      "
-    >
+    <article className="issue-card issue-card--featured">
       <Link
         to={issueUrl}
         className="issue-card__cover-link"

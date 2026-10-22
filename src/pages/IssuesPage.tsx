@@ -5,13 +5,17 @@ import {
 
 import IssueCard from '../components/IssueCard'
 import CustomSelect from '../components/filters/CustomSelect'
+import FilterPanel from '../components/filters/FilterPanel'
 
 import {
   publishedIssues,
 } from '../assets/data/issues'
 
-import './IssuesPage.css'
+import type {
+  IssueTheme,
+} from '../assets/data/issues'
 
+import './IssuesPage.css'
 
 type YearFilter =
   | 'all'
@@ -22,10 +26,13 @@ type AccessFilter =
   | 'free'
   | 'paid'
 
+type ThemeFilter =
+  | 'all'
+  | IssueTheme
+
 type SortOrder =
   | 'newest'
   | 'oldest'
-
 
 export default function IssuesPage() {
   const [
@@ -43,16 +50,18 @@ export default function IssuesPage() {
   )
 
   const [
+    selectedTheme,
+    setSelectedTheme,
+  ] = useState<ThemeFilter>(
+    'all',
+  )
+
+  const [
     sortOrder,
     setSortOrder,
   ] = useState<SortOrder>(
     'newest',
   )
-
-
-  /* =========================
-     YEARS
-     ========================= */
 
   const years =
     useMemo(
@@ -71,28 +80,40 @@ export default function IssuesPage() {
       [],
     )
 
-
-  /* =========================
-     SELECT OPTIONS
-     ========================= */
+  const themes =
+    useMemo(
+      () =>
+        Array.from(
+          new Set(
+            publishedIssues.map(
+              (issue) =>
+                issue.theme,
+            ),
+          ),
+        ).sort(
+          (a, b) =>
+            a.localeCompare(
+              b,
+              'ru',
+            ),
+        ),
+      [],
+    )
 
   const yearOptions = [
     {
       value: 'all',
       label: 'Все годы',
     },
-
     ...years.map(
       (year) => ({
         value:
           String(year),
-
         label:
           String(year),
       }),
     ),
   ]
-
 
   const accessOptions = [
     {
@@ -109,6 +130,20 @@ export default function IssuesPage() {
     },
   ]
 
+  const themeOptions = [
+    {
+      value: 'all',
+      label: 'Все темы',
+    },
+    ...themes.map(
+      (theme) => ({
+        value:
+          theme,
+        label:
+          theme,
+      }),
+    ),
+  ]
 
   const sortOptions = [
     {
@@ -120,11 +155,6 @@ export default function IssuesPage() {
       label: 'Сначала старые',
     },
   ]
-
-
-  /* =========================
-     FILTERED ISSUES
-     ========================= */
 
   const filteredIssues =
     useMemo(() => {
@@ -143,9 +173,16 @@ export default function IssuesPage() {
               issue.accessType ===
                 selectedAccess
 
+            const matchesTheme =
+              selectedTheme ===
+                'all' ||
+              issue.theme ===
+                selectedTheme
+
             return (
               matchesYear &&
-              matchesAccess
+              matchesAccess &&
+              matchesTheme
             )
           },
         )
@@ -179,45 +216,29 @@ export default function IssuesPage() {
     }, [
       selectedYear,
       selectedAccess,
+      selectedTheme,
       sortOrder,
     ])
-
-
-  /* =========================
-     RESET
-     ========================= */
 
   const hasActiveFilters =
     selectedYear !==
       'all' ||
     selectedAccess !==
       'all' ||
+    selectedTheme !==
+      'all' ||
     sortOrder !==
       'newest'
 
-
   function resetFilters() {
-    setSelectedYear(
-      'all',
-    )
-
-    setSelectedAccess(
-      'all',
-    )
-
-    setSortOrder(
-      'newest',
-    )
+    setSelectedYear('all')
+    setSelectedAccess('all')
+    setSelectedTheme('all')
+    setSortOrder('newest')
   }
-
 
   return (
     <section className="issues-page">
-
-      {/* =====================
-          INTRO
-          ===================== */}
-
       <header className="issues-page__intro">
         <p className="issues-page__eyebrow">
           Архив «Сверчка»
@@ -233,18 +254,9 @@ export default function IssuesPage() {
         </p>
       </header>
 
-
-      {/* =====================
-          FILTERS
-          ===================== */}
-
-      <section
-        className="issues-page__filters"
-        aria-label="Фильтры номеров"
+      <FilterPanel
+        ariaLabel="Фильтры номеров"
       >
-
-        {/* YEAR */}
-
         <CustomSelect
           id="issues-year"
           label="Год"
@@ -261,7 +273,7 @@ export default function IssuesPage() {
           }
           onChange={(
             value,
-          ) => {
+          ) =>
             setSelectedYear(
               value ===
                 'all'
@@ -270,11 +282,8 @@ export default function IssuesPage() {
                     value,
                   ),
             )
-          }}
+          }
         />
-
-
-        {/* ACCESS */}
 
         <CustomSelect
           id="issues-access"
@@ -287,16 +296,32 @@ export default function IssuesPage() {
           }
           onChange={(
             value,
-          ) => {
+          ) =>
             setSelectedAccess(
               value as
                 AccessFilter,
             )
-          }}
+          }
         />
 
-
-        {/* SORT */}
+        <CustomSelect
+          id="issues-theme"
+          label="Тема"
+          value={
+            selectedTheme
+          }
+          options={
+            themeOptions
+          }
+          onChange={(
+            value,
+          ) =>
+            setSelectedTheme(
+              value as
+                ThemeFilter,
+            )
+          }
+        />
 
         <CustomSelect
           id="issues-sort"
@@ -309,16 +334,13 @@ export default function IssuesPage() {
           }
           onChange={(
             value,
-          ) => {
+          ) =>
             setSortOrder(
               value as
                 SortOrder,
             )
-          }}
+          }
         />
-
-
-        {/* RESET */}
 
         {hasActiveFilters && (
           <button
@@ -328,20 +350,14 @@ export default function IssuesPage() {
               resetFilters
             }
           >
-            Сбросить
+            Сбросить фильтры
           </button>
         )}
-      </section>
-
-
-      {/* =====================
-          RESULTS INFO
-          ===================== */}
+      </FilterPanel>
 
       <div className="issues-page__results-heading">
         <p className="issues-page__count">
           Найдено:{' '}
-
           <strong>
             {
               filteredIssues.length
@@ -349,11 +365,6 @@ export default function IssuesPage() {
           </strong>
         </p>
       </div>
-
-
-      {/* =====================
-          ARCHIVE
-          ===================== */}
 
       {filteredIssues.length >
       0 ? (
