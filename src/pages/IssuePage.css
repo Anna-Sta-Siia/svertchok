@@ -26,6 +26,31 @@
 
 
 /* =========================
+   DESKTOP ALIGNMENT
+
+   RecentIssues possède un titre
+   au-dessus des compact cards.
+
+   Sur IssuePage, le featured
+   n'a pas de titre équivalent.
+   Ce décalage aligne donc
+   le haut du featured avec
+   la première compact card.
+   ========================= */
+
+@media (min-width: 881px) {
+  .issue-page__current {
+    padding-top:
+      clamp(
+        54px,
+        4vw,
+        66px
+      );
+  }
+}
+
+
+/* =========================
    ACTIONS
    ========================= */
 
