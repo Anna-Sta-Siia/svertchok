@@ -1,0 +1,510 @@
+/* =========================
+   ISSUES PAGE
+   ========================= */
+
+.issues-page {
+  width: 100%;
+
+  padding:
+    56px
+    0
+    80px;
+}
+
+
+/* =========================
+   INTRO
+   ========================= */
+
+.issues-page__intro {
+  width:
+    min(
+      760px,
+      calc(
+        100% - 40px
+      )
+    );
+
+  margin:
+    0
+    auto
+    52px;
+
+  text-align:
+    center;
+}
+
+.issues-page__eyebrow {
+  margin:
+    0
+    0
+    10px;
+
+  color:
+    var(--color-logo-green);
+
+  font-family:
+    var(--font-accent);
+
+  font-size:
+    clamp(
+      1.35rem,
+      2vw,
+      1.75rem
+    );
+
+  line-height:
+    1.2;
+}
+
+
+.issues-page__description {
+  max-width:
+    640px;
+
+  margin:
+    0
+    auto;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    clamp(
+      1.05rem,
+      1.35vw,
+      1.2rem
+    );
+
+  line-height:
+    1.7;
+}
+
+
+/* =========================
+   FILTERS
+   ========================= */
+
+.issues-page__filters {
+  display:
+    flex;
+
+  align-items:
+    end;
+
+  justify-content:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    18px;
+
+  width:
+    min(
+      1100px,
+      calc(
+        100% - 40px
+      )
+    );
+
+  margin:
+    0
+    auto
+    34px;
+
+  padding:
+    20px
+    22px;
+
+  border:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 16%,
+      transparent
+    );
+
+  border-radius:
+    var(--radius-card);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 32%,
+      transparent
+    );
+
+  box-shadow:
+    0
+    8px
+    24px
+    rgb(
+      55
+      45
+      20
+      /
+      4%
+    );
+}
+
+.issues-page__filter {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    7px;
+
+  min-width:
+    180px;
+}
+
+.issues-page__filter-label {
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    0.88rem;
+
+  font-weight:
+    600;
+}
+
+.issues-page__select {
+  min-height:
+    44px;
+
+  padding:
+    9px
+    38px
+    9px
+    14px;
+
+  border:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 24%,
+      transparent
+    );
+
+  border-radius:
+    var(--radius-button);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 72%,
+      transparent
+    );
+
+  color:
+    var(--color-text);
+
+  cursor:
+    pointer;
+}
+
+.issues-page__select:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset:
+    3px;
+}
+
+
+/* =========================
+   RESET
+   ========================= */
+
+.issues-page__reset {
+  min-height:
+    44px;
+
+  padding:
+    9px
+    20px;
+
+  border:
+    1px
+    solid
+    var(--color-accent);
+
+  border-radius:
+    var(--radius-button);
+
+  background:
+    transparent;
+
+  color:
+    var(--color-accent);
+
+  transition:
+    background
+      var(--transition-default),
+    color
+      var(--transition-default);
+}
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .issues-page__reset:hover {
+    background:
+      var(--color-accent);
+
+    color:
+      var(--color-surface);
+  }
+}
+
+.issues-page__reset:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset:
+    3px;
+}
+
+
+/* =========================
+   RESULTS
+   ========================= */
+
+.issues-page__results-heading {
+  width:
+    min(
+      1180px,
+      calc(
+        100% - 40px
+      )
+    );
+
+  margin:
+    0
+    auto
+    20px;
+}
+
+.issues-page__count {
+  margin:
+    0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    0.95rem;
+}
+
+
+/* =========================
+   GRID
+   ========================= */
+
+.issues-page__grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    clamp(
+      24px,
+      3vw,
+      38px
+    );
+
+  width:
+    min(
+      1180px,
+      calc(
+        100% - 40px
+      )
+    );
+
+  margin:
+    0
+    auto;
+}
+
+
+/* =========================
+   EMPTY
+   ========================= */
+
+.issues-page__empty {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  gap:
+    20px;
+
+  width:
+    min(
+      600px,
+      calc(
+        100% - 40px
+      )
+    );
+
+  margin:
+    60px
+    auto;
+
+  text-align:
+    center;
+}
+
+.issues-page__empty p {
+  margin:
+    0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    1.1rem;
+
+  line-height:
+    1.6;
+}
+
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 1050px) {
+  .issues-page__grid {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+}
+
+
+/* =========================
+   SMALL TABLET
+   ========================= */
+
+@media (max-width: 760px) {
+  .issues-page {
+    padding:
+      42px
+      0
+      64px;
+  }
+
+  .issues-page__intro {
+    margin-bottom:
+      38px;
+  }
+
+  .issues-page__filters {
+    align-items:
+      stretch;
+
+    justify-content:
+      flex-start;
+  }
+
+  .issues-page__filter {
+    flex:
+      1
+      1
+      200px;
+  }
+
+  .issues-page__grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 520px) {
+  .issues-page__intro,
+  .issues-page__filters,
+  .issues-page__results-heading,
+  .issues-page__grid {
+    width:
+      min(
+        100%,
+        calc(
+          100% - 28px
+        )
+      );
+  }
+
+  .issues-page__filters {
+    flex-direction:
+      column;
+
+    padding:
+      18px;
+  }
+
+  .issues-page__filter {
+    width:
+      100%;
+
+    min-width:
+      0;
+  }
+
+  .issues-page__select,
+  .issues-page__reset {
+    width:
+      100%;
+  }
+
+  .issues-page__grid {
+    grid-template-columns:
+      1fr;
+
+    max-width:
+      360px;
+  }
+}

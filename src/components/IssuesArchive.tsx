@@ -191,8 +191,6 @@ export default function IssuesArchive({
   return (
     <aside className="issues-archive">
       <div className="issues-archive__heading">
-        <h2>Наши номера</h2>
-
         <p>
           Выбирай номер и отправляйся
           читать
