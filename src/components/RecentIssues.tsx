@@ -13,7 +13,7 @@ type RecentIssuesProps = {
 
 export default function RecentIssues({
   issues,
-  title = 'Наши последние номера',
+  title = 'Наши  номера',
 }: RecentIssuesProps) {
   if (issues.length === 0) {
     return null

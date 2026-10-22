@@ -3,11 +3,6 @@
    ========================= */
 
 .issue-card {
-  /*
-   * Très transparent :
-   * les éléments saisonniers
-   * restent visibles.
-   */
   --issue-card-surface:
     color-mix(
       in srgb,
@@ -20,17 +15,6 @@
       in srgb,
       var(--color-secondary) 16%,
       transparent
-    );
-
-  /*
-   * Cover et contenu du featured
-   * ont exactement la même hauteur.
-   */
-  --featured-height:
-    clamp(
-      400px,
-      29vw,
-      510px
     );
 
   color:
@@ -78,33 +62,43 @@
 }
 
 
-/* =========================
-   FEATURED
-   ========================= */
+/* ==================================================
+   FEATURED — DESKTOP
+
+   La cover reste dominante,
+   mais légèrement moins large
+   que le texte.
+
+   Cover ≈ 48 %
+   Texte ≈ 52 %
+
+   Les deux zones ont
+   exactement la même hauteur.
+   ================================================== */
 
 .issue-card--featured {
   display: grid;
 
   grid-template-columns:
-    minmax(250px, 39%)
-    minmax(0, 1fr);
+    minmax(0, 0.96fr)
+    minmax(0, 1.04fr);
 
   gap:
     clamp(
-      32px,
-      4vw,
-      56px
+      24px,
+      3vw,
+      42px
     );
 
-  align-items: start;
+  align-items: stretch;
 
   width: 100%;
 
   padding:
     clamp(
-      20px,
-      2.3vw,
-      28px
+      18px,
+      2.2vw,
+      26px
     );
 
   border:
@@ -129,38 +123,64 @@
 /* =========================
    FEATURED COVER
 
-   Aucun cadre.
-   Aucun fond.
-   Juste la couverture.
+   La cover définit
+   la hauteur de la ligne.
    ========================= */
 
 .issue-card--featured
 .issue-card__cover-link {
-  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
 
-  justify-self: start;
+  aspect-ratio:
+    210 / 297;
 
-  width: auto;
-  max-width: 100%;
+  margin: 0;
+  padding: 0;
 
-  height:
-    var(--featured-height);
+  overflow: hidden;
 
-  background: transparent;
+  border: 0;
+
+  border-radius:
+    var(--radius-cover);
+
+  background:
+    transparent;
+
+  box-shadow:
+    none;
+}
+
+.issue-card--featured
+.issue-card__cover-link::before,
+.issue-card--featured
+.issue-card__cover-link::after {
+  display: none;
+
+  content: none;
 }
 
 .issue-card--featured
 .issue-card__cover {
-  width: auto;
-  max-width: 100%;
+  display: block;
 
+  width: 100%;
   height: 100%;
-  max-height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
 
   object-fit: contain;
 
   border-radius:
-    var(--radius-cover);
+    inherit;
+
+  background:
+    transparent;
 
   box-shadow:
     0
@@ -173,7 +193,9 @@
 /* =========================
    FEATURED CONTENT
 
-   Même hauteur que la cover.
+   Grid l'étire automatiquement
+   à la même hauteur
+   que la cover.
    ========================= */
 
 .issue-card--featured
@@ -186,35 +208,51 @@
   gap: 16px;
 
   width: 100%;
+
   min-width: 0;
-
-  height:
-    var(--featured-height);
-
   min-height: 0;
 
+  margin: 0;
+
   padding:
-    3px
+    2px
     0;
+
+  overflow: hidden;
 
   text-align: left;
 }
 
 
-/* DATE */
+/* =========================
+   FEATURED DATE
+   ========================= */
 
 .issue-card--featured
 .issue-card__date {
-  flex-shrink: 0;
+  flex:
+    0
+    0
+    auto;
 
   width: 100%;
 
+  margin: 0;
+
+  color:
+    var(--color-accent);
+
   font-size:
     clamp(
-      1rem,
-      1.15vw,
-      1.15rem
+      1.08rem,
+      1.18vw,
+      1.28rem
     );
+
+  font-weight: 600;
+
+  letter-spacing:
+    0.04em;
 
   text-align: left;
 }
@@ -223,43 +261,67 @@
 /* =========================
    FEATURED DESCRIPTION
 
-   Scroll uniquement si
-   le texte dépasse.
+   Plus présent sur desktop.
+
+   Si le texte dépasse :
+   scroll uniquement ici.
    ========================= */
 
 .issue-card--featured
 .issue-card__description {
-  flex: 1;
+  flex:
+    1
+    1
+    auto;
 
   width: 100%;
+
+  min-width: 0;
   min-height: 0;
 
-  overflow-y: auto;
-  overflow-x: hidden;
+  margin: 0;
 
-  padding-right: 10px;
+  padding-right:
+    10px;
+
+  overflow-y:
+    auto;
+
+  overflow-x:
+    hidden;
 
   color:
     var(--color-text-soft);
 
-  font-size:
+ font-size:
     clamp(
-      1rem,
-      1.08vw,
-      1.12rem
+      1.2rem,
+      1.34vw,
+      1.46rem
     );
+line-height: 1.62;
 
-  line-height: 1.68;
+  white-space: pre-line;
+  text-align:
+    left;
 
-  text-align: left;
+  word-break:
+    normal;
 
-  word-break: normal;
-  overflow-wrap: normal;
-  hyphens: none;
+  overflow-wrap:
+    normal;
 
-  overscroll-behavior: contain;
+  hyphens:
+    none;
 
-  scrollbar-width: thin;
+  overscroll-behavior:
+    contain;
+
+  scrollbar-gutter:
+    stable;
+
+  scrollbar-width:
+    thin;
 
   scrollbar-color:
     color-mix(
@@ -280,12 +342,14 @@
 
 .issue-card--featured
 .issue-card__description::-webkit-scrollbar-track {
-  background: transparent;
+  background:
+    transparent;
 }
 
 .issue-card--featured
 .issue-card__description::-webkit-scrollbar-thumb {
-  border-radius: 999px;
+  border-radius:
+    999px;
 
   background:
     color-mix(
@@ -306,29 +370,38 @@
 }
 
 
-/* =========================
+/* ==================================================
    COMPACT
-   ========================= */
+
+   Structure :
+
+          numéro
+
+   cover | shortDescription
+   ================================================== */
 
 .issue-card--compact {
   display: flex;
 
-  flex-direction: column;
+  flex-direction:
+    column;
 
-  gap: 10px;
+  gap:
+    10px;
 
   width:
-    min(
-      100%,
-      280px
-    );
+    100%;
 
-  min-width: 0;
+  max-width:
+    340px;
+
+  min-width:
+    0;
 
   padding:
-    13px
+    12px
     14px
-    15px;
+    14px;
 
   border:
     1px
@@ -344,7 +417,8 @@
   color:
     var(--color-text);
 
-  text-decoration: none;
+  text-decoration:
+    none;
 
   box-shadow:
     0
@@ -361,23 +435,36 @@
       var(--transition-default);
 }
 
-.issue-card--compact:hover {
-  transform:
-    translateY(-2px);
 
-  border-color:
-    color-mix(
-      in srgb,
-      var(--color-secondary) 30%,
-      transparent
-    );
+/* Hover uniquement
+   pour les appareils
+   qui possèdent une souris.
+*/
 
-  box-shadow:
-    0
-    11px
-    24px
-    rgb(55 45 20 / 7%);
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .issue-card--compact:hover {
+    transform:
+      translateY(-2px);
+
+    border-color:
+      color-mix(
+        in srgb,
+        var(--color-secondary) 30%,
+        transparent
+      );
+
+    box-shadow:
+      0
+      11px
+      24px
+      rgb(55 45 20 / 7%);
+  }
 }
+
 
 .issue-card--compact:focus-visible {
   outline:
@@ -385,7 +472,8 @@
     solid
     var(--color-accent);
 
-  outline-offset: 4px;
+  outline-offset:
+    4px;
 }
 
 
@@ -395,12 +483,55 @@
 
 .issue-card--compact
 .issue-card__date {
-  width: 100%;
+  width:
+    100%;
 
-  font-size: 0.88rem;
-  font-weight: 600;
+  margin:
+    0;
 
-  text-align: center;
+  color:
+    var(--color-accent);
+
+  font-size:
+    0.98rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.04em;
+
+  text-align:
+    center;
+}
+
+
+/* =========================
+   COMPACT BODY
+
+   Cover à gauche.
+   Description à droite.
+   ========================= */
+
+.issue-card__compact-body {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(90px, 40%)
+    minmax(0, 1fr);
+
+  gap:
+    14px;
+
+  align-items:
+    start;
+
+  width:
+    100%;
+
+  min-width:
+    0;
 }
 
 
@@ -409,205 +540,370 @@
    ========================= */
 
 .issue-card__compact-cover {
-  width: 100%;
+  width:
+    100%;
 
-  margin: 0;
+  min-width:
+    0;
+
+  margin:
+    0;
+
+  overflow:
+    visible;
 }
 
 .issue-card--compact
 .issue-card__cover {
-  display: block;
+  display:
+    block;
 
-  width: 100%;
-  height: auto;
+  width:
+    100%;
 
-  object-fit: contain;
+  height:
+    auto;
+
+  margin:
+    0;
+
+  object-fit:
+    contain;
 
   border-radius:
     var(--radius-cover);
 
   box-shadow:
     0
-    9px
-    20px
-    rgb(55 45 20 / 12%);
+    8px
+    18px
+    rgb(55 45 20 / 11%);
 }
 
 
 /* =========================
    COMPACT DESCRIPTION
 
-   Même largeur que la cover.
+   Un peu plus grand
+   pour améliorer la lecture.
    ========================= */
 
 .issue-card--compact
 .issue-card__description {
-  display: -webkit-box;
+  display:
+    -webkit-box;
 
-  width: 100%;
+  width:
+    100%;
 
-  overflow: hidden;
+  min-width:
+    0;
 
-  margin: 0;
+  margin:
+    0;
+
+  overflow:
+    hidden;
 
   color:
     var(--color-text-soft);
 
-  font-size: 0.97rem;
+  font-size:
+    clamp(
+      1rem,
+      1.02vw,
+      1.08rem
+    );
 
-  line-height: 1.5;
+  line-height:
+    1.5;
 
-  text-align: left;
+  text-align:
+    left;
 
-  word-break: normal;
-  overflow-wrap: normal;
-  hyphens: none;
+  word-break:
+    normal;
 
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  overflow-wrap:
+    normal;
 
-  line-clamp: 3;
+  hyphens:
+    none;
+
+  -webkit-box-orient:
+    vertical;
+
+  -webkit-line-clamp:
+    6;
+
+  line-clamp:
+    6;
 }
 
 
-/* =========================
-   1180 → 901
-   ========================= */
+/* ==================================================
+   741px → 880px
+
+   IssueShowcase a déjà placé
+   les compact cards dessous.
+
+   Featured reste horizontal,
+   mais devient plus petit
+   et centré.
+   ================================================== */
 
 @media (
-  min-width: 901px
+  min-width: 741px
 ) and (
-  max-width: 1180px
+  max-width: 880px
 ) {
-  .issue-card {
-    --featured-height:
-      clamp(
-        390px,
-        41vw,
-        470px
-      );
-  }
-
   .issue-card--featured {
     grid-template-columns:
-      minmax(230px, 37%)
-      minmax(0, 1fr);
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    width:
+      min(
+        74%,
+        760px
+      );
+
+    margin-inline:
+      auto;
 
     gap:
-      clamp(
-        28px,
-        4vw,
-        44px
-      );
-  }
-}
+      20px;
 
-
-/* =========================
-   900 → 769
-   ========================= */
-
-@media (
-  min-width: 769px
-) and (
-  max-width: 900px
-) {
-  .issue-card {
-    --featured-height:
-      390px;
+    padding:
+      16px;
   }
 
-  .issue-card--featured {
-    grid-template-columns:
-      minmax(210px, 290px)
-      minmax(0, 1fr);
 
-    gap: 26px;
-
-    padding: 20px;
+  .issue-card--featured
+  .issue-card__date {
+    font-size:
+      1rem;
   }
+
 
   .issue-card--featured
   .issue-card__description {
-    font-size: 0.98rem;
+    padding-right:
+      8px;
 
-    line-height: 1.6;
+    font-size:
+      clamp(
+        1rem,
+        1.7vw,
+        1.12rem
+      );
+
+    line-height:
+      1.58;
   }
 }
 
 
-/* =========================
-   ≤ 768
+/* ==================================================
+   ≤ 740px
 
-   Featured vertical :
-   plus de hauteur imposée,
-   plus de scroll.
-   ========================= */
+   Featured passe en colonne.
 
-@media (max-width: 768px) {
+   Cover
+   ↓
+   longDescription
+
+   Même largeur.
+
+   Plus de scroll interne :
+   le texte reprend sa hauteur
+   naturelle.
+   ================================================== */
+
+@media (max-width: 740px) {
   .issue-card--featured {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
 
-    gap: 26px;
+    width:
+      min(
+        82%,
+        460px
+      );
 
-    padding: 18px;
+    margin-inline:
+      auto;
+
+    gap:
+      22px;
+
+    padding:
+      16px;
   }
+
+
+  /* COVER */
 
   .issue-card--featured
   .issue-card__cover-link {
-    justify-self: center;
-
     width:
-      min(
-        100%,
-        420px
-      );
+      100%;
 
-    height: auto;
+    aspect-ratio:
+      auto;
 
     margin:
-      0
-      auto;
+      0;
   }
+
 
   .issue-card--featured
   .issue-card__cover {
-    width: 100%;
-    height: auto;
+    width:
+      100%;
+
+    height:
+      auto;
   }
+
+
+  /* CONTENT */
 
   .issue-card--featured
   .issue-card__content {
-    height: auto;
+    width:
+      100%;
 
-    padding: 0;
+    overflow:
+      visible;
+
+    padding:
+      0;
   }
+
+
+  .issue-card--featured
+  .issue-card__date {
+    font-size:
+      1.05rem;
+  }
+
 
   .issue-card--featured
   .issue-card__description {
-    overflow: visible;
+    width:
+      100%;
 
-    padding-right: 0;
+    overflow:
+      visible;
+
+    padding-right:
+      0;
+
+    scrollbar-gutter:
+      auto;
+
+    font-size:
+      1.05rem;
+
+    line-height:
+      1.65;
   }
 }
 
 
-/* =========================
-   ≤ 550
-   ========================= */
+/* ==================================================
+   SMALL MOBILE
+   ================================================== */
 
-@media (max-width: 550px) {
+@media (max-width: 480px) {
   .issue-card--featured {
-    gap: 22px;
-
-    padding: 15px;
-  }
-
-  .issue-card--compact {
     width:
       min(
-        100%,
-        280px
+        92%,
+        400px
       );
+
+    gap:
+      20px;
+
+    padding:
+      14px;
+  }
+
+
+  .issue-card--featured
+  .issue-card__description {
+    font-size:
+      1rem;
+
+    line-height:
+      1.65;
+  }
+
+
+  .issue-card--compact {
+    max-width:
+      340px;
+  }
+
+
+  .issue-card__compact-body {
+    grid-template-columns:
+      minmax(85px, 36%)
+      minmax(0, 1fr);
+
+    gap:
+      12px;
+  }
+
+
+  .issue-card--compact
+  .issue-card__date {
+    font-size:
+      0.94rem;
+  }
+
+
+  .issue-card--compact
+  .issue-card__description {
+    font-size:
+      0.94rem;
+
+    line-height:
+      1.45;
+  }
+}
+
+
+/* ==================================================
+   ARCHIVE
+
+   Temporaire.
+
+   Le flip desktop
+   et l'accordéon mobile
+   viendront avec la page archive.
+   ================================================== */
+
+.issue-card--archive {
+  width:
+    100%;
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .issue-card--compact {
+    transition:
+      none;
   }
 }

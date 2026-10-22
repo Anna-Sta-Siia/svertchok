@@ -1,7 +1,7 @@
 import {
   useState,
 } from 'react'
-
+import IssueShowcase from '../components/IssueShowcase'
 import IssueCard from '../components/IssueCard'
 import RecentIssues from '../components/RecentIssues'
 import SubscriptionCard from '../components/SubscriptionCard'
@@ -79,68 +79,54 @@ const currentIssue =
           ISSUES
           ===================== */}
 
-      <section className="home-issues">
-        {/* ===================
-            CURRENT ISSUE
-            =================== */}
+      <IssueShowcase
+  featured={
+    <div
+      id="current-issue"
+      className="home-issues__current"
+    >
+      <div className="home-issues__heading">
+        <p className="home-issues__intro">
+          А вот и мой новый номер
+        </p>
+      </div>
 
-        <div
-          id="current-issue"
-          className="home-issues__current"
-        >
-          <div className="home-issues__heading">
-            <p className="home-issues__intro">
-              А вот и мой новый номер
-            </p>
-          </div>
-<IssueCard
+     <IssueCard
   issue={currentIssue}
-  longDescription={
-    currentIssueLongDescription
-  }
   variant="featured"
+  longDescription={currentIssueLongDescription}
 />
 
-          {/* =================
-              ACTIONS
-              ================= */}
+      <div className="home-issues__actions">
+        {currentIssue.accessUrl && (
+          <Button
+            variant="primary"
+            href={currentIssue.accessUrl}
+            external
+          >
+            {currentIssue.accessType === 'paid'
+              ? 'Приобрести номер →'
+              : 'Скачать номер →'}
+          </Button>
+        )}
 
-          <div className="home-issues__actions">
-            {currentIssue.accessUrl && (
-              <Button
-                variant="primary"
-                href={
-                  currentIssue.accessUrl
-                }
-                external
-              >
-                {currentIssue.accessType ===
-                'paid'
-                  ? 'Приобрести номер →'
-                  : 'Скачать номер →'}
-              </Button>
-            )}
-
-            <Button
-              variant="outline"
-              onClick={() =>
-                setIsContentsOpen(
-                  true,
-                )
-              }
-            >
-              Посмотреть содержание →
-            </Button>
-          </div>
-        </div>
-
-        {/* ===================
-            RECENT ISSUES
-            =================== */}
-<RecentIssues
-  issues={recentIssues}
+        <Button
+          variant="outline"
+          onClick={() =>
+            setIsContentsOpen(true)
+          }
+        >
+          Посмотреть содержание →
+        </Button>
+      </div>
+    </div>
+  }
+  secondary={
+    <RecentIssues
+      issues={recentIssues}
+    />
+  }
 />
-      </section>
 
       {/* =====================
           CONTACT / SUBSCRIBE

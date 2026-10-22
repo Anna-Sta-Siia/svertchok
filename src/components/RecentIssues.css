@@ -103,7 +103,7 @@
    ≤ 1024
    ========================= */
 
-@media (max-width: 1024px) {
+@media (max-width: 880px) {
   .recent-issues
   .related-issues--row
   .related-issues__list {

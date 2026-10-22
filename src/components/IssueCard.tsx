@@ -26,17 +26,14 @@ export default function IssueCard({
   const issueNumber =
     `№${String(issue.month).padStart(2, '0')} · ${issue.year}`
 
-  /*
-   * =========================
-   * COMPACT
-   *
-   * RelatedIssues / RecentIssues
-   * Auteur sidebar
-   *
-   * Toujours shortDescription.
-   * Toute la carte est cliquable.
-   * =========================
-   */
+  /* =========================
+     COMPACT
+
+     Date
+     Cover | shortDescription
+
+     Toute la carte est cliquable.
+     ========================= */
 
   if (variant === 'compact') {
     return (
@@ -52,32 +49,33 @@ export default function IssueCard({
           {issueNumber}
         </p>
 
-        <div className="issue-card__compact-cover">
-          <img
-            src={issue.coverImage}
-            alt={`Обложка номера ${issue.monthLabel} ${issue.year}`}
-            className="issue-card__cover"
-          />
-        </div>
+        <div className="issue-card__compact-body">
+          <div className="issue-card__compact-cover">
+            <img
+              src={issue.coverImage}
+              alt={`Обложка номера ${issue.monthLabel} ${issue.year}`}
+              className="issue-card__cover"
+            />
+          </div>
 
-        <p className="issue-card__description">
-          {issue.shortDescription}
-        </p>
+          <p className="issue-card__description">
+            {issue.shortDescription}
+          </p>
+        </div>
       </Link>
     )
   }
 
-  /*
-   * =========================
-   * FEATURED / ARCHIVE
-   *
-   * Archive aura sa propre
-   * structure à l'étape suivante.
-   *
-   * Pour l'instant il n'est pas
-   * encore utilisé dans le site.
-   * =========================
-   */
+  /* =========================
+     FEATURED / ARCHIVE
+
+     Featured :
+     longDescription si disponible.
+
+     Archive :
+     shortDescription pour l'instant.
+     Le flip viendra plus tard.
+     ========================= */
 
   const description =
     variant === 'featured'
@@ -108,7 +106,6 @@ export default function IssueCard({
         <p className="issue-card__description">
           {description}
         </p>
-
       </div>
     </article>
   )

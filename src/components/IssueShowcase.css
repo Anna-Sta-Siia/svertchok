@@ -1,0 +1,60 @@
+/* =========================
+   ISSUE SHOWCASE
+
+   Layout commun pour :
+   - HomePage
+   - IssuePage
+   ========================= */
+
+.issue-showcase {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 7fr)
+    minmax(260px, 3fr);
+
+  gap:
+    clamp(
+      36px,
+      4vw,
+      56px
+    );
+
+  align-items: start;
+
+  width: 100%;
+}
+
+
+/* =========================
+   FEATURED
+   ========================= */
+
+.issue-showcase__featured {
+  min-width: 0;
+}
+
+
+/* =========================
+   SECONDARY
+   ========================= */
+
+.issue-showcase__secondary {
+  min-width: 0;
+}
+
+
+/* =========================
+   ≤ 880px
+
+   Le bloc secondaire passe
+   sous le featured.
+   ========================= */
+
+@media (max-width: 880px) {
+  .issue-showcase {
+    grid-template-columns: 1fr;
+
+    gap: 48px;
+  }
+}

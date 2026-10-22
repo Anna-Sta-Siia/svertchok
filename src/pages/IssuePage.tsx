@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-
+import IssueShowcase from '../components/IssueShowcase'
 import IssueCard from '../components/IssueCard'
 import RecentIssues from '../components/RecentIssues'
 import IssueContents from '../components/IssueContents'
@@ -95,57 +95,50 @@ const issue =
 
   return (
     <>
-      <article className="issue-page">
-        <section className="issue-page__main">
-          {/* =================
-              SELECTED ISSUE
-              ================= */}
+    <article className="issue-page">
+  <IssueShowcase
+    featured={
+      <div className="issue-page__current">
+        <IssueCard
+          issue={issue}
+          variant="featured"
+          longDescription={longDescription}
+        />
 
-          <div className="issue-page__current">
-           <IssueCard
-  issue={issue}
-  longDescription={longDescription}
-  variant="featured"
-/>
-            <div className="issue-page__actions">
-              {issue.accessUrl && (
-                <Button
-                  variant="primary"
-                  href={
-                    issue.accessUrl
-                  }
-                  external
-                >
-                  {accessLabel}
-                </Button>
-              )}
+        <div className="issue-page__actions">
+          {issue.accessUrl && (
+            <Button
+              variant="primary"
+              href={issue.accessUrl}
+              external
+            >
+              {accessLabel}
+            </Button>
+          )}
 
-              <Button
-                variant="outline"
-                onClick={() =>
-                  setIsContentsOpen(
-                    true,
-                  )
-                }
-              >
-                Посмотреть содержание →
-              </Button>
-            </div>
-          </div>
-  {/* ===================
-    RECENT ISSUES
-    =================== */}
-
-<div
-  id="recent-issues"
-  className="issue-page__recent"
->
-  <RecentIssues
-    issues={recentIssues}
+          <Button
+            variant="outline"
+            onClick={() =>
+              setIsContentsOpen(true)
+            }
+          >
+            Посмотреть содержание →
+          </Button>
+        </div>
+      </div>
+    }
+    secondary={
+      <div
+        id="recent-issues"
+        className="issue-page__recent"
+      >
+        <RecentIssues
+          issues={recentIssues}
+        />
+      </div>
+    }
   />
-</div>
-        </section>
-      </article>
+</article>
 
       {/* =====================
           SUBSCRIBE / CONTACT
