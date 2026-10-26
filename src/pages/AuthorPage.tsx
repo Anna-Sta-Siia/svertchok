@@ -17,6 +17,158 @@ import {
 import './AuthorPage.css'
 
 
+const MAX_RELATED_AUTHORS =
+  16
+
+
+const relatedAuthorsSessionSeed =
+  Math.floor(
+    Math.random() *
+      2_147_483_647,
+  )
+
+
+function createStringSeed(
+  value: string,
+) {
+  let hash =
+    relatedAuthorsSessionSeed
+
+  for (
+    let index = 0;
+    index < value.length;
+    index += 1
+  ) {
+    hash =
+      (
+        hash * 31 +
+        value.charCodeAt(
+          index,
+        )
+      ) |
+      0
+  }
+
+  return Math.abs(
+    hash,
+  )
+}
+
+
+function createSeededRandom(
+  initialSeed: number,
+) {
+  let seed =
+    initialSeed
+
+  return () => {
+    seed +=
+      0x6d2b79f5
+
+    let value =
+      seed
+
+    value =
+      Math.imul(
+        value ^
+          (value >>> 15),
+        value | 1,
+      )
+
+    value ^=
+      value +
+      Math.imul(
+        value ^
+          (value >>> 7),
+        value | 61,
+      )
+
+    return (
+      (
+        value ^
+        (value >>> 14)
+      ) >>>
+      0
+    ) /
+      4_294_967_296
+  }
+}
+
+
+function pickRelatedAuthors<
+  T,
+>(
+  items: T[],
+  key: string,
+  limit =
+    MAX_RELATED_AUTHORS,
+) {
+  if (
+    items.length <=
+    limit
+  ) {
+    return items
+  }
+
+
+  const shuffled =
+    [
+      ...items,
+    ]
+
+
+  const random =
+    createSeededRandom(
+      createStringSeed(
+        key,
+      ),
+    )
+
+
+  for (
+    let index =
+      shuffled.length - 1;
+    index > 0;
+    index -= 1
+  ) {
+    const randomIndex =
+      Math.floor(
+        random() *
+          (
+            index +
+            1
+          ),
+      )
+
+
+    const currentItem =
+      shuffled[
+        index
+      ]
+
+
+    shuffled[
+      index
+    ] =
+      shuffled[
+        randomIndex
+      ]
+
+
+    shuffled[
+      randomIndex
+    ] =
+      currentItem
+  }
+
+
+  return shuffled.slice(
+    0,
+    limit,
+  )
+}
+
+
 export default function AuthorPage() {
   const {
     authorId,
@@ -24,10 +176,6 @@ export default function AuthorPage() {
     authorId: string
   }>()
 
-
-  /* =========================
-     AUTHOR
-     ========================= */
 
   if (!authorId) {
     return (
@@ -55,10 +203,6 @@ export default function AuthorPage() {
   }
 
 
-  /* =========================
-     AUTHOR CONTENT
-     ========================= */
-
   const publications =
     getContentItemsByAuthorId(
       author.id,
@@ -71,59 +215,55 @@ export default function AuthorPage() {
     )
 
 
-  /* =========================
-     AUTHORS FROM SAME ISSUE
-     ========================= */
-
   const latestAuthorIssue =
     authorIssues[0]
 
 
-  const sameIssueAuthors =
+  const allSameIssueAuthors =
     latestAuthorIssue
       ? getAuthorsByIssueId(
           latestAuthorIssue.id,
           author.id,
-        ).slice(
-          0,
-          3,
+        )
+      : []
+
+
+  const sameIssueAuthors =
+    latestAuthorIssue
+      ? pickRelatedAuthors(
+          allSameIssueAuthors,
+          `${author.id}-${latestAuthorIssue.id}`,
+          MAX_RELATED_AUTHORS,
         )
       : []
 
 
   return (
     <section className="author-page">
-
-      {/* =====================
-          BACK
-          ===================== */}
-
-      <Link
-        to="/authors"
-        className="author-page__back"
-      >
-        ← Все авторы
-      </Link>
-
-
-      {/* =====================
-          SHOWCASE
-          ===================== */}
-
       <div
         className={`
           author-page__showcase
           ${
-            sameIssueAuthors.length === 0
+            sameIssueAuthors.length ===
+            0
               ? 'author-page__showcase--single'
               : ''
           }
         `}
       >
+      <main className="author-page__featured">
+  <h2 className="author-page__featured-title">
+    Наш автор
+  </h2>
 
-        {/* ===================
-            RELATED AUTHORS
-            =================== */}
+  <AuthorCard
+    author={author}
+    authorIssues={authorIssues}
+    publications={publications}
+    variant="featured"
+  />
+</main>
+
 
         {latestAuthorIssue &&
           sameIssueAuthors.length >
@@ -137,27 +277,15 @@ export default function AuthorPage() {
             />
           </aside>
         )}
-
-
-        {/* ===================
-            FEATURED AUTHOR
-            =================== */}
-
-        <main className="author-page__featured">
-          <AuthorCard
-            author={
-              author
-            }
-            authorIssues={
-              authorIssues
-            }
-            publications={
-              publications
-            }
-            variant="featured"
-          />
-        </main>
       </div>
+
+
+      <Link
+        to="/authors"
+        className="author-page__back"
+      >
+        ← Все авторы
+      </Link>
     </section>
   )
 }

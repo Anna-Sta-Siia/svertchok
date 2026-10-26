@@ -15,6 +15,14 @@ import {
   type ContentItem,
 } from './contentItems'
 
+import {
+  interviews,
+} from './interviews'
+
+import type {
+  Interview,
+} from './interviews'
+
 /* =========================
    AUTHORS
    ========================= */
@@ -119,6 +127,83 @@ export function getContentItemsByAuthorId(
       return a.order - b.order
     })
 }
+
+/* =========================
+   INTERVIEWS BY AUTHOR
+   ========================= */
+
+export function getInterviewsByAuthorId(
+  authorId: string,
+): Interview[] {
+  return interviews
+    .filter(
+      (interview) =>
+        interview.authorId ===
+        authorId,
+    )
+    .sort((a, b) => {
+      const issueA =
+        issues.find(
+          (issue) =>
+            issue.id ===
+            a.issueId,
+        )
+
+      const issueB =
+        issues.find(
+          (issue) =>
+            issue.id ===
+            b.issueId,
+        )
+
+      if (
+        !issueA ||
+        !issueB
+      ) {
+        return (
+          a.order -
+          b.order
+        )
+      }
+
+      if (
+        issueA.year !==
+        issueB.year
+      ) {
+        return (
+          issueB.year -
+          issueA.year
+        )
+      }
+
+      if (
+        issueA.month !==
+        issueB.month
+      ) {
+        return (
+          issueB.month -
+          issueA.month
+        )
+      }
+
+      return (
+        a.order -
+        b.order
+      )
+    })
+}
+
+
+export function hasInterviewByAuthorId(
+  authorId: string,
+): boolean {
+  return interviews.some(
+    (interview) =>
+      interview.authorId ===
+      authorId,
+  )
+}
+
 
 /* =========================
    ISSUES BY AUTHOR

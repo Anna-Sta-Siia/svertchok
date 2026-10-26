@@ -1,4 +1,8 @@
 import {
+  useState,
+} from 'react'
+
+import {
   Link,
 } from 'react-router-dom'
 
@@ -9,6 +13,11 @@ import type {
 import type {
   Issue,
 } from '../assets/data/issues'
+
+import {
+  getInterviewsByAuthorId,
+  getIssueById,
+} from '../assets/data/selectors'
 
 import './AuthorCard.css'
 
@@ -42,6 +51,13 @@ const typeLabels = {
 } as const
 
 
+const INITIAL_ISSUE_COUNT =
+  3
+
+const INITIAL_PUBLICATION_COUNT =
+  3
+
+
 function getIssueLabel(
   issue: Issue,
 ) {
@@ -51,6 +67,15 @@ function getIssueLabel(
     2,
     '0',
   )} · ${issue.year}`
+}
+
+
+function getIssueHeading(
+  issue: Issue,
+) {
+  return `${getIssueLabel(
+    issue,
+  )} — ${issue.monthLabel}`
 }
 
 
@@ -64,11 +89,136 @@ export default function AuthorCard({
     `/authors/${author.id}`
 
 
+  const authorInterviews =
+    getInterviewsByAuthorId(
+      author.id,
+    )
+
+
+  const hasInterview =
+    authorInterviews.length >
+    0
+
+
+  /*
+   * Accordion state.
+   *
+   * The keys include author.id so state from one
+   * author's page does not visually leak into
+   * another author's card.
+   */
+
+  const [
+    openIssueKeys,
+    setOpenIssueKeys,
+  ] = useState<Set<string>>(
+    () =>
+      new Set(),
+  )
+
+
+  const [
+    expandedPublicationKeys,
+    setExpandedPublicationKeys,
+  ] = useState<Set<string>>(
+    () =>
+      new Set(),
+  )
+
+
+  const [
+    expandedIssueListAuthorId,
+    setExpandedIssueListAuthorId,
+  ] = useState<
+    string | null
+  >(
+    null,
+  )
+
+
+  function makeIssueKey(
+    issueId: string,
+  ) {
+    return `${author.id}:${issueId}`
+  }
+
+
+  function toggleIssue(
+    issueId: string,
+  ) {
+    const key =
+      makeIssueKey(
+        issueId,
+      )
+
+    setOpenIssueKeys(
+      (
+        current,
+      ) => {
+        const next =
+          new Set(
+            current,
+          )
+
+        if (
+          next.has(
+            key,
+          )
+        ) {
+          next.delete(
+            key,
+          )
+        } else {
+          next.add(
+            key,
+          )
+        }
+
+        return next
+      },
+    )
+  }
+
+
+  function togglePublications(
+    issueId: string,
+  ) {
+    const key =
+      makeIssueKey(
+        issueId,
+      )
+
+    setExpandedPublicationKeys(
+      (
+        current,
+      ) => {
+        const next =
+          new Set(
+            current,
+          )
+
+        if (
+          next.has(
+            key,
+          )
+        ) {
+          next.delete(
+            key,
+          )
+        } else {
+          next.add(
+            key,
+          )
+        }
+
+        return next
+      },
+    )
+  }
+
+
   /* =========================
      COMPACT
-
-     Used later in:
-     RelatedAuthors
      ========================= */
 
   if (
@@ -88,27 +238,53 @@ export default function AuthorCard({
           {author.firstName}
         </p>
 
-        {author.types.length >
-          0 && (
-          <div className="author-card__types author-card__types--compact">
-            {author.types.map(
-              (type) => (
-                <span
-                  key={
+        <div className="author-card__compact-meta">
+          {author.types.map(
+            (
+              type,
+              index,
+            ) => (
+              <span
+                key={
+                  type
+                }
+                className="author-card__compact-meta-item"
+              >
+                {index >
+                  0 && (
+                  <span
+                    className="author-card__compact-separator"
+                    aria-hidden="true"
+                  >
+                    ·
+                  </span>
+                )}
+
+                {
+                  typeLabels[
                     type
-                  }
-                  className="author-card__compact-type"
+                  ]
+                }
+              </span>
+            ),
+          )}
+
+          {hasInterview && (
+            <span className="author-card__compact-meta-item">
+              {author.types.length >
+                0 && (
+                <span
+                  className="author-card__compact-separator"
+                  aria-hidden="true"
                 >
-                  {
-                    typeLabels[
-                      type
-                    ]
-                  }
+                  ·
                 </span>
-              ),
-            )}
-          </div>
-        )}
+              )}
+
+              Беседа
+            </span>
+          )}
+        </div>
       </Link>
     )
   }
@@ -116,15 +292,26 @@ export default function AuthorCard({
 
   /* =========================
      FEATURED
-
-     Used later on:
-     AuthorPage
      ========================= */
 
   if (
     variant ===
     'featured'
   ) {
+    const showAllIssues =
+      expandedIssueListAuthorId ===
+      author.id
+
+
+    const visibleIssues =
+      showAllIssues
+        ? authorIssues
+        : authorIssues.slice(
+            0,
+            INITIAL_ISSUE_COUNT,
+          )
+
+
     return (
       <article className="author-card author-card--featured">
 
@@ -142,7 +329,9 @@ export default function AuthorCard({
             0 && (
             <div className="author-card__types author-card__types--featured">
               {author.types.map(
-                (type) => (
+                (
+                  type,
+                ) => (
                   <span
                     key={
                       type
@@ -159,139 +348,322 @@ export default function AuthorCard({
               )}
             </div>
           )}
-
-          {author.shortBio && (
-            <p className="author-card__featured-bio">
-              {
-                author.shortBio
-              }
-            </p>
-          )}
         </header>
 
 
         {/* ===================
-            CONTENT
+            BIO
             =================== */}
 
-        <div className="author-card__featured-content">
+        <section className="author-card__featured-section">
+          <h2 className="author-card__featured-section-title">
+            Bio
+          </h2>
 
-          {/* =================
-              PUBLICATIONS
-              ================= */}
+          <p className="author-card__featured-bio">
+            {author.shortBio ??
+              'Биография пока не добавлена.'}
+          </p>
+        </section>
 
-          <section className="author-card__featured-publications">
+
+        {/* ===================
+            INTERVIEW
+            =================== */}
+
+        {hasInterview && (
+          <section className="author-card__featured-section author-card__featured-interviews">
             <h2 className="author-card__featured-section-title">
-              Публикации в «Сверчке»
+              Беседа
             </h2>
 
-            {publications.length >
-            0 ? (
-              <div className="author-card__publication-list">
-                {publications.map(
+            <div className="author-card__featured-interview-list">
+              {authorInterviews
+                .slice(
+                  0,
+                  2,
+                )
+                .map(
                   (
-                    publication,
+                    interview,
                   ) => {
-                    const issue =
-                      authorIssues.find(
-                        (
-                          item,
-                        ) =>
-                          item.id ===
-                          publication.issueId,
+                    const interviewIssue =
+                      getIssueById(
+                        interview.issueId,
                       )
 
                     return (
-                      <article
+                      <div
                         key={
-                          publication.id
+                          interview.id
                         }
-                        className="author-card__publication"
+                        className="author-card__featured-interview"
                       >
-                        <div className="author-card__publication-content">
-                          <h3 className="author-card__publication-title">
-                            {
-                              publication.title
-                            }
-                          </h3>
+                        <p className="author-card__featured-interview-title">
+                          {
+                            interview.title
+                          }
+                        </p>
 
-                          {publication.section && (
-                            <p className="author-card__publication-section">
-                              {
-                                publication.section
-                              }
-                            </p>
-                          )}
-                        </div>
-
-                        {issue && (
+                        {interviewIssue && (
                           <Link
-                            to={`/issues/${issue.slug}`}
-                            className="author-card__publication-issue"
+                            to={`/issues/${interviewIssue.slug}`}
+                            className="author-card__featured-interview-link"
                           >
                             {
-                              issue.monthLabel
-                            }{' '}
-                            {
-                              issue.year
-                            } →
+                              getIssueLabel(
+                                interviewIssue,
+                              )
+                            }
+
+                            {interviewIssue.accessType ===
+                              'paid' && (
+                              <span className="author-card__featured-interview-access">
+                                Платный номер
+                              </span>
+                            )}
                           </Link>
                         )}
-                      </article>
+                      </div>
+                    )
+                  },
+                )}
+            </div>
+
+            {authorInterviews.length >
+              2 && (
+              <p className="author-card__featured-more-note">
+                Ещё бесед:{' '}
+                {
+                  authorInterviews.length -
+                  2
+                }
+              </p>
+            )}
+          </section>
+        )}
+
+
+        {/* ===================
+            PUBLICATIONS
+            =================== */}
+
+        <section className="author-card__featured-section">
+          <h2 className="author-card__featured-section-title">
+            Публикации в номерах:
+          </h2>
+
+          {authorIssues.length >
+          0 ? (
+            <>
+              <div className="author-card__accordion">
+                {visibleIssues.map(
+                  (
+                    issue,
+                  ) => {
+                    const issueKey =
+                      makeIssueKey(
+                        issue.id,
+                      )
+
+                    const isOpen =
+                      openIssueKeys.has(
+                        issueKey,
+                      )
+
+                    const issuePublications =
+                      publications.filter(
+                        (
+                          publication,
+                        ) =>
+                          publication.issueId ===
+                          issue.id,
+                      )
+
+
+                    const showAllPublications =
+                      expandedPublicationKeys.has(
+                        issueKey,
+                      )
+
+
+                    const visiblePublications =
+                      showAllPublications
+                        ? issuePublications
+                        : issuePublications.slice(
+                            0,
+                            INITIAL_PUBLICATION_COUNT,
+                          )
+
+
+                    const panelId =
+                      `author-${author.id}-issue-${issue.id}`
+
+
+                    return (
+                      <div
+                        key={
+                          issue.id
+                        }
+                        className={`
+                          author-card__accordion-item
+                          ${
+                            isOpen
+                              ? 'author-card__accordion-item--open'
+                              : ''
+                          }
+                        `}
+                      >
+                        <div className="author-card__accordion-header">
+                          <Link
+                            to={`/issues/${issue.slug}`}
+                            className="author-card__accordion-issue-link"
+                          >
+                            {
+                              getIssueHeading(
+                                issue,
+                              )
+                            }
+                          </Link>
+
+                          <button
+                            type="button"
+                            className="author-card__accordion-toggle"
+                            aria-expanded={
+                              isOpen
+                            }
+                            aria-controls={
+                              panelId
+                            }
+                            aria-label={
+                              isOpen
+                                ? `Скрыть публикации номера ${getIssueLabel(
+                                    issue,
+                                  )}`
+                                : `Показать публикации номера ${getIssueLabel(
+                                    issue,
+                                  )}`
+                            }
+                            onClick={() =>
+                              toggleIssue(
+                                issue.id,
+                              )
+                            }
+                          >
+                            <span
+                              className="author-card__accordion-chevron"
+                              aria-hidden="true"
+                            >
+                              ▾
+                            </span>
+                          </button>
+                        </div>
+
+
+                        {isOpen && (
+                          <div
+                            id={
+                              panelId
+                            }
+                            className="author-card__accordion-panel"
+                          >
+                            {visiblePublications.length >
+                            0 ? (
+                              <ul className="author-card__accordion-publications">
+                                {visiblePublications.map(
+                                  (
+                                    publication,
+                                  ) => (
+                                    <li
+                                      key={
+                                        publication.id
+                                      }
+                                      className="author-card__accordion-publication"
+                                    >
+                                      <span className="author-card__accordion-publication-title">
+                                        {
+                                          publication.title
+                                        }
+                                      </span>
+
+                                      {publication.section && (
+                                        <span className="author-card__accordion-publication-section">
+                                          {
+                                            publication.section
+                                          }
+                                        </span>
+                                      )}
+                                    </li>
+                                  ),
+                                )}
+                              </ul>
+                            ) : (
+                              <p className="author-card__empty">
+                                Публикации пока не
+                                добавлены.
+                              </p>
+                            )}
+
+
+                            {issuePublications.length >
+                              INITIAL_PUBLICATION_COUNT && (
+                              <button
+                                type="button"
+                                className="author-card__show-more"
+                                onClick={() =>
+                                  togglePublications(
+                                    issue.id,
+                                  )
+                                }
+                              >
+                                {
+                                  showAllPublications
+                                    ? 'Скрыть'
+                                    : 'Показать ещё публикации'
+                                }
+                              </button>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     )
                   },
                 )}
               </div>
-            ) : (
-              <p className="author-card__empty">
-                Публикации пока не
-                добавлены.
-              </p>
-            )}
-          </section>
 
 
-          {/* =================
-              ISSUES
-              ================= */}
-
-          {authorIssues.length >
-            0 && (
-            <aside className="author-card__featured-issues">
-              <h2 className="author-card__featured-section-title author-card__featured-section-title--issues">
-                В номерах
-              </h2>
-
-              <div className="author-card__featured-issue-list">
-                {authorIssues.map(
-                  (issue) => (
-                    <Link
-                      key={
-                        issue.id
-                      }
-                      to={`/issues/${issue.slug}`}
-                      className="author-card__featured-issue"
-                    >
-                      <span className="author-card__featured-issue-number">
-                        {
-                          getIssueLabel(
-                            issue,
-                          )
-                        }
-                      </span>
-
-                      <span className="author-card__featured-issue-title">
-                        {
-                          issue.shortDescription
-                        }
-                      </span>
-                    </Link>
-                  ),
-                )}
-              </div>
-            </aside>
+              {authorIssues.length >
+                INITIAL_ISSUE_COUNT && (
+                <button
+                  type="button"
+                  className="author-card__show-more author-card__show-more--issues"
+                  onClick={() =>
+                    setExpandedIssueListAuthorId(
+                      (
+                        current,
+                      ) =>
+                        current ===
+                        author.id
+                          ? null
+                          : author.id,
+                    )
+                  }
+                >
+                  {
+                    showAllIssues
+                      ? 'Показать меньше номеров'
+                      : 'Показать ещё номера'
+                  }
+                </button>
+              )}
+            </>
+          ) : (
+            <p className="author-card__empty">
+              Публикации пока не
+              добавлены.
+            </p>
           )}
-        </div>
+        </section>
       </article>
     )
   }
@@ -299,9 +671,6 @@ export default function AuthorCard({
 
   /* =========================
      ARCHIVE
-
-     Default variant.
-     Keeps AuthorsPage working.
      ========================= */
 
   return (
@@ -322,27 +691,32 @@ export default function AuthorCard({
           </Link>
         </h2>
 
-        {author.types.length >
-          0 && (
-          <div className="author-card__types">
-            {author.types.map(
-              (type) => (
-                <span
-                  key={
+        <div className="author-card__types">
+          {author.types.map(
+            (
+              type,
+            ) => (
+              <span
+                key={
+                  type
+                }
+                className="author-card__type"
+              >
+                {
+                  typeLabels[
                     type
-                  }
-                  className="author-card__type"
-                >
-                  {
-                    typeLabels[
-                      type
-                    ]
-                  }
-                </span>
-              ),
-            )}
-          </div>
-        )}
+                  ]
+                }
+              </span>
+            ),
+          )}
+
+          {hasInterview && (
+            <span className="author-card__type author-card__type--interview">
+              Беседа
+            </span>
+          )}
+        </div>
       </header>
 
 
@@ -372,7 +746,9 @@ export default function AuthorCard({
 
           <div className="author-card__issue-links author-card__issue-links--scroll">
             {authorIssues.map(
-              (issue) => (
+              (
+                issue,
+              ) => (
                 <Link
                   key={
                     issue.id
@@ -392,10 +768,6 @@ export default function AuthorCard({
         </div>
       )}
 
-
-      {/* ===================
-          AUTHOR PAGE
-          =================== */}
 
       <Link
         to={authorUrl}
