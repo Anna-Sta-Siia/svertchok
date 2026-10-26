@@ -1,0 +1,279 @@
+
+/* =========================
+   SHOWCASE
+
+   Shared two-column composition.
+
+   Desktop:
+
+   featured-heading | secondary-heading
+   ---------------- | -----------------
+   featured         | secondary
+
+   The heading row is shared by both
+   columns, so both content blocks start
+   at the same vertical position.
+   ========================= */
+
+.showcase {
+  display:
+    grid;
+
+  grid-template-areas:
+    "featured-heading secondary-heading"
+    "featured secondary";
+
+  column-gap:
+    clamp(
+      32px,
+      4vw,
+      56px
+    );
+
+  row-gap:
+    24px;
+
+  align-items:
+    start;
+
+  width:
+    100%;
+}
+
+
+/* =========================
+   LAYOUT — ISSUE
+
+   Main issue is wide.
+   Secondary issues are narrow.
+
+   ≈ 70 / 30
+   ========================= */
+
+.showcase--issue {
+  grid-template-columns:
+    minmax(
+      0,
+      7fr
+    )
+    minmax(
+      260px,
+      3fr
+    );
+}
+
+
+/* =========================
+   LAYOUT — AUTHOR
+
+   Featured author is narrower.
+   Context authors get more room.
+
+   ≈ 35 / 65
+   ========================= */
+
+.showcase--author {
+  grid-template-columns:
+    minmax(
+      320px,
+      0.95fr
+    )
+    minmax(
+      0,
+      1.8fr
+    );
+}
+
+
+/* =========================
+   HEADINGS
+   ========================= */
+
+.showcase__featured-heading {
+  grid-area:
+    featured-heading;
+
+  min-width:
+    0;
+}
+
+
+.showcase__secondary-heading {
+  grid-area:
+    secondary-heading;
+
+  min-width:
+    0;
+}
+
+
+.showcase__heading-title {
+  margin:
+    0;
+
+  color:
+    var(--color-text);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      1.6rem,
+      2.2vw,
+      2.2rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.2;
+
+  text-align:
+    center;
+}
+
+
+/* =========================
+   CONTENT
+   ========================= */
+
+.showcase__featured {
+  grid-area:
+    featured;
+
+  min-width:
+    0;
+}
+
+
+.showcase__secondary {
+  grid-area:
+    secondary;
+
+  min-width:
+    0;
+}
+
+
+/* =========================
+   AUTHOR — MEDIUM DESKTOP
+   ========================= */
+
+@media (max-width: 1280px) {
+  .showcase--author {
+    grid-template-columns:
+      minmax(
+        300px,
+        0.9fr
+      )
+      minmax(
+        0,
+        1.55fr
+      );
+
+    column-gap:
+      30px;
+  }
+}
+
+
+@media (max-width: 1088px) {
+  .showcase--author {
+    grid-template-columns:
+      minmax(
+        285px,
+        0.9fr
+      )
+      minmax(
+        0,
+        1.35fr
+      );
+
+    column-gap:
+      26px;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .showcase--author {
+    grid-template-columns:
+      minmax(
+        270px,
+        0.95fr
+      )
+      minmax(
+        0,
+        1.1fr
+      );
+
+    column-gap:
+      22px;
+  }
+}
+
+
+/* =========================
+   STACKED LAYOUT
+
+   ISSUE keeps its historical
+   breakpoint at 880px.
+
+   AUTHOR stacks later, at 800px.
+   ========================= */
+
+@media (max-width: 880px) {
+  .showcase--issue {
+    grid-template-columns:
+      1fr;
+
+    grid-template-areas:
+      "featured-heading"
+      "featured"
+      "secondary-heading"
+      "secondary";
+
+    column-gap:
+      0;
+
+    row-gap:
+      24px;
+  }
+
+
+  .showcase--issue
+  .showcase__secondary-heading {
+    margin-top:
+      24px;
+  }
+}
+
+
+@media (max-width: 800px) {
+  .showcase--author {
+    grid-template-columns:
+      1fr;
+
+    grid-template-areas:
+      "featured-heading"
+      "featured"
+      "secondary-heading"
+      "secondary";
+
+    column-gap:
+      0;
+
+    row-gap:
+      24px;
+  }
+
+
+  .showcase--author
+  .showcase__secondary-heading {
+    margin-top:
+      24px;
+  }
+}

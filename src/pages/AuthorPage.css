@@ -14,133 +14,15 @@
 
 
 /* =========================
-   SHOWCASE
-
-   Desktop:
-   featured ≈ 35%
-   related  ≈ 65%
-
-   The related title is lifted
-   above the compact grid.
-   Therefore the featured card
-   and the first compact row
-   begin on the same line.
-   ========================= */
-
-.author-page__showcase {
-  display:
-    grid;
-
-  grid-template-columns:
-    minmax(
-      320px,
-      0.95fr
-    )
-    minmax(
-      0,
-      1.8fr
-    );
-
-  gap:
-    clamp(
-      30px,
-      3.5vw,
-      58px
-    );
-
-  align-items:
-    start;
-
-  width:
-    100%;
-
-  padding-top:
-    clamp(
-      58px,
-      5vw,
-      76px
-    );
-}
-
-
-.author-page__showcase--single {
-  grid-template-columns:
-    minmax(
-      320px,
-      420px
-    );
-
-  justify-content:
-    center;
-}
-
-
-.author-page__featured,
-.author-page__related {
-  min-width:
-    0;
-}
-
-
-/* =========================
-   FEATURED COLUMN
+   FEATURED AUTHOR
    ========================= */
 
 .author-page__featured {
-  position:
-    relative;
-
-  width:
-    100%;
-}
-
-
-.author-page__featured-title {
-  position:
-    absolute;
-
-  top:
-    0;
-
-  left:
+  min-width:
     0;
 
   width:
     100%;
-
-  margin:
-    0;
-
-  transform:
-    translateY(
-      calc(
-        -100% -
-        18px
-      )
-    );
-
-  color:
-    var(--color-text);
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size:
-    clamp(
-      1.45rem,
-      2vw,
-      1.9rem
-    );
-
-  font-weight:
-    500;
-
-  line-height:
-    1.25;
-
-  text-align:
-    left;
 }
 
 
@@ -152,89 +34,13 @@
 
 
 /* =========================
-   RELATED COLUMN
+   AUTHORS GRID
+
+   Desktop:
+   4 compact cards per row.
    ========================= */
 
-.author-page__related {
-  position:
-    relative;
-
-  width:
-    100%;
-
-  min-width:
-    0;
-
-  padding:
-    0;
-}
-
-
-.author-page__related
-.related-authors {
-  position:
-    relative;
-
-  width:
-    100%;
-}
-
-
-/*
- * Desktop:
- * title does not take vertical
- * space in the compact grid.
- */
-
-.author-page__related
-.related-authors__title {
-  position:
-    absolute;
-
-  top:
-    0;
-
-  left:
-    0;
-
-  width:
-    100%;
-
-  margin:
-    0;
-
-  transform:
-    translateY(
-      calc(
-        -100% -
-        18px
-      )
-    );
-
-  font-size:
-    clamp(
-      1.45rem,
-      2vw,
-      1.9rem
-    );
-
-  line-height:
-    1.25;
-
-  text-align:
-    left;
-}
-
-
-/* =========================
-   COMPACT GRID — DESKTOP
-
-   > 1088px:
-   4 cards per row
-   ========================= */
-
-.author-page__related
-.related-authors__grid {
+.author-page__authors-grid {
   display:
     grid;
 
@@ -250,17 +56,54 @@
   gap:
     12px;
 
-  margin:
+  width:
+    100%;
+
+  min-width:
     0;
 }
 
 
-.author-page__related
+.author-page__authors-grid
 .author-card--compact {
   width:
     100%;
 
   max-width:
+    none;
+}
+
+
+/* =========================
+   SINGLE AUTHOR
+
+   If there are no contextual
+   authors, keep only the
+   featured column.
+   ========================= */
+
+.author-page--single
+.showcase--author {
+  grid-template-columns:
+    minmax(
+      320px,
+      420px
+    );
+
+  grid-template-areas:
+    "featured-heading"
+    "featured";
+
+  justify-content:
+    center;
+}
+
+
+.author-page--single
+.showcase__secondary-heading,
+.author-page--single
+.showcase__secondary {
+  display:
     none;
 }
 
@@ -328,59 +171,15 @@
 
 
 /* =========================
-   ≤ 1280px
-
-   Keep two columns.
-   Slightly tighten proportions.
-   ========================= */
-
-@media (max-width: 1280px) {
-  .author-page__showcase {
-    grid-template-columns:
-      minmax(
-        300px,
-        0.9fr
-      )
-      minmax(
-        0,
-        1.55fr
-      );
-
-    gap:
-      30px;
-  }
-}
-
-
-/* =========================
    ≤ 1088px
 
-   Still two main columns.
-   Related cards: 3 per row.
+   Showcase stays in two
+   columns.
+   3 compact cards per row.
    ========================= */
 
 @media (max-width: 1088px) {
-  .author-page__showcase {
-    grid-template-columns:
-      minmax(
-        285px,
-        0.9fr
-      )
-      minmax(
-        0,
-        1.35fr
-      );
-
-    gap:
-      26px;
-
-    padding-top:
-      58px;
-  }
-
-
-  .author-page__related
-  .related-authors__grid {
+  .author-page__authors-grid {
     grid-template-columns:
       repeat(
         3,
@@ -399,30 +198,13 @@
 /* =========================
    ≤ 900px
 
-   Keep featured + related
-   side by side a little longer,
-   but compact cards become 2/row.
+   Showcase still stays in
+   two columns.
+   2 compact cards per row.
    ========================= */
 
 @media (max-width: 900px) {
-  .author-page__showcase {
-    grid-template-columns:
-      minmax(
-        270px,
-        0.95fr
-      )
-      minmax(
-        0,
-        1.1fr
-      );
-
-    gap:
-      22px;
-  }
-
-
-  .author-page__related
-  .related-authors__grid {
+  .author-page__authors-grid {
     grid-template-columns:
       repeat(
         2,
@@ -432,40 +214,21 @@
         )
       );
   }
-
-
-  .author-page__related
-  .related-authors__title {
-    font-size:
-      1.35rem;
-  }
 }
 
 
 /* =========================
    ≤ 800px
 
-   Main layout becomes one column.
-   Featured first, related after it.
+   Showcase stacks in
+   Showcase.css.
+
+   Once stacked, secondary
+   gets enough room for
+   3 compact cards per row.
    ========================= */
 
 @media (max-width: 800px) {
-  .author-page__showcase,
-  .author-page__showcase--single {
-    grid-template-columns:
-      1fr;
-
-    gap:
-      38px;
-
-    justify-content:
-      stretch;
-
-    padding-top:
-      28px;
-  }
-
-
   .author-page__featured {
     width:
       min(
@@ -478,53 +241,7 @@
   }
 
 
-  .author-page__related {
-    width:
-      min(
-        100%,
-        760px
-      );
-
-    margin-inline:
-      auto;
-  }
-
-
-  /*
-   * Once stacked, the title returns
-   * to the normal document flow.
-   */
-
-  .author-page__related
-  .related-authors__title {
-    position:
-      static;
-
-    width:
-      auto;
-
-    margin:
-      0
-      0
-      20px;
-
-    transform:
-      none;
-
-    font-size:
-      clamp(
-        1.35rem,
-        4vw,
-        1.7rem
-      );
-
-    text-align:
-      center;
-  }
-
-
-  .author-page__related
-  .related-authors__grid {
+  .author-page__authors-grid {
     grid-template-columns:
       repeat(
         3,
@@ -534,16 +251,30 @@
         )
       );
 
+    width:
+      min(
+        100%,
+        760px
+      );
+
+    margin-inline:
+      auto;
+
     gap:
       12px;
+  }
+
+
+  .author-page--single
+  .showcase--author {
+    grid-template-columns:
+      1fr;
   }
 }
 
 
 /* =========================
    ≤ 620px
-
-   2 compact cards per row.
    ========================= */
 
 @media (max-width: 620px) {
@@ -553,17 +284,7 @@
   }
 
 
-  .author-page__showcase {
-    gap:
-      32px;
-
-    padding-top:
-      22px;
-  }
-
-
-  .author-page__featured,
-  .author-page__related {
+  .author-page__featured {
     width:
       100%;
   }
@@ -577,8 +298,7 @@
   }
 
 
-  .author-page__related
-  .related-authors__grid {
+  .author-page__authors-grid {
     grid-template-columns:
       repeat(
         2,
@@ -587,6 +307,9 @@
           1fr
         )
       );
+
+    width:
+      100%;
 
     gap:
       10px;
@@ -602,13 +325,10 @@
 
 /* =========================
    ≤ 430px
-
-   1 compact card per row.
    ========================= */
 
 @media (max-width: 430px) {
-  .author-page__related
-  .related-authors__grid {
+  .author-page__authors-grid {
     grid-template-columns:
       1fr;
   }

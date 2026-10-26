@@ -6,7 +6,7 @@ import {
   useParams,
 } from 'react-router-dom'
 
-import IssueShowcase from '../components/IssueShowcase'
+import Showcase from '../components/Showcase'
 import IssueCard from '../components/IssueCard'
 import IssuesList from '../components/IssuesList'
 
@@ -130,10 +130,11 @@ export default function IssuePage() {
     <>
       <article className="issue-page">
 
-        <IssueShowcase
+        <Showcase
+          layout="issue"
 
           secondaryHeading={
-            <h2 className="issue-showcase__heading-title">
+            <h2 className="showcase__heading-title">
               Наши номера
             </h2>
           }
@@ -159,7 +160,9 @@ export default function IssuePage() {
                     }
                     external
                   >
-                    {accessLabel}
+                    {
+                      accessLabel
+                    }
                   </Button>
                 )}
 

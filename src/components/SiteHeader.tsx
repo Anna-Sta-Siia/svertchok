@@ -8,7 +8,9 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="site-header__inner">
           <p className="site-header__eyebrow">
-          ЛИТЕРАТУРНЫЙ АЛЬМАНАХ ДЛЯ ДЕТЕЙ И РОДИТЕЛЕЙ
+          Альманах выходит при поддержке
+      Ассоциации любителей русскоязычной
+      детской литературы
         </p>
         <div className="site-header__intro">
           <img

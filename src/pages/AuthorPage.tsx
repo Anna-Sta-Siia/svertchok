@@ -4,8 +4,8 @@ import {
   useParams,
 } from 'react-router-dom'
 
+import Showcase from '../components/Showcase'
 import AuthorCard from '../components/AuthorCard'
-import RelatedAuthors from '../components/RelatedAuthors'
 
 import {
   getAuthorById,
@@ -238,46 +238,92 @@ export default function AuthorPage() {
       : []
 
 
+  const hasRelatedAuthors =
+    Boolean(
+      latestAuthorIssue &&
+      sameIssueAuthors.length >
+        0,
+    )
+
+
   return (
-    <section className="author-page">
-      <div
-        className={`
-          author-page__showcase
-          ${
-            sameIssueAuthors.length ===
-            0
-              ? 'author-page__showcase--single'
-              : ''
-          }
-        `}
-      >
-      <main className="author-page__featured">
-  <h2 className="author-page__featured-title">
-    Наш автор
-  </h2>
+    <section
+      className={`
+        author-page
+        ${
+          hasRelatedAuthors
+            ? ''
+            : 'author-page--single'
+        }
+      `}
+    >
+      <Showcase
+        layout="author"
 
-  <AuthorCard
-    author={author}
-    authorIssues={authorIssues}
-    publications={publications}
-    variant="featured"
-  />
-</main>
+        featuredHeading={
+          <h2 className="showcase__heading-title">
+            Наш автор
+          </h2>
+        }
 
+        secondaryHeading={
+          hasRelatedAuthors &&
+          latestAuthorIssue
+            ? (
+              <h2 className="showcase__heading-title">
+                Также в номере{' '}
+                {
+                  latestAuthorIssue.monthLabel
+                }{' '}
+                {
+                  latestAuthorIssue.year
+                }
+              </h2>
+            )
+            : undefined
+        }
 
-        {latestAuthorIssue &&
-          sameIssueAuthors.length >
-            0 && (
-          <aside className="author-page__related">
-            <RelatedAuthors
-              title={`Также в номере ${latestAuthorIssue.monthLabel} ${latestAuthorIssue.year}`}
-              authors={
-                sameIssueAuthors
+        featured={
+          <div className="author-page__featured">
+            <AuthorCard
+              author={
+                author
               }
+              authorIssues={
+                authorIssues
+              }
+              publications={
+                publications
+              }
+              variant="featured"
             />
-          </aside>
-        )}
-      </div>
+          </div>
+        }
+
+        secondary={
+          hasRelatedAuthors
+            ? (
+              <div className="author-page__authors-grid">
+                {sameIssueAuthors.map(
+                  (
+                    relatedAuthor,
+                  ) => (
+                    <AuthorCard
+                      key={
+                        relatedAuthor.id
+                      }
+                      author={
+                        relatedAuthor
+                      }
+                      variant="compact"
+                    />
+                  ),
+                )}
+              </div>
+            )
+            : null
+        }
+      />
 
 
       <Link

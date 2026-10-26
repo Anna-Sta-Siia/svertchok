@@ -2,7 +2,7 @@ import {
   useState,
 } from 'react'
 
-import IssueShowcase from '../components/IssueShowcase'
+import Showcase from '../components/Showcase'
 import IssueCard from '../components/IssueCard'
 import IssuesList from '../components/IssuesList'
 
@@ -102,7 +102,8 @@ export default function HomePage() {
           ISSUES
           ===================== */}
 
-      <IssueShowcase
+      <Showcase
+        layout="issue"
 
         featuredHeading={
           <p className="home-issues__intro">
@@ -111,7 +112,7 @@ export default function HomePage() {
         }
 
         secondaryHeading={
-          <h2 className="issue-showcase__heading-title">
+          <h2 className="showcase__heading-title">
             Наши номера
           </h2>
         }
