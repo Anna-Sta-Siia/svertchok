@@ -8,16 +8,24 @@ import './Showcase.css'
 export type ShowcaseLayout =
   | 'issue'
   | 'author'
+  | 'question'
 
 
 type ShowcaseProps = {
-  layout: ShowcaseLayout
+  layout:
+    ShowcaseLayout
 
-  featured: ReactNode
-  secondary: ReactNode
+  featured:
+    ReactNode
 
-  featuredHeading?: ReactNode
-  secondaryHeading?: ReactNode
+  secondary:
+    ReactNode
+
+  featuredHeading?:
+    ReactNode
+
+  secondaryHeading?:
+    ReactNode
 }
 
 

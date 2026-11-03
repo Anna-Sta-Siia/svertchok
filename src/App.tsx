@@ -12,6 +12,7 @@ import IssuePage from './pages/IssuePage'
 import AuthorsPage from './pages/AuthorsPage'
 import AuthorPage from './pages/AuthorPage'
 import InterviewsPage from './pages/InterviewsPage'
+import QuestionsPage from './pages/QuestionsPage'
 
 
 export default function App() {
@@ -51,6 +52,11 @@ export default function App() {
         <Route
           path="/interviews"
           element={<InterviewsPage />}
+        />
+
+        <Route
+          path="/questions"
+          element={<QuestionsPage />}
         />
       </Route>
     </Routes>

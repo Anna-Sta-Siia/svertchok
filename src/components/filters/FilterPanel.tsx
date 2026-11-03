@@ -10,28 +10,33 @@ export type SortDirection =
   | 'desc'
 
 
-export type FilterPanelSort = {
-  hint: string
-  direction: SortDirection
-  onChange: (
-    direction: SortDirection,
-  ) => void
-  ascendingLabel: string
-  descendingLabel: string
-}
-
-
 type FilterPanelProps = {
-  children: ReactNode
-  ariaLabel: string
-  className?: string
-  size?: 'default' | 'compact'
+  children:
+    ReactNode
 
-  sort?: FilterPanelSort
+  ariaLabel:
+    string
 
-  onReset?: () => void
-  canReset?: boolean
-  resetLabel?: string
+  className?:
+    string
+
+  sortLabel?:
+    string
+
+  sortDirection?:
+    SortDirection
+
+  onToggleSort?:
+    () => void
+
+  onReset?:
+    () => void
+
+  canReset?:
+    boolean
+
+  resetLabel?:
+    string
 }
 
 
@@ -39,60 +44,127 @@ export default function FilterPanel({
   children,
   ariaLabel,
   className = '',
-  size = 'default',
 
-  sort,
+  sortLabel,
+  sortDirection,
+  onToggleSort,
 
   onReset,
   canReset = false,
   resetLabel = 'Сбросить фильтры',
 }: FilterPanelProps) {
+
+  const hasSortControl =
+    Boolean(
+      sortLabel &&
+      sortDirection &&
+      onToggleSort,
+    )
+
+
+  function selectSortDirection(
+    direction:
+      SortDirection,
+  ) {
+    if (
+      !onToggleSort ||
+      !sortDirection ||
+      sortDirection ===
+        direction
+    ) {
+      return
+    }
+
+    onToggleSort()
+  }
+
+
   return (
     <section
       className={`
         filter-panel
-        filter-panel--${size}
         ${className}
       `.trim()}
-      aria-label={ariaLabel}
+      aria-label={
+        ariaLabel
+      }
     >
+
+      {/* =====================
+          FILTERS
+          ===================== */}
+
       {children}
 
-      {(sort || onReset) && (
+
+      {/* =====================
+          SECOND ROW
+          ===================== */}
+
+      {(
+        hasSortControl ||
+        onReset
+      ) && (
         <div className="filter-panel__actions">
-          {sort && (
-            <div
-              className="filter-panel__sort"
-              role="group"
-              aria-label={sort.hint}
-            >
-              <span
-                className="filter-panel__sort-label"
-                aria-hidden="true"
-              >
-                Сортировка
+
+          {/* SORT */}
+
+          {hasSortControl && (
+            <div className="filter-panel__sort">
+
+              <span className="filter-panel__sort-label">
+                {sortLabel}
               </span>
+
 
               <button
                 type="button"
                 className={`
                   filter-panel__sort-button
                   ${
-                    sort.direction ===
+                    sortDirection ===
+                    'asc'
+                      ? 'filter-panel__sort-button--active'
+                      : ''
+                  }
+                `}
+                aria-label={
+                  `${sortLabel}: по возрастанию`
+                }
+                aria-pressed={
+                  sortDirection ===
+                  'asc'
+                }
+                onClick={() =>
+                  selectSortDirection(
+                    'asc',
+                  )
+                }
+              >
+                ↑
+              </button>
+
+
+              <button
+                type="button"
+                className={`
+                  filter-panel__sort-button
+                  ${
+                    sortDirection ===
                     'desc'
                       ? 'filter-panel__sort-button--active'
                       : ''
                   }
-                `.trim()}
+                `}
+                aria-label={
+                  `${sortLabel}: по убыванию`
+                }
                 aria-pressed={
-                  sort.direction ===
+                  sortDirection ===
                   'desc'
                 }
-                aria-label={
-                  sort.descendingLabel
-                }
                 onClick={() =>
-                  sort.onChange(
+                  selectSortDirection(
                     'desc',
                   )
                 }
@@ -100,56 +172,43 @@ export default function FilterPanel({
                 ↓
               </button>
 
-              <button
-                type="button"
-                className={`
-                  filter-panel__sort-button
-                  ${
-                    sort.direction ===
-                    'asc'
-                      ? 'filter-panel__sort-button--active'
-                      : ''
-                  }
-                `.trim()}
-                aria-pressed={
-                  sort.direction ===
-                  'asc'
-                }
-                aria-label={
-                  sort.ascendingLabel
-                }
-                onClick={() =>
-                  sort.onChange(
-                    'asc',
-                  )
-                }
-              >
-                ↑
-              </button>
             </div>
           )}
+
+
+          {/* RESET */}
 
           {onReset && (
             <div className="filter-panel__reset-slot">
-          <button
-            type="button"
-            className="filter-panel__reset"
-            onClick={onReset}
-            disabled={!canReset}
-          >
-            <span
-              aria-hidden="true"
-              className="filter-panel__reset-icon"
-            >
-              ↻
-            </span>
 
-            {resetLabel}
-          </button>
+              <button
+                type="button"
+                className="filter-panel__reset"
+                onClick={
+                  onReset
+                }
+                disabled={
+                  !canReset
+                }
+              >
+                <span
+                  className="filter-panel__reset-icon"
+                  aria-hidden="true"
+                >
+                  ↺
+                </span>
+
+                <span>
+                  {resetLabel}
+                </span>
+              </button>
+
             </div>
           )}
+
         </div>
       )}
+
     </section>
   )
 }

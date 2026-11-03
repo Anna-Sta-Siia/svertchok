@@ -27,8 +27,8 @@ export function getNavItems(
       to: '/interviews',
     },
     {
-      label: 'Написать Сверчку',
-      to: '#contact',
+      label: 'Вопросы Сверчку',
+       to: '/questions',
     },
   ]
 }

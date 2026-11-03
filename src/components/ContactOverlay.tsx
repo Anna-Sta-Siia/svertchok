@@ -35,15 +35,10 @@ export default function ContactOverlay({
         <header className="contact-overlay__header">
           <div>
             <p className="contact-overlay__eyebrow">
-              Напишите нам
+             Задать вопрос Сверчку
             </p>
 
-            <h2
-              id="contact-overlay-title"
-              className="contact-overlay__title"
-            >
-              Связаться со «Сверчком»
-            </h2>
+           
           </div>
 
           <button
