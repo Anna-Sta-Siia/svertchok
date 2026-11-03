@@ -12,16 +12,6 @@
   width:
     100%;
 
-  margin-top:
-    24px;
-
-  background:
-    color-mix(
-      in srgb,
-      var(--color-footer-bg) 92%,
-      var(--color-background)
-    );
-
   color:
     var(--color-footer-text);
 }
@@ -43,7 +33,7 @@
 
 
 /* =========================
-   MAIN ROW
+   MAIN
    ========================= */
 
 .site-footer__top {
@@ -51,23 +41,37 @@
     grid;
 
   grid-template-columns:
-    minmax(0, 1fr)
-    minmax(320px, 1.25fr)
-    minmax(0, 1fr);
+    auto
+    auto
+    minmax(
+      380px,
+      1fr
+    )
+    auto;
+
+  grid-template-areas:
+    "letters mascot goodbye bukovki";
 
   align-items:
     center;
 
-  gap:
-    44px;
+  column-gap:
+    clamp(
+      24px,
+      4vw,
+      60px
+    );
 }
 
 
 /* =========================
-   SVERTCHOK
+   VERTICAL TITLE
    ========================= */
 
-.site-footer__brand {
+.site-footer__letters {
+  grid-area:
+    letters;
+
   display:
     flex;
 
@@ -75,16 +79,67 @@
     column;
 
   align-items:
-    flex-start;
-
-  justify-self:
-    start;
+    center;
 
   gap:
-    12px;
+    1px;
 
-  border-radius:
-    12px;
+  text-decoration:
+    none;
+}
+
+
+.site-footer__letters img {
+  display:
+    block;
+
+  width:
+    auto;
+
+  height:
+    28px;
+
+  object-fit:
+    contain;
+
+  transform:
+    scale(1);
+
+  transition:
+    transform
+      180ms
+      ease;
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .site-footer__letters:hover img {
+    transform:
+      scale(1.08);
+  }
+}
+
+
+/* =========================
+   MASCOT
+   ========================= */
+
+.site-footer__mascot-link {
+  grid-area:
+    mascot;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
 
   text-decoration:
     none;
@@ -92,24 +147,35 @@
 
 
 .site-footer__mascot {
+  display:
+    block;
+
   width:
-    92px;
+    100px;
 
   height:
     auto;
-}
 
-
-.site-footer__title {
-  width:
-    120px;
-
-  height:
-    auto;
+  transform:
+    scale(1);
 
   transition:
     transform
-      var(--transition-default);
+      180ms
+      ease;
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .site-footer__mascot-link:hover
+  .site-footer__mascot {
+    transform:
+      scale(1.05);
+  }
 }
 
 
@@ -118,17 +184,20 @@
    ========================= */
 
 .site-footer__goodbye {
+  grid-area:
+    goodbye;
+
   justify-self:
     center;
 
   width:
-    min(
-      100%,
-      500px
-    );
+    max-content;
+
+  max-width:
+    100%;
 
   text-align:
-    center;
+    left;
 }
 
 
@@ -141,23 +210,35 @@
     var(--color-footer-text);
 
   font-family:
-    var(--font-accent);
+    var(--font-ui);
 
   font-size:
     clamp(
       1.4rem,
-      2vw,
+      1.75vw,
       1.7rem
     );
 
+  font-weight:
+    500;
+
   line-height:
-    1.32;
+    1.3;
+}
+
+
+.site-footer__goodbye-first {
+  white-space:
+    nowrap;
 }
 
 
 .site-footer__goodbye-second {
   margin-top:
     9px;
+
+  margin-left:
+    58px;
 }
 
 
@@ -166,6 +247,9 @@
    ========================= */
 
 .site-footer__bukovki {
+  grid-area:
+    bukovki;
+
   display:
     flex;
 
@@ -174,15 +258,6 @@
 
   justify-content:
     center;
-
-  justify-self:
-    end;
-
-  padding:
-    5px;
-
-  border-radius:
-    12px;
 
   text-decoration:
     none;
@@ -194,19 +269,18 @@
     block;
 
   width:
-    96px;
+    132px;
 
   height:
     auto;
 
-  opacity:
-    0.78;
+  transform:
+    scale(1);
 
   transition:
-    opacity
-      var(--transition-default),
     transform
-      var(--transition-default);
+      180ms
+      ease;
 }
 
 
@@ -215,24 +289,10 @@
 ) and (
   pointer: fine
 ) {
-  .site-footer__brand:hover
-  .site-footer__title {
-    transform:
-      translateY(
-        -1px
-      );
-  }
-
-
   .site-footer__bukovki:hover
   .site-footer__bukovki-logo {
-    opacity:
-      1;
-
     transform:
-      translateY(
-        -2px
-      );
+      scale(1.06);
   }
 }
 
@@ -241,7 +301,8 @@
    FOCUS
    ========================= */
 
-.site-footer__brand:focus-visible,
+.site-footer__letters:focus-visible,
+.site-footer__mascot-link:focus-visible,
 .site-footer__bukovki:focus-visible,
 .site-footer__contact-link:focus-visible {
   outline:
@@ -251,6 +312,9 @@
 
   outline-offset:
     4px;
+
+  border-radius:
+    10px;
 }
 
 
@@ -272,10 +336,10 @@
     20px;
 
   margin-top:
-    28px;
+    30px;
 
   padding-top:
-    15px;
+    16px;
 
   border-top:
     1px
@@ -289,7 +353,7 @@
   color:
     color-mix(
       in srgb,
-      var(--color-footer-text) 62%,
+      var(--color-footer-text) 64%,
       transparent
     );
 
@@ -318,7 +382,7 @@
 
 
 /* =========================
-   CONTACT ICONS
+   CONTACTS
    ========================= */
 
 .site-footer__contacts {
@@ -328,17 +392,14 @@
   align-items:
     center;
 
-  justify-content:
-    flex-end;
-
   gap:
-    8px;
+    11px;
 }
 
 
 .site-footer__contact-link {
   display:
-    inline-flex;
+    flex;
 
   align-items:
     center;
@@ -347,61 +408,36 @@
     center;
 
   width:
-    27px;
+    48px;
 
   height:
-    27px;
-
-  border-radius:
-    50%;
-
-  color:
-    var(--color-footer-text);
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size:
-    0.95rem;
-
-  font-weight:
-    700;
-
-  line-height:
-    1;
+    48px;
 
   text-decoration:
     none;
+}
 
-  opacity:
-    0.55;
+
+.site-footer__contact-link img {
+  display:
+    block;
+
+  width:
+    45px;
+
+  height:
+    45px;
+
+  object-fit:
+    contain;
+
+  transform:
+    scale(1);
 
   transition:
-    color
-      var(--transition-default),
-    opacity
-      var(--transition-default),
     transform
-      var(--transition-default);
-}
-
-
-.site-footer__contact-link--email {
-  font-size:
-    1.05rem;
-
-  font-weight:
-    400;
-}
-
-
-.site-footer__contact-link--instagram {
-  font-size:
-    1.2rem;
-
-  font-weight:
-    400;
+      180ms
+      ease;
 }
 
 
@@ -410,17 +446,9 @@
 ) and (
   pointer: fine
 ) {
-  .site-footer__contact-link:hover {
-    color:
-      var(--color-accent);
-
-    opacity:
-      1;
-
+  .site-footer__contact-link:hover img {
     transform:
-      translateY(
-        -1px
-      );
+      scale(1.1);
   }
 }
 
@@ -430,49 +458,48 @@
    ========================= */
 
 @media (
-  max-width: 900px
+  max-width: 1050px
 ) {
-  .site-footer__inner {
-    width:
-      calc(
-        100% - 40px
-      );
+  .site-footer__top {
+    grid-template-columns:
+      auto
+      auto
+      1fr
+      auto;
+
+    column-gap:
+      24px;
   }
 
 
-  .site-footer__top {
-    grid-template-columns:
-      1fr
-      1.3fr
-      1fr;
-
-    gap:
-      28px;
+  .site-footer__letters img {
+    height:
+      24px;
   }
 
 
   .site-footer__mascot {
     width:
-      80px;
-  }
-
-
-  .site-footer__title {
-    width:
-      105px;
+      82px;
   }
 
 
   .site-footer__bukovki-logo {
     width:
-      86px;
+      108px;
   }
 
 
   .site-footer__goodbye-first,
   .site-footer__goodbye-second {
     font-size:
-      1.3rem;
+      1.25rem;
+  }
+
+
+  .site-footer__goodbye-second {
+    margin-left:
+      34px;
   }
 }
 
@@ -482,80 +509,52 @@
    ========================= */
 
 @media (
-  max-width: 650px
+  max-width: 720px
 ) {
   .site-footer__inner {
     width:
       calc(
         100% - 24px
       );
-
-    padding-top:
-      26px;
   }
 
 
   .site-footer__top {
     grid-template-columns:
+      auto
       1fr
-      1fr;
+      auto;
 
     grid-template-areas:
-      "svertchok bukovki"
-      "goodbye goodbye";
+      "letters mascot bukovki"
+      "goodbye goodbye goodbye";
 
-    gap:
-      22px
-      20px;
-  }
+    row-gap:
+      24px;
 
-
-  .site-footer__brand {
-    grid-area:
-      svertchok;
-  }
-
-
-  .site-footer__bukovki {
-    grid-area:
-      bukovki;
-
-    align-self:
+    justify-items:
       center;
   }
 
 
   .site-footer__goodbye {
-    grid-area:
-      goodbye;
-
-    margin-top:
-      4px;
-  }
-
-
-  .site-footer__mascot {
     width:
-      70px;
+      100%;
+
+    text-align:
+      center;
   }
 
 
-  .site-footer__title {
-    width:
-      92px;
+  .site-footer__goodbye-first {
+    white-space:
+      normal;
   }
 
 
-  .site-footer__bukovki-logo {
-    width:
-      78px;
-  }
-
-
-  .site-footer__goodbye-first,
   .site-footer__goodbye-second {
-    font-size:
-      1.25rem;
+    margin-left:
+      0;
   }
 
 
@@ -567,10 +566,7 @@
       center;
 
     gap:
-      11px;
-
-    margin-top:
-      22px;
+      14px;
 
     text-align:
       center;
@@ -590,18 +586,33 @@
    ========================= */
 
 @media (
-  max-width: 420px
+  max-width: 440px
 ) {
-  .site-footer__goodbye-first,
-  .site-footer__goodbye-second {
-    font-size:
-      1.15rem;
+  .site-footer__letters img {
+    height:
+      20px;
   }
 
 
-  .site-footer__meta {
-    font-size:
-      0.66rem;
+  .site-footer__mascot {
+    width:
+      70px;
+  }
+
+
+  .site-footer__bukovki-logo {
+    width:
+      90px;
+  }
+
+
+  .site-footer__contact-link,
+  .site-footer__contact-link img {
+    width:
+      40px;
+
+    height:
+      40px;
   }
 }
 
@@ -614,9 +625,10 @@
   prefers-reduced-motion:
   reduce
 ) {
-  .site-footer__title,
+  .site-footer__letters img,
+  .site-footer__mascot,
   .site-footer__bukovki-logo,
-  .site-footer__contact-link {
+  .site-footer__contact-link img {
     transition:
       none;
   }

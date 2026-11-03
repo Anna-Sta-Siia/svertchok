@@ -106,9 +106,10 @@
     var(--color-logo-green);
 
   font-family:
-    var(--font-accent);
+    var(--font-ui);
 
   font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .contact-overlay__title {

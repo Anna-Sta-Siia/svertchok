@@ -27,90 +27,120 @@ import {
 
 import './MainLayout.css'
 
-const seasonImages: Record<Season, string> = {
+
+const seasonImages: Record<
+  Season,
+  string
+> = {
   spring: springFlower,
   summer: summerStrawberry,
   autumn: autumnLeaf,
   winter: winterSnowflake,
 }
 
+
 export default function MainLayout() {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location =
+    useLocation()
 
-  const season = getCurrentSeason()
+  const navigate =
+    useNavigate()
 
-  const navItems = getNavItems()
+  const season =
+    getCurrentSeason()
+
+  const navItems =
+    getNavItems()
 
   const seasonalImage =
-    seasonImages[season]
+    seasonImages[
+      season
+    ]
+
+
+  /* =========================
+     HEADER VARIANT
+     ========================= */
+
+  const headerVariant =
+    location.pathname === '/'
+      ? 'hero'
+      : 'compact'
+
 
   /* =========================
      CONTACT OVERLAY
      ========================= */
 
   const isContactOpen =
-    location.hash === '#contact'
+    location.hash ===
+    '#contact'
+
 
   /* =========================
      SCROLL TO NORMAL HASH
      ========================= */
 
   useEffect(() => {
-    if (!location.hash) {
-      return
-    }
-
-    /*
-     * #contact ouvre un overlay.
-     * Ce n'est pas une section
-     * vers laquelle on doit scroller.
-     */
     if (
-      location.hash === '#contact'
+      !location.hash
     ) {
       return
     }
 
-    const id = decodeURIComponent(
-      location.hash.slice(1),
+
+    if (
+      location.hash ===
+      '#contact'
+    ) {
+      return
+    }
+
+
+    const id =
+      decodeURIComponent(
+        location.hash.slice(
+          1,
+        ),
+      )
+
+
+    requestAnimationFrame(
+      () => {
+        const element =
+          document.getElementById(
+            id,
+          )
+
+
+        if (
+          !element
+        ) {
+          return
+        }
+
+
+        element.scrollIntoView({
+          behavior:
+            'smooth',
+
+          block:
+            'start',
+        })
+      },
     )
-
-    /*
-     * On attend que la nouvelle page
-     * et son contenu soient rendus.
-     */
-    requestAnimationFrame(() => {
-      const element =
-        document.getElementById(id)
-
-      if (!element) {
-        return
-      }
-
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      })
-    })
   }, [
     location.pathname,
     location.hash,
     location.key,
   ])
 
+
   /* =========================
      CLOSE CONTACT
      ========================= */
 
   function closeContact() {
-    /*
-     * On enlève uniquement #contact.
-     *
-     * /issues/10-2025#contact
-     * devient
-     * /issues/10-2025
-     */
     navigate(
       {
         pathname:
@@ -120,15 +150,19 @@ export default function MainLayout() {
           location.search,
       },
       {
-        replace: true,
+        replace:
+          true,
       },
     )
   }
 
+
   return (
     <div
       className="site-shell"
-      data-season={season}
+      data-season={
+        season
+      }
     >
       {/* =====================
           SEASONAL BACKGROUND
@@ -140,33 +174,53 @@ export default function MainLayout() {
       >
         {Array.from({
           length: 8,
-        }).map((_, index) => (
-          <img
-            key={index}
-            src={seasonalImage}
-            alt=""
-            className={`
-              season-background__image
-              season-background__image--${index + 1}
-            `}
-          />
-        ))}
+        }).map(
+          (
+            _,
+            index,
+          ) => (
+            <img
+              key={
+                index
+              }
+              src={
+                seasonalImage
+              }
+              alt=""
+              className={`
+                season-background__image
+                season-background__image--${index + 1}
+              `}
+            />
+          ),
+        )}
       </div>
+
 
       {/* =====================
           HEADER
           ===================== */}
 
-      <SiteHeader />
+      <SiteHeader
+        variant={
+          headerVariant
+        }
+      />
+
 
       {/* =====================
           NAVIGATION
           ===================== */}
 
       <SeasonalNavbar
-        season={season}
-        items={navItems}
+        season={
+          season
+        }
+        items={
+          navItems
+        }
       />
+
 
       {/* =====================
           PAGE CONTENT
@@ -176,19 +230,25 @@ export default function MainLayout() {
         <Outlet />
       </main>
 
+
       {/* =====================
           FOOTER
           ===================== */}
 
       <SiteFooter />
 
+
       {/* =====================
           GLOBAL CONTACT
           ===================== */}
 
       <ContactOverlay
-        isOpen={isContactOpen}
-        onClose={closeContact}
+        isOpen={
+          isContactOpen
+        }
+        onClose={
+          closeContact
+        }
       >
         <ContactForm />
       </ContactOverlay>

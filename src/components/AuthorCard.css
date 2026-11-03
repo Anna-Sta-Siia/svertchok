@@ -782,8 +782,7 @@
     var(--color-text);
 
   font-family:
-    Georgia,
-    serif;
+    var(--font-main);
 
   font-size:
     1.05rem;
@@ -805,13 +804,16 @@
     0;
 
   color:
-    var(--color-text-soft);
+    var(--color-text);
 
   font-size:
-    0.9rem;
+    0.98rem;
+
+  font-weight:
+    500;
 
   line-height:
-    1.55;
+    1.58;
 }
 
 
@@ -868,8 +870,7 @@
     var(--color-text);
 
   font-family:
-    Georgia,
-    serif;
+    var(--font-main);
 
   font-size:
     0.9rem;

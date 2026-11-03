@@ -8,31 +8,26 @@
 
 html {
   scroll-behavior: smooth;
-
-  background: #fff;
+  background: #ffffff;
 }
 
 body {
   margin: 0;
-
-  background:
-    var(--color-background);
-
-  color:
-    var(--color-text);
-
-  font-family:
-    var(--font-main);
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
 }
 
 .app-theme {
   min-height: 100vh;
-
-  background:
-    var(--color-background);
-
-  color:
-    var(--color-text);
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-medium);
 }
 
 button,
@@ -47,43 +42,97 @@ button {
 }
 
 img {
+  display: block;
   max-width: 100%;
 }
 
+p {
+  text-wrap: pretty;
+}
+
+strong,
+b {
+  font-weight: var(--font-weight-semibold);
+}
 
 /* =========================
    GLOBAL VARIABLES
    ========================= */
 
 :root {
+  /* Typography */
   --font-main:
+    'Cormorant Garamond',
     Georgia,
     'Times New Roman',
     serif;
 
-  --font-accent:
-    'Allura',
-    cursive;
+  --font-ui:
+    'Comfortaa',
+    Arial,
+    sans-serif;
 
-  /*
-   * Le fond général du site
-   * reste blanc quelle que soit
-   * la saison.
-   */
+  /* Compatibility while old components are migrated. */
+  --font-accent: var(--font-ui);
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Colors */
   --color-background: #ffffff;
-
+  --color-white: #ffffff;
   --color-logo-green: #4f8a62;
 
+  /* Shapes */
   --radius-card: 14px;
   --radius-cover: 8px;
   --radius-button: 999px;
 
+  /* Spacing */
   --section-space: 70px;
 
-  --transition-default:
-    0.2s ease;
+  /* Motion */
+  --transition-default: 0.2s ease;
+
+  /* Compatibility with the previous footer stylesheet. */
+  --color-footer-bg: var(--color-footer-background);
 }
 
+/* =========================
+   TYPOGRAPHIC HELPERS
+   ========================= */
+
+.font-ui {
+  font-family: var(--font-ui);
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-editorial {
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-medium);
+}
+
+/* =========================
+   DEFAULT HEADINGS
+   ========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-semibold);
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+}
 
 /* =========================
    SPRING
@@ -92,25 +141,15 @@ img {
 [data-season='spring'] {
   --color-surface: #fffdf8;
   --color-surface-soft: #fff8f3;
-
   --color-text: #617445;
   --color-text-soft: #7a835d;
-
   --color-accent: #c77a8e;
   --color-accent-hover: #ad6477;
-
   --color-secondary: #8caf68;
-
   --color-footer-background: #f3ddd9;
   --color-footer-text: #a55f70;
-
-  --shadow-card:
-    0
-    6px
-    18px
-    rgb(90 76 60 / 8%);
+  --shadow-card: 0 6px 18px rgb(90 76 60 / 8%);
 }
-
 
 /* =========================
    SUMMER
@@ -119,25 +158,15 @@ img {
 [data-season='summer'] {
   --color-surface: #fffdf4;
   --color-surface-soft: #fbf7df;
-
   --color-text: #556b32;
   --color-text-soft: #708052;
-
   --color-accent: #73964b;
   --color-accent-hover: #5f803d;
-
   --color-secondary: #d4a63b;
-
   --color-footer-background: #e4edcf;
   --color-footer-text: #637d3e;
-
-  --shadow-card:
-    0
-    6px
-    18px
-    rgb(70 90 45 / 8%);
+  --shadow-card: 0 6px 18px rgb(70 90 45 / 8%);
 }
-
 
 /* =========================
    AUTUMN
@@ -146,25 +175,15 @@ img {
 [data-season='autumn'] {
   --color-surface: #fffdf8;
   --color-surface-soft: #fffaf0;
-
   --color-text: #556326;
   --color-text-soft: #6d7436;
-
   --color-accent: #b9650b;
   --color-accent-hover: #9f5508;
-
   --color-secondary: #9a7a19;
-
   --color-footer-background: #efd9d0;
   --color-footer-text: #b45c0b;
-
-  --shadow-card:
-    0
-    6px
-    18px
-    rgb(79 67 38 / 8%);
+  --shadow-card: 0 6px 18px rgb(79 67 38 / 8%);
 }
-
 
 /* =========================
    WINTER
@@ -173,21 +192,12 @@ img {
 [data-season='winter'] {
   --color-surface: #fbfdff;
   --color-surface-soft: #f1f6fa;
-
   --color-text: #52697a;
   --color-text-soft: #708291;
-
   --color-accent: #6f8fa8;
   --color-accent-hover: #58778f;
-
   --color-secondary: #9aaec0;
-
   --color-footer-background: #dde8ef;
   --color-footer-text: #627f95;
-
-  --shadow-card:
-    0
-    6px
-    18px
-    rgb(70 90 110 / 8%);
+  --shadow-card: 0 6px 18px rgb(70 90 110 / 8%);
 }

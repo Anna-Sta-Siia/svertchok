@@ -39,7 +39,7 @@
     var(--color-logo-green);
 
   font-family:
-    var(--font-accent);
+    var(--font-ui);
 
   font-size:
     clamp(
@@ -47,6 +47,9 @@
       2.2vw,
       1.9rem
     );
+
+  font-weight:
+    600;
 
   line-height:
     1.2;

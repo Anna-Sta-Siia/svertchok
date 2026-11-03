@@ -115,8 +115,7 @@
     var(--color-text);
 
   font-family:
-    Georgia,
-    serif;
+    var(--font-ui);
 
   font-size:
     clamp(
@@ -126,7 +125,7 @@
     );
 
   font-weight:
-    500;
+    600;
 
   line-height:
     1.2;

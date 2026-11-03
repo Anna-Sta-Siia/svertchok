@@ -7,7 +7,7 @@ export function getNavItems(
 ): NavItemData[] {
   return [
     {
-      label: 'О Буковках',
+      label: 'Давайте знакомиться',
       to: '/about',
     },
     {

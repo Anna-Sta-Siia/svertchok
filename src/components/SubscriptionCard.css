@@ -24,8 +24,9 @@ text-align:center;
 
   color: var(--color-text);
 
+  font-family: var(--font-ui);
   font-size: clamp(1.35rem, 2vw, 1.75rem);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.25;
 }
 
@@ -34,9 +35,11 @@ text-align:center;
 
   margin: 0 0 26px;
 
-  color: var(--color-text-soft);
+  color: var(--color-text);
 
-  font-size: 1rem;
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  font-weight: 500;
   line-height: 1.65;
 }
 

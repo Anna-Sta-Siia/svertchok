@@ -30,7 +30,7 @@
     var(--color-logo-green);
 
   font-family:
-    var(--font-accent);
+    var(--font-ui);
 
   font-size:
     clamp(
@@ -38,6 +38,8 @@
       2vw,
       1.75rem
     );
+
+  font-weight: 600;
 
   line-height: 1.2;
 }
@@ -88,8 +90,8 @@
   color:
     var(--color-accent);
 
-  font: inherit;
-  font-size: 0.92rem;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
   font-weight: 600;
 
   cursor: pointer;

@@ -86,10 +86,6 @@ export type IssueAccessType =
   | 'paid'
 
 export type IssueTheme =
-  | 'Зима'
-  | 'Весна'
-  | 'Лето'
-  | 'Осень'
   | 'Новый год'
   | 'Путешествия'
   | 'Подростки'
@@ -155,7 +151,7 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
-    theme: 'Зима',
+    theme: 'Времена года',
 
     coverImage:
       february2019Cover,
@@ -376,7 +372,7 @@ export const issues: Issue[] = [
   title: 'Сверчок',
 
 
-  theme: 'Осень',
+  theme: 'Времена года',
 
   coverImage:
     september2021Cover,
@@ -489,7 +485,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Лето',
+    theme: 'Времена года',
 
     coverImage:
       october2022Cover,
@@ -545,7 +541,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Весна',
+    theme: 'Времена года',
 
     coverImage:
       march2023Cover,
@@ -665,7 +661,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Весна',
+    theme: 'Времена года',
 
     coverImage:
       march2024Cover,
@@ -875,7 +871,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Зима',
+    theme: 'Времена года',
 
     coverImage:
       december2025Cover,

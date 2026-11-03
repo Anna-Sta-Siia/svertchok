@@ -25,7 +25,7 @@
     var(--color-logo-green);
 
   font-family:
-    var(--font-accent);
+    var(--font-ui);
 
   font-size:
     clamp(
@@ -50,8 +50,7 @@
     var(--color-text);
 
   font-family:
-    Georgia,
-    serif;
+    var(--font-main);
 
   font-size:
     clamp(
@@ -61,7 +60,7 @@
     );
 
   font-weight:
-    500;
+    600;
 
   line-height:
     1.25;
@@ -119,11 +118,13 @@
     var(--color-text);
 
   font-family:
-    Georgia,
-    serif;
+    var(--font-main);
 
   font-size:
     1.15rem;
+
+  font-weight:
+    500;
 
   line-height:
     1.7;
@@ -185,7 +186,7 @@
     var(--color-logo-green);
 
   font-family:
-    var(--font-accent);
+    var(--font-ui);
 
   font-size:
     1.35rem;
@@ -322,7 +323,7 @@ p {
     var(--color-logo-green);
 
   font-family:
-    var(--font-accent);
+    var(--font-ui);
 
   font-size:
     1.45rem;

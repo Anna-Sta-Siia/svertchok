@@ -18,10 +18,10 @@
 
 
 /* =========================
-   LAYOUT
+   SHARED UTILITY ROW
    ========================= */
 
-.site-header__inner {
+.site-header__utility {
   display:
     grid;
 
@@ -31,17 +31,13 @@
     minmax(0, 1fr);
 
   grid-template-areas:
-    "socials eyebrow support"
-    "intro brand right";
+    "socials center actions";
 
   align-items:
     center;
 
   column-gap:
-    44px;
-
-  row-gap:
-    24px;
+    30px;
 
   width:
     90%;
@@ -49,11 +45,44 @@
   margin:
     0
     auto;
+}
 
+
+/* =========================
+   HERO HEADER
+   ========================= */
+
+.site-header--hero {
   padding:
-    20px
+    14px
     0
-    30px;
+    28px;
+}
+
+
+.site-header--hero
+.site-header__utility {
+  min-height:
+    64px;
+}
+
+
+/* =========================
+   COMPACT HEADER
+   ========================= */
+
+.site-header--compact {
+  padding:
+    8px
+    0
+    10px;
+}
+
+
+.site-header--compact
+.site-header__utility {
+  min-height:
+    60px;
 }
 
 
@@ -68,9 +97,6 @@
   display:
     flex;
 
-  flex-direction:
-    column;
-
   align-items:
     center;
 
@@ -78,7 +104,7 @@
     start;
 
   gap:
-    3px;
+    8px;
 }
 
 
@@ -93,50 +119,39 @@
     center;
 
   width:
-    25px;
+    42px;
 
   height:
-    25px;
+    42px;
 
   border-radius:
-    50%;
-
-  color:
-    var(--color-accent);
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size:
-    1rem;
-
-  font-weight:
-    700;
-
-  line-height:
-    1;
+    12px;
 
   text-decoration:
     none;
-
-  opacity:
-    0.52;
-
-  transition:
-    opacity
-      var(--transition-default),
-    transform
-      var(--transition-default);
 }
 
 
-.site-header__social-link--instagram {
-  font-size:
-    1.25rem;
+.site-header__social-link img {
+  display:
+    block;
 
-  font-weight:
-    400;
+  width:
+    39px;
+
+  height:
+    39px;
+
+  object-fit:
+    contain;
+
+  transform:
+    scale(1);
+
+  transition:
+    transform
+    180ms
+    ease;
 }
 
 
@@ -145,14 +160,10 @@
 ) and (
   pointer: fine
 ) {
-  .site-header__social-link:hover {
-    opacity:
-      1;
-
+  .site-header__social-link:hover
+  img {
     transform:
-      translateX(
-        2px
-      );
+      scale(1.1);
   }
 }
 
@@ -169,12 +180,12 @@
 
 
 /* =========================
-   BOUKOVKI
+   BOUKOVKI — HERO
    ========================= */
 
 .site-header__eyebrow {
   grid-area:
-    eyebrow;
+    center;
 
   display:
     inline-flex;
@@ -189,7 +200,7 @@
     center;
 
   gap:
-    9px;
+    14px;
 }
 
 
@@ -204,7 +215,7 @@
     center;
 
   border-radius:
-    10px;
+    12px;
 
   text-decoration:
     none;
@@ -216,14 +227,18 @@
     block;
 
   width:
-    78px;
+    120px;
 
   height:
     auto;
 
+  transform:
+    scale(1);
+
   transition:
     transform
-      var(--transition-default);
+    180ms
+    ease;
 }
 
 
@@ -232,16 +247,16 @@
     var(--color-logo-green);
 
   font-family:
-    var(--font-main);
+    var(--font-ui);
 
   font-size:
-    0.76rem;
+    1.05rem;
 
   font-weight:
-    700;
+    600;
 
   letter-spacing:
-    0.1em;
+    0.07em;
 
   white-space:
     nowrap;
@@ -256,43 +271,135 @@
   .site-header__bukovki-link:hover
   .site-header__bukovki-logo {
     transform:
-      translateY(
-        -2px
-      );
+      scale(1.05);
   }
 }
 
 
-.site-header__bukovki-link:focus-visible {
-  outline:
-    2px
-    solid
-    var(--color-accent);
+/* =========================
+   COMPACT BRAND
+   ========================= */
 
-  outline-offset:
-    4px;
+.site-header__compact-brand {
+  grid-area:
+    center;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  justify-self:
+    center;
+
+  gap:
+    10px;
+
+  border-radius:
+    12px;
+
+  text-decoration:
+    none;
+}
+
+
+.site-header__compact-mascot {
+  display:
+    block;
+
+  width:
+    48px;
+
+  height:
+    auto;
+
+  object-fit:
+    contain;
+
+  transform:
+    scale(1);
+
+  transition:
+    transform
+    180ms
+    ease;
+}
+
+
+.site-header__compact-title {
+  display:
+    block;
+
+  width:
+    150px;
+
+  height:
+    auto;
+
+  object-fit:
+    contain;
+
+  transform:
+    scale(1);
+
+  transition:
+    transform
+    180ms
+    ease;
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .site-header__compact-brand:hover
+  .site-header__compact-mascot,
+
+  .site-header__compact-brand:hover
+  .site-header__compact-title {
+    transform:
+      scale(1.04);
+  }
 }
 
 
 /* =========================
-   SUPPORT
+   ACTIONS
    ========================= */
 
-.site-header__support {
-  position:
-    relative;
-
+.site-header__actions {
   grid-area:
-    support;
+    actions;
+
+  display:
+    flex;
+
+  align-items:
+    center;
 
   justify-self:
     end;
+
+  gap:
+    7px;
 }
 
 
-.site-header__support-trigger {
+.site-header__action {
+  position:
+    relative;
+}
+
+
+.site-header__action-trigger {
   display:
-    inline-flex;
+    flex;
 
   align-items:
     center;
@@ -303,15 +410,8 @@
   gap:
     2px;
 
-  min-width:
-    42px;
-
-  min-height:
-    34px;
-
   padding:
-    2px
-    5px;
+    0;
 
   border:
     0;
@@ -319,57 +419,54 @@
   background:
     transparent;
 
+  cursor:
+    pointer;
+}
+
+
+.site-header__action-icon {
+  display:
+    block;
+
+  width:
+    46px;
+
+  height:
+    46px;
+
+  object-fit:
+    contain;
+
+  transform:
+    scale(1);
+
+  transition:
+    transform
+    180ms
+    ease;
+}
+
+
+.site-header__action-chevron {
   color:
     var(--color-accent);
 
-  cursor:
-    pointer;
-
-  opacity:
-    0.62;
-
-  transition:
-    opacity
-      var(--transition-default),
-    transform
-      var(--transition-default);
-}
-
-
-.site-header__support-heart {
   font-size:
-    1.7rem;
-
-  font-weight:
-    400;
-
-  line-height:
-    1;
-}
-
-
-.site-header__support-chevron {
-  margin-top:
-    2px;
-
-  font-size:
-    0.75rem;
+    0.74rem;
 
   line-height:
     1;
 
   transition:
     transform
-      var(--transition-default);
+    180ms
+    ease;
 }
 
 
-.site-header__support-trigger--open
-.site-header__support-chevron {
+.site-header__action-chevron--open {
   transform:
-    rotate(
-      180deg
-    );
+    rotate(180deg);
 }
 
 
@@ -378,19 +475,15 @@
 ) and (
   pointer: fine
 ) {
-  .site-header__support-trigger:hover {
-    opacity:
-      1;
-
+  .site-header__action-trigger:hover
+  .site-header__action-icon {
     transform:
-      translateY(
-        -1px
-      );
+      scale(1.09);
   }
 }
 
 
-.site-header__support-trigger:focus-visible {
+.site-header__action-trigger:focus-visible {
   outline:
     2px
     solid
@@ -400,15 +493,15 @@
     3px;
 
   border-radius:
-    999px;
+    12px;
 }
 
 
 /* =========================
-   SUPPORT MENU
+   ACTION MENUS
    ========================= */
 
-.site-header__support-menu {
+.site-header__action-menu {
   position:
     absolute;
 
@@ -421,22 +514,13 @@
     0;
 
   z-index:
-    20;
-
-  display:
-    flex;
-
-  flex-direction:
-    column;
+    30;
 
   width:
     max-content;
 
-  min-width:
-    154px;
-
   padding:
-    7px;
+    6px;
 
   border:
     1px
@@ -448,53 +532,50 @@
     );
 
   border-radius:
-    14px;
+    13px;
 
   background:
     color-mix(
       in srgb,
-      var(--color-surface) 96%,
+      var(--color-surface) 97%,
       transparent
     );
 
   box-shadow:
     0
-    10px
-    28px
+    8px
+    24px
     rgb(
-      55 45 20 / 10%
+      55 45 20 / 8%
     );
 }
 
 
-.site-header__support-item {
+.site-header__action-menu-link {
   display:
     block;
 
   padding:
-    8px
+    7px
     11px;
 
   border-radius:
-    9px;
+    8px;
 
   color:
     var(--color-text);
 
   font-size:
-    0.8rem;
+    0.82rem;
 
   font-weight:
     600;
 
-  line-height:
-    1.3;
+  white-space:
+    nowrap;
 
   text-decoration:
     none;
-
-  white-space:
-    nowrap;
 }
 
 
@@ -503,137 +584,81 @@
 ) and (
   pointer: fine
 ) {
-  .site-header__support-item:hover {
+  .site-header__action-menu-link:hover {
+    color:
+      var(--color-accent);
+
     background:
       color-mix(
         in srgb,
-        var(--color-accent) 8%,
+        var(--color-accent) 7%,
         transparent
       );
-
-    color:
-      var(--color-accent);
   }
 }
 
 
-.site-header__support-item:focus-visible {
-  outline:
-    2px
-    solid
-    var(--color-accent);
-
-  outline-offset:
-    -1px;
-}
-
-
 /* =========================
-   INTRO
+   HERO CONTENT
    ========================= */
 
-.site-header__intro {
-  grid-area:
-    intro;
-
+.site-header__hero {
   display:
     flex;
+
+  flex-direction:
+    column;
 
   align-items:
     center;
 
-  justify-self:
-    start;
+  justify-content:
+    center;
 
   gap:
-    20px;
+    12px;
 
-  min-width:
-    0;
+  margin-top:
+    8px;
 }
 
 
-.site-header__mascot {
-  width:
-    118px;
-
-  flex-shrink:
+.site-header__hero-kicker {
+  margin:
     0;
 
-  animation:
-    mascot-greeting
-    5s
-    ease-in-out
-    infinite;
-}
-
-
-/* =========================
-   SPEECH
-   ========================= */
-
-.site-header__speech {
   color:
     var(--color-logo-green);
 
   font-family:
-    var(--font-accent);
+    var(--font-ui);
 
   font-size:
-    1.75rem;
+    clamp(
+      0.82rem,
+      1vw,
+      0.96rem
+    );
 
   font-weight:
-    400;
+    500;
+
+  letter-spacing:
+    0.045em;
 
   line-height:
-    1.2;
+    1.35;
 
   text-align:
     center;
 }
 
 
-.site-header__speech p {
-  margin:
-    0;
-}
-
-
-.site-header__speech p + p {
-  margin-top:
-    4px;
-}
-
-
-.site-header__speech-accent {
-  color:
-    var(--color-logo-green);
-}
-
-
-.site-header__speech--right {
-  grid-area:
-    right;
-
-  justify-self:
-    end;
-
-  width:
-    min(
-      100%,
-      360px
-    );
-}
-
-
 /* =========================
-   BRAND
+   HERO TITLE
    ========================= */
 
-.site-header__brand {
-  grid-area:
-    brand;
-
+.site-header__hero-brand {
   display:
     flex;
 
@@ -643,9 +668,6 @@
   justify-content:
     center;
 
-  justify-self:
-    center;
-
   border-radius:
     14px;
 
@@ -654,33 +676,74 @@
 }
 
 
-.site-header__title {
+.site-header__hero-title {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    6px;
+}
+
+
+.site-header__hero-letter {
   display:
     block;
 
   width:
-    225px;
+    auto;
 
   height:
-    auto;
+    68px;
 
-  margin:
-    0
-    auto;
+  object-fit:
+    contain;
 
-  filter:
-    drop-shadow(
-      0
-      4px
-      6px
-      rgb(
-        70 80 45 / 8%
-      )
-    );
+  transform:
+    scale(1);
 
   transition:
     transform
-      var(--transition-default);
+    180ms
+    ease;
+}
+
+
+/*
+ * Сверчок сидит
+ * между О и К.
+ */
+
+.site-header__hero-mascot {
+  display:
+    block;
+
+  width:
+    auto;
+
+  height:
+    108px;
+
+  margin:
+    0
+    1px;
+
+  object-fit:
+    contain;
+
+  transform:
+    translateY(-10px)
+    scale(1);
+
+  transition:
+    transform
+    180ms
+    ease;
 }
 
 
@@ -689,44 +752,36 @@
 ) and (
   pointer: fine
 ) {
-  .site-header__brand:hover
-  .site-header__title {
+  .site-header__hero-brand:hover
+  .site-header__hero-letter {
     transform:
-      scale(
-        1.025
-      );
+      scale(1.035);
+  }
+
+
+  .site-header__hero-brand:hover
+  .site-header__hero-mascot {
+    transform:
+      translateY(-10px)
+      scale(1.06);
   }
 }
 
 
-.site-header__brand:focus-visible {
+/* =========================
+   FOCUS
+   ========================= */
+
+.site-header__bukovki-link:focus-visible,
+.site-header__compact-brand:focus-visible,
+.site-header__hero-brand:focus-visible {
   outline:
     2px
     solid
     var(--color-accent);
 
   outline-offset:
-    6px;
-}
-
-
-/* =========================
-   ANIMATION
-   ========================= */
-
-@keyframes mascot-greeting {
-  0%,
-  100% {
-    transform:
-      translateY(0)
-      rotate(0);
-  }
-
-  50% {
-    transform:
-      translateY(-4px)
-      rotate(-1deg);
-  }
+    5px;
 }
 
 
@@ -737,36 +792,73 @@
 @media (
   max-width: 1024px
 ) {
-  .site-header__inner {
-    column-gap:
-      24px;
-
+  .site-header__utility {
     width:
       calc(
         100% - 40px
       );
+
+    column-gap:
+      20px;
   }
 
 
-  .site-header__title {
+  .site-header__bukovki-logo {
     width:
-      190px;
+      96px;
   }
 
 
-  .site-header__mascot {
-    width:
-      95px;
-  }
-
-
-  .site-header__speech {
+  .site-header__eyebrow-text {
     font-size:
-      clamp(
-        1.35rem,
-        2.6vw,
-        1.6rem
-      );
+      0.88rem;
+  }
+
+
+  .site-header__social-link,
+  .site-header__action-icon {
+    width:
+      39px;
+
+    height:
+      39px;
+  }
+
+
+  .site-header__social-link img {
+    width:
+      36px;
+
+    height:
+      36px;
+  }
+
+
+  .site-header__hero-letter {
+    height:
+      57px;
+  }
+
+
+  .site-header__hero-mascot {
+    height:
+      88px;
+
+    transform:
+      translateY(-8px)
+      scale(1);
+  }
+
+
+  .site-header__compact-mascot {
+    width:
+      42px;
+  }
+
+
+  .site-header__compact-title {
+    width:
+      130px;
   }
 }
 
@@ -776,42 +868,21 @@
    ========================= */
 
 @media (
-  max-width: 768px
+  max-width: 700px
 ) {
-  .site-header__inner {
-    grid-template-columns:
-      1fr
-      auto
-      1fr;
-
-    grid-template-areas:
-      "socials eyebrow support"
-      "intro intro intro"
-      "brand brand brand"
-      "right right right";
-
-    column-gap:
-      10px;
-
-    row-gap:
-      17px;
-
+  .site-header__utility {
     width:
       calc(
         100% - 24px
       );
 
-    padding:
-      16px
-      0
-      26px;
+    column-gap:
+      8px;
   }
 
 
-  .site-header__socials {
-    flex-direction:
-      row;
-
+  .site-header__socials,
+  .site-header__actions {
     gap:
       2px;
   }
@@ -819,43 +890,84 @@
 
   .site-header__bukovki-logo {
     width:
-      64px;
+      70px;
   }
 
 
   .site-header__eyebrow-text {
     font-size:
-      0.62rem;
+      0.72rem;
+
+    letter-spacing:
+      0.06em;
   }
 
 
-  .site-header__support-menu {
-    min-width:
-      145px;
-  }
-
-
-  .site-header__intro {
-    justify-self:
-      center;
-  }
-
-
-  .site-header__mascot {
+  .site-header__social-link,
+  .site-header__action-icon {
     width:
-      78px;
+      34px;
+
+    height:
+      34px;
   }
 
 
-  .site-header__title {
+  .site-header__social-link img {
     width:
-      155px;
+      32px;
+
+    height:
+      32px;
   }
 
 
-  .site-header__speech--right {
-    justify-self:
-      center;
+  .site-header__hero-kicker {
+    font-size:
+      0.82rem;
+  }
+
+
+  .site-header__hero-title {
+    gap:
+      3px;
+  }
+
+
+  .site-header__hero-letter {
+    height:
+      45px;
+  }
+
+
+  .site-header__hero-mascot {
+    height:
+      68px;
+
+    margin:
+      0;
+
+    transform:
+      translateY(-6px)
+      scale(1);
+  }
+
+
+  .site-header__compact-brand {
+    gap:
+      5px;
+  }
+
+
+  .site-header__compact-mascot {
+    width:
+      34px;
+  }
+
+
+  .site-header__compact-title {
+    width:
+      105px;
   }
 }
 
@@ -865,70 +977,45 @@
    ========================= */
 
 @media (
-  max-width: 500px
+  max-width: 480px
 ) {
-  .site-header__inner {
-    width:
-      calc(
-        100% - 20px
-      );
-  }
-
-
-  .site-header__eyebrow {
-    gap:
-      4px;
+  .site-header__eyebrow-text {
+    display:
+      none;
   }
 
 
   .site-header__bukovki-logo {
     width:
-      55px;
+      58px;
   }
 
 
-  .site-header__eyebrow-text {
-    font-size:
-      0.55rem;
-
-    letter-spacing:
-      0.05em;
+  .site-header__hero-letter {
+    height:
+      37px;
   }
 
 
-  .site-header__support-heart {
-    font-size:
-      1.5rem;
+  .site-header__hero-mascot {
+    height:
+      57px;
+
+    transform:
+      translateY(-5px)
+      scale(1);
   }
 
 
-  .site-header__support-menu {
-    right:
-      -2px;
-  }
-
-
-  .site-header__intro {
-    gap:
-      14px;
-  }
-
-
-  .site-header__mascot {
+  .site-header__compact-title {
     width:
-      70px;
+      88px;
   }
 
 
-  .site-header__speech {
-    font-size:
-      1.2rem;
-  }
-
-
-  .site-header__title {
+  .site-header__compact-mascot {
     width:
-      145px;
+      30px;
   }
 }
 
@@ -941,15 +1028,14 @@
   prefers-reduced-motion:
   reduce
 ) {
-  .site-header__mascot,
-  .site-header__title,
+  .site-header__social-link img,
   .site-header__bukovki-logo,
-  .site-header__social-link,
-  .site-header__support-trigger,
-  .site-header__support-chevron {
-    animation:
-      none;
-
+  .site-header__compact-mascot,
+  .site-header__compact-title,
+  .site-header__action-icon,
+  .site-header__action-chevron,
+  .site-header__hero-letter,
+  .site-header__hero-mascot {
     transition:
       none;
   }
