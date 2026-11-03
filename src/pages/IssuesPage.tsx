@@ -5,7 +5,9 @@ import {
 
 import IssueCard from '../components/IssueCard'
 import CustomSelect from '../components/filters/CustomSelect'
-import FilterPanel from '../components/filters/FilterPanel'
+import FilterPanel, {
+  type SortDirection,
+} from '../components/filters/FilterPanel'
 
 import {
   publishedIssues,
@@ -30,10 +32,6 @@ type ThemeFilter =
   | 'all'
   | IssueTheme
 
-type SortOrder =
-  | 'newest'
-  | 'oldest'
-
 export default function IssuesPage() {
   const [
     selectedYear,
@@ -57,10 +55,10 @@ export default function IssuesPage() {
   )
 
   const [
-    sortOrder,
-    setSortOrder,
-  ] = useState<SortOrder>(
-    'newest',
+    sortDirection,
+    setSortDirection,
+  ] = useState<SortDirection>(
+    'desc',
   )
 
   const years =
@@ -145,17 +143,6 @@ export default function IssuesPage() {
     ),
   ]
 
-  const sortOptions = [
-    {
-      value: 'newest',
-      label: 'Сначала новые',
-    },
-    {
-      value: 'oldest',
-      label: 'Сначала старые',
-    },
-  ]
-
   const filteredIssues =
     useMemo(() => {
       const result =
@@ -192,10 +179,10 @@ export default function IssuesPage() {
       ].sort(
         (a, b) => {
           const direction =
-            sortOrder ===
-            'newest'
-              ? -1
-              : 1
+            sortDirection ===
+              'asc'
+              ? 1
+              : -1
 
           if (
             a.year !==
@@ -217,7 +204,7 @@ export default function IssuesPage() {
       selectedYear,
       selectedAccess,
       selectedTheme,
-      sortOrder,
+      sortDirection,
     ])
 
   const hasActiveFilters =
@@ -227,14 +214,14 @@ export default function IssuesPage() {
       'all' ||
     selectedTheme !==
       'all' ||
-    sortOrder !==
-      'newest'
+    sortDirection !==
+      'desc'
 
   function resetFilters() {
     setSelectedYear('all')
     setSelectedAccess('all')
     setSelectedTheme('all')
-    setSortOrder('newest')
+    setSortDirection('desc')
   }
 
   return (
@@ -256,6 +243,24 @@ export default function IssuesPage() {
 
       <FilterPanel
         ariaLabel="Фильтры номеров"
+        sort={{
+          hint:
+            'Сортировка по дате',
+          direction:
+            sortDirection,
+          onChange:
+            setSortDirection,
+          ascendingLabel:
+            'Сначала старые номера',
+          descendingLabel:
+            'Сначала новые номера',
+        }}
+        onReset={
+          resetFilters
+        }
+        canReset={
+          hasActiveFilters
+        }
       >
         <CustomSelect
           id="issues-year"
@@ -323,36 +328,6 @@ export default function IssuesPage() {
           }
         />
 
-        <CustomSelect
-          id="issues-sort"
-          label="Порядок"
-          value={
-            sortOrder
-          }
-          options={
-            sortOptions
-          }
-          onChange={(
-            value,
-          ) =>
-            setSortOrder(
-              value as
-                SortOrder,
-            )
-          }
-        />
-
-        {hasActiveFilters && (
-          <button
-            type="button"
-            className="issues-page__reset"
-            onClick={
-              resetFilters
-            }
-          >
-            Сбросить фильтры
-          </button>
-        )}
       </FilterPanel>
 
       <div className="issues-page__results-heading">

@@ -9,7 +9,9 @@ import {
 
 import AuthorCard from '../components/AuthorCard'
 import CustomSelect from '../components/filters/CustomSelect'
-import FilterPanel from '../components/filters/FilterPanel'
+import FilterPanel, {
+  type SortDirection,
+} from '../components/filters/FilterPanel'
 
 import {
   authors,
@@ -134,6 +136,13 @@ export default function AuthorsPage() {
     setSelectedLetters,
   ] = useState<LetterFilter>(
     'all',
+  )
+
+  const [
+    sortDirection,
+    setSortDirection,
+  ] = useState<SortDirection>(
+    'asc',
   )
 
 
@@ -336,6 +345,12 @@ export default function AuthorsPage() {
       )
       .sort(
         (a, b) => {
+          const direction =
+            sortDirection ===
+              'asc'
+              ? 1
+              : -1
+
           const lastNameComparison =
             a.lastName.localeCompare(
               b.lastName,
@@ -352,7 +367,8 @@ export default function AuthorsPage() {
             0
           ) {
             return (
-              lastNameComparison
+              lastNameComparison *
+              direction
             )
           }
 
@@ -365,7 +381,8 @@ export default function AuthorsPage() {
                 sensitivity:
                   'base',
               },
-            )
+            ) *
+            direction
           )
         },
       )
@@ -377,7 +394,9 @@ export default function AuthorsPage() {
     selectedLetters !==
       'all' ||
     selectedIssue !==
-      'all'
+      'all' ||
+    sortDirection !==
+      'asc'
 
 
   function resetFilters() {
@@ -391,6 +410,10 @@ export default function AuthorsPage() {
 
     setIssueFilter(
       'all',
+    )
+
+    setSortDirection(
+      'asc',
     )
   }
 
@@ -421,6 +444,24 @@ export default function AuthorsPage() {
 
       <FilterPanel
         ariaLabel="Фильтры авторов"
+        sort={{
+          hint:
+            'Сортировка по алфавиту',
+          direction:
+            sortDirection,
+          onChange:
+            setSortDirection,
+          ascendingLabel:
+            'Сортировать от А до Я',
+          descendingLabel:
+            'Сортировать от Я до А',
+        }}
+        onReset={
+          resetFilters
+        }
+        canReset={
+          hasActiveFilters
+        }
       >
         <CustomSelect
           id="authors-type-filter"
@@ -491,17 +532,6 @@ export default function AuthorsPage() {
           </strong>
         </p>
 
-        {hasActiveFilters && (
-          <button
-            type="button"
-            className="authors-page__reset"
-            onClick={
-              resetFilters
-            }
-          >
-            Сбросить фильтры
-          </button>
-        )}
       </div>
 
 

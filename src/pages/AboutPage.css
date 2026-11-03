@@ -1,0 +1,471 @@
+/* =========================
+   ABOUT PAGE
+   ========================= */
+
+.about-page {
+  width:
+    100%;
+
+  padding:
+    0
+    0
+    70px;
+}
+
+
+/* =========================
+   HEADINGS
+   ========================= */
+
+.about-page__heading {
+  margin:
+    0;
+
+  color:
+    var(--color-logo-green);
+
+  font-family:
+    var(--font-accent);
+
+  font-size:
+    clamp(
+      1.7rem,
+      2.4vw,
+      2.25rem
+    );
+
+  line-height:
+    1.2;
+
+  text-align:
+    center;
+}
+
+
+.about-page__secondary-heading {
+  margin:
+    0;
+
+  color:
+    var(--color-text);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      1.35rem,
+      1.8vw,
+      1.7rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.25;
+
+  text-align:
+    center;
+}
+
+
+/* =========================
+   MAIN STORY
+   ========================= */
+
+.about-page__story {
+  padding:
+    28px
+    30px;
+
+  border:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 16%,
+      transparent
+    );
+
+  border-radius:
+    var(--radius-card);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 52%,
+      transparent
+    );
+
+  box-shadow:
+    0
+    8px
+    24px
+    rgb(
+      55 45 20 / 4%
+    );
+}
+
+
+.about-page__lead {
+  margin:
+    0
+    0
+    18px;
+
+  color:
+    var(--color-text);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    1.15rem;
+
+  line-height:
+    1.7;
+}
+
+
+.about-page__text {
+  margin:
+    0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    1rem;
+
+  line-height:
+    1.75;
+}
+
+
+.about-page__text
++
+.about-page__text {
+  margin-top:
+    14px;
+}
+
+
+/* =========================
+   SVERTCHOK
+   ========================= */
+
+.about-page__svertchok {
+  margin-top:
+    30px;
+
+  padding-top:
+    26px;
+
+  border-top:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-text) 9%,
+      transparent
+    );
+}
+
+
+.about-page__svertchok-intro {
+  margin:
+    0
+    0
+    6px;
+
+  color:
+    var(--color-logo-green);
+
+  font-family:
+    var(--font-accent);
+
+  font-size:
+    1.35rem;
+
+  line-height:
+    1.2;
+}
+
+
+.about-page__svertchok-logo {
+  display:
+    block;
+
+  width:
+    min(
+      230px,
+      70%
+    );
+
+  height:
+    auto;
+
+  margin:
+    4px
+    0
+    16px;
+}
+
+
+.about-page__issues-link {
+  display:
+    inline-flex;
+
+  margin-top:
+    18px;
+
+  color:
+    var(--color-accent);
+
+  font-size:
+    0.92rem;
+
+  font-weight:
+    700;
+
+  text-decoration:
+    none;
+}
+
+
+/* =========================
+   SECONDARY
+   ========================= */
+
+.about-page__more {
+  padding:
+    24px
+    22px;
+
+  border:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 14%,
+      transparent
+    );
+
+  border-radius:
+    var(--radius-card);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 42%,
+      transparent
+    );
+}
+
+
+.about-page__more p {
+  margin:
+    0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    0.94rem;
+
+  line-height:
+    1.7;
+}
+
+
+.about-page__more p
++
+p {
+  margin-top:
+    18px;
+}
+
+
+/* =========================
+   SOCIALS
+   ========================= */
+
+.about-page__socials {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  gap:
+    12px;
+
+  margin-top:
+    44px;
+
+  text-align:
+    center;
+}
+
+
+.about-page__social-title {
+  margin:
+    0;
+
+  color:
+    var(--color-logo-green);
+
+  font-family:
+    var(--font-accent);
+
+  font-size:
+    1.45rem;
+}
+
+
+.about-page__social-links {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    18px;
+}
+
+
+.about-page__social-link {
+  color:
+    var(--color-accent);
+
+  font-size:
+    0.88rem;
+
+  font-weight:
+    600;
+
+  text-decoration:
+    none;
+
+  text-underline-offset:
+    4px;
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .about-page__issues-link:hover,
+  .about-page__social-link:hover {
+    text-decoration:
+      underline;
+  }
+}
+
+
+.about-page__issues-link:focus-visible,
+.about-page__social-link:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset:
+    4px;
+
+  border-radius:
+    3px;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (
+  max-width: 880px
+) {
+  .about-page__story {
+    padding:
+      24px
+      22px;
+  }
+
+
+  .about-page__more {
+    width:
+      min(
+        620px,
+        100%
+      );
+
+    margin:
+      0
+      auto;
+  }
+
+
+  .about-page__svertchok-logo {
+    margin-right:
+      auto;
+
+    margin-left:
+      auto;
+  }
+
+
+  .about-page__svertchok {
+    text-align:
+      center;
+  }
+}
+
+
+@media (
+  max-width: 500px
+) {
+  .about-page {
+    padding-bottom:
+      52px;
+  }
+
+
+  .about-page__story {
+    padding:
+      21px
+      18px;
+  }
+
+
+  .about-page__lead {
+    font-size:
+      1.06rem;
+  }
+
+
+  .about-page__text {
+    font-size:
+      0.95rem;
+  }
+
+
+  .about-page__socials {
+    margin-top:
+      34px;
+  }
+}

@@ -266,6 +266,36 @@
 }
 
 
+/* =========================
+   TARGETED INTERVIEW
+   ========================= */
+
+.interview-card--targeted {
+  border:
+    2px
+    solid
+    var(--color-accent);
+
+  box-shadow:
+    0
+    0
+    0
+    4px
+    color-mix(
+      in srgb,
+      var(--color-accent) 10%,
+      transparent
+    ),
+    0
+    12px
+    30px
+    rgb(55 45 20 / 8%);
+}
+
+/* =========================
+   HOVER
+   ========================= */
+
 @media (
   hover: hover
 ) and (
@@ -279,6 +309,10 @@
   }
 }
 
+
+/* =========================
+   FOCUS
+   ========================= */
 
 .interview-card__author-link:focus-visible,
 .interview-card__issue:focus-visible,

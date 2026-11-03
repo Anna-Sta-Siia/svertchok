@@ -1,7 +1,7 @@
 import {
   Link,
+  useLocation,
 } from 'react-router-dom'
-
 import type {
   Author,
 } from '../assets/data/authors'
@@ -48,6 +48,19 @@ export default function InterviewCard({
   author,
   issue,
 }: InterviewCardProps) {
+    const location =
+    useLocation()
+
+  const targetInterviewId =
+    location.hash
+      ? decodeURIComponent(
+          location.hash.slice(1),
+        )
+      : null
+
+  const isTargeted =
+    targetInterviewId ===
+    interview.id
   const isFree =
     issue.accessType ===
     'free'
@@ -56,10 +69,17 @@ export default function InterviewCard({
     `${import.meta.env.BASE_URL}interviews/${interview.id}.pdf`
 
   return (
-    <article
-      id={interview.id}
-      className="interview-card"
-    >
+   <article
+  id={interview.id}
+  className={`
+    interview-card
+    ${
+      isTargeted
+        ? 'interview-card--targeted'
+        : ''
+    }
+  `.trim()}
+>
       <header className="interview-card__header">
         <h2 className="interview-card__author">
           <Link

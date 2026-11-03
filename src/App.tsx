@@ -1,5 +1,4 @@
 import {
-  Navigate,
   Route,
   Routes,
 } from 'react-router-dom'
@@ -7,10 +6,13 @@ import {
 import MainLayout from './layouts/MainLayout'
 
 import HomePage from './pages/HomePage'
+import AboutPage from './pages/AboutPage'
+import IssuesPage from './pages/IssuesPage'
 import IssuePage from './pages/IssuePage'
 import AuthorsPage from './pages/AuthorsPage'
 import AuthorPage from './pages/AuthorPage'
 import InterviewsPage from './pages/InterviewsPage'
+
 
 export default function App() {
   return (
@@ -22,18 +24,18 @@ export default function App() {
         />
 
         <Route
-          path="/issues/:slug"
-          element={<IssuePage />}
+          path="/about"
+          element={<AboutPage />}
         />
 
         <Route
           path="/issues"
-          element={
-            <Navigate
-              to="/#issues-archive"
-              replace
-            />
-          }
+          element={<IssuesPage />}
+        />
+
+        <Route
+          path="/issues/:slug"
+          element={<IssuePage />}
         />
 
         <Route
@@ -50,7 +52,6 @@ export default function App() {
           path="/interviews"
           element={<InterviewsPage />}
         />
-
       </Route>
     </Routes>
   )
