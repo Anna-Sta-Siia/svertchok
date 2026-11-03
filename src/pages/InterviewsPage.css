@@ -1,0 +1,192 @@
+/* =========================
+   INTERVIEWS PAGE
+   ========================= */
+
+.interviews-page {
+  width:
+    100%;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.interviews-page__header {
+  width:
+    min(
+      760px,
+      100%
+    );
+
+  margin:
+    0
+    auto
+    42px;
+
+  text-align:
+    center;
+}
+
+
+.interviews-page__eyebrow {
+  margin:
+    0
+    0
+    8px;
+
+  color:
+    var(--color-logo-green);
+
+  font-family:
+    var(--font-accent);
+
+  font-size:
+    clamp(
+      1.45rem,
+      2.2vw,
+      1.9rem
+    );
+
+  line-height:
+    1.2;
+}
+
+
+.interviews-page__intro {
+  margin:
+    0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    1.08rem;
+
+  line-height:
+    1.65;
+}
+
+
+/* =========================
+   RESULTS
+   ========================= */
+
+.interviews-page__results {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-height:
+    32px;
+
+  margin-bottom:
+    22px;
+}
+
+
+.interviews-page__count {
+  margin:
+    0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    0.88rem;
+}
+
+
+.interviews-page__count strong {
+  color:
+    var(--color-text);
+
+  font-weight:
+    600;
+}
+
+
+/* =========================
+   GRID
+   ========================= */
+
+.interviews-page__grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    26px
+    24px;
+
+  width:
+    100%;
+}
+
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 1024px) {
+  .interviews-page__grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+  .interviews-page {
+    padding:
+      26px
+      0
+      60px;
+  }
+
+
+  .interviews-page__header {
+    margin-bottom:
+      30px;
+  }
+
+
+  .interviews-page__grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      18px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .interviews-page__intro {
+    font-size:
+      1rem;
+  }
+}

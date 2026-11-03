@@ -1,4 +1,10 @@
 import {
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
+
+import {
   Link,
   Navigate,
   useParams,
@@ -15,10 +21,6 @@ import {
 } from '../assets/data/selectors'
 
 import './AuthorPage.css'
-
-
-const MAX_RELATED_AUTHORS =
-  16
 
 
 const relatedAuthorsSessionSeed =
@@ -95,17 +97,15 @@ function createSeededRandom(
 }
 
 
-function pickRelatedAuthors<
+function shuffleRelatedAuthors<
   T,
 >(
   items: T[],
   key: string,
-  limit =
-    MAX_RELATED_AUTHORS,
 ) {
   if (
     items.length <=
-    limit
+    1
   ) {
     return items
   }
@@ -162,10 +162,7 @@ function pickRelatedAuthors<
   }
 
 
-  return shuffled.slice(
-    0,
-    limit,
-  )
+  return shuffled
 }
 
 
@@ -177,42 +174,52 @@ export default function AuthorPage() {
   }>()
 
 
-  if (!authorId) {
-    return (
-      <Navigate
-        to="/authors"
-        replace
-      />
+  const featuredCardRef =
+    useRef<HTMLDivElement>(
+      null,
     )
-  }
+
+
+  const authorsGridRef =
+    useRef<HTMLDivElement>(
+      null,
+    )
+
+
+  const issueAuthorsLinkRef =
+    useRef<HTMLAnchorElement>(
+      null,
+    )
+
+
+  const [
+    visibleAuthorCount,
+    setVisibleAuthorCount,
+  ] = useState(4)
 
 
   const author =
-    getAuthorById(
-      authorId,
-    )
-
-
-  if (!author) {
-    return (
-      <Navigate
-        to="/authors"
-        replace
-      />
-    )
-  }
+    authorId
+      ? getAuthorById(
+          authorId,
+        )
+      : undefined
 
 
   const publications =
-    getContentItemsByAuthorId(
-      author.id,
-    )
+    author
+      ? getContentItemsByAuthorId(
+          author.id,
+        )
+      : []
 
 
   const authorIssues =
-    getIssuesByAuthorId(
-      author.id,
-    )
+    author
+      ? getIssuesByAuthorId(
+          author.id,
+        )
+      : []
 
 
   const latestAuthorIssue =
@@ -220,6 +227,7 @@ export default function AuthorPage() {
 
 
   const allSameIssueAuthors =
+    author &&
     latestAuthorIssue
       ? getAuthorsByIssueId(
           latestAuthorIssue.id,
@@ -229,11 +237,11 @@ export default function AuthorPage() {
 
 
   const sameIssueAuthors =
+    author &&
     latestAuthorIssue
-      ? pickRelatedAuthors(
+      ? shuffleRelatedAuthors(
           allSameIssueAuthors,
           `${author.id}-${latestAuthorIssue.id}`,
-          MAX_RELATED_AUTHORS,
         )
       : []
 
@@ -244,6 +252,239 @@ export default function AuthorPage() {
       sameIssueAuthors.length >
         0,
     )
+
+
+  const visibleIssueAuthors =
+    sameIssueAuthors.slice(
+      0,
+      visibleAuthorCount,
+    )
+
+
+  useLayoutEffect(() => {
+    if (
+      !hasRelatedAuthors
+    ) {
+      return
+    }
+
+
+    const featuredCard =
+      featuredCardRef.current
+
+    const authorsGrid =
+      authorsGridRef.current
+
+    const issueAuthorsLink =
+      issueAuthorsLinkRef.current
+
+
+    if (
+      !featuredCard ||
+      !authorsGrid ||
+      !issueAuthorsLink
+    ) {
+      return
+    }
+
+
+    const updateVisibleAuthors =
+      () => {
+        const cards =
+          Array.from(
+            authorsGrid.querySelectorAll<HTMLElement>(
+              '.author-card--compact',
+            ),
+          )
+
+
+        if (
+          cards.length ===
+          0
+        ) {
+          return
+        }
+
+
+        const cardHeight =
+          Math.max(
+            ...cards.map(
+              (card) =>
+                card
+                  .getBoundingClientRect()
+                  .height,
+            ),
+          )
+
+
+        if (
+          cardHeight <=
+          0
+        ) {
+          return
+        }
+
+
+        const gridStyles =
+          window.getComputedStyle(
+            authorsGrid,
+          )
+
+
+        const columns =
+          Number.parseInt(
+            gridStyles.getPropertyValue(
+              '--authors-columns',
+            ),
+            10,
+          ) ||
+          1
+
+
+        const rowGap =
+          Number.parseFloat(
+            gridStyles.rowGap,
+          ) ||
+          0
+
+
+        /*
+         * Once Showcase becomes stacked,
+         * the right column no longer needs
+         * to follow the featured card height.
+         *
+         * On smaller screens we keep two
+         * compact rows before the link.
+         */
+        if (
+          window.matchMedia(
+            '(max-width: 800px)',
+          ).matches
+        ) {
+          const nextCount =
+            Math.min(
+              sameIssueAuthors.length,
+              columns *
+                2,
+            )
+
+
+          setVisibleAuthorCount(
+            nextCount,
+          )
+
+          return
+        }
+
+
+        const linkStyles =
+          window.getComputedStyle(
+            issueAuthorsLink,
+          )
+
+
+        const linkHeight =
+          issueAuthorsLink
+            .getBoundingClientRect()
+            .height
+
+
+        const linkMarginTop =
+          Number.parseFloat(
+            linkStyles.marginTop,
+          ) ||
+          0
+
+
+        const featuredHeight =
+          featuredCard
+            .getBoundingClientRect()
+            .height
+
+
+        const availableGridHeight =
+          Math.max(
+            cardHeight,
+            featuredHeight -
+              linkHeight -
+              linkMarginTop,
+          )
+
+
+        const rows =
+          Math.max(
+            1,
+            Math.floor(
+              (
+                availableGridHeight +
+                rowGap
+              ) /
+                (
+                  cardHeight +
+                  rowGap
+                ),
+            ),
+          )
+
+
+        const nextCount =
+          Math.min(
+            sameIssueAuthors.length,
+            rows *
+              columns,
+          )
+
+
+        setVisibleAuthorCount(
+          nextCount,
+        )
+      }
+
+
+    updateVisibleAuthors()
+
+
+    const observer =
+      new ResizeObserver(
+        updateVisibleAuthors,
+      )
+
+
+    observer.observe(
+      featuredCard,
+    )
+
+    observer.observe(
+      authorsGrid,
+    )
+
+    observer.observe(
+      issueAuthorsLink,
+    )
+
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [
+    hasRelatedAuthors,
+    sameIssueAuthors.length,
+    author?.id,
+    latestAuthorIssue?.id,
+  ])
+
+
+  if (
+    !authorId ||
+    !author
+  ) {
+    return (
+      <Navigate
+        to="/authors"
+        replace
+      />
+    )
+  }
 
 
   return (
@@ -285,53 +526,77 @@ export default function AuthorPage() {
 
         featured={
           <div className="author-page__featured">
-            <AuthorCard
-              author={
-                author
+            <div
+              ref={
+                featuredCardRef
               }
-              authorIssues={
-                authorIssues
-              }
-              publications={
-                publications
-              }
-              variant="featured"
-            />
+              className="author-page__featured-card"
+            >
+              <AuthorCard
+                author={
+                  author
+                }
+                authorIssues={
+                  authorIssues
+                }
+                publications={
+                  publications
+                }
+                variant="featured"
+              />
+            </div>
+
+            <Link
+              to="/authors"
+              className="author-page__all-authors-link"
+            >
+              ← Все авторы
+            </Link>
           </div>
         }
 
         secondary={
-          hasRelatedAuthors
+          hasRelatedAuthors &&
+          latestAuthorIssue
             ? (
-              <div className="author-page__authors-grid">
-                {sameIssueAuthors.map(
-                  (
-                    relatedAuthor,
-                  ) => (
-                    <AuthorCard
-                      key={
-                        relatedAuthor.id
-                      }
-                      author={
-                        relatedAuthor
-                      }
-                      variant="compact"
-                    />
-                  ),
-                )}
+              <div className="author-page__secondary">
+                <div
+                  ref={
+                    authorsGridRef
+                  }
+                  className="author-page__authors-grid"
+                >
+                  {visibleIssueAuthors.map(
+                    (
+                      relatedAuthor,
+                    ) => (
+                      <AuthorCard
+                        key={
+                          relatedAuthor.id
+                        }
+                        author={
+                          relatedAuthor
+                        }
+                        variant="compact"
+                      />
+                    ),
+                  )}
+                </div>
+
+                <Link
+                  ref={
+                    issueAuthorsLinkRef
+                  }
+                  to={`/authors?issue=${latestAuthorIssue.id}`}
+                  className="author-page__issue-authors-link"
+                >
+                  Все авторы этого номера →
+                </Link>
               </div>
             )
             : null
         }
       />
-
-
-      <Link
-        to="/authors"
-        className="author-page__back"
-      >
-        ← Все авторы
-      </Link>
     </section>
   )
 }

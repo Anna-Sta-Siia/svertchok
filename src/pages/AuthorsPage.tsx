@@ -3,6 +3,10 @@ import {
   useState,
 } from 'react'
 
+import {
+  useSearchParams,
+} from 'react-router-dom'
+
 import AuthorCard from '../components/AuthorCard'
 import CustomSelect from '../components/filters/CustomSelect'
 import FilterPanel from '../components/filters/FilterPanel'
@@ -26,7 +30,6 @@ type TypeFilter =
   | 'all'
   | 'poet'
   | 'prose'
-
 
 type LetterFilter =
   | 'all'
@@ -114,12 +117,17 @@ const letterOptions = [
 
 export default function AuthorsPage() {
   const [
+    searchParams,
+    setSearchParams,
+  ] = useSearchParams()
+
+
+  const [
     selectedType,
     setSelectedType,
   ] = useState<TypeFilter>(
     'all',
   )
-
 
   const [
     selectedLetters,
@@ -129,17 +137,22 @@ export default function AuthorsPage() {
   )
 
 
-  const [
-    selectedIssue,
-    setSelectedIssue,
-  ] = useState(
-    'all',
-  )
+  const issueFromUrl =
+    searchParams.get(
+      'issue',
+    )
 
 
-  /* =========================
-     ISSUES
-     ========================= */
+  const selectedIssue =
+    issueFromUrl &&
+    publishedIssues.some(
+      (issue) =>
+        issue.id ===
+        issueFromUrl,
+    )
+      ? issueFromUrl
+      : 'all'
+
 
   const sortedIssues =
     useMemo(
@@ -147,10 +160,7 @@ export default function AuthorsPage() {
         [
           ...publishedIssues,
         ].sort(
-          (
-            a,
-            b,
-          ) =>
+          (a, b) =>
             b.year -
               a.year ||
             b.month -
@@ -169,9 +179,7 @@ export default function AuthorsPage() {
         },
 
         ...sortedIssues.map(
-          (
-            issue,
-          ) => ({
+          (issue) => ({
             value:
               issue.id,
 
@@ -191,9 +199,35 @@ export default function AuthorsPage() {
     )
 
 
-  /* =========================
-     LETTER FILTER
-     ========================= */
+  function setIssueFilter(
+    value: string,
+  ) {
+    const nextSearchParams =
+      new URLSearchParams(
+        searchParams,
+      )
+
+
+    if (
+      value ===
+      'all'
+    ) {
+      nextSearchParams.delete(
+        'issue',
+      )
+    } else {
+      nextSearchParams.set(
+        'issue',
+        value,
+      )
+    }
+
+
+    setSearchParams(
+      nextSearchParams,
+    )
+  }
+
 
   function matchesLetterRange(
     lastName: string,
@@ -210,9 +244,7 @@ export default function AuthorsPage() {
     const firstLetter =
       lastName
         .trim()
-        .charAt(
-          0,
-        )
+        .charAt(0)
         .toUpperCase()
 
 
@@ -260,16 +292,10 @@ export default function AuthorsPage() {
   }
 
 
-  /* =========================
-     FILTERED AUTHORS
-     ========================= */
-
   const filteredAuthors =
     authors
       .filter(
-        (
-          author,
-        ) => {
+        (author) => {
           const matchesType =
             selectedType ===
               'all' ||
@@ -295,9 +321,7 @@ export default function AuthorsPage() {
             selectedIssue ===
               'all' ||
             authorIssues.some(
-              (
-                issue,
-              ) =>
+              (issue) =>
                 issue.id ===
                 selectedIssue,
             )
@@ -311,10 +335,7 @@ export default function AuthorsPage() {
         },
       )
       .sort(
-        (
-          a,
-          b,
-        ) => {
+        (a, b) => {
           const lastNameComparison =
             a.lastName.localeCompare(
               b.lastName,
@@ -350,10 +371,6 @@ export default function AuthorsPage() {
       )
 
 
-  /* =========================
-     RESET
-     ========================= */
-
   const hasActiveFilters =
     selectedType !==
       'all' ||
@@ -372,7 +389,7 @@ export default function AuthorsPage() {
       'all',
     )
 
-    setSelectedIssue(
+    setIssueFilter(
       'all',
     )
   }
@@ -453,7 +470,7 @@ export default function AuthorsPage() {
             issueOptions
           }
           onChange={
-            setSelectedIssue
+            setIssueFilter
           }
         />
       </FilterPanel>
@@ -496,9 +513,7 @@ export default function AuthorsPage() {
       0 ? (
         <div className="authors-page__grid">
           {filteredAuthors.map(
-            (
-              author,
-            ) => (
+            (author) => (
               <AuthorCard
                 key={
                   author.id
@@ -511,7 +526,6 @@ export default function AuthorsPage() {
                     author.id,
                   )
                 }
-                variant="archive"
               />
             ),
           )}

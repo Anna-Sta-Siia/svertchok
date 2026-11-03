@@ -31,12 +31,6 @@ export default function SiteFooter() {
   {/* CENTER */}
 
   <div className="site-footer__support">
-    <p>
-      Альманах выходит при поддержке
-      Ассоциации любителей русскоязычной
-      детской литературы
-    </p>
-
     <Button
       variant="outline"
       to="https://www.helloasso.com/associations/association-des-amateurs-de-la-litterature-russophone-pour-les-enfants-et-la-jeunesse-boukovki/formulaires/1"

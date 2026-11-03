@@ -1,0 +1,296 @@
+/* =========================
+   INTERVIEW CARD
+   ========================= */
+
+.interview-card {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  min-height:
+    100%;
+
+  padding:
+    22px
+    20px
+    18px;
+
+  border:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 16%,
+      transparent
+    );
+
+  border-radius:
+    var(--radius-card);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 56%,
+      transparent
+    );
+
+  box-shadow:
+    0
+    8px
+    24px
+    rgb(55 45 20 / 4%);
+
+  scroll-margin-top:
+    120px;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.interview-card__header {
+  margin-bottom:
+    16px;
+}
+
+
+.interview-card__author {
+  margin:
+    0
+    0
+    9px;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(
+      1.25rem,
+      1.7vw,
+      1.55rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.15;
+}
+
+
+.interview-card__author-link {
+  color:
+    var(--color-text);
+
+  text-decoration:
+    none;
+}
+
+
+.interview-card__types {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    7px;
+}
+
+
+.interview-card__type {
+  padding:
+    4px
+    10px;
+
+  border-radius:
+    999px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-secondary) 12%,
+      transparent
+    );
+
+  color:
+    var(--color-accent);
+
+  font-size:
+    0.78rem;
+
+  line-height:
+    1.2;
+}
+
+
+/* =========================
+   BODY
+   ========================= */
+
+.interview-card__body {
+  flex:
+    1;
+}
+
+
+.interview-card__topic {
+  margin:
+    0
+    0
+    10px;
+
+  color:
+    var(--color-text);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    1.02rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1.4;
+}
+
+
+.interview-card__description {
+  margin:
+    0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    0.92rem;
+
+  line-height:
+    1.6;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.interview-card__footer {
+  margin-top:
+    20px;
+
+  padding-top:
+    15px;
+
+  border-top:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-text) 8%,
+      transparent
+    );
+}
+
+
+.interview-card__issue {
+  display:
+    inline-block;
+
+  margin-bottom:
+    13px;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    0.78rem;
+
+  font-weight:
+    600;
+
+  text-decoration:
+    none;
+}
+
+
+.interview-card__action-wrap {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    flex-start;
+
+  gap:
+    7px;
+}
+
+
+.interview-card__action {
+  color:
+    var(--color-accent);
+
+  font-size:
+    0.9rem;
+
+  font-weight:
+    700;
+
+  text-decoration:
+    none;
+}
+
+
+.interview-card__note {
+  margin:
+    0;
+
+  color:
+    var(--color-text-soft);
+
+  font-size:
+    0.76rem;
+
+  line-height:
+    1.45;
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .interview-card__author-link:hover,
+  .interview-card__issue:hover,
+  .interview-card__action:hover {
+    color:
+      var(--color-accent);
+  }
+}
+
+
+.interview-card__author-link:focus-visible,
+.interview-card__issue:focus-visible,
+.interview-card__action:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset:
+    4px;
+
+  border-radius:
+    3px;
+}

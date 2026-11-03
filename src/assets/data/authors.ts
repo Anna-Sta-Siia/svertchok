@@ -7,9 +7,7 @@ export type Author = {
   id: string
   firstName: string
   lastName: string
-
   shortBio?: string
-
   types: AuthorType[]
 }
 
@@ -18,6 +16,7 @@ export const authors: Author[] = [
     id: 'sergey-yesenin',
     firstName: 'Сергей',
     lastName: 'Есенин',
+    shortBio: 'Сергей Есенин (1895–1925) — русский поэт, один из крупнейших лириков XX века. В его поэзии особенно важны темы природы, деревенской России, любви и родины.',
     types: ['poet'],
   },
 
@@ -25,6 +24,7 @@ export const authors: Author[] = [
     id: 'anna-khvolson',
     firstName: 'Анна',
     lastName: 'Хвольсон',
+    shortBio: 'Анна Борисовна Хвольсон (1868–1934) — русская детская писательница. Ввела в русскую детскую литературу Мурзилку и Незнайку, придумала имена героев и написала истории о приключениях эльфов-малюток.',
     types: ['prose'],
   },
 
@@ -32,6 +32,7 @@ export const authors: Author[] = [
     id: 'konstantin-balmont',
     firstName: 'Константин',
     lastName: 'Бальмонт',
+    shortBio: 'Поэт, классик русской литературы.',
     types: ['poet'],
   },
 
@@ -39,6 +40,7 @@ export const authors: Author[] = [
     id: 'lev-tolstoy',
     firstName: 'Лев',
     lastName: 'Толстой',
+    shortBio: 'Классик русской литературы (1828–1910).',
     types: ['prose'],
   },
 
@@ -46,6 +48,7 @@ export const authors: Author[] = [
     id: 'viktoria-lederman',
     firstName: 'Виктория',
     lastName: 'Ледерман',
+    shortBio: 'Знаменитая писательница, автор многочисленных детских книг, пользующихся неизменным успехом. Лауреат и дипломант многих литературных конкурсов и премий.',
     types: ['poet', 'prose'],
   },
 
@@ -53,6 +56,7 @@ export const authors: Author[] = [
     id: 'tatyana-lyavan',
     firstName: 'Татьяна',
     lastName: 'Ляван',
+    shortBio: 'Автор нескольких поэтических книг для детей, в прошлом преподаватель русского языка и литературы с многолетним опытом работы.',
     types: ['poet'],
   },
 
@@ -60,6 +64,7 @@ export const authors: Author[] = [
     id: 'nataliya-ho',
     firstName: 'Наталия',
     lastName: 'Хо',
+    shortBio: 'Писатель и график, автор нескольких сказочных историй, опубликованных в первом номере альманаха «Сверчок» и сборнике «Сказки „Белого Феникса“».',
     types: ['prose'],
   },
 
@@ -67,6 +72,7 @@ export const authors: Author[] = [
     id: 'eduard-vedyasov',
     firstName: 'Эдуард',
     lastName: 'Ведясов',
+    shortBio: 'Начинающий писатель и профессиональный переводчик. Родом из Пензы, много лет живёт во Франции.',
     types: ['prose'],
   },
 
@@ -74,6 +80,7 @@ export const authors: Author[] = [
     id: 'tamara-kryukova',
     firstName: 'Тамара',
     lastName: 'Крюкова',
+    shortBio: 'Писательница, автор книг для детей, подростков и взрослых; работает в жанрах фэнтези, сказки, реалистической подростковой прозы, историй о животных и поэзии.',
     types: ['poet', 'prose'],
   },
 
@@ -81,6 +88,7 @@ export const authors: Author[] = [
     id: 'maria-agapova',
     firstName: 'Мария',
     lastName: 'Агапова',
+    shortBio: 'Писательница, член Союза писателей Санкт-Петербурга. Публикуется с 2006 года; автор сказочной повести «Пуговка на траве», финалист и дипломант нескольких литературных конкурсов.',
     types: ['prose'],
   },
 
@@ -88,6 +96,7 @@ export const authors: Author[] = [
     id: 'lyudmila-klemyat',
     firstName: 'Людмила',
     lastName: 'Клемят',
+    shortBio: 'Сказочница из Белоруссии. Автор повестей для детей «Пешком по облакам» и «Выживут только волшебники».',
     types: ['prose'],
   },
 
@@ -95,13 +104,15 @@ export const authors: Author[] = [
     id: 'nikolay-krasilnikov',
     firstName: 'Николай',
     lastName: 'Красильников',
-    types: ['prose'],
+    shortBio: 'Поэт, прозаик, эссеист, переводчик и критик, автор более 60 книг стихов, рассказов и повестей для детей и взрослых.',
+    types: ['poet', 'prose'],
   },
 
   {
     id: 'sergey-georgiev',
     firstName: 'Сергей',
     lastName: 'Георгиев',
+    shortBio: 'Детский писатель, кандидат философских наук, автор весёлых книг для детей.',
     types: ['prose'],
   },
 
@@ -109,20 +120,23 @@ export const authors: Author[] = [
     id: 'marina-druzhinina',
     firstName: 'Марина',
     lastName: 'Дружинина',
-    types: ['prose'],
+    shortBio: 'Редактор журнала «Весёлые картинки», автор весёлых стихов и рассказов для детей.',
+    types: ['poet', 'prose'],
   },
 
   {
     id: 'mark-shvarts',
     firstName: 'Марк',
     lastName: 'Шварц',
-    types: ['prose'],
+    shortBio: 'Детский писатель, член Союза писателей России, автор стихов и рассказов для детей. Учился в Литературном институте им. Горького.',
+    types: ['poet', 'prose'],
   },
 
   {
     id: 'georgiy-naumenko',
     firstName: 'Георгий',
     lastName: 'Науменко',
+    shortBio: 'Фольклорист-музыковед, этнограф и писатель, член Союза композиторов России. Автор более ста книг и музыкальных сборников, исследователь русского музыкального и поэтического фольклора.',
     types: ['prose'],
   },
 
@@ -130,6 +144,7 @@ export const authors: Author[] = [
     id: 'ekaterina-karetnikova',
     firstName: 'Екатерина',
     lastName: 'Каретникова',
+    shortBio: 'Детская писательница, член Союза писателей Санкт-Петербурга. Лауреат премии имени В. П. Крапивина, финалист конкурсов имени Сергея Михалкова и «Книгуру», автор тринадцати книг для детей.',
     types: ['prose'],
   },
 
@@ -137,6 +152,7 @@ export const authors: Author[] = [
     id: 'natalya-navrotskaya',
     firstName: 'Наталья',
     lastName: 'Навроцкая',
+    shortBio: 'Писательница, автор молодёжного романа «Блог уходящего детства», а также книг «Ключ от стального сердца» и серии «Клуб „Твайлайт“».',
     types: ['prose'],
   },
 
@@ -144,6 +160,7 @@ export const authors: Author[] = [
     id: 'elena-yakubsfeld',
     firstName: 'Елена',
     lastName: 'Якубсфельд',
+    shortBio: 'Писательница и блогер, автор нескольких книг на русском и английском языках.',
     types: ['prose'],
   },
 
@@ -151,6 +168,7 @@ export const authors: Author[] = [
     id: 'polina-zherebtsova',
     firstName: 'Полина',
     lastName: 'Жеребцова',
+    shortBio: 'Писатель-документалист, журналист, поэтесса. Автор книг «Дневник Жеребцовой Полины», «Ослиная порода», «45-я параллель». Её проза переведена на многие языки мира. Лауреат нескольких престижных международных литературных премий.',
     types: ['poet'],
   },
 
@@ -158,6 +176,7 @@ export const authors: Author[] = [
     id: 'nina-kulik',
     firstName: 'Нина',
     lastName: 'Кулик',
+    shortBio: 'Начинающий прозаик и поэтесса.',
     types: ['poet', 'prose'],
   },
 
@@ -165,6 +184,7 @@ export const authors: Author[] = [
     id: 'vladislav-filatov',
     firstName: 'Владислав',
     lastName: 'Филатов',
+    shortBio: 'В прошлом преподаватель французского языка, автор автобиографического романа «Дорогая, а как целуются бабочки?»',
     types: ['prose'],
   },
 
@@ -172,6 +192,7 @@ export const authors: Author[] = [
     id: 'mikhal-magidson',
     firstName: 'Михаль',
     lastName: 'Магидсон',
+    shortBio: 'Призёр конкурса «Фабрика слов», 17 лет.',
     types: ['prose'],
   },
 
@@ -179,6 +200,7 @@ export const authors: Author[] = [
     id: 'arseniy-pestov',
     firstName: 'Арсений',
     lastName: 'Пестов',
+    shortBio: 'Призёр конкурса «Фабрика слов», 14 лет.',
     types: ['prose'],
   },
 
@@ -186,6 +208,7 @@ export const authors: Author[] = [
     id: 'fransua-zhelibter',
     firstName: 'Франсуа',
     lastName: 'Желибтер',
+    shortBio: 'Призёр конкурса «Фабрика слов», 13 лет.',
     types: ['prose'],
   },
 
@@ -193,6 +216,7 @@ export const authors: Author[] = [
     id: 'alyona-pogudina',
     firstName: 'Алёна',
     lastName: 'Погудина',
+    shortBio: 'Начинающая юная писательница, лауреат международного детского творческого конкурса «Фабрика слов».',
     types: ['prose'],
   },
 
@@ -200,6 +224,7 @@ export const authors: Author[] = [
     id: 'richi-dehesus-koshel',
     firstName: 'Риччи Дехесус',
     lastName: 'Кошель',
+    shortBio: 'Призёр конкурса «Фабрика слов», 8 лет.',
     types: ['prose'],
   },
 
@@ -207,6 +232,7 @@ export const authors: Author[] = [
     id: 'konstantin-stanyukovich',
     firstName: 'Константин',
     lastName: 'Станюкович',
+    shortBio: 'Знаменитый российский писатель-маринист (1843–1903).',
     types: ['prose'],
   },
 
@@ -214,6 +240,7 @@ export const authors: Author[] = [
     id: 'konstantin-ushinsky',
     firstName: 'Константин',
     lastName: 'Ушинский',
+    shortBio: 'Знаменитый российский педагог, писатель, основоположник научной педагогики в России (1823–1871).',
     types: ['prose'],
   },
 
@@ -221,6 +248,7 @@ export const authors: Author[] = [
     id: 'vladimir-mayakovsky',
     firstName: 'Владимир',
     lastName: 'Маяковский',
+    shortBio: 'Русский советский поэт-футурист, драматург, сценарист, кинорежиссёр, актёр, художник, редактор журналов «ЛЕФ», «Левый фронт», «Новый ЛЕФ». Один из крупнейших поэтов XX века (1893–1930).',
     types: ['poet'],
   },
 
@@ -228,6 +256,7 @@ export const authors: Author[] = [
     id: 'igor-malyshev',
     firstName: 'Игорь',
     lastName: 'Малышев',
+    shortBio: 'Современный российский писатель, публицист, автор книг для детей и взрослых. Лауреат и призёр многочисленных литературных премий и конкурсов.',
     types: ['prose'],
   },
 
@@ -235,6 +264,7 @@ export const authors: Author[] = [
     id: 'alexander-tkachenko',
     firstName: 'Александр',
     lastName: 'Ткаченко',
+    shortBio: 'Психолог, автор книг для взрослых и детей, литературный редактор издательства «Настя и Никита».',
     types: ['prose'],
   },
 
@@ -242,6 +272,7 @@ export const authors: Author[] = [
     id: 'fyodor-konyukhov',
     firstName: 'Фёдор',
     lastName: 'Конюхов',
+    shortBio: 'Российский путешественник, автор книг для детей и взрослых, художник, священник. Совершил пять кругосветных плаваний, 17 раз пересёк Атлантику, в одиночку добрался до Южного и Северного полюсов. Обладатель национальной премии «Хрустальный компас».',
     types: ['prose'],
   },
 
@@ -249,6 +280,7 @@ export const authors: Author[] = [
     id: 'marina-ulybysheva',
     firstName: 'Марина',
     lastName: 'Улыбышева',
+    shortBio: 'Поэт, журналист, детский писатель. Член Союза писателей и Союза журналистов России.',
     types: ['prose'],
   },
 
@@ -256,6 +288,7 @@ export const authors: Author[] = [
     id: 'olga-dvornyakova',
     firstName: 'Ольга',
     lastName: 'Дворнякова',
+    shortBio: 'Пиар-директор издательства «Настя и Никита», редактор, детский писатель.',
     types: ['prose'],
   },
 
@@ -263,6 +296,7 @@ export const authors: Author[] = [
     id: 'elena-maksimova',
     firstName: 'Елена',
     lastName: 'Максимова',
+    shortBio: 'Детский писатель.',
     types: ['prose'],
   },
 
@@ -270,6 +304,7 @@ export const authors: Author[] = [
     id: 'alyona-vasnetsova',
     firstName: 'Алёна',
     lastName: 'Васнецова',
+    shortBio: 'Библиотекарь, детский писатель, музыкант. Играет и поёт в группе «Укины дети».',
     types: ['prose'],
   },
 
@@ -277,6 +312,7 @@ export const authors: Author[] = [
     id: 'alexandra-zelenskaya',
     firstName: 'Александра',
     lastName: 'Зеленская',
+    shortBio: 'Биолог, обладатель многочисленных дипломов в сфере биологии и медицины. Живёт и работает в Базеле и параллельно с профессиональной деятельностью пишет стихи для взрослых и детей. Автор нескольких поэтических сборников.',
     types: ['poet'],
   },
 
@@ -284,6 +320,7 @@ export const authors: Author[] = [
     id: 'ilona-volynskaya',
     firstName: 'Илона',
     lastName: 'Волынская',
+    shortBio: 'Писательница, журналист, преподаватель английского языка, кандидат исторических наук. В соавторстве с Кириллом Кащеевым является автором более сорока детских и подростковых книг.',
     types: ['prose'],
   },
 
@@ -291,6 +328,7 @@ export const authors: Author[] = [
     id: 'yulia-kuznetsova',
     firstName: 'Юлия',
     lastName: 'Кузнецова',
+    shortBio: 'Знаменитая детская писательница, лауреат и дипломант нескольких литературных премий.',
     types: ['prose'],
   },
 
@@ -298,6 +336,7 @@ export const authors: Author[] = [
     id: 'natalya-vishnyakova',
     firstName: 'Наталья',
     lastName: 'Вишнякова',
+    shortBio: 'Литератор, журналист и педагог.',
     types: ['prose'],
   },
 
@@ -305,6 +344,7 @@ export const authors: Author[] = [
     id: 'lidia-charskaya',
     firstName: 'Лидия',
     lastName: 'Чарская',
+    shortBio: 'Русская детская писательница и актриса (1875–1937).',
     types: ['prose'],
   },
 
@@ -312,6 +352,7 @@ export const authors: Author[] = [
     id: 'alexander-kuprin',
     firstName: 'Александр',
     lastName: 'Куприн',
+    shortBio: 'Классик русской литературы, писатель, переводчик (1870–1938).',
     types: ['prose'],
   },
 
@@ -319,6 +360,7 @@ export const authors: Author[] = [
     id: 'viktoria-taibova',
     firstName: 'Виктория',
     lastName: 'Таибова',
+    shortBio: 'Начинающая писательница и поэтесса, блогер. Член редколлегии альманаха «Сверчок». Живёт и работает в Париже.',
     types: ['poet', 'prose'],
   },
 
@@ -326,6 +368,7 @@ export const authors: Author[] = [
     id: 'sergey-ulashev',
     firstName: 'Сергей',
     lastName: 'Улашев',
+    shortBio: 'Писатель-юморист и актёр.',
     types: ['prose'],
   },
 
@@ -333,6 +376,7 @@ export const authors: Author[] = [
     id: 'marina-taranenko',
     firstName: 'Марина',
     lastName: 'Тараненко',
+    shortBio: 'Известная российская детская писательница, автор многочисленных прозаических и поэтических книг. Член Международного творческого объединения детских авторов и Товарищества детских и юношеских писателей России, лауреат и дипломант многих литературных конкурсов и премий.',
     types: ['poet', 'prose'],
   },
 
@@ -340,6 +384,7 @@ export const authors: Author[] = [
     id: 'vera-shipunova',
     firstName: 'Вера',
     lastName: 'Шипунова',
+    shortBio: 'Детская писательница, прозаик и поэт, автор многочисленных дидактических и обучающих книг.',
     types: ['poet', 'prose'],
   },
 
@@ -347,6 +392,7 @@ export const authors: Author[] = [
     id: 'tatyana-steinberg',
     firstName: 'Татьяна',
     lastName: 'Стейнберг',
+    shortBio: 'Начинающая поэтесса.',
     types: ['poet'],
   },
 
@@ -354,6 +400,7 @@ export const authors: Author[] = [
     id: 'elena-khaetskaya',
     firstName: 'Елена',
     lastName: 'Хаецкая',
+    shortBio: 'Знаменитая российская писательница, автор нескольких десятков книг, лауреат и дипломант многочисленных литературных премий и конкурсов.',
     types: ['prose'],
   },
 
@@ -361,6 +408,7 @@ export const authors: Author[] = [
     id: 'igor-shlyapka',
     firstName: 'Игорь',
     lastName: 'Шляпка',
+    shortBio: 'Российский детский писатель, автор многочисленных прозаических и поэтических произведений.',
     types: ['poet', 'prose'],
   },
 
@@ -368,6 +416,7 @@ export const authors: Author[] = [
     id: 'vasily-zhukovsky',
     firstName: 'Василий',
     lastName: 'Жуковский',
+    shortBio: 'Поэт, переводчик, литературный критик и педагог. Автор литературных сказок, основанных на сюжетах европейского и русского фольклора.',
     types: ['poet'],
   },
 
@@ -375,6 +424,7 @@ export const authors: Author[] = [
     id: 'aya-en',
     firstName: 'Ая',
     lastName: 'Эн',
+    shortBio: 'Знаменитая российская писательница, лауреат и призёр многих литературных премий и конкурсов. Живёт и работает в Москве.',
     types: ['prose'],
   },
 
@@ -382,6 +432,7 @@ export const authors: Author[] = [
     id: 'ivan-turgenev',
     firstName: 'Иван',
     lastName: 'Тургенев',
+    shortBio: 'Классик русской литературы.',
     types: ['prose'],
   },
 
@@ -389,6 +440,7 @@ export const authors: Author[] = [
     id: 'dmitry-vedenyapin',
     firstName: 'Дмитрий',
     lastName: 'Веденяпин',
+    shortBio: 'Знаменитый российский поэт, живёт и работает в Париже и Москве, лауреат многих литературных премий и конкурсов.',
     types: ['poet'],
   },
 
@@ -396,6 +448,7 @@ export const authors: Author[] = [
     id: 'ksenia-valakhanovich',
     firstName: 'Ксения',
     lastName: 'Валаханович',
+    shortBio: 'Знаменитая и очень популярная белорусская детская поэтесса, автор множества книг, лауреат и призёр многих литературных премий и конкурсов. Живёт и работает на Кипре.',
     types: ['poet'],
   },
 
@@ -403,6 +456,7 @@ export const authors: Author[] = [
     id: 'tata-snegur',
     firstName: 'Тата',
     lastName: 'Снегур',
+    shortBio: 'Начинающая писательница и поэтесса. Живёт и работает в Киеве.',
     types: ['poet', 'prose'],
   },
 
@@ -410,6 +464,7 @@ export const authors: Author[] = [
     id: 'teodoro-rossini',
     firstName: 'Теодоро',
     lastName: 'Россини',
+    shortBio: 'Начинающий юный писатель, лауреат международного детского творческого конкурса «Фабрика слов».',
     types: ['prose'],
   },
 
@@ -417,6 +472,7 @@ export const authors: Author[] = [
     id: 'kirill-kashcheev',
     firstName: 'Кирилл',
     lastName: 'Кащеев',
+    shortBio: 'Известный детский писатель, соавтор Илоны Волынской. Живёт и работает в Днепре.',
     types: ['prose'],
   },
 
@@ -424,6 +480,7 @@ export const authors: Author[] = [
     id: 'irina-motobryvtseva',
     firstName: 'Ирина',
     lastName: 'Мотобрывцева',
+    shortBio: 'Поэтесса и переводчик с японского. Живёт и работает в Болгарии.',
     types: ['poet', 'prose'],
   },
 
@@ -431,6 +488,7 @@ export const authors: Author[] = [
     id: 'zulya-stadnik',
     firstName: 'Зуля',
     lastName: 'Стадник',
+    shortBio: 'Известный детский прозаик, лауреат и призёр литературных премий и конкурсов.',
     types: ['prose'],
   },
 
@@ -438,6 +496,7 @@ export const authors: Author[] = [
     id: 'tatyana-varlamova',
     firstName: 'Татьяна',
     lastName: 'Варламова',
+    shortBio: 'Российская детская поэтесса, член Союза писателей России, лауреат и призёр многочисленных литературных конкурсов. Живёт и работает в Москве.',
     types: ['poet'],
   },
 
@@ -445,6 +504,7 @@ export const authors: Author[] = [
     id: 'nadezhda-forostyan',
     firstName: 'Надежда',
     lastName: 'Форостян',
+    shortBio: 'Журналист и начинающая писательница. Живёт и работает в России.',
     types: ['prose'],
   },
 
@@ -452,6 +512,7 @@ export const authors: Author[] = [
     id: 'nina-agoshkova',
     firstName: 'Нина',
     lastName: 'Агошкова',
+    shortBio: 'Педагог, детская писательница и поэтесса. Живёт и работает в Краснодарском крае.',
     types: ['poet'],
   },
 
@@ -459,6 +520,7 @@ export const authors: Author[] = [
     id: 'elena-ranneva',
     firstName: 'Елена',
     lastName: 'Раннева',
+    shortBio: 'Детская поэтесса, лауреат и дипломант литературных конкурсов и премий.',
     types: ['poet'],
   },
 
@@ -466,6 +528,7 @@ export const authors: Author[] = [
     id: 'sergey-nikiforov',
     firstName: 'Сергей',
     lastName: 'Никифоров',
+    shortBio: 'Российский детский поэт, член Творческого объединения детских авторов России. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -473,6 +536,7 @@ export const authors: Author[] = [
     id: 'tatyana-stamova',
     firstName: 'Татьяна',
     lastName: 'Стамова',
+    shortBio: 'Известная детская писательница. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -480,6 +544,7 @@ export const authors: Author[] = [
     id: 'andrey-bogdarin',
     firstName: 'Андрей',
     lastName: 'Богдарин',
+    shortBio: 'Российский детский поэт, прозаик и переводчик. Живёт и работает в Нижнем Новгороде.',
     types: ['poet', 'prose'],
   },
 
@@ -487,6 +552,7 @@ export const authors: Author[] = [
     id: 'tatyana-shiposhina',
     firstName: 'Татьяна',
     lastName: 'Шипошина',
+    shortBio: 'Известная российская детская поэтесса и прозаик, лауреат литературной премии им. С. Михалкова, председатель Творческого объединения детских авторов России. Живёт и работает в Москве.',
     types: ['poet', 'prose'],
   },
 
@@ -494,6 +560,7 @@ export const authors: Author[] = [
     id: 'natalya-ivanova',
     firstName: 'Наталья',
     lastName: 'Иванова',
+    shortBio: 'Детская поэтесса, многократный лауреат Международного литературного конкурса «Национальная премия „Золотое перо Руси“». Живёт и работает в Москве.',
     types: ['poet'],
   },
 
@@ -501,6 +568,7 @@ export const authors: Author[] = [
     id: 'oulouro-ado',
     firstName: 'Oulouro',
     lastName: 'Ado',
+    shortBio: 'Юкагирский поэт, прозаик, публицист, драматург, переводчик и педагог. Учёный-лингвист и этнограф, доктор филологических наук, профессор. Живёт и работает в России.',
     types: ['prose'],
   },
 
@@ -508,6 +576,7 @@ export const authors: Author[] = [
     id: 'yana-mori',
     firstName: 'Yana',
     lastName: 'Mori',
+    shortBio: 'Российская писательница. Живёт и работает в Индонезии.',
     types: ['prose'],
   },
 
@@ -515,6 +584,7 @@ export const authors: Author[] = [
     id: 'irina-ivannikova',
     firstName: 'Ирина',
     lastName: 'Иванникова',
+    shortBio: 'Российская детская поэтесса. Живёт и работает в Рязани.',
     types: ['poet', 'prose'],
   },
 
@@ -522,6 +592,7 @@ export const authors: Author[] = [
     id: 'anastasia-antonova',
     firstName: 'Анастасия',
     lastName: 'Антонова',
+    shortBio: 'Российская детская поэтесса, лауреат литературных конкурсов и премий. Живёт и работает в Вязьме.',
     types: ['poet'],
   },
 
@@ -529,6 +600,7 @@ export const authors: Author[] = [
     id: 'boris-vayner',
     firstName: 'Борис',
     lastName: 'Вайнер',
+    shortBio: 'Знаменитый российский детский поэт, прозаик, переводчик, автор-исполнитель. Лауреат Государственной премии Республики Татарстан им. Г. Тукая и других литературных премий. Автор детских книг. Живёт и работает в Казани.',
     types: ['poet', 'prose'],
   },
 
@@ -536,6 +608,7 @@ export const authors: Author[] = [
     id: 'konstantin-vukolov',
     firstName: 'Константин',
     lastName: 'Вуколов',
+    shortBio: 'Детский поэт, член Союза писателей России и Международной гильдии писателей, лауреат и дипломант Международного литературного конкурса «Национальная премия „Золотое перо Руси“». Живёт и работает в Стерлитамаке.',
     types: ['poet'],
   },
 
@@ -543,6 +616,7 @@ export const authors: Author[] = [
     id: 'galina-ilyina',
     firstName: 'Галина',
     lastName: 'Ильина',
+    shortBio: 'Российская детская поэтесса, лауреат и дипломант литературных конкурсов. Живёт и работает в Пензе.',
     types: ['poet'],
   },
 
@@ -550,6 +624,7 @@ export const authors: Author[] = [
     id: 'elena-ovsyannikova',
     firstName: 'Елена',
     lastName: 'Овсянникова',
+    shortBio: 'Российская детская поэтесса, лауреат Международного литературного конкурса «Национальная премия „Золотое перо Руси“» и других литературных премий и конкурсов. Живёт и работает в Сочи.',
     types: ['poet', 'prose'],
   },
 
@@ -557,6 +632,7 @@ export const authors: Author[] = [
     id: 'yuri-pusov',
     firstName: 'Юрий',
     lastName: 'Пусов',
+    shortBio: 'Российский детский писатель, лауреат и призёр многочисленных литературных конкурсов и премий. Живёт и работает в Железногорске.',
     types: ['poet'],
   },
 
@@ -564,6 +640,7 @@ export const authors: Author[] = [
     id: 'charles-ivan-levistre',
     firstName: 'Шарль-Иван',
     lastName: 'Левистр',
+    shortBio: 'Начинающий маленький автор и художник. Живёт и учится во Франции.',
     types: ['prose'],
   },
 
@@ -571,6 +648,7 @@ export const authors: Author[] = [
     id: 'tatyana-fedotova',
     firstName: 'Татьяна',
     lastName: 'Федотова',
+    shortBio: 'Начинающий юный автор. Живёт и учится в городе Лежнево Ивановской области.',
     types: ['prose'],
   },
 
@@ -578,6 +656,7 @@ export const authors: Author[] = [
     id: 'vlad-kudryashov',
     firstName: 'Влад',
     lastName: 'Кудряшов',
+    shortBio: 'Начинающий юный автор. Живёт и учится в городе Лежнево Ивановской области.',
     types: ['prose'],
   },
 
@@ -585,6 +664,7 @@ export const authors: Author[] = [
     id: 'ekaterina-timashpolskaya',
     firstName: 'Екатерина',
     lastName: 'Тимашпольская',
+    shortBio: 'Известная российская детская писательница. Живёт и работает в Москве.',
     types: ['prose'],
   },
 
@@ -592,6 +672,7 @@ export const authors: Author[] = [
     id: 'elvira-smelik',
     firstName: 'Эльвира',
     lastName: 'Смелик',
+    shortBio: 'Известная российская детская писательница. Живёт и работает в городе Пушкин.',
     types: ['prose'],
   },
 
@@ -599,6 +680,7 @@ export const authors: Author[] = [
     id: 'svetlana-son',
     firstName: 'Светлана',
     lastName: 'Сон',
+    shortBio: 'Известная российская детская поэтесса и педагог. Лауреат и дипломант литературных премий и конкурсов. Живёт и работает в Иваново.',
     types: ['poet'],
   },
 
@@ -606,6 +688,7 @@ export const authors: Author[] = [
     id: 'hanna-tosskaya',
     firstName: 'Ханна',
     lastName: 'Тосская',
+    shortBio: 'Начинающий детский автор. Живёт и работает в Киеве.',
     types: ['prose'],
   },
 
@@ -613,6 +696,7 @@ export const authors: Author[] = [
     id: 'yulia-simbirskaya',
     firstName: 'Юлия',
     lastName: 'Симбирская',
+    shortBio: 'Знаменитая детская писательница и поэтесса, победитель и лауреат конкурса «Новая детская книга» и премии им. В. П. Крапивина. Живёт и работает в Ярославле.',
     types: ['prose'],
   },
 
@@ -620,6 +704,7 @@ export const authors: Author[] = [
     id: 'evgenia-rusinova',
     firstName: 'Евгения',
     lastName: 'Русинова',
+    shortBio: 'Известная писательница и редактор, лауреат и призёр литературных конкурсов и премий. Живёт и работает в Санкт-Петербурге.',
     types: ['prose'],
   },
 
@@ -627,6 +712,7 @@ export const authors: Author[] = [
     id: 'maya-lazarenskaya',
     firstName: 'Майя',
     lastName: 'Лазаренская',
+    shortBio: 'Известная российская детская писательница, живёт и работает в Москве.',
     types: ['prose'],
   },
 
@@ -634,6 +720,7 @@ export const authors: Author[] = [
     id: 'marina-mayboroda',
     firstName: 'Марина',
     lastName: 'Майборода',
+    shortBio: 'Российская детская поэтесса. Живёт и работает в Краснодаре.',
     types: ['poet'],
   },
 
@@ -641,6 +728,7 @@ export const authors: Author[] = [
     id: 'valentina-chepiga',
     firstName: 'Валентина',
     lastName: 'Чепига',
+    shortBio: 'Член редколлегии «Сверчка» и ассоциации «Буковки», прозаик, поэтесса, переводчица и преподаватель. Лауреат литературных и переводческих премий и конкурсов, в том числе конкурса перевода им. М. Яснова. Живёт и работает во Франции.',
     types: ['poet', 'prose'],
   },
 
@@ -648,6 +736,7 @@ export const authors: Author[] = [
     id: 'vyacheslav-burmistrov',
     firstName: 'Вячеслав',
     lastName: 'Бурмистров',
+    shortBio: 'Драматург, сказочник. Окончил Театральный институт, член Петербургской гильдии драматургов, Союза театральных деятелей и Мастерской драматургов при СПб СТД. Автор многочисленных пьес для детей. Долгое время работал на радио и телевидении.',
     types: ['prose'],
   },
 
@@ -655,6 +744,7 @@ export const authors: Author[] = [
     id: 'anastasia-tsymbalova',
     firstName: 'Анастасия',
     lastName: 'Цимбалова',
+    shortBio: 'Российская детская поэтесса. Живёт и работает в Нижнем Новгороде.',
     types: ['poet'],
   },
 
@@ -662,6 +752,7 @@ export const authors: Author[] = [
     id: 'nadezhda-boltacheva',
     firstName: 'Надежда',
     lastName: 'Болтачёва',
+    shortBio: 'Российская детская поэтесса, живёт и работает в Екатеринбурге.',
     types: ['poet'],
   },
 
@@ -669,6 +760,7 @@ export const authors: Author[] = [
     id: 'asia-petrova',
     firstName: 'Ася',
     lastName: 'Петрова',
+    shortBio: 'Известная детская писательница, переводчик и преподаватель. Лауреат «Книгуру» и других литературных премий и конкурсов. Живёт и работает в Санкт-Петербурге.',
     types: ['prose'],
   },
 
@@ -676,6 +768,7 @@ export const authors: Author[] = [
     id: 'valentina-chernyaeva',
     firstName: 'Валентина',
     lastName: 'Черняева',
+    shortBio: 'Украинская и российская детская писательница, художница и композитор. Дипломант и лауреат нескольких литературных премий и конкурсов. Живёт и работает в Белгороде.',
     types: ['poet'],
   },
 
@@ -683,6 +776,7 @@ export const authors: Author[] = [
     id: 'sergey-makhotin',
     firstName: 'Сергей',
     lastName: 'Махотин',
+    shortBio: 'Знаменитый российский детский поэт и прозаик, награждён дипломом им. Г.-Х. Андерсена, лауреат премии С. Маршака. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -690,6 +784,7 @@ export const authors: Author[] = [
     id: 'ekaterina-kagramanova',
     firstName: 'Екатерина',
     lastName: 'Каграманова',
+    shortBio: 'Детская поэтесса и прозаик. Лауреат литературных конкурсов. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -697,6 +792,7 @@ export const authors: Author[] = [
     id: 'alexandra-ivoylova',
     firstName: 'Александра',
     lastName: 'Ивойлова',
+    shortBio: 'Известный российский иллюстратор и художник, детская писательница. Живёт и работает в России.',
     types: ['poet', 'prose'],
   },
 
@@ -704,6 +800,7 @@ export const authors: Author[] = [
     id: 'viktoria-prokhorenko',
     firstName: 'Виктория',
     lastName: 'Прохоренко',
+    shortBio: 'Детский писатель, поэт, редактор раздела детской и подростковой литературы в литературно-художественном журнале «Южный маяк». Живёт и работает в Краснодаре.',
     types: ['poet'],
   },
 
@@ -711,6 +808,7 @@ export const authors: Author[] = [
     id: 'igor-kalish',
     firstName: 'Игорь',
     lastName: 'Калиш',
+    shortBio: 'Детский поэт.',
     types: ['poet'],
   },
 
@@ -718,6 +816,7 @@ export const authors: Author[] = [
     id: 'anna-starostina',
     firstName: 'Анна',
     lastName: 'Старостина',
+    shortBio: 'Российская детская поэтесса, член Союза писателей России. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -725,6 +824,7 @@ export const authors: Author[] = [
     id: 'yulia-logvinenko',
     firstName: 'Юлия',
     lastName: 'Логвиненко',
+    shortBio: 'Педагог, режиссёр кукольного театра, детская писательница. Лауреат и победитель литературных конкурсов. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -732,6 +832,7 @@ export const authors: Author[] = [
     id: 'igor-shevchuk',
     firstName: 'Игорь',
     lastName: 'Шевчук',
+    shortBio: 'Знаменитый детский поэт, лауреат премии Корнея Чуковского. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -739,6 +840,7 @@ export const authors: Author[] = [
     id: 'lyubov-shubnaya',
     firstName: 'Любовь',
     lastName: 'Шубная',
+    shortBio: 'Поэтесса, прозаик, журналист, переводчица, редактор, член Союза писателей и Союза журналистов России, лауреат и дипломант литературных премий и конкурсов. Живёт и работает в Ставрополе.',
     types: ['poet', 'prose'],
   },
 
@@ -746,6 +848,7 @@ export const authors: Author[] = [
     id: 'marina-shaposhnikova',
     firstName: 'Марина',
     lastName: 'Шапошникова',
+    shortBio: 'Детская писательница и поэтесса, лауреат и финалист литературных конкурсов и премий, автор нескольких детских книг. Живёт и работает в Астрахани.',
     types: ['poet'],
   },
 
@@ -753,6 +856,7 @@ export const authors: Author[] = [
     id: 'larisa-nazarova',
     firstName: 'Лариса',
     lastName: 'Назарова',
+    shortBio: 'Детская писательница, лауреат литературных конкурсов и премий. Живёт и работает в Подмосковье.',
     types: ['poet'],
   },
 
@@ -760,6 +864,7 @@ export const authors: Author[] = [
     id: 'galina-stetsenko',
     firstName: 'Галина',
     lastName: 'Стеценко',
+    shortBio: 'Российская детская писательница, лауреат многочисленных литературных конкурсов и премий. Живёт и работает в Москве.',
     types: ['poet'],
   },
 
@@ -767,6 +872,7 @@ export const authors: Author[] = [
     id: 'anton-chekhov',
     firstName: 'Антон',
     lastName: 'Чехов',
+    shortBio: 'Русский писатель, прозаик и драматург, врач и общественный деятель (1860–1904). Его пьесы и рассказы стали классикой мировой литературы. Автор рассказов про детей и для детей, также выступал с критикой современной ему детской литературы.',
     types: ['prose'],
   },
 
@@ -774,6 +880,7 @@ export const authors: Author[] = [
     id: 'nikolay-gogol',
     firstName: 'Николай',
     lastName: 'Гоголь',
+    shortBio: 'Прозаик, драматург, критик и публицист (1809–1852). Классик русской литературы с украинскими и польскими корнями, оказавший большое влияние на русскую и мировую литературу.',
     types: ['prose'],
   },
 
@@ -781,6 +888,7 @@ export const authors: Author[] = [
     id: 'spiridon-drozhzhin',
     firstName: 'Спиридон',
     lastName: 'Дрожжин',
+    shortBio: 'Поэт-самоучка (1848–1930), родился в семье крепостного в Тверской губернии. Последние тридцать лет жизни посвятил сельскому труду и литературе. Большая часть его поэзии вошла в детское чтение.',
     types: ['poet'],
   },
 
@@ -788,6 +896,7 @@ export const authors: Author[] = [
     id: 'ivan-bunin',
     firstName: 'Иван',
     lastName: 'Бунин',
+    shortBio: 'Писатель, поэт, переводчик (1870–1953). Лауреат Нобелевской премии по литературе 1933 года. В ранний период много печатался в детских журналах и изданиях для детей; в 1920 году эмигрировал во Францию.',
     types: ['poet'],
   },
 
@@ -795,6 +904,7 @@ export const authors: Author[] = [
     id: 'poliksena-solovyova',
     firstName: 'Поликсена',
     lastName: 'Соловьёва',
+    shortBio: 'Печаталась под псевдонимом Allegro (1867–1924). Много писала для детей в разных жанрах, в 1906–1912 годах вместе с Н. И. Манасеиной издавала детский журнал «Тропинка».',
     types: ['poet'],
   },
 
@@ -802,6 +912,7 @@ export const authors: Author[] = [
     id: 'vyacheslav-ivanov',
     firstName: 'Вячеслав',
     lastName: 'Иванов',
+    shortBio: 'Поэт-символист, философ, переводчик, драматург, литературный критик и учёный (1866–1949), занимался исследованием дионисийства. Одна из ключевых фигур Серебряного века; с 1924 года жил в Италии.',
     types: ['poet'],
   },
 
@@ -809,6 +920,7 @@ export const authors: Author[] = [
     id: 'alexander-blok',
     firstName: 'Александр',
     lastName: 'Блок',
+    shortBio: 'Поэт Серебряного века, писатель, публицист, драматург и литературный критик (1880–1921). Автор двух сборников стихов для детей, опубликованных в 1913 году: «Круглый год. Стихотворения для детей» и «Сказки. Стихи для детей».',
     types: ['poet'],
   },
 
@@ -816,6 +928,7 @@ export const authors: Author[] = [
     id: 'sasha-cherny',
     firstName: 'Саша',
     lastName: 'Чёрный',
+    shortBio: 'Псевдоним Александра Михайловича Гликберга (1880–1932). Поэт Серебряного века, прозаик, журналист, автор сатирических фельетонов. Тема детства занимала особое место в его творчестве, в том числе после эмиграции из России в 1920 году.',
     types: ['poet'],
   },
 
@@ -823,6 +936,7 @@ export const authors: Author[] = [
     id: 'anna-krasilshchik',
     firstName: 'Анна',
     lastName: 'Красильщик',
+    shortBio: 'Журналистка, писательница и блогер. Живёт и работает в Москве.',
     types: ['prose'],
   },
 
@@ -830,6 +944,7 @@ export const authors: Author[] = [
     id: 'grigory-kruzhkov',
     firstName: 'Григорий',
     lastName: 'Кружков',
+    shortBio: 'Знаменитый российский детский поэт и переводчик, эссеист. Лауреат Государственной премии Российской Федерации в области литературы и литературной премии Александра Солженицына.',
     types: ['poet'],
   },
 
@@ -837,6 +952,7 @@ export const authors: Author[] = [
     id: 'yulia-timur',
     firstName: 'Юлия',
     lastName: 'Тимур',
+    shortBio: 'Писательница и художница. Лауреат и дипломант литературных конкурсов. Живёт и работает в Турции.',
     types: ['prose'],
   },
 
@@ -844,6 +960,7 @@ export const authors: Author[] = [
     id: 'iosif-ilyin',
     firstName: 'Иосиф',
     lastName: 'Ильин',
+    shortBio: 'Русский военачальник, автор воспоминаний (1885–1981).',
     types: ['prose'],
   },
 
@@ -851,6 +968,7 @@ export const authors: Author[] = [
     id: 'lyudmila-tkachenko',
     firstName: 'Людмила',
     lastName: 'Ткаченко',
+    shortBio: 'Детская писательница. Живёт и работает в России.',
     types: ['prose'],
   },
 
@@ -858,6 +976,7 @@ export const authors: Author[] = [
     id: 'svetlana-soroka',
     firstName: 'Светлана',
     lastName: 'Сорока',
+    shortBio: 'Российская детская писательница, педагог, литературовед. Член Союза писателей России.',
     types: ['prose'],
   },
 
@@ -865,6 +984,7 @@ export const authors: Author[] = [
     id: 'viktoria-toponogova',
     firstName: 'Виктория',
     lastName: 'Топоногова',
+    shortBio: 'Известная российская писательница, член Союза писателей России, педагог, художница. Живёт и работает в Железнодорожном.',
     types: ['poet'],
   },
 
@@ -872,6 +992,7 @@ export const authors: Author[] = [
     id: 'lidia-ogurtsova',
     firstName: 'Лидия',
     lastName: 'Огурцова',
+    shortBio: 'Поэт, прозаик, журналист, психолог. Член Союза писателей России. Живёт и работает в Симферополе.',
     types: ['poet', 'prose'],
   },
 
@@ -879,6 +1000,7 @@ export const authors: Author[] = [
     id: 'elena-dolgikh',
     firstName: 'Елена',
     lastName: 'Долгих',
+    shortBio: 'Российская детская писательница. Живёт и работает на Сахалине.',
     types: ['poet'],
   },
 
@@ -886,6 +1008,7 @@ export const authors: Author[] = [
     id: 'tamara-gordienko',
     firstName: 'Тамара',
     lastName: 'Гордиенко',
+    shortBio: 'Писательница и журналист, лауреат и призёр нескольких литературных премий и конкурсов.',
     types: ['poet'],
   },
 
@@ -893,6 +1016,7 @@ export const authors: Author[] = [
     id: 'elena-gabova',
     firstName: 'Елена',
     lastName: 'Габова',
+    shortBio: 'Известная российская писательница, лауреат и призёр многих престижных литературных премий и конкурсов. Произведения переведены на многие иностранные языки. Член Союза писателей России. Живёт и работает в Республике Коми.',
     types: ['prose'],
   },
 
@@ -900,6 +1024,7 @@ export const authors: Author[] = [
     id: 'svetlana-makaryina',
     firstName: 'Светлана',
     lastName: 'Макарьина',
+    shortBio: 'Известная российская детская поэтесса и редактор.',
     types: ['poet', 'prose'],
   },
 
@@ -907,6 +1032,7 @@ export const authors: Author[] = [
     id: 'tim-sobakin',
     firstName: 'Тим',
     lastName: 'Собакин',
+    shortBio: 'Знаменитый российский детский поэт и прозаик. Создатель и главный редактор детского журнала «Трамвай». Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -914,6 +1040,7 @@ export const authors: Author[] = [
     id: 'marat-gardanov',
     firstName: 'Марат',
     lastName: 'Гарданов',
+    shortBio: 'Журналист и писатель, член Творческого объединения детских авторов России, призёр международных литературных конкурсов.',
     types: ['poet'],
   },
 
@@ -921,6 +1048,7 @@ export const authors: Author[] = [
     id: 'rimma-aldonina',
     firstName: 'Римма',
     lastName: 'Алдонина',
+    shortBio: 'Известная детская поэтесса и прозаик. Автор многочисленных детских книг. Член Союза писателей Москвы. Живёт и работает в Москве.',
     types: ['poet'],
   },
 
@@ -928,6 +1056,7 @@ export const authors: Author[] = [
     id: 'irina-schastneva',
     firstName: 'Ирина',
     lastName: 'Счастнева',
+    shortBio: 'Российская детская поэтесса. Лауреат поэтических конкурсов.',
     types: ['poet'],
   },
 
@@ -935,6 +1064,7 @@ export const authors: Author[] = [
     id: 'olga-sharkova',
     firstName: 'Ольга',
     lastName: 'Шаркова',
+    shortBio: 'Российская детская поэтесса, лауреат и финалист нескольких литературных конкурсов. Живёт и работает в Санкт-Петербурге.',
     types: ['poet'],
   },
 
@@ -942,6 +1072,7 @@ export const authors: Author[] = [
     id: 'irina-vekka',
     firstName: 'Ирина',
     lastName: 'Векка',
+    shortBio: 'Детская писательница. Член Творческого объединения детских авторов России.',
     types: ['poet'],
   },
 
@@ -949,6 +1080,7 @@ export const authors: Author[] = [
     id: 'evgenia-gunter',
     firstName: 'Евгения',
     lastName: 'Гюнтер',
+    shortBio: 'Выпускающий редактор издательства «Пешком в историю», автор познавательных книг для детей.',
     types: ['prose'],
   },
 
@@ -956,6 +1088,7 @@ export const authors: Author[] = [
     id: 'igor-zhuk',
     firstName: 'Игорь',
     lastName: 'Жуков',
+    shortBio: 'Русский поэт, прозаик, драматург и сценарист. Известен произведениями для детей. Лауреат и призёр многих литературных премий и конкурсов.',
     types: ['prose'],
   },
 
@@ -963,6 +1096,7 @@ export const authors: Author[] = [
     id: 'maria-voeykova-kiseleva',
     firstName: 'Мария',
     lastName: 'Воейкова-Киселёва',
+    shortBio: 'Мария Александровна Воейкова-Киселёва (1914–1934) родилась в Сызрани, детство провела в Самаре и Москве, а с 1924 года жила в Китае. Много читала и писала, вела дневники; её воспоминания о детстве сохранились в семейном архиве. Умерла в Китае от туберкулёза в двадцатилетнем возрасте.',
     types: ['prose'],
   },
 
@@ -970,6 +1104,7 @@ export const authors: Author[] = [
     id: 'veronika-jobert',
     firstName: 'Вероника',
     lastName: 'Жобер',
+    shortBio: 'Доктор славистики, почётный профессор Сорбонны. Живёт и работает в Париже.',
     types: ['prose'],
   },
 
@@ -977,6 +1112,7 @@ export const authors: Author[] = [
     id: 'irina-pukhalevich',
     firstName: 'Ирина',
     lastName: 'Пухалевич',
+    shortBio: 'Детская поэтесса, живёт и работает в Калининграде.',
     types: ['poet'],
   },
 
@@ -984,6 +1120,7 @@ export const authors: Author[] = [
     id: 'anastasia-glazunova',
     firstName: 'Анастасия',
     lastName: 'Глазунова',
+    shortBio: 'Детская поэтесса, живёт и работает в Калининграде.',
     types: ['poet'],
   },
 
@@ -991,6 +1128,7 @@ export const authors: Author[] = [
     id: 'elena-ponomaryova',
     firstName: 'Елена',
     lastName: 'Пономарёва',
+    shortBio: 'Детская поэтесса, лауреат и дипломант многочисленных литературных конкурсов и премий. Живёт и работает в Саратове.',
     types: ['poet'],
   },
 
@@ -998,6 +1136,7 @@ export const authors: Author[] = [
     id: 'nadezhda-shemyakina',
     firstName: 'Надежда',
     lastName: 'Шемякина',
+    shortBio: 'Детская поэтесса, дипломант и лауреат литературных премий и конкурсов. Живёт и работает в Челябинске.',
     types: ['poet'],
   },
 
@@ -1005,6 +1144,7 @@ export const authors: Author[] = [
     id: 'dmitry-fomin',
     firstName: 'Дмитрий',
     lastName: 'Фомин',
+    shortBio: 'Юный писатель. Живёт в России.',
     types: ['prose'],
   },
 
@@ -1012,6 +1152,7 @@ export const authors: Author[] = [
     id: 'alexander-sheller-mikhailov',
     firstName: 'Александр',
     lastName: 'Шеллер-Михайлов',
+    shortBio: 'Российский поэт и прозаик (1838–1900).',
     types: ['prose'],
   },
 
@@ -1019,6 +1160,7 @@ export const authors: Author[] = [
     id: 'filipp-shkulyov',
     firstName: 'Филипп',
     lastName: 'Шкулёв',
+    shortBio: 'Русский поэт (1868–1930).',
     types: ['poet'],
   },
 
@@ -1026,6 +1168,7 @@ export const authors: Author[] = [
     id: 'maria-moravskaya',
     firstName: 'Мария',
     lastName: 'Моравская',
+    shortBio: 'Русскоязычная писательница, переводчица и литературный критик (1890–1947).',
     types: ['poet'],
   },
 
@@ -1033,6 +1176,7 @@ export const authors: Author[] = [
     id: 'mohamed-el-mehdi-shahed',
     firstName: 'Мохамед эль-Мехди',
     lastName: 'Шахед',
+    shortBio: 'Французский автор тунисского происхождения. Живёт и работает в Страсбурге.',
     types: ['prose'],
   },
 
@@ -1040,6 +1184,7 @@ export const authors: Author[] = [
     id: 'mikhail-yasnov',
     firstName: 'Михаил',
     lastName: 'Яснов',
+    shortBio: 'Знаменитый поэт, переводчик и педагог. Классик современной российской детской литературы (1946–2020).',
     types: ['poet'],
   },
 
@@ -1047,6 +1192,7 @@ export const authors: Author[] = [
     id: 'natalya-bochechko',
     firstName: 'Наталья',
     lastName: 'Бочечко',
+    shortBio: 'Российская писательница, лауреат литературных премий и конкурсов. Живёт и работает в Северодвинске.',
     types: ['prose'],
   },
 
@@ -1054,6 +1200,7 @@ export const authors: Author[] = [
     id: 'natalya-elizarova',
     firstName: 'Наталья',
     lastName: 'Елизарова',
+    shortBio: 'Российский детский автор.',
     types: ['prose'],
   },
 
@@ -1061,6 +1208,7 @@ export const authors: Author[] = [
     id: 'viktoria-tsarinnaya',
     firstName: 'Виктория',
     lastName: 'Царинная',
+    shortBio: 'Детская писательница и переводчица.',
     types: ['poet', 'prose'],
   },
 
@@ -1068,6 +1216,7 @@ export const authors: Author[] = [
     id: 'natalya-volkova',
     firstName: 'Наталия',
     lastName: 'Волкова',
+    shortBio: 'Известная российская детская писательница, переводчица, лауреат литературных премий и конкурсов, в том числе конкурса перевода имени М. Яснова. Живёт и работает в России.',
     types: ['poet', 'prose'],
   },
 
@@ -1075,6 +1224,7 @@ export const authors: Author[] = [
     id: 'darya-mikhailova',
     firstName: 'Дарья',
     lastName: 'Михайлова',
+    shortBio: 'Детская писательница.',
     types: ['poet'],
   },
 
@@ -1082,6 +1232,7 @@ export const authors: Author[] = [
     id: 'irina-pugina',
     firstName: 'Ирина',
     lastName: 'Пугина',
+    shortBio: 'Детская писательница и поэтесса. Живёт и работает в Германии.',
     types: ['poet', 'prose'],
   },
 
@@ -1089,6 +1240,7 @@ export const authors: Author[] = [
     id: 'anna-cherkasova',
     firstName: 'Анна',
     lastName: 'Черкасова',
+    shortBio: 'Детская писательница, член Творческого объединения детских авторов России. Живёт и работает в России.',
     types: ['poet', 'prose'],
   },
 
@@ -1096,6 +1248,7 @@ export const authors: Author[] = [
     id: 'svetlana-pankova',
     firstName: 'Светлана',
     lastName: 'Панкова',
+    shortBio: 'Детская поэтесса.',
     types: ['poet'],
   },
 
@@ -1103,6 +1256,7 @@ export const authors: Author[] = [
     id: 'rustam-karapetyan',
     firstName: 'Рустам',
     lastName: 'Карапетьян',
+    shortBio: 'Детский поэт, лауреат и дипломант литературных премий.',
     types: ['poet'],
   },
 
@@ -1110,6 +1264,7 @@ export const authors: Author[] = [
     id: 'svetlana-volkova',
     firstName: 'Светлана',
     lastName: 'Волкова',
+    shortBio: 'Известный прозаик и переводчица. Лауреат литературных премий и конкурсов.',
     types: ['prose'],
   },
 
@@ -1117,6 +1272,7 @@ export const authors: Author[] = [
     id: 'alyona-kashura',
     firstName: 'Алёна',
     lastName: 'Кашура',
+    shortBio: 'Известная детская писательница.',
     types: ['prose'],
   },
 
@@ -1124,6 +1280,7 @@ export const authors: Author[] = [
     id: 'ekaterina-bordon',
     firstName: 'Екатерина',
     lastName: 'Бордон',
+    shortBio: 'Российская писательница.',
     types: ['prose'],
   },
 
@@ -1131,6 +1288,7 @@ export const authors: Author[] = [
     id: 'yulia-ivanova',
     firstName: 'Юлия',
     lastName: 'Иванова',
+    shortBio: 'Известная детская писательница, лауреат и дипломант литературных премий и конкурсов.',
     types: ['prose'],
   },
 
@@ -1138,6 +1296,7 @@ export const authors: Author[] = [
     id: 'elena-lipatova',
     firstName: 'Елена',
     lastName: 'Липатова',
+    shortBio: 'Российская детская поэтесса.',
     types: ['poet'],
   },
 
@@ -1145,6 +1304,7 @@ export const authors: Author[] = [
     id: 'elena-musatova',
     firstName: 'Елена',
     lastName: 'Мусатова',
+    shortBio: 'Педагог и писательница.',
     types: ['prose'],
   },
 
@@ -1152,6 +1312,7 @@ export const authors: Author[] = [
     id: 'madina-razzonova',
     firstName: 'Мадина',
     lastName: 'Раззонова',
+    shortBio: 'Юная писательница, призёр конкурса «Фабрика слов» 2024 года.',
     types: ['prose'],
   },
 
@@ -1159,6 +1320,7 @@ export const authors: Author[] = [
     id: 'ulyana-dementyeva',
     firstName: 'Ульяна',
     lastName: 'Дементьева',
+    shortBio: 'Юная писательница, призёр конкурса «Фабрика слов» 2024 года.',
     types: ['prose'],
   },
 
@@ -1166,6 +1328,7 @@ export const authors: Author[] = [
     id: 'viktoria-gurtan',
     firstName: 'Виктория',
     lastName: 'Гуртан',
+    shortBio: 'Юная писательница, призёр конкурса «Фабрика слов» 2024 года.',
     types: ['prose'],
   },
 
@@ -1173,6 +1336,7 @@ export const authors: Author[] = [
     id: 'ksenia-vishnevetskaya',
     firstName: 'Ксения',
     lastName: 'Вишневецкая',
+    shortBio: 'Российская поэтесса.',
     types: ['poet'],
   },
 
@@ -1180,6 +1344,7 @@ export const authors: Author[] = [
     id: 'olga-andriyanova',
     firstName: 'Ольга',
     lastName: 'Андриянова',
+    shortBio: 'Член редколлегии «Сверчка» и ассоциации «Буковки», сотрудница Института Арабского Мира. Живёт и работает во Франции.',
     types: ['poet'],
   },
 
@@ -1187,6 +1352,7 @@ export const authors: Author[] = [
     id: 'asya-kravchenko',
     firstName: 'Ася',
     lastName: 'Кравченко',
+    shortBio: 'Известная детская писательница, психолог, редактор издательства «Самокат». Дипломант и лауреат литературных премий и конкурсов. Живёт и работает в Москве.',
     types: ['prose'],
   },
 
@@ -1194,6 +1360,7 @@ export const authors: Author[] = [
     id: 'nikolay-garin-mikhailovsky',
     firstName: 'Николай',
     lastName: 'Гарин-Михайловский',
+    shortBio: 'Знаменитый русский путешественник, классик русской литературы (1852–1906).',
     types: ['prose'],
   },
 
@@ -1201,6 +1368,7 @@ export const authors: Author[] = [
     id: 'masha-lukashkina',
     firstName: 'Маша',
     lastName: 'Лукашкина',
+    shortBio: 'Знаменитая российская детская поэтесса и прозаик, редактор, переводчица, сценарист. Лауреат и дипломант литературных премий и конкурсов. Живёт и работает в Москве.',
     types: ['poet'],
   },
 
@@ -1208,6 +1376,7 @@ export const authors: Author[] = [
     id: 'zinaida-popova',
     firstName: 'Зинаида',
     lastName: 'Попова',
+    shortBio: 'Российская детская поэтесса. Живёт и работает в Тюменской области.',
     types: ['poet'],
   },
 
@@ -1215,6 +1384,7 @@ export const authors: Author[] = [
     id: 'lyudmila-duryagina',
     firstName: 'Людмила',
     lastName: 'Дурягина',
+    shortBio: 'Российская детская поэтесса. Участница и дипломант литературных конкурсов. Живёт и работает в Санкт-Петербурге.',
     types: ['poet'],
   },
 
@@ -1222,6 +1392,7 @@ export const authors: Author[] = [
     id: 'elena-seranova',
     firstName: 'Елена',
     lastName: 'Серанова',
+    shortBio: 'Российская детская поэтесса. Живёт и работает в Ярославле.',
     types: ['poet'],
   },
 
@@ -1229,6 +1400,7 @@ export const authors: Author[] = [
     id: 'anastasia-sukgoeva',
     firstName: 'Анастасия',
     lastName: 'Сукгоева',
+    shortBio: 'Российская детская поэтесса, лауреат и дипломант литературных премий и конкурсов. Живёт и работает в Сыктывкаре.',
     types: ['poet'],
   },
 
@@ -1236,6 +1408,7 @@ export const authors: Author[] = [
     id: 'margarita-zaitseva',
     firstName: 'Маргарита',
     lastName: 'Зайцева',
+    shortBio: 'Российская детская поэтесса. Живёт и работает в Москве.',
     types: ['poet'],
   },
 
@@ -1243,6 +1416,7 @@ export const authors: Author[] = [
     id: 'marina-yurina',
     firstName: 'Марина',
     lastName: 'Юрина',
+    shortBio: 'Российская детская поэтесса, педагог, дипломант и участник литературных конкурсов. Живёт и работает в Челябинске.',
     types: ['poet'],
   },
 
@@ -1250,6 +1424,7 @@ export const authors: Author[] = [
     id: 'artur-givargizov',
     firstName: 'Артур',
     lastName: 'Гиваргизов',
+    shortBio: 'Знаменитый российский поэт и прозаик. Классик современной российской детской литературы. Живёт и работает в Москве.',
     types: ['poet', 'prose'],
   },
 
@@ -1257,6 +1432,7 @@ export const authors: Author[] = [
     id: 'maria-sigaeva',
     firstName: 'Мария',
     lastName: 'Сигаева',
+    shortBio: 'Детская поэтесса и прозаик. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -1264,6 +1440,7 @@ export const authors: Author[] = [
     id: 'tatyana-romanova',
     firstName: 'Татьяна',
     lastName: 'Романова',
+    shortBio: 'Детская поэтесса. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -1271,6 +1448,7 @@ export const authors: Author[] = [
     id: 'inga-soms',
     firstName: 'Инга',
     lastName: 'Сомс',
+    shortBio: 'Детская писательница. Живёт и работает в России.',
     types: ['poet', 'prose'],
   },
 
@@ -1278,6 +1456,7 @@ export const authors: Author[] = [
     id: 'irina-surikova',
     firstName: 'Ирина',
     lastName: 'Сурикова',
+    shortBio: 'Детская писательница. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -1285,6 +1464,7 @@ export const authors: Author[] = [
     id: 'larisa-pribrezhnaya',
     firstName: 'Лариса',
     lastName: 'Прибрежная',
+    shortBio: 'Детская писательница и педагог. Живёт и работает в России.',
     types: ['prose'],
   },
 
@@ -1292,6 +1472,7 @@ export const authors: Author[] = [
     id: 'brothers-grimm',
     firstName: 'Братья',
     lastName: 'Гримм',
+    shortBio: 'Лингвисты и собиратели немецких народных сказок: Якоб Гримм (1785–1863) и Вильгельм Гримм (1786–1859).',
     types: ['prose'],
   },
 
@@ -1299,6 +1480,7 @@ export const authors: Author[] = [
     id: 'ekaterina-belches',
     firstName: 'Екатерина',
     lastName: 'Белчес',
+    shortBio: 'Детская писательница. Живёт и работает в Нидерландах.',
     types: ['prose'],
   },
 
@@ -1306,6 +1488,7 @@ export const authors: Author[] = [
     id: 'ekaterina-shelemetyeva',
     firstName: 'Екатерина',
     lastName: 'Шелеметьева',
+    shortBio: 'Детская писательница.',
     types: ['prose'],
   },
 
@@ -1313,6 +1496,7 @@ export const authors: Author[] = [
     id: 'elena-pankratova',
     firstName: 'Елена',
     lastName: 'Панкратова',
+    shortBio: 'Детская поэтесса. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -1320,6 +1504,7 @@ export const authors: Author[] = [
     id: 'evgenia-shapiro',
     firstName: 'Евгения',
     lastName: 'Шапиро',
+    shortBio: 'Детская писательница, член Творческого объединения детских авторов России. Живёт и работает в России.',
     types: ['prose'],
   },
 
@@ -1327,6 +1512,7 @@ export const authors: Author[] = [
     id: 'gulnara-miranova',
     firstName: 'Гульнара',
     lastName: 'Миранова',
+    shortBio: 'Начинающий автор. Живёт и учится в России.',
     types: ['prose'],
   },
 
@@ -1334,6 +1520,7 @@ export const authors: Author[] = [
     id: 'lilia-gazizova',
     firstName: 'Лилия',
     lastName: 'Газизова',
+    shortBio: 'Поэтесса, переводчица, эссеист, кандидат филологических наук. Член международного ПЕН-клуба. Лауреат многих международных и российских литературных премий, в том числе им. Г. Державина, А. Ахматовой, В. Берестова и журналистской премии им. А. Боровика. Живёт и работает в Турции.',
     types: ['poet'],
   },
 
@@ -1341,6 +1528,7 @@ export const authors: Author[] = [
     id: 'mila-vesnushkina',
     firstName: 'Мила',
     lastName: 'Веснушкина',
+    shortBio: 'Российская детская поэтесса, член Творческого объединения детских авторов России. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -1348,6 +1536,7 @@ export const authors: Author[] = [
     id: 'natalya-pesochinskaya',
     firstName: 'Наталья',
     lastName: 'Песочинская',
+    shortBio: 'Автор книг для детей и подростков и сценарист мультфильмов. По образованию искусствовед; после рождения дочери начала писать для детей и сотрудничать с издательствами и анимационными студиями.',
     types: ['prose'],
   },
 
@@ -1355,6 +1544,7 @@ export const authors: Author[] = [
     id: 'nikolay-shamsutdinov',
     firstName: 'Николай',
     lastName: 'Шамсутдинов',
+    shortBio: 'Российский писатель, публицист, переводчик и общественный деятель (1949–2025).',
     types: ['poet'],
   },
 
@@ -1362,6 +1552,7 @@ export const authors: Author[] = [
     id: 'tatyana-ermakova',
     firstName: 'Татьяна',
     lastName: 'Ермакова',
+    shortBio: 'Детская поэтесса. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -1369,6 +1560,7 @@ export const authors: Author[] = [
     id: 'tatyana-georg',
     firstName: 'Татьяна',
     lastName: 'Георг',
+    shortBio: 'Российская детская писательница. Живёт и работает в России.',
     types: ['prose'],
   },
 
@@ -1376,6 +1568,7 @@ export const authors: Author[] = [
     id: 'tatyana-popova',
     firstName: 'Татьяна',
     lastName: 'Попова',
+    shortBio: 'Детская писательница. Живёт и работает в России.',
     types: ['prose'],
   },
 
@@ -1383,6 +1576,7 @@ export const authors: Author[] = [
     id: 'mikhail-lukashevich',
     firstName: 'Михаил',
     lastName: 'Лукашевич',
+    shortBio: 'Известный российский детский поэт, главный редактор издательства «Архипелаг». Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -1390,6 +1584,7 @@ export const authors: Author[] = [
     id: 'irina-zartayskaya',
     firstName: 'Ирина',
     lastName: 'Зартайская',
+    shortBio: 'Известная детская писательница, член Союза писателей Санкт-Петербурга. Живёт и работает в Санкт-Петербурге.',
     types: ['prose'],
   },
 
@@ -1397,6 +1592,7 @@ export const authors: Author[] = [
     id: 'natalya-kapustyuk',
     firstName: 'Наталья',
     lastName: 'Капустюк',
+    shortBio: 'Детская писательница.',
     types: ['poet'],
   },
 
@@ -1404,6 +1600,7 @@ export const authors: Author[] = [
     id: 'angelika-stynka',
     firstName: 'Анжелика',
     lastName: 'Стынка',
+    shortBio: 'Писатель и драматург, член Гильдии драматургов России, лауреат драматургических конкурсов. Живёт и работает в Санкт-Петербурге.',
     types: ['prose'],
   },
 
@@ -1411,6 +1608,7 @@ export const authors: Author[] = [
     id: 'oleg-kornienko',
     firstName: 'Олег',
     lastName: 'Корниенко',
+    shortBio: 'Известный детский прозаик, лауреат литературных премий и конкурсов. Живёт и работает в городе Сызрань Самарской области.',
     types: ['poet'],
   },
 
@@ -1418,6 +1616,7 @@ export const authors: Author[] = [
     id: 'lyubava-gornitskaya',
     firstName: 'Любава',
     lastName: 'Горницкая',
+    shortBio: 'Молодая российская писательница.',
     types: ['prose'],
   },
 
@@ -1425,6 +1624,7 @@ export const authors: Author[] = [
     id: 'maria-agapina',
     firstName: 'Мария',
     lastName: 'Агапина',
+    shortBio: 'Российская детская писательница.',
     types: ['prose'],
   },
 
@@ -1432,6 +1632,7 @@ export const authors: Author[] = [
     id: 'ariadni-rova',
     firstName: 'Ариадни',
     lastName: 'Рова',
+    shortBio: 'Юная писательница, победитель конкурса «Фабрика слов» 2022 года в номинации 11–13 лет «Лучший рассказ».',
     types: ['prose'],
   },
 
@@ -1439,6 +1640,7 @@ export const authors: Author[] = [
     id: 'evelina-burbakh',
     firstName: 'Эвелина',
     lastName: 'Бурбах',
+    shortBio: 'Юная писательница, победитель конкурса «Фабрика слов» 2022 года в номинации 14–17 лет «Лучший рассказ».',
     types: ['prose'],
   },
 
@@ -1446,6 +1648,7 @@ export const authors: Author[] = [
     id: 'natalya-semyonova',
     firstName: 'Наталья',
     lastName: 'Семёнова',
+    shortBio: 'Детская поэтесса. Живёт и работает в России.',
     types: ['poet'],
   },
 
@@ -1453,6 +1656,7 @@ export const authors: Author[] = [
     id: 'anna-muzykantova',
     firstName: 'Анна',
     lastName: 'Музыкантова',
+    shortBio: 'Врач и детская поэтесса. Лауреат и призёр литературных премий и конкурсов. Живёт и работает в Архангельске.',
     types: ['poet'],
   },
 
@@ -1460,6 +1664,7 @@ export const authors: Author[] = [
     id: 'irina-druzhaeva',
     firstName: 'Ирина',
     lastName: 'Дружаева',
+    shortBio: 'Детская писательница, призёр и лауреат многочисленных литературных премий и конкурсов. Живёт и работает в Городце.',
     types: ['poet'],
   },
 
@@ -1467,6 +1672,7 @@ export const authors: Author[] = [
     id: 'lev-rakhlis',
     firstName: 'Лев',
     lastName: 'Рахлис',
+    shortBio: 'Детский поэт, переводчик, журналист.',
     types: ['poet'],
   },
 
@@ -1474,6 +1680,7 @@ export const authors: Author[] = [
     id: 'dina-sabitova',
     firstName: 'Дина',
     lastName: 'Сабитова',
+    shortBio: 'Знаменитая детская писательница, филолог, преподаватель. Номинировалась на литературную премию им. Астрид Линдгрен. Живёт и работает в Коста-Рике.',
     types: ['prose'],
   },
 
@@ -1481,259 +1688,301 @@ export const authors: Author[] = [
     id: 'nakip-kashtanov',
     firstName: 'Накип',
     lastName: 'Каштанов',
+    shortBio: 'Поэт и прозаик, врач, член Союза писателей Татарстана с 2000 года. Автор книг для детей, лауреат премии имени Абдуллы Алиша (2012).',
     types: ['poet'],
   },
+
   {
-  id: 'olga-lalazhel',
-  firstName: 'Ольга',
-  lastName: 'Лалажель',
-  types: ['prose','other'],
-},
+    id: 'olga-lalazhel',
+    firstName: 'Ольга',
+    lastName: 'Лалажель',
+    shortBio: 'Психолог, антрополог и начинающий писатель. Обладает бесспорным талантом придумывать игры.',
+    types: ['prose', 'other'],
+  },
 
-{
-  id: 'lesya-tyshkovska',
-  firstName: 'Леся',
-  lastName: 'Тышковска',
-  types: ['poet'],
-},
+  {
+    id: 'lesya-tyshkovska',
+    firstName: 'Леся',
+    lastName: 'Тышковска',
+    shortBio: 'Филолог, поэтесса, актриса и певица. Автор нескольких поэтических сборников.',
+    types: ['poet'],
+  },
 
-{
-  id: 'natalya-shostak',
-  firstName: 'Наталья',
-  lastName: 'Шостак',
-  types: ['prose'],
-},
-{
-  id: 'folk',
-  firstName: 'Народное',
-  lastName: 'творчество',
-  types: ['poet', 'prose'],
-},
-{
-  id: 'anonymous',
-  firstName: 'Автор',
-  lastName: 'неизвестен',
-  types: ['poet', 'prose'],
-},
-{
-  id: 'ekaterina-asonova',
-  firstName: 'Екатерина',
-  lastName: 'Асонова',
-  types: ['other'],
-},
+  {
+    id: 'natalya-shostak',
+    firstName: 'Наталья',
+    lastName: 'Шостак',
+    shortBio: 'Детская писательница. Живёт и работает в России.',
+    types: ['prose'],
+  },
 
-{
-  id: 'lena-barsin',
-  firstName: 'Лена',
-  lastName: 'Барсин',
-  types: ['other'],
-},
+  {
+    id: 'folk',
+    firstName: 'Народное',
+    lastName: 'творчество',
+    types: ['poet', 'prose'],
+  },
 
-{
-  id: 'dmitry-oreshkin',
-  firstName: 'Дмитрий',
-  lastName: 'Орешкин',
-  types: ['other'],
-},
+  {
+    id: 'anonymous',
+    firstName: 'Автор',
+    lastName: 'неизвестен',
+    types: ['poet', 'prose'],
+  },
 
-{
-  id: 'olga-artemyeva',
-  firstName: 'Ольга',
-  lastName: 'Артемьева',
-  types: ['other'],
-},
+  {
+    id: 'ekaterina-asonova',
+    firstName: 'Екатерина',
+    lastName: 'Асонова',
+    shortBio: 'Кандидат педагогических наук, руководитель научно-практического семинара «Детские книги в круге чтения взрослых», заведующая лабораторией социокультурных образовательных практик МГПУ.',
+    types: ['other'],
+  },
 
-{
-  id: 'darya-krivoborskaya',
-  firstName: 'Дарья',
-  lastName: 'Кривоборская',
-  types: ['other'],
-},
+  {
+    id: 'lena-barsin',
+    firstName: 'Лена',
+    lastName: 'Барсин',
+    shortBio: 'Блогер. Живёт и работает в Германии.',
+    types: ['other'],
+  },
 
-{
-  id: 'yulia-utochkina',
-  firstName: 'Юлия',
-  lastName: 'Уточкина',
-  types: ['other'],
-},
+  {
+    id: 'dmitry-oreshkin',
+    firstName: 'Дмитрий',
+    lastName: 'Орешкин',
+    shortBio: 'Географ, ведущий научный сотрудник Института географии РАН.',
+    types: ['other'],
+  },
 
-{
-  id: 'elena-shustova',
-  firstName: 'Елена',
-  lastName: 'Шустова',
-  types: ['other'],
-},
+  {
+    id: 'olga-artemyeva',
+    firstName: 'Ольга',
+    lastName: 'Артемьева',
+    shortBio: 'Кандидат философских наук, старший научный сотрудник сектора этики Института философии Российской академии наук.',
+    types: ['other'],
+  },
 
-{
-  id: 'yulia-amlinskaya',
-  firstName: 'Юлия',
-  lastName: 'Амлинская',
-  types: ['other'],
-},
-{
-  id: 'maria-bershadskaya',
-  firstName: 'Мария',
-  lastName: 'Бершадская',
-  types: ['other'],
-},
+  {
+    id: 'darya-krivoborskaya',
+    firstName: 'Дарья',
+    lastName: 'Кривоборская',
+    shortBio: 'Музеевед и филолог, автор книг для детей, изучающих русский язык за рубежом, руководитель детской театральной онлайн-студии в международной школе дополнительного образования Russificate Kids.',
+    types: ['other'],
+  },
 
-{
-  id: 'polina-sorel',
-  firstName: 'Полина',
-  lastName: 'Сорель',
-  types: ['other'],
-},
+  {
+    id: 'yulia-utochkina',
+    firstName: 'Юлия',
+    lastName: 'Уточкина',
+    types: ['other'],
+  },
 
-{
-  id: 'anna-zenkova',
-  firstName: 'Анна',
-  lastName: 'Зенькова',
-  types: ['other'],
-},
+  {
+    id: 'elena-shustova',
+    firstName: 'Елена',
+    lastName: 'Шустова',
+    shortBio: 'Преподаватель русского языка, филолог, музеолог. Живёт и работает во Франции.',
+    types: ['other'],
+  },
 
-{
-  id: 'sergey-belozerov',
-  firstName: 'Сергей',
-  lastName: 'Белозёров',
-  types: ['other'],
-},
+  {
+    id: 'yulia-amlinskaya',
+    firstName: 'Юлия',
+    lastName: 'Амлинская',
+    shortBio: 'Педагог. Основательница международных лингвистических школ Russificate и Language Life.',
+    types: ['other'],
+  },
 
-{
-  id: 'alexandra-vasilkova',
-  firstName: 'Александра',
-  lastName: 'Василькова',
-  types: ['other'],
-},
+  {
+    id: 'maria-bershadskaya',
+    firstName: 'Мария',
+    lastName: 'Бершадская',
+    shortBio: 'Известная детская писательница. Окончила сценарный факультет ВГИКа, работала сценаристом документальных фильмов и мультипликационных проектов.',
+    types: ['other'],
+  },
 
-{
-  id: 'alexandra-rubinstein',
-  firstName: 'Александра',
-  lastName: 'Рубинштейн',
-  types: ['other'],
-},
+  {
+    id: 'polina-sorel',
+    firstName: 'Полина',
+    lastName: 'Сорель',
+    shortBio: 'Живёт в Германии, более двадцати лет преподаёт русский язык, разрабатывает авторские методики и занимается проблемами чтения и продвижения русскоязычной детской литературы.',
+    types: ['other'],
+  },
 
-{
-  id: 'galina-kabakova',
-  firstName: 'Галина',
-  lastName: 'Кабакова',
-  types: ['other'],
-},
+  {
+    id: 'anna-zenkova',
+    firstName: 'Анна',
+    lastName: 'Зенькова',
+    shortBio: 'Писательница из Беларуси; по профессии маркетолог, автор книг для малышей и подростковой прозы.',
+    types: ['other'],
+  },
 
-{
-  id: 'olga-gromova',
-  firstName: 'Ольга',
-  lastName: 'Громова',
-  types: ['other'],
-},
+  {
+    id: 'sergey-belozerov',
+    firstName: 'Сергей',
+    lastName: 'Белозёров',
+    shortBio: 'Российский художник-график и карикатурист, переводчик. Живёт и работает в Воронеже.',
+    types: ['other'],
+  },
 
-{
-  id: 'maria-boteva',
-  firstName: 'Мария',
-  lastName: 'Ботева',
-  types: ['other'],
-},
+  {
+    id: 'alexandra-vasilkova',
+    firstName: 'Александра',
+    lastName: 'Василькова',
+    shortBio: 'Профессиональный театральный художник и переводчик с французского и литовского языков с тридцатилетним стажем.',
+    types: ['other'],
+  },
 
-{
-  id: 'maya-bessonova',
-  firstName: 'Майя',
-  lastName: 'Бессонова',
-  types: ['other'],
-},
+  {
+    id: 'alexandra-rubinstein',
+    firstName: 'Александра',
+    lastName: 'Рубинштейн',
+    shortBio: 'Известный белорусский иллюстратор и педагог. Живёт и работает в Париже.',
+    types: ['other'],
+  },
 
-{
-  id: 'alina-popova',
-  firstName: 'Алина',
-  lastName: 'Попова',
-  types: ['other'],
-},
+  {
+    id: 'galina-kabakova',
+    firstName: 'Галина',
+    lastName: 'Кабакова',
+    shortBio: 'Доктор филологии, преподаватель Сорбонны, исследователь-этнолог, основатель и руководитель издательства «Flies France».',
+    types: ['other'],
+  },
 
-{
-  id: 'boris-kuznetsov',
-  firstName: 'Борис',
-  lastName: 'Кузнецов',
-  types: ['other'],
-},
+  {
+    id: 'olga-gromova',
+    firstName: 'Ольга',
+    lastName: 'Громова',
+    shortBio: 'Писательница, автор художественных книг для детей и подростков; её профессиональная деятельность связана с книгами.',
+    types: ['other'],
+  },
 
-{
-  id: 'vitaliy-zyusko',
-  firstName: 'Виталий',
-  lastName: 'Зюсько',
-  types: ['other'],
-},
+  {
+    id: 'maria-boteva',
+    firstName: 'Мария',
+    lastName: 'Ботева',
+    shortBio: 'Писательница; начала писать в подростковом возрасте, училась на факультете журналистики и работала в детской газете.',
+    types: ['other'],
+  },
 
-{
-  id: 'larisa-tulupova',
-  firstName: 'Лариса',
-  lastName: 'Тулупова',
-  types: ['other'],
-},
+  {
+    id: 'maya-bessonova',
+    firstName: 'Майя',
+    lastName: 'Бессонова',
+    shortBio: 'По образованию историк-востоковед и филолог, детская писательница.',
+    types: ['other'],
+  },
 
-{
-  id: 'alyona-turtie',
-  firstName: 'Алёна',
-  lastName: 'Туртье',
-  types: ['other'],
-},
+  {
+    id: 'alina-popova',
+    firstName: 'Алина',
+    lastName: 'Попова',
+    shortBio: 'Переводчица с французского и английского языков, переводит прозу и стихи. Лауреат премии Мориса Ваксмахера (2018) и премии Норы Галь (2023).',
+    types: ['other'],
+  },
 
-{
-  id: 'elena-bolgova',
-  firstName: 'Елена',
-  lastName: 'Болгова',
-  types: ['other'],
-},
+  {
+    id: 'boris-kuznetsov',
+    firstName: 'Борис',
+    lastName: 'Кузнецов',
+    shortBio: 'Историк, кандидат исторических наук, директор издательства «Росмэн»; более двадцати лет работает в издательском бизнесе.',
+    types: ['other'],
+  },
 
-{
-  id: 'ksenia-kovalenko',
-  firstName: 'Ксения',
-  lastName: 'Коваленко',
-  types: ['other'],
-},
+  {
+    id: 'vitaliy-zyusko',
+    firstName: 'Виталий',
+    lastName: 'Зюсько',
+    shortBio: 'Главный редактор и руководитель детского издательства «КомпасГид».',
+    types: ['other'],
+  },
 
-{
-  id: 'nikolay-dzhumakuliev',
-  firstName: 'Николай',
-  lastName: 'Джумакулиев',
-  types: ['other'],
-},
+  {
+    id: 'larisa-tulupova',
+    firstName: 'Лариса',
+    lastName: 'Тулупова',
+    shortBio: 'Живёт во Франции; автор познавательных игр и квестов на русском языке, которые создаёт для занятий с детьми-билингвами.',
+    types: ['other'],
+  },
 
-{
-  id: 'sofya-remez',
-  firstName: 'Софья',
-  lastName: 'Ремез',
-  types: ['other'],
-},
+  {
+    id: 'alyona-turtie',
+    firstName: 'Алёна',
+    lastName: 'Туртье',
+    shortBio: 'Педагог, директор русской школы дополнительного образования «Антошка» в Версале. Окончила Волгоградский педагогический университет и более десяти лет работала учителем.',
+    types: ['other'],
+  },
 
-{
-  id: 'evgeniy-rudashevskiy',
-  firstName: 'Евгений',
-  lastName: 'Рудашевский',
-  types: ['other'],
-},
+  {
+    id: 'elena-bolgova',
+    firstName: 'Елена',
+    lastName: 'Болгова',
+    shortBio: 'Известная российская художница и иллюстратор. Член Санкт-Петербургского отделения Союза художников России.',
+    types: ['other'],
+  },
 
-{
-  id: 'olga-de-lakrua',
-  firstName: 'Ольга',
-  lastName: 'дё Лакруа',
-  types: ['other'],
-},
+  {
+    id: 'ksenia-kovalenko',
+    firstName: 'Ксения',
+    lastName: 'Коваленко',
+    shortBio: 'Издатель и переводчик-скандинавист, сооснователь издательства «Белая Ворона».',
+    types: ['other'],
+  },
 
-{
-  id: 'dmitry-gasin',
-  firstName: 'Дмитрий',
-  lastName: 'Гасин',
-  types: ['other'],
-},
+  {
+    id: 'nikolay-dzhumakuliev',
+    firstName: 'Николай',
+    lastName: 'Джумакулиев',
+    shortBio: 'Генеральный директор детского издательства «Волчок». Окончил Государственный институт русского языка им. А. С. Пушкина, работал в российских детских издательствах.',
+    types: ['other'],
+  },
 
-{
-  id: 'nataliya-mavlevich',
-  firstName: 'Наталия',
-  lastName: 'Мавлевич',
-  types: ['other'],
-},
-{
-  id: 'denis-veselov',
-  firstName: 'Денис',
-  lastName: 'Веселов',
-  types: ['other'],
-},
+  {
+    id: 'sofya-remez',
+    firstName: 'Софья',
+    lastName: 'Ремез',
+    shortBio: 'Журналист, сценарист и писательница; выпускница исторического факультета МГУ, работала в музейной и редакционной сфере.',
+    types: ['other'],
+  },
+
+  {
+    id: 'evgeniy-rudashevskiy',
+    firstName: 'Евгений',
+    lastName: 'Рудашевский',
+    shortBio: 'Писатель, автор приключенческих книг и путешественник; интерес к походам и поездкам возник у него ещё в детстве.',
+    types: ['other'],
+  },
+
+  {
+    id: 'olga-de-lakrua',
+    firstName: 'Ольга',
+    lastName: 'дё Лакруа',
+    shortBio: 'Педагог, экономист, издатель, библиофил и благотворитель; основатель и руководитель творческого объединения «Свет» и куратор Международного благотворительного проекта «Солнечный луч».',
+    types: ['other'],
+  },
+
+  {
+    id: 'dmitry-gasin',
+    firstName: 'Дмитрий',
+    lastName: 'Гасин',
+    shortBio: 'Блогер и книжный обозреватель; по образованию филолог, работает в издательской сфере.',
+    types: ['other'],
+  },
+
+  {
+    id: 'nataliya-mavlevich',
+    firstName: 'Наталия',
+    lastName: 'Мавлевич',
+    shortBio: 'Знаменитая российская переводчица, редактор и педагог. Живёт и работает в России.',
+    types: ['other'],
+  },
+
+  {
+    id: 'denis-veselov',
+    firstName: 'Денис',
+    lastName: 'Веселов',
+    shortBio: 'Издатель начал издательскую деятельность с проекта сборника стихов Арсения Тарковского и занимается издательскими бизнес-процессами и производством книги.',
+    types: ['other'],
+  },
+
 ]

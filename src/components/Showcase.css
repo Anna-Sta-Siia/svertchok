@@ -252,7 +252,7 @@
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .showcase--author {
     grid-template-columns:
       1fr;

@@ -3,9 +3,9 @@ export type Interview = {
   issueId: string
   authorId: string
 
-  title: string
-  shortDescription?: string
+  topic: string
+  shortDescription: string
 
-  page?: number
+  page: number
   order: number
 }

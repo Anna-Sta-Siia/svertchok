@@ -26,6 +26,15 @@
 }
 
 
+.author-page__featured-card {
+  width:
+    100%;
+
+  min-width:
+    0;
+}
+
+
 .author-page__featured
 .author-card--featured {
   width:
@@ -34,19 +43,37 @@
 
 
 /* =========================
+   SECONDARY COLUMN
+   ========================= */
+
+.author-page__secondary {
+  width:
+    100%;
+
+  min-width:
+    0;
+}
+
+
+/* =========================
    AUTHORS GRID
 
-   Desktop:
-   4 compact cards per row.
+   The CSS variable tells both
+   CSS and AuthorPage.tsx how
+   many compact cards fit in
+   one row at the current width.
    ========================= */
 
 .author-page__authors-grid {
+  --authors-columns:
+    4;
+
   display:
     grid;
 
   grid-template-columns:
     repeat(
-      4,
+      var(--authors-columns),
       minmax(
         0,
         1fr
@@ -109,15 +136,15 @@
 
 
 /* =========================
-   BACK LINK
+   ALL AUTHORS LINK
    ========================= */
 
-.author-page__back {
+.author-page__all-authors-link {
   display:
     inline-flex;
 
   margin-top:
-    26px;
+    22px;
 
   color:
     var(--color-accent);
@@ -144,7 +171,7 @@
 ) and (
   pointer: fine
 ) {
-  .author-page__back:hover {
+  .author-page__all-authors-link:hover {
     opacity:
       0.75;
 
@@ -156,7 +183,69 @@
 }
 
 
-.author-page__back:focus-visible {
+.author-page__all-authors-link:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-accent);
+
+  outline-offset:
+    4px;
+
+  border-radius:
+    3px;
+}
+
+
+/* =========================
+   ISSUE AUTHORS LINK
+   ========================= */
+
+.author-page__issue-authors-link {
+  display:
+    inline-flex;
+
+  margin-top:
+    22px;
+
+  color:
+    var(--color-accent);
+
+  font-size:
+    0.92rem;
+
+  font-weight:
+    600;
+
+  text-decoration:
+    none;
+
+  transition:
+    opacity
+      var(--transition-default),
+    transform
+      var(--transition-default);
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .author-page__issue-authors-link:hover {
+    opacity:
+      0.75;
+
+    transform:
+      translateX(
+        3px
+      );
+  }
+}
+
+
+.author-page__issue-authors-link:focus-visible {
   outline:
     2px
     solid
@@ -180,14 +269,8 @@
 
 @media (max-width: 1088px) {
   .author-page__authors-grid {
-    grid-template-columns:
-      repeat(
-        3,
-        minmax(
-          0,
-          1fr
-        )
-      );
+    --authors-columns:
+      3;
 
     gap:
       10px;
@@ -205,14 +288,8 @@
 
 @media (max-width: 900px) {
   .author-page__authors-grid {
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(
-          0,
-          1fr
-        )
-      );
+    --authors-columns:
+      2;
   }
 }
 
@@ -223,12 +300,13 @@
    Showcase stacks in
    Showcase.css.
 
-   Once stacked, secondary
-   gets enough room for
-   3 compact cards per row.
+   Once stacked, the grid
+   becomes wider again.
+   AuthorPage.tsx displays
+   two compact rows.
    ========================= */
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .author-page__featured {
     width:
       min(
@@ -241,16 +319,7 @@
   }
 
 
-  .author-page__authors-grid {
-    grid-template-columns:
-      repeat(
-        3,
-        minmax(
-          0,
-          1fr
-        )
-      );
-
+  .author-page__secondary {
     width:
       min(
         100%,
@@ -259,6 +328,15 @@
 
     margin-inline:
       auto;
+  }
+
+
+  .author-page__authors-grid {
+    --authors-columns:
+      3;
+
+    width:
+      100%;
 
     gap:
       12px;
@@ -284,7 +362,8 @@
   }
 
 
-  .author-page__featured {
+  .author-page__featured,
+  .author-page__secondary {
     width:
       100%;
   }
@@ -299,26 +378,11 @@
 
 
   .author-page__authors-grid {
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(
-          0,
-          1fr
-        )
-      );
-
-    width:
-      100%;
+    --authors-columns:
+      2;
 
     gap:
       10px;
-  }
-
-
-  .author-page__back {
-    margin-top:
-      22px;
   }
 }
 
@@ -329,7 +393,7 @@
 
 @media (max-width: 430px) {
   .author-page__authors-grid {
-    grid-template-columns:
-      1fr;
+    --authors-columns:
+      1;
   }
 }

@@ -356,10 +356,6 @@ export default function AuthorCard({
             =================== */}
 
         <section className="author-card__featured-section">
-          <h2 className="author-card__featured-section-title">
-            Bio
-          </h2>
-
           <p className="author-card__featured-bio">
             {author.shortBio ??
               'Биография пока не добавлена.'}
@@ -374,7 +370,7 @@ export default function AuthorCard({
         {hasInterview && (
           <section className="author-card__featured-section author-card__featured-interviews">
             <h2 className="author-card__featured-section-title">
-              Беседа
+              Побеседуем о…
             </h2>
 
             <div className="author-card__featured-interview-list">
@@ -399,30 +395,17 @@ export default function AuthorCard({
                         }
                         className="author-card__featured-interview"
                       >
-                        <p className="author-card__featured-interview-title">
-                          {
-                            interview.title
-                          }
-                        </p>
-
-                        {interviewIssue && (
+                        {interviewIssue ? (
                           <Link
-                            to={`/issues/${interviewIssue.slug}`}
-                            className="author-card__featured-interview-link"
+                            to={`/interviews#${interview.id}`}
+                            className="author-card__featured-interview-topic"
                           >
-                            {
-                              getIssueLabel(
-                                interviewIssue,
-                              )
-                            }
-
-                            {interviewIssue.accessType ===
-                              'paid' && (
-                              <span className="author-card__featured-interview-access">
-                                Платный номер
-                              </span>
-                            )}
+                            «{interview.topic}» →
                           </Link>
+                        ) : (
+                          <p className="author-card__featured-interview-topic author-card__featured-interview-topic--static">
+                            «{interview.topic}»
+                          </p>
                         )}
                       </div>
                     )
@@ -718,19 +701,6 @@ export default function AuthorCard({
           )}
         </div>
       </header>
-
-
-      {/* ===================
-          BIO
-          =================== */}
-
-      {author.shortBio && (
-        <p className="author-card__bio">
-          {
-            author.shortBio
-          }
-        </p>
-      )}
 
 
       {/* ===================
