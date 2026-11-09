@@ -8,12 +8,12 @@ import {
   Link,
 } from 'react-router-dom'
 
-import bukovkiLogo from '../assets/images/Bukovki_logo.png'
 import logoSvertchok from '../assets/images/logo-svertchok.png'
 import compactTitle from '../assets/images/title-svertchok-espacé.png'
 
 import facebookIcon from '../assets/images/facebook.png'
 import instagramIcon from '../assets/images/instagramm.png'
+import emailIcon from '../assets/images/e-mail.png'
 
 import subscribeIcon from "../assets/images/s'abonner.png"
 import supportIcon from '../assets/images/supporter.png'
@@ -35,6 +35,9 @@ const FACEBOOK_URL =
 const INSTAGRAM_URL =
   'https://www.instagram.com/boukovki/'
 
+const EMAIL_URL =
+  'mailto:boukovki@hotmail.com'
+
 const DONATION_URL =
   'https://www.helloasso.com/associations/association-des-amateurs-de-la-litterature-russophone-pour-les-enfants-et-la-jeunesse-boukovki/formulaires/1'
 
@@ -55,39 +58,22 @@ type OpenAction =
   | null
 
 
+/*
+ * Le personnage n'est plus
+ * placé dans le mot SVERCHOK.
+ *
+ * Il vit maintenant dans
+ * la colonne gauche du header.
+ */
+
 const heroTitleItems = [
-  {
-    type: 'letter',
-    src: letterS,
-  },
-  {
-    type: 'letter',
-    src: letterV,
-  },
-  {
-    type: 'letter',
-    src: letterE,
-  },
-  {
-    type: 'letter',
-    src: letterR,
-  },
-  {
-    type: 'letter',
-    src: letterCH,
-  },
-  {
-    type: 'letter',
-    src: letterO,
-  },
-  {
-    type: 'mascot',
-    src: logoSvertchok,
-  },
-  {
-    type: 'letter',
-    src: letterK,
-  },
+  letterS,
+  letterV,
+  letterE,
+  letterR,
+  letterCH,
+  letterO,
+  letterK,
 ] as const
 
 
@@ -101,6 +87,7 @@ export default function SiteHeader({
     null,
   )
 
+
   const actionsRef =
     useRef<HTMLDivElement>(
       null,
@@ -108,7 +95,7 @@ export default function SiteHeader({
 
 
   /* =========================
-     CLOSE ACTIONS
+     CLOSE ACTION MENUS
      ========================= */
 
   useEffect(() => {
@@ -174,9 +161,7 @@ export default function SiteHeader({
     >,
   ) {
     setOpenAction(
-      (
-        current,
-      ) =>
+      (current) =>
         current ===
         action
           ? null
@@ -192,109 +177,105 @@ export default function SiteHeader({
         site-header--${variant}
       `}
     >
-      {/* =====================
-          UTILITY ROW
-          ===================== */}
+      <div className="site-header__shell">
 
-      <div className="site-header__utility">
+        {/* =====================
+            LEFT — SVERTCHOK
+            ===================== */}
 
-        {/* SOCIALS */}
-
-        <nav
-          className="site-header__socials"
-          aria-label="Социальные сети «Буковок»"
+        <Link
+          to="/"
+          className="site-header__mascot-link"
+          aria-label="На главную страницу «Сверчка»"
         >
-          <a
-            href={FACEBOOK_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="site-header__social-link"
-            aria-label="Facebook «Буковок»"
-          >
-            <img
-              src={facebookIcon}
-              alt=""
-              aria-hidden="true"
-            />
-          </a>
-
-          <a
-            href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="site-header__social-link"
-            aria-label="Instagram «Буковок»"
-          >
-            <img
-              src={instagramIcon}
-              alt=""
-              aria-hidden="true"
-            />
-          </a>
-        </nav>
+          <img
+            src={logoSvertchok}
+            alt=""
+            aria-hidden="true"
+            className="site-header__mascot"
+          />
+        </Link>
 
 
-        {/* HERO:
-            BOUKOVKI PRESENT */}
+        {/* =====================
+            CENTER
+            ===================== */}
 
-        {variant ===
-        'hero' ? (
-          <div className="site-header__eyebrow">
+        <div className="site-header__center">
+
+          {variant ===
+            'hero' ? (
+            <>
+              <p className="site-header__kicker">
+                литературный альманах
+                для детей и родителей
+              </p>
+
+
+              <Link
+                to="/"
+                className="site-header__hero-brand"
+                aria-label="На главную страницу «Сверчка»"
+              >
+                <span
+                  className="site-header__hero-title"
+                  aria-hidden="true"
+                >
+                  {heroTitleItems.map(
+                    (
+                      src,
+                      index,
+                    ) => (
+                      <img
+                        key={
+                          index
+                        }
+                        src={
+                          src
+                        }
+                        alt=""
+                        className="site-header__hero-letter"
+                      />
+                    ),
+                  )}
+                </span>
+              </Link>
+            </>
+          ) : (
             <Link
-              to="/about"
-              className="site-header__bukovki-link"
-              aria-label="О «Буковках»"
+              to="/"
+              className="site-header__compact-brand"
+              aria-label="На главную страницу «Сверчка»"
             >
               <img
-                src={bukovkiLogo}
-                alt="Буковки"
-                className="site-header__bukovki-logo"
+                src={compactTitle}
+                alt="Сверчок"
+                className="site-header__compact-title"
               />
             </Link>
+          )}
 
-            <span className="site-header__eyebrow-text">
-              представляют
-            </span>
-          </div>
-        ) : (
-
-          /* COMPACT:
-             SMALL SVERTCHOK BRAND */
-
-          <Link
-            to="/"
-            className="site-header__compact-brand"
-            aria-label="На главную страницу «Сверчка»"
-          >
-            <img
-              src={logoSvertchok}
-              alt=""
-              aria-hidden="true"
-              className="site-header__compact-mascot"
-            />
-
-            <img
-              src={compactTitle}
-              alt="Сверчок"
-              className="site-header__compact-title"
-            />
-          </Link>
-        )}
+        </div>
 
 
-        {/* ACTIONS */}
+        {/* =====================
+            RIGHT — ICON RAIL
+            ===================== */}
 
         <div
           ref={actionsRef}
-          className="site-header__actions"
+          className="site-header__rail"
+          aria-label="Ссылки и действия"
         >
 
-          {/* SUBSCRIBE */}
+          {/* =====================
+              SUBSCRIBE
+              ===================== */}
 
           <div className="site-header__action">
             <button
               type="button"
-              className="site-header__action-trigger"
+              className="site-header__icon-button"
               aria-label="Подписаться на «Сверчок»"
               aria-expanded={
                 openAction ===
@@ -311,23 +292,7 @@ export default function SiteHeader({
                 src={subscribeIcon}
                 alt=""
                 aria-hidden="true"
-                className="site-header__action-icon"
               />
-
-              <span
-                className={`
-                  site-header__action-chevron
-                  ${
-                    openAction ===
-                    'subscribe'
-                      ? 'site-header__action-chevron--open'
-                      : ''
-                  }
-                `}
-                aria-hidden="true"
-              >
-                ⌄
-              </span>
             </button>
 
 
@@ -353,12 +318,69 @@ export default function SiteHeader({
           </div>
 
 
-          {/* SUPPORT */}
+          {/* =====================
+              FACEBOOK
+              ===================== */}
+
+          <a
+            href={FACEBOOK_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="site-header__icon-link"
+            aria-label="Facebook «Буковок»"
+          >
+            <img
+              src={facebookIcon}
+              alt=""
+              aria-hidden="true"
+            />
+          </a>
+
+
+          {/* =====================
+              INSTAGRAM
+              ===================== */}
+
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="site-header__icon-link"
+            aria-label="Instagram «Буковок»"
+          >
+            <img
+              src={instagramIcon}
+              alt=""
+              aria-hidden="true"
+            />
+          </a>
+
+
+          {/* =====================
+              EMAIL
+              ===================== */}
+
+          <a
+            href={EMAIL_URL}
+            className="site-header__icon-link"
+            aria-label="Написать «Буковкам» по электронной почте"
+          >
+            <img
+              src={emailIcon}
+              alt=""
+              aria-hidden="true"
+            />
+          </a>
+
+
+          {/* =====================
+              SUPPORT
+              ===================== */}
 
           <div className="site-header__action">
             <button
               type="button"
-              className="site-header__action-trigger"
+              className="site-header__icon-button"
               aria-label="Поддержать «Сверчок»"
               aria-expanded={
                 openAction ===
@@ -375,23 +397,7 @@ export default function SiteHeader({
                 src={supportIcon}
                 alt=""
                 aria-hidden="true"
-                className="site-header__action-icon"
               />
-
-              <span
-                className={`
-                  site-header__action-chevron
-                  ${
-                    openAction ===
-                    'support'
-                      ? 'site-header__action-chevron--open'
-                      : ''
-                  }
-                `}
-                aria-hidden="true"
-              >
-                ⌄
-              </span>
             </button>
 
 
@@ -416,57 +422,10 @@ export default function SiteHeader({
                 </a>
               </div>
             )}
+
           </div>
         </div>
       </div>
-
-
-      {/* =====================
-          HERO HEADER ONLY
-          ===================== */}
-
-      {variant ===
-        'hero' && (
-        <div className="site-header__hero">
-          <p className="site-header__hero-kicker">
-            литературный альманах для детей и родителей
-          </p>
-
-          <Link
-            to="/"
-            className="site-header__hero-brand"
-            aria-label="На главную страницу «Сверчка»"
-          >
-            <span
-              className="site-header__hero-title"
-              aria-hidden="true"
-            >
-              {heroTitleItems.map(
-                (
-                  item,
-                  index,
-                ) => (
-                  <img
-                    key={
-                      index
-                    }
-                    src={
-                      item.src
-                    }
-                    alt=""
-                    className={
-                      item.type ===
-                      'mascot'
-                        ? 'site-header__hero-mascot'
-                        : 'site-header__hero-letter'
-                    }
-                  />
-                ),
-              )}
-            </span>
-          </Link>
-        </div>
-      )}
     </header>
   )
 }

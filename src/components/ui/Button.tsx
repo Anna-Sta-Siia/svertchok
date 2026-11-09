@@ -5,9 +5,9 @@ import './Button.css'
 
 type ButtonVariant =
   | 'primary'
-  | 'outline'
-  | 'ghost'
-
+  | 'secondary'
+  | 'tertiary'
+  
 type ButtonProps = {
   children: ReactNode
 

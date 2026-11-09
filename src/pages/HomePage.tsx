@@ -151,7 +151,7 @@ export default function HomePage() {
               )}
 
               <Button
-                variant="outline"
+                variant="secondary"
                 onClick={() =>
                   setIsContentsOpen(
                     true,

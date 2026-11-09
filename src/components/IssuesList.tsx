@@ -2,15 +2,12 @@ import {
   useId,
 } from 'react'
 
-import {
-  Link,
-} from 'react-router-dom'
-
 import type {
   Issue,
 } from '../assets/data/issues'
 
 import IssueCard from './IssueCard'
+import Button from '../components/ui/Button'
 
 import './IssuesList.css'
 
@@ -37,11 +34,13 @@ export default function IssuesList({
   const titleId =
     useId()
 
+
   if (
     issues.length === 0
   ) {
     return null
   }
+
 
   return (
     <section
@@ -60,6 +59,7 @@ export default function IssuesList({
           : 'Номера «Сверчка»'
       }
     >
+
       {title && (
         <h2
           id={titleId}
@@ -68,6 +68,7 @@ export default function IssuesList({
           {title}
         </h2>
       )}
+
 
       <div className="issues-list__items">
         {issues.map(
@@ -85,16 +86,19 @@ export default function IssuesList({
         )}
       </div>
 
+
       {showAllLink && (
         <div className="issues-list__footer">
-          <Link
+          <Button
+            variant="tertiary"
             to="/issues"
-            className="issues-list__all-link"
+            className="issues-list__all-button"
           >
             Посмотреть все номера →
-          </Link>
+          </Button>
         </div>
       )}
+
     </section>
   )
 }

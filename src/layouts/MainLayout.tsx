@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+import {
+  useEffect,
+} from 'react'
 
 import {
   Outlet,
@@ -10,10 +12,13 @@ import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import SeasonalNavbar from '../components/navigation/SeasonalNavbar'
 
+import AnnouncementOverlay from '../components/AnnouncementOverlay'
 import ContactOverlay from '../components/ContactOverlay'
 import ContactForm from '../components/ContactForm'
 
-import { getNavItems } from '../assets/data/navItems'
+import {
+  getNavItems,
+} from '../assets/data/navItems'
 
 import springFlower from '../assets/images/seasons/spring-flower.png'
 import summerStrawberry from '../assets/images/seasons/summer-berry.png'
@@ -28,15 +33,23 @@ import {
 import './MainLayout.css'
 
 
-const seasonImages: Record<
-  Season,
-  string
-> = {
-  spring: springFlower,
-  summer: summerStrawberry,
-  autumn: autumnLeaf,
-  winter: winterSnowflake,
-}
+const seasonImages:
+  Record<
+    Season,
+    string
+  > = {
+    spring:
+      springFlower,
+
+    summer:
+      summerStrawberry,
+
+    autumn:
+      autumnLeaf,
+
+    winter:
+      winterSnowflake,
+  }
 
 
 export default function MainLayout() {
@@ -45,6 +58,7 @@ export default function MainLayout() {
 
   const navigate =
     useNavigate()
+
 
   const season =
     getCurrentSeason()
@@ -78,6 +92,27 @@ export default function MainLayout() {
 
 
   /* =========================
+     SCROLL TO TOP
+     ON PAGE CHANGE
+     ========================= */
+
+  useEffect(() => {
+    window.scrollTo({
+      top:
+        0,
+
+      left:
+        0,
+
+      behavior:
+        'auto',
+    })
+  }, [
+    location.pathname,
+  ])
+
+
+  /* =========================
      SCROLL TO NORMAL HASH
      ========================= */
 
@@ -88,6 +123,12 @@ export default function MainLayout() {
       return
     }
 
+
+    /*
+     * #contact opens an overlay.
+     * It is not a section that
+     * should be scrolled to.
+     */
 
     if (
       location.hash ===
@@ -164,6 +205,7 @@ export default function MainLayout() {
         season
       }
     >
+
       {/* =====================
           SEASONAL BACKGROUND
           ===================== */}
@@ -173,7 +215,8 @@ export default function MainLayout() {
         aria-hidden="true"
       >
         {Array.from({
-          length: 8,
+          length:
+            8,
         }).map(
           (
             _,
@@ -239,6 +282,15 @@ export default function MainLayout() {
 
 
       {/* =====================
+          GLOBAL ANNOUNCEMENT
+          ===================== */}
+
+      {!isContactOpen && (
+        <AnnouncementOverlay />
+      )}
+
+
+      {/* =====================
           GLOBAL CONTACT
           ===================== */}
 
@@ -252,6 +304,7 @@ export default function MainLayout() {
       >
         <ContactForm />
       </ContactOverlay>
+
     </div>
   )
 }

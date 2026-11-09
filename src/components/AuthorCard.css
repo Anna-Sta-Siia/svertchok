@@ -77,9 +77,6 @@
 
 /* ==================================================
    ARCHIVE
-   AuthorsPage
-
-   ≈ 30% plus bas que l'ancienne version.
    ================================================== */
 
 .author-card--archive {
@@ -145,9 +142,7 @@
 ) {
   .author-card--archive:hover {
     transform:
-      translateY(
-        -2px
-      );
+      translateY(-2px);
 
     box-shadow:
       0
@@ -236,12 +231,6 @@
   border-radius:
     3px;
 }
-
-
-/* =========================
-   ARCHIVE BIO
-   ========================= */
-
 
 
 /* =========================
@@ -410,14 +399,14 @@
     border-color:
       color-mix(
         in srgb,
-        var(--color-accent) 45%,
+        var(--color-logo-green) 45%,
         transparent
       );
 
     background:
       color-mix(
         in srgb,
-        var(--color-secondary) 10%,
+        var(--color-logo-green) 7%,
         transparent
       );
   }
@@ -443,10 +432,13 @@
   text-decoration:
     none;
 
+  text-underline-offset:
+    4px;
+
   transition:
-    opacity
+    color
       var(--transition-default),
-    transform
+    text-decoration-color
       var(--transition-default);
 }
 
@@ -472,23 +464,17 @@
   pointer: fine
 ) {
   .author-card__details-link:hover {
-    opacity:
-      0.75;
+    color:
+      var(--color-logo-green);
 
-    transform:
-      translateX(
-        3px
-      );
+    text-decoration:
+      underline;
   }
 }
 
 
 /* ==================================================
    COMPACT
-   Context navigation
-
-   Petite carte de navigation :
-   nom + genre + marqueur "Беседа".
    ================================================== */
 
 .author-card--compact {
@@ -549,8 +535,6 @@
     rgb(50 45 30 / 3%);
 
   transition:
-    transform
-      var(--transition-default),
     border-color
       var(--transition-default),
     box-shadow
@@ -624,15 +608,10 @@
   pointer: fine
 ) {
   .author-card--compact:hover {
-    transform:
-      translateY(
-        -2px
-      );
-
     border-color:
       color-mix(
         in srgb,
-        var(--color-secondary) 24%,
+        var(--color-logo-green) 24%,
         transparent
       );
 
@@ -658,14 +637,6 @@
 
 /* ==================================================
    FEATURED
-   AuthorPage
-
-   Vertical structure:
-   name
-   types
-   Bio
-   Interview (optional)
-   Publications by issue
    ================================================== */
 
 .author-card--featured {
@@ -884,20 +855,36 @@
   text-decoration:
     none;
 
+  text-underline-offset:
+    4px;
+
   transition:
-    color 160ms ease;
+    color
+      var(--transition-default);
 }
 
 
-.author-card__featured-interview-topic:hover {
-  color:
-    var(--color-accent);
-}
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .author-card__featured-interview-topic:hover {
+    color:
+      var(--color-accent);
+
+    text-decoration:
+      underline;
+  }
 
 
-.author-card__featured-interview-topic--static:hover {
-  color:
-    var(--color-text);
+  .author-card__featured-interview-topic--static:hover {
+    color:
+      var(--color-text);
+
+    text-decoration:
+      none;
+  }
 }
 
 
@@ -972,6 +959,16 @@
 }
 
 
+/*
+ * Structural issue link:
+ *
+ * orange by default;
+ * green + underline on hover.
+ *
+ * It stays a normal Link,
+ * not a tertiary Button.
+ */
+
 .author-card__accordion-issue-link {
   display:
     flex;
@@ -1001,7 +998,34 @@
     1.25;
 
   text-decoration:
-    none;
+    underline;
+
+  text-decoration-color:
+    transparent;
+
+  text-underline-offset:
+    4px;
+
+  transition:
+    color
+      var(--transition-default),
+    text-decoration-color
+      var(--transition-default);
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .author-card__accordion-issue-link:hover {
+    color:
+      var(--color-logo-green);
+
+    text-decoration-color:
+      var(--color-logo-green);
+  }
 }
 
 
@@ -1035,6 +1059,31 @@
 
   cursor:
     pointer;
+
+  transition:
+    color
+      var(--transition-default),
+    background
+      var(--transition-default);
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .author-card__accordion-toggle:hover {
+    color:
+      var(--color-logo-green);
+
+    background:
+      color-mix(
+        in srgb,
+        var(--color-logo-green) 7%,
+        transparent
+      );
+  }
 }
 
 
@@ -1057,9 +1106,7 @@
 .author-card__accordion-item--open
 .author-card__accordion-chevron {
   transform:
-    rotate(
-      180deg
-    );
+    rotate(180deg);
 }
 
 
@@ -1155,55 +1202,18 @@
 
 
 /* =========================
-   SHOW MORE
+   TERTIARY ACTIONS
    ========================= */
 
 .author-card__show-more {
-  appearance:
-    none;
-
-  display:
-    inline-flex;
+  align-self:
+    flex-start;
 
   margin-top:
     9px;
 
-  padding:
-    0;
-
-  border:
-    0;
-
-  background:
-    transparent;
-
-  color:
-    var(--color-accent);
-
-  font:
-    inherit;
-
   font-size:
     0.74rem;
-
-  font-weight:
-    600;
-
-  cursor:
-    pointer;
-
-  text-decoration:
-    underline;
-
-  text-decoration-color:
-    transparent;
-
-  text-underline-offset:
-    3px;
-
-  transition:
-    text-decoration-color
-      var(--transition-default);
 }
 
 
@@ -1213,42 +1223,13 @@
 }
 
 
-@media (
-  hover: hover
-) and (
-  pointer: fine
-) {
-  .author-card__accordion-issue-link:hover,
-  .author-card__featured-interview-link:hover {
-    text-decoration:
-      underline;
-
-    text-underline-offset:
-      3px;
-  }
-
-
-  .author-card__accordion-toggle:hover {
-    background:
-      color-mix(
-        in srgb,
-        var(--color-secondary) 8%,
-        transparent
-      );
-  }
-
-
-  .author-card__show-more:hover {
-    text-decoration-color:
-      currentColor;
-  }
-}
-
+/* =========================
+   FOCUS
+   ========================= */
 
 .author-card__accordion-issue-link:focus-visible,
 .author-card__accordion-toggle:focus-visible,
-.author-card__featured-interview-link:focus-visible,
-.author-card__show-more:focus-visible {
+.author-card__featured-interview-topic:focus-visible {
   outline:
     2px
     solid
@@ -1282,7 +1263,9 @@
    TABLET
    ================================================== */
 
-@media (max-width: 900px) {
+@media (
+  max-width: 900px
+) {
   .author-card--compact {
     width:
       100%;
@@ -1294,7 +1277,9 @@
    MOBILE
    ================================================== */
 
-@media (max-width: 560px) {
+@media (
+  max-width: 560px
+) {
   .author-card--archive {
     height:
       220px;

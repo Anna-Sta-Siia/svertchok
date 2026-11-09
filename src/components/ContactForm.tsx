@@ -160,7 +160,7 @@ export default function ContactForm() {
         </p>
 
         <Button
-          variant="outline"
+          variant="secondary"
           onClick={() =>
             setIsSuccess(false)
           }

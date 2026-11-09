@@ -5,13 +5,13 @@ import {
 } from 'react'
 
 import {
-  Link,
   Navigate,
   useParams,
 } from 'react-router-dom'
 
 import Showcase from '../components/Showcase'
 import AuthorCard from '../components/AuthorCard'
+import Button from '../components/ui/Button'
 
 import {
   getAuthorById,
@@ -36,6 +36,7 @@ function createStringSeed(
   let hash =
     relatedAuthorsSessionSeed
 
+
   for (
     let index = 0;
     index < value.length;
@@ -51,6 +52,7 @@ function createStringSeed(
       0
   }
 
+
   return Math.abs(
     hash,
   )
@@ -63,12 +65,15 @@ function createSeededRandom(
   let seed =
     initialSeed
 
+
   return () => {
     seed +=
       0x6d2b79f5
 
+
     let value =
       seed
+
 
     value =
       Math.imul(
@@ -77,6 +82,7 @@ function createSeededRandom(
         value | 1,
       )
 
+
     value ^=
       value +
       Math.imul(
@@ -84,6 +90,7 @@ function createSeededRandom(
           (value >>> 7),
         value | 61,
       )
+
 
     return (
       (
@@ -186,8 +193,8 @@ export default function AuthorPage() {
     )
 
 
-  const issueAuthorsLinkRef =
-    useRef<HTMLAnchorElement>(
+  const issueAuthorsActionRef =
+    useRef<HTMLDivElement>(
       null,
     )
 
@@ -261,6 +268,10 @@ export default function AuthorPage() {
     )
 
 
+  /* =========================
+     MATCH SECONDARY HEIGHT
+     ========================= */
+
   useLayoutEffect(() => {
     if (
       !hasRelatedAuthors
@@ -275,14 +286,14 @@ export default function AuthorPage() {
     const authorsGrid =
       authorsGridRef.current
 
-    const issueAuthorsLink =
-      issueAuthorsLinkRef.current
+    const issueAuthorsAction =
+      issueAuthorsActionRef.current
 
 
     if (
       !featuredCard ||
       !authorsGrid ||
-      !issueAuthorsLink
+      !issueAuthorsAction
     ) {
       return
     }
@@ -349,13 +360,12 @@ export default function AuthorPage() {
 
 
         /*
-         * Once Showcase becomes stacked,
-         * the right column no longer needs
-         * to follow the featured card height.
-         *
-         * On smaller screens we keep two
-         * compact rows before the link.
+         * Once Showcase stacks,
+         * the right column no longer
+         * needs to match the featured
+         * card height.
          */
+
         if (
           window.matchMedia(
             '(max-width: 800px)',
@@ -377,21 +387,21 @@ export default function AuthorPage() {
         }
 
 
-        const linkStyles =
+        const actionStyles =
           window.getComputedStyle(
-            issueAuthorsLink,
+            issueAuthorsAction,
           )
 
 
-        const linkHeight =
-          issueAuthorsLink
+        const actionHeight =
+          issueAuthorsAction
             .getBoundingClientRect()
             .height
 
 
-        const linkMarginTop =
+        const actionMarginTop =
           Number.parseFloat(
-            linkStyles.marginTop,
+            actionStyles.marginTop,
           ) ||
           0
 
@@ -406,8 +416,8 @@ export default function AuthorPage() {
           Math.max(
             cardHeight,
             featuredHeight -
-              linkHeight -
-              linkMarginTop,
+              actionHeight -
+              actionMarginTop,
           )
 
 
@@ -459,7 +469,7 @@ export default function AuthorPage() {
     )
 
     observer.observe(
-      issueAuthorsLink,
+      issueAuthorsAction,
     )
 
 
@@ -474,6 +484,10 @@ export default function AuthorPage() {
   ])
 
 
+  /* =========================
+     AUTHOR NOT FOUND
+     ========================= */
+
   if (
     !authorId ||
     !author
@@ -486,6 +500,10 @@ export default function AuthorPage() {
     )
   }
 
+
+  /* =========================
+     PAGE
+     ========================= */
 
   return (
     <section
@@ -526,6 +544,7 @@ export default function AuthorPage() {
 
         featured={
           <div className="author-page__featured">
+
             <div
               ref={
                 featuredCardRef
@@ -546,12 +565,16 @@ export default function AuthorPage() {
               />
             </div>
 
-            <Link
-              to="/authors"
-              className="author-page__all-authors-link"
-            >
-              ← Все авторы
-            </Link>
+
+            <div className="author-page__all-authors-action">
+              <Button
+                variant="tertiary"
+                to="/authors"
+              >
+                ← Все авторы
+              </Button>
+            </div>
+
           </div>
         }
 
@@ -560,6 +583,7 @@ export default function AuthorPage() {
           latestAuthorIssue
             ? (
               <div className="author-page__secondary">
+
                 <div
                   ref={
                     authorsGridRef
@@ -583,15 +607,21 @@ export default function AuthorPage() {
                   )}
                 </div>
 
-                <Link
+
+                <div
                   ref={
-                    issueAuthorsLinkRef
+                    issueAuthorsActionRef
                   }
-                  to={`/authors?issue=${latestAuthorIssue.id}`}
-                  className="author-page__issue-authors-link"
+                  className="author-page__issue-authors-action"
                 >
-                  Все авторы этого номера →
-                </Link>
+                  <Button
+                    variant="tertiary"
+                    to={`/authors?issue=${latestAuthorIssue.id}`}
+                  >
+                    Все авторы этого номера →
+                  </Button>
+                </div>
+
               </div>
             )
             : null

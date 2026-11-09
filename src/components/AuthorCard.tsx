@@ -19,6 +19,8 @@ import {
   getIssueById,
 } from '../assets/data/selectors'
 
+import Button from '../components/ui/Button'
+
 import './AuthorCard.css'
 
 
@@ -100,13 +102,9 @@ export default function AuthorCard({
     0
 
 
-  /*
-   * Accordion state.
-   *
-   * The keys include author.id so state from one
-   * author's page does not visually leak into
-   * another author's card.
-   */
+  /* =========================
+     ACCORDION STATE
+     ========================= */
 
   const [
     openIssueKeys,
@@ -151,6 +149,7 @@ export default function AuthorCard({
         issueId,
       )
 
+
     setOpenIssueKeys(
       (
         current,
@@ -159,6 +158,7 @@ export default function AuthorCard({
           new Set(
             current,
           )
+
 
         if (
           next.has(
@@ -173,6 +173,7 @@ export default function AuthorCard({
             key,
           )
         }
+
 
         return next
       },
@@ -188,6 +189,7 @@ export default function AuthorCard({
         issueId,
       )
 
+
     setExpandedPublicationKeys(
       (
         current,
@@ -196,6 +198,7 @@ export default function AuthorCard({
           new Set(
             current,
           )
+
 
         if (
           next.has(
@@ -210,6 +213,7 @@ export default function AuthorCard({
             key,
           )
         }
+
 
         return next
       },
@@ -238,6 +242,7 @@ export default function AuthorCard({
           {author.firstName}
         </p>
 
+
         <div className="author-card__compact-meta">
           {author.types.map(
             (
@@ -260,6 +265,7 @@ export default function AuthorCard({
                   </span>
                 )}
 
+
                 {
                   typeLabels[
                     type
@@ -268,6 +274,7 @@ export default function AuthorCard({
               </span>
             ),
           )}
+
 
           {hasInterview && (
             <span className="author-card__compact-meta-item">
@@ -280,6 +287,7 @@ export default function AuthorCard({
                   ·
                 </span>
               )}
+
 
               Беседа
             </span>
@@ -324,6 +332,7 @@ export default function AuthorCard({
             {author.lastName}{' '}
             {author.firstName}
           </h1>
+
 
           {author.types.length >
             0 && (
@@ -373,6 +382,7 @@ export default function AuthorCard({
               Побеседуем о…
             </h2>
 
+
             <div className="author-card__featured-interview-list">
               {authorInterviews
                 .slice(
@@ -387,6 +397,7 @@ export default function AuthorCard({
                       getIssueById(
                         interview.issueId,
                       )
+
 
                     return (
                       <div
@@ -413,6 +424,7 @@ export default function AuthorCard({
                 )}
             </div>
 
+
             {authorInterviews.length >
               2 && (
               <p className="author-card__featured-more-note">
@@ -436,6 +448,7 @@ export default function AuthorCard({
             Публикации в номерах:
           </h2>
 
+
           {authorIssues.length >
           0 ? (
             <>
@@ -449,10 +462,12 @@ export default function AuthorCard({
                         issue.id,
                       )
 
+
                     const isOpen =
                       openIssueKeys.has(
                         issueKey,
                       )
+
 
                     const issuePublications =
                       publications.filter(
@@ -498,6 +513,9 @@ export default function AuthorCard({
                         `}
                       >
                         <div className="author-card__accordion-header">
+
+                          {/* ISSUE LINK */}
+
                           <Link
                             to={`/issues/${issue.slug}`}
                             className="author-card__accordion-issue-link"
@@ -508,6 +526,9 @@ export default function AuthorCard({
                               )
                             }
                           </Link>
+
+
+                          {/* ACCORDION TOGGLE */}
 
                           <button
                             type="button"
@@ -569,6 +590,7 @@ export default function AuthorCard({
                                         }
                                       </span>
 
+
                                       {publication.section && (
                                         <span className="author-card__accordion-publication-section">
                                           {
@@ -590,7 +612,8 @@ export default function AuthorCard({
 
                             {issuePublications.length >
                               INITIAL_PUBLICATION_COUNT && (
-                              <button
+                              <Button
+                                variant="tertiary"
                                 type="button"
                                 className="author-card__show-more"
                                 onClick={() =>
@@ -604,7 +627,7 @@ export default function AuthorCard({
                                     ? 'Скрыть'
                                     : 'Показать ещё публикации'
                                 }
-                              </button>
+                              </Button>
                             )}
                           </div>
                         )}
@@ -617,9 +640,13 @@ export default function AuthorCard({
 
               {authorIssues.length >
                 INITIAL_ISSUE_COUNT && (
-                <button
+                <Button
+                  variant="tertiary"
                   type="button"
-                  className="author-card__show-more author-card__show-more--issues"
+                  className="
+                    author-card__show-more
+                    author-card__show-more--issues
+                  "
                   onClick={() =>
                     setExpandedIssueListAuthorId(
                       (
@@ -637,7 +664,7 @@ export default function AuthorCard({
                       ? 'Показать меньше номеров'
                       : 'Показать ещё номера'
                   }
-                </button>
+                </Button>
               )}
             </>
           ) : (
@@ -674,6 +701,7 @@ export default function AuthorCard({
           </Link>
         </h2>
 
+
         <div className="author-card__types">
           {author.types.map(
             (
@@ -694,6 +722,7 @@ export default function AuthorCard({
             ),
           )}
 
+
           {hasInterview && (
             <span className="author-card__type author-card__type--interview">
               Беседа
@@ -713,6 +742,7 @@ export default function AuthorCard({
           <p className="author-card__label">
             В номерах
           </p>
+
 
           <div className="author-card__issue-links author-card__issue-links--scroll">
             {authorIssues.map(

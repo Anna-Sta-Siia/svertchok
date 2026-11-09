@@ -14,7 +14,7 @@ export default function ContactCard() {
       </p>
 
       <Button
-        variant="outline"
+        variant="secondary"
         to="#contact"
       >
         Написать Сверчку →
