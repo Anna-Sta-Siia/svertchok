@@ -60,6 +60,10 @@ export default function IssuesList({
       }
     >
 
+      {/* =====================
+          TITLE
+          ===================== */}
+
       {title && (
         <h2
           id={titleId}
@@ -69,6 +73,10 @@ export default function IssuesList({
         </h2>
       )}
 
+
+      {/* =====================
+          ISSUES
+          ===================== */}
 
       <div className="issues-list__items">
         {issues.map(
@@ -86,6 +94,10 @@ export default function IssuesList({
         )}
       </div>
 
+
+      {/* =====================
+          ALL ISSUES
+          ===================== */}
 
       {showAllLink && (
         <div className="issues-list__footer">

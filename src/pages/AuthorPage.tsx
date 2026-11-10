@@ -193,6 +193,14 @@ export default function AuthorPage() {
     )
 
 
+  /*
+   * Le ref est placé sur le wrapper
+   * du Button tertiary.
+   *
+   * Button n'utilise pas forwardRef,
+   * donc on mesure simplement le div.
+   */
+
   const issueAuthorsActionRef =
     useRef<HTMLDivElement>(
       null,
@@ -204,6 +212,10 @@ export default function AuthorPage() {
     setVisibleAuthorCount,
   ] = useState(4)
 
+
+  /* =========================
+     DATA
+     ========================= */
 
   const author =
     authorId
@@ -360,10 +372,12 @@ export default function AuthorPage() {
 
 
         /*
-         * Once Showcase stacks,
-         * the right column no longer
-         * needs to match the featured
-         * card height.
+         * Une fois le Showcase empilé,
+         * la colonne droite n'a plus besoin
+         * de suivre la hauteur de la
+         * featured card.
+         *
+         * On garde deux rangées de cartes.
          */
 
         if (
@@ -485,7 +499,7 @@ export default function AuthorPage() {
 
 
   /* =========================
-     AUTHOR NOT FOUND
+     NOT FOUND
      ========================= */
 
   if (
@@ -519,11 +533,20 @@ export default function AuthorPage() {
       <Showcase
         layout="author"
 
+        /* ===================
+           FEATURED HEADING
+           =================== */
+
         featuredHeading={
           <h2 className="showcase__heading-title">
             Наш автор
           </h2>
         }
+
+
+        /* ===================
+           SECONDARY HEADING
+           =================== */
 
         secondaryHeading={
           hasRelatedAuthors &&
@@ -541,6 +564,11 @@ export default function AuthorPage() {
             )
             : undefined
         }
+
+
+        /* ===================
+           FEATURED
+           =================== */
 
         featured={
           <div className="author-page__featured">
@@ -566,6 +594,9 @@ export default function AuthorPage() {
             </div>
 
 
+            {/* TERTIARY:
+                navigation vers AuthorsPage */}
+
             <div className="author-page__all-authors-action">
               <Button
                 variant="tertiary"
@@ -577,6 +608,11 @@ export default function AuthorPage() {
 
           </div>
         }
+
+
+        /* ===================
+           SECONDARY
+           =================== */
 
         secondary={
           hasRelatedAuthors &&
@@ -607,6 +643,10 @@ export default function AuthorPage() {
                   )}
                 </div>
 
+
+                {/* TERTIARY:
+                    navigation vers tous
+                    les auteurs du numéro */}
 
                 <div
                   ref={

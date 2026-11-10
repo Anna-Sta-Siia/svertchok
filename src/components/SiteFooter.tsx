@@ -89,7 +89,7 @@ export default function SiteFooter() {
           <div className="site-footer__goodbye">
             <p className="site-footer__goodbye-first">
               Спасибо, что заглянули
-              к Сверчку на огонёк.
+              к Сверчку на огонёк
             </p>
 
             <p className="site-footer__goodbye-second">

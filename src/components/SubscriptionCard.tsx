@@ -15,9 +15,6 @@ export default function SubscriptionCard({
         Хотите узнавать новости Сверчка?
       </h2>
 
-      <p className="subscription-card__text">
-        Новые выпуски  и другие события
-      </p>
 
       <Button
         variant="primary"

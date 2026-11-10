@@ -1,12 +1,21 @@
-import { Link } from 'react-router-dom'
+import {
+  Link,
+} from 'react-router-dom'
 
 import './NavItem.css'
 
+
 type NavItemProps = {
-  label: string
-  to: string
-  icon?: string
+  label:
+    string
+
+  to:
+    string
+
+  icon?:
+    string
 }
+
 
 export default function NavItem({
   label,

@@ -1,33 +1,54 @@
-import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import type {
+  ReactNode,
+} from 'react'
+
+import {
+  Link,
+} from 'react-router-dom'
 
 import './Button.css'
 
-type ButtonVariant =
+
+export type ButtonVariant =
   | 'primary'
   | 'secondary'
   | 'tertiary'
-  
+
+
 type ButtonProps = {
-  children: ReactNode
+  children:
+    ReactNode
 
-  variant?: ButtonVariant
+  variant?:
+    ButtonVariant
 
-  /* Navigation interne */
-  to?: string
+  /* Internal navigation */
+  to?:
+    string
 
-  /* Lien externe */
-  href?: string
-  external?: boolean
+  /* External / normal link */
+  href?:
+    string
 
-  /* Vrai bouton */
-  type?: 'button' | 'submit' | 'reset'
-  disabled?: boolean
-  onClick?: () => void
+  external?:
+    boolean
 
-  /* Optionnel */
-  className?: string
+  /* Real button */
+  type?:
+    | 'button'
+    | 'submit'
+    | 'reset'
+
+  disabled?:
+    boolean
+
+  onClick?:
+    () => void
+
+  className?:
+    string
 }
+
 
 export default function Button({
   children,
@@ -48,6 +69,7 @@ export default function Button({
     .filter(Boolean)
     .join(' ')
 
+
   /* =========================
      INTERNAL LINK
      ========================= */
@@ -56,23 +78,30 @@ export default function Button({
     return (
       <Link
         to={to}
-        className={buttonClassName}
-        onClick={onClick}
+        className={
+          buttonClassName
+        }
+        onClick={
+          onClick
+        }
       >
         {children}
       </Link>
     )
   }
 
+
   /* =========================
-     EXTERNAL / NORMAL LINK
+     EXTERNAL LINK
      ========================= */
 
   if (href) {
     return (
       <a
         href={href}
-        className={buttonClassName}
+        className={
+          buttonClassName
+        }
         target={
           external
             ? '_blank'
@@ -83,23 +112,32 @@ export default function Button({
             ? 'noopener noreferrer'
             : undefined
         }
-        onClick={onClick}
+        onClick={
+          onClick
+        }
       >
         {children}
       </a>
     )
   }
 
+
   /* =========================
-     BUTTON
+     REAL BUTTON
      ========================= */
 
   return (
     <button
       type={type}
-      className={buttonClassName}
-      disabled={disabled}
-      onClick={onClick}
+      className={
+        buttonClassName
+      }
+      disabled={
+        disabled
+      }
+      onClick={
+        onClick
+      }
     >
       {children}
     </button>

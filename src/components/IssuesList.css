@@ -123,14 +123,13 @@
 
 
 /*
- * Appearance and hover are
- * controlled by Button.css.
+ * Aucun style typographique
+ * spécifique ici.
+ *
+ * Le Button tertiary reçoit
+ * directement toute son apparence
+ * depuis Button.css.
  */
-
-.issues-list__all-button {
-  font-size:
-    0.95rem;
-}
 
 
 /* =========================

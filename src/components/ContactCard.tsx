@@ -9,9 +9,6 @@ export default function ContactCard() {
         Есть вопрос, идея или просто хочется написать?
       </h2>
 
-      <p className="contact-card__text">
-        Сверчок с удовольствием вас выслушает
-      </p>
 
       <Button
         variant="secondary"

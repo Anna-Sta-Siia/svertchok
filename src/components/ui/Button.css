@@ -1,67 +1,302 @@
+/* =========================
+   BUTTON — BASE
+   ========================= */
+
 .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display:
+    inline-flex;
 
-  border-radius: var(--radius-button);
+  align-items:
+    center;
 
-  padding: 12px 20px;
+  justify-content:
+    center;
 
-  font-family: var(--font-main);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.2;
-  text-decoration: none;
+  padding:
+    12px
+    21px;
 
-  cursor: pointer;
+  border-radius:
+    var(--radius-button);
+
+  font-family:
+    var(--font-main);
+
+  font-size:
+    1.14rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.2;
+
+  text-decoration:
+    none;
+
+  cursor:
+    pointer;
+
+  transform:
+    scale(1);
+
+  transform-origin:
+    center;
 
   transition:
-    transform var(--transition-default),
-    background var(--transition-default),
-    color var(--transition-default),
-    border-color var(--transition-default);
+    background
+      var(--transition-default),
+    border-color
+      var(--transition-default),
+    color
+      var(--transition-default),
+    text-decoration-color
+      var(--transition-default),
+    transform
+      var(--transition-default);
 }
+
+
+/* =========================
+   PRIMARY
+
+   Orange
+   →
+   bottle green
+   ========================= */
 
 .button--primary {
-  border: 1px solid var(--color-accent);
+  border:
+    1px
+    solid
+    var(--color-accent);
 
-  background: var(--color-accent);
-  color: white;
+  background:
+    var(--color-accent);
+
+  color:
+    var(--color-white);
 }
 
-.button--primary:hover {
-  transform: translateY(-2px);
 
-  background: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .button--primary:hover {
+    border-color:
+      var(--color-logo-green);
+
+    background:
+      var(--color-logo-green);
+
+    color:
+      var(--color-white);
+
+    transform:
+      scale(1.035);
+  }
 }
+
+
+.button--primary:active {
+  border-color:
+    var(--color-logo-green);
+
+  background:
+    var(--color-logo-green);
+
+  color:
+    var(--color-white);
+
+  transform:
+    scale(1.035);
+}
+
+
+/* =========================
+   SECONDARY
+
+   Orange border + text
+   →
+   green border + text
+   ========================= */
 
 .button--secondary {
-  border: 1px solid var(--color-accent);
+  border:
+    1px
+    solid
+    var(--color-accent);
 
-  background: transparent;
-  color: var(--color-accent);
+  background:
+    transparent;
+
+  color:
+    var(--color-accent);
 }
 
-.button--secondary:hover {
-  transform: translateY(-2px);
 
-  background: var(--color-accent);
-  color: var(--color-white);
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .button--secondary:hover {
+    border-color:
+      var(--color-logo-green);
+
+    background:
+      transparent;
+
+    color:
+      var(--color-logo-green);
+
+    transform:
+      scale(1.035);
+  }
 }
+
+
+.button--secondary:active {
+  border-color:
+    var(--color-logo-green);
+
+  background:
+    transparent;
+
+  color:
+    var(--color-logo-green);
+
+  transform:
+    scale(1.035);
+}
+
+
+/* =========================
+   TERTIARY
+
+   Navigation between pages
+
+   Orange
+   →
+   bottle green + underline
+   ========================= */
 
 .button--tertiary {
-  border: 0;
+  padding:
+    3px
+    0;
 
-  background: transparent;
-  color: var(--color-accent);
+  border:
+    0;
+
+  border-radius:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    var(--color-accent);
+
+  font-size:
+    1.2rem;
+
+  text-decoration:
+    underline;
+
+  text-decoration-color:
+    transparent;
+
+  text-decoration-thickness:
+    1px;
+
+  text-underline-offset:
+    5px;
 }
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .button--tertiary:hover {
+    background:
+      transparent;
+
+    color:
+      var(--color-logo-green);
+
+    text-decoration-color:
+      var(--color-logo-green);
+  }
+}
+
+
+.button--tertiary:active {
+  color:
+    var(--color-logo-green);
+
+  text-decoration-color:
+    var(--color-logo-green);
+}
+
+
+/* =========================
+   FOCUS
+   ========================= */
+
+.button:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-logo-green);
+
+  outline-offset:
+    4px;
+}
+
+
+/* =========================
+   DISABLED
+   ========================= */
+
 .button:disabled {
-  opacity: 0.55;
+  opacity:
+    0.55;
 
-  cursor: not-allowed;
+  cursor:
+    not-allowed;
 
-  transform: none;
+  transform:
+    none;
 
-  pointer-events: none;
+  pointer-events:
+    none;
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .button {
+    transition:
+      none;
+  }
+
+
+  .button--primary:hover,
+  .button--secondary:hover,
+  .button--primary:active,
+  .button--secondary:active {
+    transform:
+      none;
+  }
 }
