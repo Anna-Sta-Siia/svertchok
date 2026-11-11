@@ -1346,12 +1346,12 @@
     center;
 
   gap:
-    6px;
+    8px;
 
   width:
     min(
       100%,
-      142px
+      176px
     );
 
   justify-self:
@@ -1359,129 +1359,27 @@
 }
 
 
-.issue-card__archive-toggle,
-.issue-card__archive-link {
-  display:
-    flex;
+/*
+ * La logique visuelle vient
+ * directement de Button.css.
+ *
+ * FRONT:
+ *   Подробнее → secondary
+ *
+ * BACK:
+ *   Вернуться → secondary
+ *   Перейти к номеру → primary
+ */
 
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
+.issue-card__archive-action {
   width:
     100%;
 
   min-height:
-    34px;
-
-  padding:
-    6px
-    10px;
-
-  border:
-    1px
-    solid
-    var(--color-accent);
-
-  border-radius:
-    var(--radius-button);
-
-  background:
-    transparent;
-
-  color:
-    var(--color-accent);
-
-  font:
-    inherit;
-
-  font-size:
-    0.88rem;
-
-  font-weight:
-    600;
-
-  line-height:
-    1.15;
+    38px;
 
   text-align:
     center;
-
-  text-decoration:
-    none;
-
-  cursor:
-    pointer;
-
-  transition:
-    background
-      var(--transition-default),
-    color
-      var(--transition-default),
-    transform
-      var(--transition-default);
-}
-
-
-.issue-card__archive-link {
-  background:
-    var(--color-accent);
-
-  color:
-    var(--color-surface);
-}
-
-
-.issue-card__archive-toggle:focus-visible,
-.issue-card__archive-link:focus-visible {
-  outline:
-    2px
-    solid
-    var(--color-accent);
-
-  outline-offset:
-    3px;
-}
-
-
-/* =========================
-   HOVER
-   ========================= */
-
-@media (
-  hover: hover
-) and (
-  pointer: fine
-) {
-  .issue-card__archive-toggle:hover {
-    background:
-      color-mix(
-        in srgb,
-        var(--color-accent) 9%,
-        transparent
-      );
-
-    transform:
-      translateY(
-        -1px
-      );
-  }
-
-
-  .issue-card__archive-link:hover {
-    background:
-      var(--color-accent-hover);
-
-    border-color:
-      var(--color-accent-hover);
-
-    transform:
-      translateY(
-        -1px
-      );
-  }
 }
 
 
@@ -1648,9 +1546,7 @@
   reduce
 ) {
   .issue-card--compact,
-  .issue-card__archive-inner,
-  .issue-card__archive-toggle,
-  .issue-card__archive-link {
+  .issue-card__archive-inner {
     transition:
       none;
   }

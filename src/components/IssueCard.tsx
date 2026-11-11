@@ -10,6 +10,8 @@ import type {
   Issue,
 } from '../assets/data/issues'
 
+import Button from './ui/Button'
+
 import './IssueCard.css'
 
 
@@ -227,12 +229,10 @@ export default function IssueCard({
             </div>
 
             <div className="issue-card__archive-actions">
-              <button
+              <Button
+                variant="secondary"
                 type="button"
-                className="issue-card__archive-toggle"
-                aria-expanded={
-                  isArchiveOpen
-                }
+                className="issue-card__archive-action"
                 onClick={() =>
                   setIsArchiveOpen(
                     true,
@@ -240,7 +240,7 @@ export default function IssueCard({
                 }
               >
                 Подробнее
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -269,12 +269,10 @@ export default function IssueCard({
             </p>
 
             <div className="issue-card__archive-actions">
-              <button
+              <Button
+                variant="secondary"
                 type="button"
-                className="
-                  issue-card__archive-toggle
-                  issue-card__archive-toggle--back
-                "
+                className="issue-card__archive-action"
                 onClick={() =>
                   setIsArchiveOpen(
                     false,
@@ -282,14 +280,15 @@ export default function IssueCard({
                 }
               >
                 Вернуться
-              </button>
+              </Button>
 
-              <Link
+              <Button
+                variant="primary"
                 to={issueUrl}
-                className="issue-card__archive-link"
+                className="issue-card__archive-action"
               >
                 Перейти к номеру
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
