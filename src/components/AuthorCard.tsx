@@ -612,10 +612,9 @@ export default function AuthorCard({
 
                             {issuePublications.length >
                               INITIAL_PUBLICATION_COUNT && (
-                              <Button
-                                variant="tertiary"
+                              <button
                                 type="button"
-                                className="author-card__show-more"
+                                className="author-card__show-more-publications"
                                 onClick={() =>
                                   togglePublications(
                                     issue.id,
@@ -627,7 +626,7 @@ export default function AuthorCard({
                                     ? 'Скрыть'
                                     : 'Показать ещё публикации'
                                 }
-                              </Button>
+                              </button>
                             )}
                           </div>
                         )}
@@ -641,12 +640,10 @@ export default function AuthorCard({
               {authorIssues.length >
                 INITIAL_ISSUE_COUNT && (
                 <Button
-                  variant="tertiary"
+                  variant="secondary"
+                  size="small"
                   type="button"
-                  className="
-                    author-card__show-more
-                    author-card__show-more--issues
-                  "
+                  className="author-card__show-more-issues"
                   onClick={() =>
                     setExpandedIssueListAuthorId(
                       (
@@ -769,12 +766,14 @@ export default function AuthorCard({
       )}
 
 
-      <Link
+      <Button
+        variant="tertiary"
+        size="medium"
         to={authorUrl}
         className="author-card__details-link"
       >
         Страница автора →
-      </Link>
+      </Button>
     </article>
   )
 }

@@ -12,18 +12,11 @@
   justify-content:
     center;
 
-  padding:
-    12px
-    21px;
-
   border-radius:
     var(--radius-button);
 
   font-family:
     var(--font-main);
-
-  font-size:
-    1.14rem;
 
   font-weight:
     600;
@@ -58,9 +51,55 @@
 
 
 /* =========================
+   SIZES
+   ========================= */
+
+/*
+ * Featured
+ */
+
+.button--large {
+  padding:
+    12px
+    21px;
+
+  font-size:
+    1.14rem;
+}
+
+
+/*
+ * Archive
+ */
+
+.button--medium {
+  padding:
+    10px
+    18px;
+
+  font-size:
+    1.02rem;
+}
+
+
+/*
+ * Compact
+ */
+
+.button--small {
+  padding:
+    8px
+    14px;
+
+  font-size:
+    0.92rem;
+}
+
+
+/* =========================
    PRIMARY
 
-   Orange
+   orange
    →
    bottle green
    ========================= */
@@ -118,7 +157,7 @@
 /* =========================
    SECONDARY
 
-   Orange border + text
+   orange border + text
    →
    green border + text
    ========================= */
@@ -176,9 +215,9 @@
 /* =========================
    TERTIARY
 
-   Navigation between pages
+   navigation between pages
 
-   Orange
+   orange
    →
    bottle green + underline
    ========================= */
@@ -199,9 +238,6 @@
 
   color:
     var(--color-accent);
-
-  font-size:
-    1.2rem;
 
   text-decoration:
     underline;

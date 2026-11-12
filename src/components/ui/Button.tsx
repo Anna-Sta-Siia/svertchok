@@ -15,6 +15,12 @@ export type ButtonVariant =
   | 'tertiary'
 
 
+export type ButtonSize =
+  | 'large'
+  | 'medium'
+  | 'small'
+
+
 type ButtonProps = {
   children:
     ReactNode
@@ -22,18 +28,21 @@ type ButtonProps = {
   variant?:
     ButtonVariant
 
-  /* Internal navigation */
+  size?:
+    ButtonSize
+
+  /* Navigation interne */
   to?:
     string
 
-  /* External / normal link */
+  /* Lien externe */
   href?:
     string
 
   external?:
     boolean
 
-  /* Real button */
+  /* Vrai bouton */
   type?:
     | 'button'
     | 'submit'
@@ -53,6 +62,7 @@ type ButtonProps = {
 export default function Button({
   children,
   variant = 'primary',
+  size = 'medium',
   to,
   href,
   external = false,
@@ -64,6 +74,7 @@ export default function Button({
   const buttonClassName = [
     'button',
     `button--${variant}`,
+    `button--${size}`,
     className,
   ]
     .filter(Boolean)

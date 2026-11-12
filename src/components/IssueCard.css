@@ -1346,12 +1346,12 @@
     center;
 
   gap:
-    8px;
+    7px;
 
   width:
     min(
       100%,
-      176px
+      164px
     );
 
   justify-self:
@@ -1374,9 +1374,6 @@
 .issue-card__archive-action {
   width:
     100%;
-
-  min-height:
-    38px;
 
   text-align:
     center;
@@ -1531,7 +1528,7 @@
     width:
       min(
         100%,
-        142px
+        158px
       );
   }
 }

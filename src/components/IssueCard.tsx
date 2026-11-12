@@ -231,6 +231,7 @@ export default function IssueCard({
             <div className="issue-card__archive-actions">
               <Button
                 variant="secondary"
+                size="medium"
                 type="button"
                 className="issue-card__archive-action"
                 onClick={() =>
@@ -271,6 +272,7 @@ export default function IssueCard({
             <div className="issue-card__archive-actions">
               <Button
                 variant="secondary"
+                size="medium"
                 type="button"
                 className="issue-card__archive-action"
                 onClick={() =>
@@ -284,6 +286,7 @@ export default function IssueCard({
 
               <Button
                 variant="primary"
+                size="medium"
                 to={issueUrl}
                 className="issue-card__archive-action"
               >
