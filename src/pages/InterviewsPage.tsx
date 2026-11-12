@@ -243,9 +243,9 @@ export default function InterviewsPage() {
         <p className="interviews-page__intro">
           Разговоры с писателями,
           поэтами, переводчиками,
-          художниками и теми,
+          художниками и теми,<br/>
           кто создаёт мир детской
-          литературы.
+          литературы
         </p>
       </header>
 

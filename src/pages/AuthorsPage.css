@@ -15,18 +15,21 @@
 .authors-page__header {
   width:
     min(
-      760px,
-      100%
+      820px,
+      calc(
+        100% - 40px
+      )
     );
 
   margin:
     0
     auto
-    42px;
+    38px;
 
   text-align:
     center;
 }
+
 
 .authors-page__intro {
   margin:
@@ -35,11 +38,24 @@
   color:
     var(--color-text-soft);
 
+  font-family:
+    var(--font-main);
+
   font-size:
-    1.08rem;
+    clamp(
+      1.18rem,
+      1.5vw,
+      1.4rem
+    );
+
+  font-weight:
+    500;
 
   line-height:
     1.65;
+
+  letter-spacing:
+    0.01em;
 }
 
 
@@ -57,13 +73,6 @@
   justify-content:
     center;
 
-  flex-wrap:
-    wrap;
-
-  gap:
-    8px
-    18px;
-
   min-height:
     32px;
 
@@ -80,7 +89,7 @@
     var(--color-text-soft);
 
   font-size:
-    0.88rem;
+    0.9rem;
 }
 
 
@@ -93,77 +102,8 @@
 }
 
 
-.authors-page__reset {
-  appearance:
-    none;
-
-  padding:
-    0;
-
-  border:
-    0;
-
-  background:
-    transparent;
-
-  color:
-    var(--color-accent);
-
-  font-family:
-    var(--font-ui);
-
-  font-size:
-    0.88rem;
-
-  cursor:
-    pointer;
-
-  text-decoration:
-    underline;
-
-  text-decoration-color:
-    transparent;
-
-  text-underline-offset:
-    4px;
-
-  transition:
-    text-decoration-color
-      var(--transition-default);
-}
-
-
-@media (
-  hover: hover
-) and (
-  pointer: fine
-) {
-  .authors-page__reset:hover {
-    text-decoration-color:
-      currentColor;
-  }
-}
-
-
-.authors-page__reset:focus-visible {
-  outline:
-    2px
-    solid
-    var(--color-accent);
-
-  outline-offset:
-    4px;
-
-  border-radius:
-    2px;
-}
-
-
 /* =========================
    AUTHORS GRID
-
-   Cartes volontairement
-   plus étroites et centrées.
    ========================= */
 
 .authors-page__grid {
@@ -172,27 +112,48 @@
 
   grid-template-columns:
     repeat(
-      auto-fit,
+      4,
       minmax(
-        245px,
-        280px
+        0,
+        1fr
       )
     );
-
-  justify-content:
-    center;
 
   gap:
     24px;
 
   width:
     min(
-      1500px,
-      100%
+      1280px,
+      calc(
+        100% - 40px
+      )
     );
 
-  margin-inline:
+  margin:
+    0
     auto;
+}
+
+
+/* =========================
+   LOAD MORE
+   ========================= */
+
+.authors-page__load-more {
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  width:
+    100%;
+
+  margin:
+    34px
+    auto
+    0;
 }
 
 
@@ -211,12 +172,14 @@
     center;
 
   gap:
-    16px;
+    20px;
 
   width:
     min(
       600px,
-      100%
+      calc(
+        100% - 40px
+      )
     );
 
   margin:
@@ -235,23 +198,46 @@
   color:
     var(--color-text-soft);
 
+  font-size:
+    1.05rem;
+
   line-height:
     1.6;
 }
 
 
 /* =========================
+   SMALL DESKTOP
+   3 columns
+   ========================= */
+
+@media (max-width: 1200px) {
+  .authors-page__grid {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+}
+
+
+/* =========================
    TABLET
+   2 columns
    ========================= */
 
 @media (max-width: 900px) {
   .authors-page__grid {
     grid-template-columns:
       repeat(
-        auto-fit,
+        2,
         minmax(
-          230px,
-          270px
+          0,
+          1fr
         )
       );
 
@@ -265,48 +251,47 @@
    MOBILE
    ========================= */
 
-@media (max-width: 700px) {
-  .authors-page {
-    padding:
-      26px
-      0
-      60px;
-  }
-
-
+@media (max-width: 640px) {
   .authors-page__header {
+    width:
+      calc(
+        100% - 28px
+      );
+
     margin-bottom:
       30px;
   }
-}
 
 
-/* =========================
-   SMALL MOBILE
-   ========================= */
-
-@media (max-width: 560px) {
-  .authors-page__grid {
-    grid-template-columns:
-      minmax(
-        0,
-        320px
-      );
-
-    width:
-      min(
-        100%,
-        calc(
-          100% - 24px
-        )
-      );
-  }
-}
-
-
-@media (max-width: 480px) {
   .authors-page__intro {
     font-size:
-      1rem;
+      clamp(
+        1.06rem,
+        5vw,
+        1.18rem
+      );
+
+    line-height:
+      1.6;
+  }
+
+
+  .authors-page__grid {
+    grid-template-columns:
+      1fr;
+
+    width:
+      calc(
+        100% - 28px
+      );
+
+    gap:
+      18px;
+  }
+
+
+  .authors-page__load-more {
+    margin-top:
+      28px;
   }
 }

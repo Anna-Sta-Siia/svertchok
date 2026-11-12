@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -10,6 +11,7 @@ import {
 import AuthorCard from '../components/AuthorCard'
 import CustomSelect from '../components/filters/CustomSelect'
 import FilterPanel from '../components/filters/FilterPanel'
+import Button from '../components/ui/Button'
 
 import {
   authors,
@@ -31,12 +33,17 @@ type TypeFilter =
   | 'poet'
   | 'prose'
 
+
 type LetterFilter =
   | 'all'
   | 'А-Д'
   | 'Е-К'
   | 'Л-П'
   | 'Р-Я'
+
+
+const LOAD_MORE_STEP =
+  10
 
 
 const russianAlphabet =
@@ -75,44 +82,127 @@ const letterRanges: Record<
 }
 
 
+/*
+ * Première option =
+ * libellé du filtre.
+ *
+ * Comme ça, dans l'état initial,
+ * les boutons affichent directement :
+ *
+ * По жанру
+ * По алфавиту
+ * По номеру
+ */
+
 const typeOptions = [
   {
-    value: 'all',
-    label: 'Все',
+    value:
+      'all',
+
+    label:
+      'По жанру',
   },
+
   {
-    value: 'poet',
-    label: 'Поэзия',
+    value:
+      'poet',
+
+    label:
+      'Поэзия',
   },
+
   {
-    value: 'prose',
-    label: 'Проза',
+    value:
+      'prose',
+
+    label:
+      'Проза',
   },
 ]
 
 
 const letterOptions = [
   {
-    value: 'all',
-    label: 'Все',
+    value:
+      'all',
+
+    label:
+      'По алфавиту',
   },
+
   {
-    value: 'А-Д',
-    label: 'А–Д',
+    value:
+      'А-Д',
+
+    label:
+      'А–Д',
   },
+
   {
-    value: 'Е-К',
-    label: 'Е–К',
+    value:
+      'Е-К',
+
+    label:
+      'Е–К',
   },
+
   {
-    value: 'Л-П',
-    label: 'Л–П',
+    value:
+      'Л-П',
+
+    label:
+      'Л–П',
   },
+
   {
-    value: 'Р-Я',
-    label: 'Р–Я',
+    value:
+      'Р-Я',
+
+    label:
+      'Р–Я',
   },
 ]
+
+
+function getInitialVisibleCount() {
+  if (
+    typeof window ===
+    'undefined'
+  ) {
+    return 8
+  }
+
+
+  const width =
+    window.innerWidth
+
+
+  if (
+    width <=
+    640
+  ) {
+    return 4
+  }
+
+
+  if (
+    width <=
+    900
+  ) {
+    return 4
+  }
+
+
+  if (
+    width <=
+    1200
+  ) {
+    return 6
+  }
+
+
+  return 8
+}
 
 
 export default function AuthorsPage() {
@@ -129,11 +219,28 @@ export default function AuthorsPage() {
     'all',
   )
 
+
   const [
     selectedLetters,
     setSelectedLetters,
   ] = useState<LetterFilter>(
     'all',
+  )
+
+
+  const [
+    initialVisibleCount,
+    setInitialVisibleCount,
+  ] = useState(
+    getInitialVisibleCount,
+  )
+
+
+  const [
+    visibleCount,
+    setVisibleCount,
+  ] = useState(
+    getInitialVisibleCount,
   )
 
 
@@ -154,13 +261,60 @@ export default function AuthorsPage() {
       : 'all'
 
 
+  /* =========================
+     RESPONSIVE INITIAL COUNT
+     ========================= */
+
+  useEffect(() => {
+    function handleResize() {
+      const nextCount =
+        getInitialVisibleCount()
+
+
+      setInitialVisibleCount(
+        nextCount,
+      )
+
+
+      setVisibleCount(
+        (current) =>
+          Math.max(
+            current,
+            nextCount,
+          ),
+      )
+    }
+
+
+    window.addEventListener(
+      'resize',
+      handleResize,
+    )
+
+
+    return () => {
+      window.removeEventListener(
+        'resize',
+        handleResize,
+      )
+    }
+  }, [])
+
+
+  /* =========================
+     ISSUES OPTIONS
+     ========================= */
+
   const sortedIssues =
     useMemo(
       () =>
         [
           ...publishedIssues,
         ].sort(
-          (a, b) =>
+          (
+            a,
+            b,
+          ) =>
             b.year -
               a.year ||
             b.month -
@@ -174,8 +328,11 @@ export default function AuthorsPage() {
     useMemo(
       () => [
         {
-          value: 'all',
-          label: 'Все номера',
+          value:
+            'all',
+
+          label:
+            'По номеру',
         },
 
         ...sortedIssues.map(
@@ -228,6 +385,10 @@ export default function AuthorsPage() {
     )
   }
 
+
+  /* =========================
+     LETTER RANGE
+     ========================= */
 
   function matchesLetterRange(
     lastName: string,
@@ -292,84 +453,147 @@ export default function AuthorsPage() {
   }
 
 
+  /* =========================
+     FILTERED AUTHORS
+     ========================= */
+
   const filteredAuthors =
-    authors
-      .filter(
-        (author) => {
-          const matchesType =
-            selectedType ===
-              'all' ||
-            author.types.includes(
-              selectedType,
-            )
+    useMemo(
+      () =>
+        authors
+          .filter(
+            (author) => {
+              const matchesType =
+                selectedType ===
+                  'all' ||
+                author.types.includes(
+                  selectedType,
+                )
 
 
-          const matchesLetters =
-            matchesLetterRange(
-              author.lastName,
-              selectedLetters,
-            )
+              const matchesLetters =
+                matchesLetterRange(
+                  author.lastName,
+                  selectedLetters,
+                )
 
 
-          const authorIssues =
-            getIssuesByAuthorId(
-              author.id,
-            )
+              const authorIssues =
+                getIssuesByAuthorId(
+                  author.id,
+                )
 
 
-          const matchesIssue =
-            selectedIssue ===
-              'all' ||
-            authorIssues.some(
-              (issue) =>
-                issue.id ===
-                selectedIssue,
-            )
+              const matchesIssue =
+                selectedIssue ===
+                  'all' ||
+                authorIssues.some(
+                  (issue) =>
+                    issue.id ===
+                    selectedIssue,
+                )
 
 
-          return (
-            matchesType &&
-            matchesLetters &&
-            matchesIssue
+              return (
+                matchesType &&
+                matchesLetters &&
+                matchesIssue
+              )
+            },
           )
-        },
-      )
-      .sort(
-        (a, b) => {
-          const lastNameComparison =
-            a.lastName.localeCompare(
-              b.lastName,
-              'ru',
-              {
-                sensitivity:
-                  'base',
-              },
-            )
+          .sort(
+            (
+              a,
+              b,
+            ) => {
+              const lastNameComparison =
+                a.lastName.localeCompare(
+                  b.lastName,
+                  'ru',
+                  {
+                    sensitivity:
+                      'base',
+                  },
+                )
 
 
-          if (
-            lastNameComparison !==
-            0
-          ) {
-            return (
-              lastNameComparison
-            )
-          }
+              if (
+                lastNameComparison !==
+                0
+              ) {
+                return (
+                  lastNameComparison
+                )
+              }
 
 
-          return (
-            a.firstName.localeCompare(
-              b.firstName,
-              'ru',
-              {
-                sensitivity:
-                  'base',
-              },
-            )
-          )
-        },
-      )
+              return (
+                a.firstName.localeCompare(
+                  b.firstName,
+                  'ru',
+                  {
+                    sensitivity:
+                      'base',
+                  },
+                )
+              )
+            },
+          ),
+      [
+        selectedType,
+        selectedLetters,
+        selectedIssue,
+      ],
+    )
 
+
+  /*
+   * Dès qu'un filtre change,
+   * on revient à la première portion.
+   */
+
+  useEffect(() => {
+    setVisibleCount(
+      initialVisibleCount,
+    )
+  }, [
+    selectedType,
+    selectedLetters,
+    selectedIssue,
+    initialVisibleCount,
+  ])
+
+
+  const visibleAuthors =
+    filteredAuthors.slice(
+      0,
+      visibleCount,
+    )
+
+
+  const remainingAuthors =
+    Math.max(
+      filteredAuthors.length -
+        visibleAuthors.length,
+      0,
+    )
+
+
+  const nextAuthorsCount =
+    Math.min(
+      LOAD_MORE_STEP,
+      remainingAuthors,
+    )
+
+
+  const hasMoreAuthors =
+    remainingAuthors >
+    0
+
+
+  /* =========================
+     RESET
+     ========================= */
 
   const hasActiveFilters =
     selectedType !==
@@ -391,6 +615,18 @@ export default function AuthorsPage() {
 
     setIssueFilter(
       'all',
+    )
+  }
+
+
+  function showMoreAuthors() {
+    setVisibleCount(
+      (current) =>
+        Math.min(
+          current +
+            LOAD_MORE_STEP,
+          filteredAuthors.length,
+        ),
     )
   }
 
@@ -417,11 +653,16 @@ export default function AuthorsPage() {
 
       <FilterPanel
         ariaLabel="Фильтры авторов"
+        onReset={
+          resetFilters
+        }
+        canReset={
+          hasActiveFilters
+        }
       >
         <CustomSelect
           id="authors-type-filter"
           label="По жанру"
-          showLabel
           value={
             selectedType
           }
@@ -438,10 +679,10 @@ export default function AuthorsPage() {
           }
         />
 
+
         <CustomSelect
           id="authors-letter-filter"
           label="По алфавиту"
-          showLabel
           value={
             selectedLetters
           }
@@ -458,10 +699,10 @@ export default function AuthorsPage() {
           }
         />
 
+
         <CustomSelect
           id="authors-issue-filter"
           label="По номеру"
-          showLabel
           value={
             selectedIssue
           }
@@ -489,18 +730,6 @@ export default function AuthorsPage() {
             }
           </strong>
         </p>
-
-        {hasActiveFilters && (
-          <button
-            type="button"
-            className="authors-page__reset"
-            onClick={
-              resetFilters
-            }
-          >
-            Сбросить фильтры
-          </button>
-        )}
       </div>
 
 
@@ -510,41 +739,63 @@ export default function AuthorsPage() {
 
       {filteredAuthors.length >
       0 ? (
-        <div className="authors-page__grid">
-          {filteredAuthors.map(
-            (author) => (
-              <AuthorCard
-                key={
-                  author.id
+        <>
+          <div className="authors-page__grid">
+            {visibleAuthors.map(
+              (author) => (
+                <AuthorCard
+                  key={
+                    author.id
+                  }
+                  author={
+                    author
+                  }
+                  authorIssues={
+                    getIssuesByAuthorId(
+                      author.id,
+                    )
+                  }
+                />
+              ),
+            )}
+          </div>
+
+
+          {hasMoreAuthors && (
+            <div className="authors-page__load-more">
+              <Button
+                variant="secondary"
+                size="medium"
+                type="button"
+                onClick={
+                  showMoreAuthors
                 }
-                author={
-                  author
+              >
+                Показать ещё{' '}
+                {
+                  nextAuthorsCount
                 }
-                authorIssues={
-                  getIssuesByAuthorId(
-                    author.id,
-                  )
-                }
-              />
-            ),
+              </Button>
+            </div>
           )}
-        </div>
+        </>
       ) : (
         <div className="authors-page__empty">
           <p>
             По выбранным критериям
-            авторов пока нет
+            авторов пока нет.
           </p>
 
-          <button
+          <Button
+            variant="secondary"
+            size="medium"
             type="button"
-            className="authors-page__reset"
             onClick={
               resetFilters
             }
           >
             Показать всех авторов
-          </button>
+          </Button>
         </div>
       )}
     </section>
