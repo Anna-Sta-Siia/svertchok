@@ -1,3 +1,7 @@
+import {
+  Children,
+} from 'react'
+
 import type {
   ReactNode,
 } from 'react'
@@ -54,6 +58,18 @@ export default function FilterPanel({
   resetLabel = 'Сбросить фильтры',
 }: FilterPanelProps) {
 
+  const filterCount =
+    Math.min(
+      Math.max(
+        Children.count(
+          children,
+        ),
+        1,
+      ),
+      3,
+    )
+
+
   const hasSortControl =
     Boolean(
       sortLabel &&
@@ -83,6 +99,7 @@ export default function FilterPanel({
     <section
       className={`
         filter-panel
+        filter-panel--${filterCount}
         ${className}
       `.trim()}
       aria-label={
@@ -191,13 +208,6 @@ export default function FilterPanel({
                   !canReset
                 }
               >
-                <span
-                  className="filter-panel__reset-icon"
-                  aria-hidden="true"
-                >
-                  ↺
-                </span>
-
                 <span>
                   {resetLabel}
                 </span>

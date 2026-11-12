@@ -18,6 +18,7 @@ type CustomSelectProps = {
   options: CustomSelectOption[]
   onChange: (value: string) => void
   className?: string
+  showLabel?: boolean
 }
 
 export default function CustomSelect({
@@ -27,6 +28,7 @@ export default function CustomSelect({
   options,
   onChange,
   className = '',
+  showLabel = false,
 }: CustomSelectProps) {
   const [isOpen, setIsOpen] =
     useState(false)
@@ -185,10 +187,15 @@ export default function CustomSelect({
 
   return (
     <div
-      className={`
-        custom-select-field
-        ${className}
-      `.trim()}
+      className={[
+        'custom-select-field',
+        showLabel
+          ? 'custom-select-field--with-label'
+          : '',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
     >
       <label
         htmlFor={id}

@@ -76,16 +76,16 @@
 
 .site-header--compact {
   padding:
-    8px
+    10px
     0
-    10px;
+    12px;
 }
 
 
 .site-header--compact
 .site-header__shell {
   min-height:
-    64px;
+    82px;
 }
 
 
@@ -146,7 +146,7 @@
 .site-header--compact
 .site-header__mascot {
   width:
-    58px;
+    74px;
 }
 
 
@@ -363,7 +363,7 @@
     block;
 
   width:
-    165px;
+    210px;
 
   height:
     auto;
@@ -453,8 +453,10 @@
    ICONS
    ========================= */
 
-.site-header__icon-link,
-.site-header__icon-button {
+.site-header__icon-link {
+  position:
+    relative;
+
   display:
     inline-flex;
 
@@ -482,16 +484,30 @@
   background:
     transparent;
 
+  color:
+    var(--color-accent);
+
   text-decoration:
     none;
 
   cursor:
     pointer;
+
+  transition:
+    color
+      var(--transition-default);
 }
 
 
-.site-header__icon-link img,
-.site-header__icon-button img {
+/*
+ * PNG is used as a mask.
+ *
+ * This lets the icon follow
+ * currentColor exactly:
+ * orange → bottle green.
+ */
+
+.site-header__icon-image {
   display:
     block;
 
@@ -501,11 +517,32 @@
   height:
     31px;
 
-  object-fit:
+  background:
+    currentColor;
+
+  -webkit-mask-repeat:
+    no-repeat;
+
+  mask-repeat:
+    no-repeat;
+
+  -webkit-mask-position:
+    center;
+
+  mask-position:
+    center;
+
+  -webkit-mask-size:
+    contain;
+
+  mask-size:
     contain;
 
   transform:
     scale(1);
+
+  transform-origin:
+    center;
 
   transition:
     transform
@@ -515,12 +552,12 @@
 
 
 /*
- * Le cœur et la poignée de main
- * peuvent être légèrement plus grands.
+ * Heart and handshake
+ * stay slightly larger.
  */
 
 .site-header__action:first-child
-.site-header__icon-button img {
+.site-header__icon-image {
   width:
     33px;
 
@@ -530,7 +567,7 @@
 
 
 .site-header__action:last-child
-.site-header__icon-button img {
+.site-header__icon-image {
   width:
     35px;
 
@@ -544,27 +581,197 @@
 ) and (
   pointer: fine
 ) {
-  .site-header__icon-link:hover
-  img,
+  .site-header__icon-link:hover {
+    color:
+      var(--color-logo-green);
+  }
 
-  .site-header__icon-button:hover
-  img {
+
+  .site-header__icon-link:hover
+  .site-header__icon-image {
     transform:
       scale(1.12);
   }
 }
 
 
-.site-header__icon-link:focus-visible,
-.site-header__icon-button:focus-visible {
+.site-header__icon-link:focus-visible {
+  color:
+    var(--color-logo-green);
+
   outline:
     2px
     solid
-    var(--color-accent);
+    var(--color-logo-green);
 
   outline-offset:
     2px;
 }
+
+
+/* =========================
+   ICON TOOLTIPS
+   ========================= */
+
+.site-header__icon-link::after {
+  content:
+    attr(data-tooltip);
+
+  position:
+    absolute;
+
+  z-index:
+    60;
+
+  width:
+    max-content;
+
+  max-width:
+    160px;
+
+  padding:
+    6px
+    9px;
+
+  border:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 20%,
+      transparent
+    );
+
+  border-radius:
+    9px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 98%,
+      transparent
+    );
+
+  color:
+    var(--color-text);
+
+  box-shadow:
+    0
+    7px
+    18px
+    rgb(55 45 20 / 8%);
+
+  font-family:
+    var(--font-main);
+
+  font-size:
+    0.82rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.2;
+
+  white-space:
+    nowrap;
+
+  opacity:
+    0;
+
+  pointer-events:
+    none;
+
+  transition:
+    opacity
+      var(--transition-default),
+    transform
+      var(--transition-default);
+}
+
+
+/*
+ * Hero:
+ * icons are vertical,
+ * tooltip appears on the left.
+ */
+
+.site-header--hero
+.site-header__icon-link::after {
+  top:
+    50%;
+
+  right:
+    calc(100% + 9px);
+
+  transform:
+    translate(
+      5px,
+      -50%
+    );
+}
+
+
+/*
+ * Compact:
+ * icons are horizontal,
+ * tooltip appears below.
+ */
+
+.site-header--compact
+.site-header__icon-link::after {
+  top:
+    calc(100% + 7px);
+
+  left:
+    50%;
+
+  transform:
+    translate(
+      -50%,
+      -4px
+    );
+}
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .site-header__icon-link:hover::after {
+    opacity:
+      1;
+  }
+
+
+  .site-header--hero
+  .site-header__icon-link:hover::after {
+    transform:
+      translate(
+        0,
+        -50%
+      );
+  }
+
+
+  .site-header--compact
+  .site-header__icon-link:hover::after {
+    transform:
+      translate(
+        -50%,
+        0
+      );
+  }
+}
+
+
+.site-header__icon-link:focus-visible::after {
+  opacity:
+    1;
+}
+
+
 
 
 /* =========================
@@ -583,127 +790,6 @@
 
   justify-content:
     center;
-}
-
-
-/* =========================
-   ACTION MENU
-   ========================= */
-
-.site-header__action-menu {
-  position:
-    absolute;
-
-  top:
-    50%;
-
-  right:
-    calc(100% + 10px);
-
-  z-index:
-    40;
-
-  width:
-    max-content;
-
-  padding:
-    6px;
-
-  border:
-    1px
-    solid
-    color-mix(
-      in srgb,
-      var(--color-secondary) 20%,
-      transparent
-    );
-
-  border-radius:
-    13px;
-
-  background:
-    color-mix(
-      in srgb,
-      var(--color-surface) 97%,
-      transparent
-    );
-
-  box-shadow:
-    0
-    8px
-    24px
-    rgb(
-      55 45 20 / 8%
-    );
-
-  transform:
-    translateY(-50%);
-}
-
-
-.site-header--compact
-.site-header__action-menu {
-  top:
-    calc(100% + 8px);
-
-  right:
-    0;
-
-  transform:
-    none;
-}
-
-
-.site-header__action-menu-link {
-  display:
-    block;
-
-  padding:
-    8px
-    12px;
-
-  border-radius:
-    8px;
-
-  color:
-    var(--color-text);
-
-  font-family:
-    var(--font-main);
-
-  font-size:
-    0.88rem;
-
-  font-weight:
-    600;
-
-  line-height:
-    1.3;
-
-  white-space:
-    nowrap;
-
-  text-decoration:
-    none;
-}
-
-
-@media (
-  hover: hover
-) and (
-  pointer: fine
-) {
-  .site-header__action-menu-link:hover {
-    color:
-      var(--color-accent);
-
-    background:
-      color-mix(
-        in srgb,
-        var(--color-accent) 7%,
-        transparent
-      );
-  }
 }
 
 
@@ -737,7 +823,7 @@
   .site-header--compact
   .site-header__mascot {
     width:
-      48px;
+      60px;
   }
 
 
@@ -749,12 +835,11 @@
 
   .site-header__compact-title {
     width:
-      140px;
+      172px;
   }
 
 
-  .site-header__icon-link,
-  .site-header__icon-button {
+  .site-header__icon-link {
     width:
       35px;
 
@@ -763,8 +848,7 @@
   }
 
 
-  .site-header__icon-link img,
-  .site-header__icon-button img {
+  .site-header__icon-image {
     width:
       28px;
 
@@ -843,8 +927,7 @@
   }
 
 
-  .site-header__icon-link,
-  .site-header__icon-button {
+  .site-header__icon-link {
     width:
       31px;
 
@@ -853,8 +936,7 @@
   }
 
 
-  .site-header__icon-link img,
-  .site-header__icon-button img {
+  .site-header__icon-image {
     width:
       25px;
 
@@ -880,13 +962,13 @@
   .site-header--compact
   .site-header__mascot {
     width:
-      34px;
+      42px;
   }
 
 
   .site-header__compact-title {
     width:
-      105px;
+      124px;
   }
 
 
@@ -898,10 +980,7 @@
 
 
   .site-header--compact
-  .site-header__icon-link,
-
-  .site-header--compact
-  .site-header__icon-button {
+  .site-header__icon-link {
     width:
       27px;
 
@@ -911,10 +990,7 @@
 
 
   .site-header--compact
-  .site-header__icon-link img,
-
-  .site-header--compact
-  .site-header__icon-button img {
+  .site-header__icon-image {
     width:
       22px;
 
@@ -969,8 +1045,7 @@
   }
 
 
-  .site-header__icon-link,
-  .site-header__icon-button {
+  .site-header__icon-link {
     width:
       27px;
 
@@ -979,8 +1054,7 @@
   }
 
 
-  .site-header__icon-link img,
-  .site-header__icon-button img {
+  .site-header__icon-image {
     width:
       22px;
 
@@ -992,13 +1066,13 @@
   .site-header--compact
   .site-header__mascot {
     width:
-      30px;
+      36px;
   }
 
 
   .site-header__compact-title {
     width:
-      88px;
+      102px;
   }
 }
 
@@ -1014,8 +1088,7 @@
   .site-header__mascot,
   .site-header__hero-letter,
   .site-header__compact-title,
-  .site-header__icon-link img,
-  .site-header__icon-button img {
+  .site-header__icon-image {
     transition:
       none;
   }

@@ -14,6 +14,9 @@ type NavItemProps = {
 
   icon?:
     string
+
+  isActive?:
+    boolean
 }
 
 
@@ -21,11 +24,24 @@ export default function NavItem({
   label,
   to,
   icon,
+  isActive = false,
 }: NavItemProps) {
   return (
     <Link
       to={to}
-      className="nav-item"
+      className={[
+        'nav-item',
+        isActive
+          ? 'nav-item--active'
+          : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      aria-current={
+        isActive
+          ? 'page'
+          : undefined
+      }
     >
       {icon && (
         <span

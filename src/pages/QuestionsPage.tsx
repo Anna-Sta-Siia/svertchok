@@ -175,17 +175,9 @@ export default function QuestionsPage() {
           ===================== */}
 
       <header className="questions-page__header">
-        <p className="questions-page__eyebrow">
-          Вопросы Сверчку
-        </p>
-
         <p className="questions-page__intro">
           Читатели спрашивают —
-          Сверчок отвечает.
-          Здесь собираются вопросы
-          о номерах, авторах,
-          публикациях и жизни
-          альманаха.
+          Сверчок отвечает
         </p>
       </header>
 

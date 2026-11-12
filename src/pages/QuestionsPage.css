@@ -5,11 +5,6 @@
 .questions-page {
   width:
     100%;
-
-  padding:
-    0
-    0
-    72px;
 }
 
 
@@ -32,34 +27,6 @@
   text-align:
     center;
 }
-
-
-.questions-page__eyebrow {
-  margin:
-    0
-    0
-    10px;
-
-  color:
-    var(--color-logo-green);
-
-  font-family:
-    var(--font-ui);
-
-  font-size:
-    clamp(
-      1.5rem,
-      2.2vw,
-      1.95rem
-    );
-
-  font-weight:
-    600;
-
-  line-height:
-    1.25;
-}
-
 
 .questions-page__intro {
   width:

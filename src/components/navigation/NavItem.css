@@ -33,11 +33,7 @@
     var(--radius-button);
 
   background:
-    color-mix(
-      in srgb,
-      var(--color-surface) 82%,
-      transparent
-    );
+    transparent;
 
   color:
     var(--color-accent);
@@ -91,11 +87,7 @@
       var(--color-logo-green);
 
     background:
-      color-mix(
-        in srgb,
-        var(--color-surface) 92%,
-        transparent
-      );
+      transparent;
 
     transform:
       scale(1.045);
@@ -106,6 +98,31 @@
       14px
       rgb(70 60 35 / 7%);
   }
+}
+
+
+/* =========================
+   CURRENT PAGE
+   ========================= */
+
+.nav-item--active {
+  color:
+    var(--color-logo-green);
+
+  border-color:
+    var(--color-logo-green);
+
+  background:
+    transparent;
+
+  transform:
+    scale(1.045);
+
+  box-shadow:
+    0
+    5px
+    14px
+    rgb(70 60 35 / 7%);
 }
 
 
@@ -197,7 +214,8 @@
   }
 
   .nav-item:hover,
-  .nav-item:active {
+  .nav-item:active,
+  .nav-item--active {
     transform:
       none;
   }

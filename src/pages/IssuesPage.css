@@ -12,40 +12,36 @@
 .issues-page__intro {
   width:
     min(
-      760px,
-      calc(100% - 40px)
+      820px,
+      calc(
+        100% - 40px
+      )
     );
 
   margin:
-    0 auto 46px;
+    0
+    auto
+    38px;
 
-  text-align: center;
-}
-
-.issues-page__eyebrow {
-  margin:
-    0 0 10px;
-
-  color:
-    var(--color-logo-green);
-
-  font-family:
-    var(--font-ui);
-
-  font-size:
-    clamp(
-      1.35rem,
-      2vw,
-      1.75rem
-    );
-
-  font-weight: 600;
-
-  line-height: 1.2;
+  text-align:
+    center;
 }
 
 .issues-page__description {
-  max-width: 640px;
+   display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    6px;
+  width:
+
+    min(
+      760px,
+      100%
+    );
 
   margin:
     0 auto;
@@ -53,14 +49,27 @@
   color:
     var(--color-text-soft);
 
+  font-family:
+    var(--font-main);
+
   font-size:
     clamp(
-      1.05rem,
-      1.35vw,
-      1.2rem
+      1.22rem,
+      1.65vw,
+      1.5rem
     );
 
-  line-height: 1.7;
+  font-weight:
+    500;
+
+  line-height:
+    1.65;
+
+  letter-spacing:
+    0.01em;
+
+  text-align:
+    center;
 }
 
 
@@ -228,17 +237,29 @@
 @media (max-width: 560px) {
   .issues-page__intro {
     width:
-      min(
-        100%,
-        calc(
-          100% - 28px
-        )
+      calc(
+        100% - 28px
       );
 
     margin-bottom:
-      36px;
+      30px;
   }
 
+
+  .issues-page__description {
+    width:
+      100%;
+
+    font-size:
+      clamp(
+        1.08rem,
+        5vw,
+        1.22rem
+      );
+
+    line-height:
+      1.6;
+  }
 
   .issues-page__results-heading {
     width:

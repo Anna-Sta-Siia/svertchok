@@ -1,3 +1,7 @@
+import type {
+  CSSProperties,
+} from 'react'
+
 import {
   Link,
 } from 'react-router-dom'
@@ -36,6 +40,34 @@ const titleLetters = [
   letterO,
   letterK,
 ]
+
+
+type FooterIconProps = {
+  src:
+    string
+}
+
+
+function FooterIcon({
+  src,
+}: FooterIconProps) {
+  const style = {
+    WebkitMaskImage:
+      `url("${src}")`,
+
+    maskImage:
+      `url("${src}")`,
+  } as CSSProperties
+
+
+  return (
+    <span
+      className="site-footer__contact-icon"
+      style={style}
+      aria-hidden="true"
+    />
+  )
+}
 
 
 export default function SiteFooter() {
@@ -153,10 +185,8 @@ export default function SiteFooter() {
               className="site-footer__contact-link"
               aria-label="Написать по электронной почте"
             >
-              <img
+              <FooterIcon
                 src={emailIcon}
-                alt=""
-                aria-hidden="true"
               />
             </a>
 
@@ -167,10 +197,8 @@ export default function SiteFooter() {
               className="site-footer__contact-link"
               aria-label="Facebook «Буковок»"
             >
-              <img
+              <FooterIcon
                 src={facebookIcon}
-                alt=""
-                aria-hidden="true"
               />
             </a>
 
@@ -181,10 +209,8 @@ export default function SiteFooter() {
               className="site-footer__contact-link"
               aria-label="Instagram «Буковок»"
             >
-              <img
+              <FooterIcon
                 src={instagramIcon}
-                alt=""
-                aria-hidden="true"
               />
             </a>
           </nav>

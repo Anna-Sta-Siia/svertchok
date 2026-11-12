@@ -151,7 +151,7 @@
     block;
 
   width:
-    100px;
+    128px;
 
   height:
     auto;
@@ -269,7 +269,7 @@
     block;
 
   width:
-    132px;
+    162px;
 
   height:
     auto;
@@ -308,7 +308,7 @@
   outline:
     2px
     solid
-    var(--color-accent);
+    var(--color-logo-green);
 
   outline-offset:
     4px;
@@ -408,31 +408,59 @@
     center;
 
   width:
-    48px;
+    50px;
 
   height:
-    48px;
+    50px;
+
+  color:
+    var(--color-accent);
 
   text-decoration:
     none;
+
+  transition:
+    color
+      var(--transition-default);
 }
 
 
-.site-footer__contact-link img {
+.site-footer__contact-icon {
   display:
     block;
 
   width:
-    45px;
+    46px;
 
   height:
-    45px;
+    46px;
 
-  object-fit:
+  background:
+    currentColor;
+
+  -webkit-mask-repeat:
+    no-repeat;
+
+  mask-repeat:
+    no-repeat;
+
+  -webkit-mask-position:
+    center;
+
+  mask-position:
+    center;
+
+  -webkit-mask-size:
+    contain;
+
+  mask-size:
     contain;
 
   transform:
     scale(1);
+
+  transform-origin:
+    center;
 
   transition:
     transform
@@ -446,10 +474,23 @@
 ) and (
   pointer: fine
 ) {
-  .site-footer__contact-link:hover img {
+  .site-footer__contact-link:hover {
+    color:
+      var(--color-logo-green);
+  }
+
+
+  .site-footer__contact-link:hover
+  .site-footer__contact-icon {
     transform:
       scale(1.1);
   }
+}
+
+
+.site-footer__contact-link:focus-visible {
+  color:
+    var(--color-logo-green);
 }
 
 
@@ -480,13 +521,13 @@
 
   .site-footer__mascot {
     width:
-      82px;
+      104px;
   }
 
 
   .site-footer__bukovki-logo {
     width:
-      108px;
+      134px;
   }
 
 
@@ -500,6 +541,24 @@
   .site-footer__goodbye-second {
     margin-left:
       34px;
+  }
+
+
+  .site-footer__contact-link {
+    width:
+      46px;
+
+    height:
+      46px;
+  }
+
+
+  .site-footer__contact-icon {
+    width:
+      42px;
+
+    height:
+      42px;
   }
 }
 
@@ -558,6 +617,36 @@
   }
 
 
+  .site-footer__mascot {
+    width:
+      92px;
+  }
+
+
+  .site-footer__bukovki-logo {
+    width:
+      118px;
+  }
+
+
+  .site-footer__contact-link {
+    width:
+      44px;
+
+    height:
+      44px;
+  }
+
+
+  .site-footer__contact-icon {
+    width:
+      40px;
+
+    height:
+      40px;
+  }
+
+
   .site-footer__meta {
     flex-direction:
       column;
@@ -596,23 +685,31 @@
 
   .site-footer__mascot {
     width:
-      70px;
+      78px;
   }
 
 
   .site-footer__bukovki-logo {
     width:
-      90px;
+      100px;
   }
 
 
-  .site-footer__contact-link,
-  .site-footer__contact-link img {
+  .site-footer__contact-link {
     width:
       40px;
 
     height:
       40px;
+  }
+
+
+  .site-footer__contact-icon {
+    width:
+      36px;
+
+    height:
+      36px;
   }
 }
 
@@ -628,7 +725,7 @@
   .site-footer__letters img,
   .site-footer__mascot,
   .site-footer__bukovki-logo,
-  .site-footer__contact-link img {
+  .site-footer__contact-icon {
     transition:
       none;
   }

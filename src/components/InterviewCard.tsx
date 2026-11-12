@@ -14,6 +14,8 @@ import type {
   Interview,
 } from '../assets/data/interviews/types'
 
+import Button from '../components/ui/Button'
+
 import './InterviewCard.css'
 
 
@@ -125,44 +127,49 @@ export default function InterviewCard({
       </div>
 
       <footer className="interview-card__footer">
-        <Link
+        <Button
+          variant="tertiary"
+          size="small"
           to={`/issues/${issue.slug}`}
           className="interview-card__issue"
         >
           {getIssueLabel(issue)}
           {' — '}
           {issue.monthLabel}
-        </Link>
+        </Button>
 
         <div className="interview-card__action-wrap">
           {isFree ? (
             <>
-              <a
+              <Button
+                variant="tertiary"
+                size="medium"
                 href={pdfUrl}
-                target="_blank"
-                rel="noreferrer"
+                external
                 className="interview-card__action"
               >
                 Читать далее →
-              </a>
+              </Button>
 
               <p className="interview-card__note">
                 PDF можно читать,
-                распечатать или скачать.
+                распечатать или скачать
               </p>
             </>
           ) : (
             <>
-              <Link
+              <Button
+                variant="tertiary"
+                size="medium"
                 to={`/issues/${issue.slug}`}
                 className="interview-card__action"
               >
                 Читать далее →
-              </Link>
+              </Button>
 
               <p className="interview-card__note">
                 Полная версия беседы
-                доступна в платном номере.
+                доступна в платном номере
               </p>
             </>
           )}

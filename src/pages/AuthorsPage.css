@@ -28,34 +28,6 @@
     center;
 }
 
-
-.authors-page__eyebrow {
-  margin:
-    0
-    0
-    8px;
-
-  color:
-    var(--color-logo-green);
-
-  font-family:
-    var(--font-ui);
-
-  font-size:
-    clamp(
-      1.45rem,
-      2.2vw,
-      1.9rem
-    );
-
-  font-weight:
-    600;
-
-  line-height:
-    1.2;
-}
-
-
 .authors-page__intro {
   margin:
     0;

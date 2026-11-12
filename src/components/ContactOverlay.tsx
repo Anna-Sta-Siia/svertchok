@@ -37,7 +37,6 @@ export default function ContactOverlay({
             <p className="contact-overlay__eyebrow">
              Задать вопрос Сверчку
             </p>
-
            
           </div>
 

@@ -1,7 +1,5 @@
-import {
-  useEffect,
-  useRef,
-  useState,
+import type {
+  CSSProperties,
 } from 'react'
 
 import {
@@ -52,12 +50,6 @@ type SiteHeaderProps = {
 }
 
 
-type OpenAction =
-  | 'subscribe'
-  | 'support'
-  | null
-
-
 /*
  * Le personnage n'est plus
  * placé dans le mot SVERCHOK.
@@ -77,99 +69,37 @@ const heroTitleItems = [
 ] as const
 
 
+type HeaderIconProps = {
+  src:
+    string
+}
+
+
+function HeaderIcon({
+  src,
+}: HeaderIconProps) {
+  const style = {
+    WebkitMaskImage:
+      `url("${src}")`,
+
+    maskImage:
+      `url("${src}")`,
+  } as CSSProperties
+
+
+  return (
+    <span
+      className="site-header__icon-image"
+      style={style}
+      aria-hidden="true"
+    />
+  )
+}
+
+
 export default function SiteHeader({
   variant = 'compact',
 }: SiteHeaderProps) {
-  const [
-    openAction,
-    setOpenAction,
-  ] = useState<OpenAction>(
-    null,
-  )
-
-
-  const actionsRef =
-    useRef<HTMLDivElement>(
-      null,
-    )
-
-
-  /* =========================
-     CLOSE ACTION MENUS
-     ========================= */
-
-  useEffect(() => {
-    function handlePointerDown(
-      event: MouseEvent,
-    ) {
-      if (
-        actionsRef.current &&
-        !actionsRef.current.contains(
-          event.target as Node,
-        )
-      ) {
-        setOpenAction(
-          null,
-        )
-      }
-    }
-
-
-    function handleKeyDown(
-      event: KeyboardEvent,
-    ) {
-      if (
-        event.key ===
-        'Escape'
-      ) {
-        setOpenAction(
-          null,
-        )
-      }
-    }
-
-
-    document.addEventListener(
-      'mousedown',
-      handlePointerDown,
-    )
-
-    document.addEventListener(
-      'keydown',
-      handleKeyDown,
-    )
-
-
-    return () => {
-      document.removeEventListener(
-        'mousedown',
-        handlePointerDown,
-      )
-
-      document.removeEventListener(
-        'keydown',
-        handleKeyDown,
-      )
-    }
-  }, [])
-
-
-  function toggleAction(
-    action: Exclude<
-      OpenAction,
-      null
-    >,
-  ) {
-    setOpenAction(
-      (current) =>
-        current ===
-        action
-          ? null
-          : action,
-    )
-  }
-
-
   return (
     <header
       className={`
@@ -263,7 +193,6 @@ export default function SiteHeader({
             ===================== */}
 
         <div
-          ref={actionsRef}
           className="site-header__rail"
           aria-label="Ссылки и действия"
         >
@@ -273,48 +202,16 @@ export default function SiteHeader({
               ===================== */}
 
           <div className="site-header__action">
-            <button
-              type="button"
-              className="site-header__icon-button"
+            <Link
+              to="/subscription"
+              className="site-header__icon-link"
+              data-tooltip="Подписаться"
               aria-label="Подписаться на «Сверчок»"
-              aria-expanded={
-                openAction ===
-                'subscribe'
-              }
-              aria-controls="header-subscribe-menu"
-              onClick={() =>
-                toggleAction(
-                  'subscribe',
-                )
-              }
             >
-              <img
+              <HeaderIcon
                 src={subscribeIcon}
-                alt=""
-                aria-hidden="true"
               />
-            </button>
-
-
-            {openAction ===
-              'subscribe' && (
-              <div
-                id="header-subscribe-menu"
-                className="site-header__action-menu"
-              >
-                <Link
-                  to="/subscription"
-                  className="site-header__action-menu-link"
-                  onClick={() =>
-                    setOpenAction(
-                      null,
-                    )
-                  }
-                >
-                  Подписаться
-                </Link>
-              </div>
-            )}
+            </Link>
           </div>
 
 
@@ -327,12 +224,11 @@ export default function SiteHeader({
             target="_blank"
             rel="noreferrer"
             className="site-header__icon-link"
+            data-tooltip="Facebook"
             aria-label="Facebook «Буковок»"
           >
-            <img
+            <HeaderIcon
               src={facebookIcon}
-              alt=""
-              aria-hidden="true"
             />
           </a>
 
@@ -346,12 +242,11 @@ export default function SiteHeader({
             target="_blank"
             rel="noreferrer"
             className="site-header__icon-link"
+            data-tooltip="Instagram"
             aria-label="Instagram «Буковок»"
           >
-            <img
+            <HeaderIcon
               src={instagramIcon}
-              alt=""
-              aria-hidden="true"
             />
           </a>
 
@@ -363,12 +258,11 @@ export default function SiteHeader({
           <a
             href={EMAIL_URL}
             className="site-header__icon-link"
+            data-tooltip="Написать"
             aria-label="Написать «Буковкам» по электронной почте"
           >
-            <img
+            <HeaderIcon
               src={emailIcon}
-              alt=""
-              aria-hidden="true"
             />
           </a>
 
@@ -378,51 +272,18 @@ export default function SiteHeader({
               ===================== */}
 
           <div className="site-header__action">
-            <button
-              type="button"
-              className="site-header__icon-button"
+            <a
+              href={DONATION_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="site-header__icon-link"
+              data-tooltip="Поддержать"
               aria-label="Поддержать «Сверчок»"
-              aria-expanded={
-                openAction ===
-                'support'
-              }
-              aria-controls="header-support-menu"
-              onClick={() =>
-                toggleAction(
-                  'support',
-                )
-              }
             >
-              <img
+              <HeaderIcon
                 src={supportIcon}
-                alt=""
-                aria-hidden="true"
               />
-            </button>
-
-
-            {openAction ===
-              'support' && (
-              <div
-                id="header-support-menu"
-                className="site-header__action-menu"
-              >
-                <a
-                  href={DONATION_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="site-header__action-menu-link"
-                  onClick={() =>
-                    setOpenAction(
-                      null,
-                    )
-                  }
-                >
-                  Поддержать нас
-                </a>
-              </div>
-            )}
-
+            </a>
           </div>
         </div>
       </div>

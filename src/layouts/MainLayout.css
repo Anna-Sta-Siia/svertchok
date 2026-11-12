@@ -3,7 +3,7 @@
 
   min-height: 100vh;
 
-  background: var(--color-background);
+  background: white;
   color: var(--color-text);
 }
 
@@ -13,7 +13,7 @@
   position: relative;
   z-index: 2;
 padding:5%;
-  margin: 32px auto 0;
+  margin: 0 auto 0;
 }
 
 /* =========================

@@ -239,10 +239,7 @@ export default function InterviewsPage() {
           ===================== */}
 
       <header className="interviews-page__header">
-        <p className="interviews-page__eyebrow">
-          Беседы «Сверчка»
-        </p>
-
+      
         <p className="interviews-page__intro">
           Разговоры с писателями,
           поэтами, переводчиками,

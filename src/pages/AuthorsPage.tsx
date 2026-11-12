@@ -9,9 +9,7 @@ import {
 
 import AuthorCard from '../components/AuthorCard'
 import CustomSelect from '../components/filters/CustomSelect'
-import FilterPanel, {
-  type SortDirection,
-} from '../components/filters/FilterPanel'
+import FilterPanel from '../components/filters/FilterPanel'
 
 import {
   authors,
@@ -32,7 +30,6 @@ type TypeFilter =
   | 'all'
   | 'poet'
   | 'prose'
-  | 'other'
 
 type LetterFilter =
   | 'all'
@@ -80,78 +77,40 @@ const letterRanges: Record<
 
 const typeOptions = [
   {
-    value:
-      'all',
-
-    label:
-      'Все',
+    value: 'all',
+    label: 'Все',
   },
-
   {
-    value:
-      'poet',
-
-    label:
-      'Поэзия',
+    value: 'poet',
+    label: 'Поэзия',
   },
-
   {
-    value:
-      'prose',
-
-    label:
-      'Проза',
-  },
-
-  {
-    value:
-      'other',
-
-    label:
-      'Другое',
+    value: 'prose',
+    label: 'Проза',
   },
 ]
 
 
 const letterOptions = [
   {
-    value:
-      'all',
-
-    label:
-      'Все',
+    value: 'all',
+    label: 'Все',
   },
-
   {
-    value:
-      'А-Д',
-
-    label:
-      'А–Д',
+    value: 'А-Д',
+    label: 'А–Д',
   },
-
   {
-    value:
-      'Е-К',
-
-    label:
-      'Е–К',
+    value: 'Е-К',
+    label: 'Е–К',
   },
-
   {
-    value:
-      'Л-П',
-
-    label:
-      'Л–П',
+    value: 'Л-П',
+    label: 'Л–П',
   },
-
   {
-    value:
-      'Р-Я',
-
-    label:
-      'Р–Я',
+    value: 'Р-Я',
+    label: 'Р–Я',
   },
 ]
 
@@ -170,7 +129,6 @@ export default function AuthorsPage() {
     'all',
   )
 
-
   const [
     selectedLetters,
     setSelectedLetters,
@@ -178,18 +136,6 @@ export default function AuthorsPage() {
     'all',
   )
 
-
-  const [
-    sortDirection,
-    setSortDirection,
-  ] = useState<SortDirection>(
-    'asc',
-  )
-
-
-  /* =========================
-     ISSUE FROM URL
-     ========================= */
 
   const issueFromUrl =
     searchParams.get(
@@ -207,10 +153,6 @@ export default function AuthorsPage() {
       ? issueFromUrl
       : 'all'
 
-
-  /* =========================
-     ISSUE OPTIONS
-     ========================= */
 
   const sortedIssues =
     useMemo(
@@ -232,11 +174,8 @@ export default function AuthorsPage() {
     useMemo(
       () => [
         {
-          value:
-            'all',
-
-          label:
-            'Все номера',
+          value: 'all',
+          label: 'Все номера',
         },
 
         ...sortedIssues.map(
@@ -259,10 +198,6 @@ export default function AuthorsPage() {
       ],
     )
 
-
-  /* =========================
-     ISSUE FILTER
-     ========================= */
 
   function setIssueFilter(
     value: string,
@@ -293,10 +228,6 @@ export default function AuthorsPage() {
     )
   }
 
-
-  /* =========================
-     LETTER FILTER
-     ========================= */
 
   function matchesLetterRange(
     lastName: string,
@@ -361,10 +292,6 @@ export default function AuthorsPage() {
   }
 
 
-  /* =========================
-     FILTERED AUTHORS
-     ========================= */
-
   const filteredAuthors =
     authors
       .filter(
@@ -409,13 +336,6 @@ export default function AuthorsPage() {
       )
       .sort(
         (a, b) => {
-          const direction =
-            sortDirection ===
-              'asc'
-              ? 1
-              : -1
-
-
           const lastNameComparison =
             a.lastName.localeCompare(
               b.lastName,
@@ -432,8 +352,7 @@ export default function AuthorsPage() {
             0
           ) {
             return (
-              lastNameComparison *
-              direction
+              lastNameComparison
             )
           }
 
@@ -446,16 +365,11 @@ export default function AuthorsPage() {
                 sensitivity:
                   'base',
               },
-            ) *
-            direction
+            )
           )
         },
       )
 
-
-  /* =========================
-     RESET
-     ========================= */
 
   const hasActiveFilters =
     selectedType !==
@@ -463,9 +377,7 @@ export default function AuthorsPage() {
     selectedLetters !==
       'all' ||
     selectedIssue !==
-      'all' ||
-    sortDirection !==
-      'asc'
+      'all'
 
 
   function resetFilters() {
@@ -480,33 +392,8 @@ export default function AuthorsPage() {
     setIssueFilter(
       'all',
     )
-
-    setSortDirection(
-      'asc',
-    )
   }
 
-
-  /* =========================
-     SORT
-     ========================= */
-
-  function toggleSortDirection() {
-    setSortDirection(
-      (
-        current,
-      ) =>
-        current ===
-          'asc'
-          ? 'desc'
-          : 'asc',
-    )
-  }
-
-
-  /* =========================
-     PAGE
-     ========================= */
 
   return (
     <section className="authors-page">
@@ -516,10 +403,6 @@ export default function AuthorsPage() {
           ===================== */}
 
       <header className="authors-page__header">
-        <p className="authors-page__eyebrow">
-          Люди «Сверчка»
-        </p>
-
         <p className="authors-page__intro">
           Поэты и прозаики,
           чьи произведения встречаются
@@ -534,24 +417,11 @@ export default function AuthorsPage() {
 
       <FilterPanel
         ariaLabel="Фильтры авторов"
-        sortLabel="По алфавиту"
-        sortDirection={
-          sortDirection
-        }
-        onToggleSort={
-          toggleSortDirection
-        }
-        onReset={
-          resetFilters
-        }
-        canReset={
-          hasActiveFilters
-        }
       >
-
         <CustomSelect
           id="authors-type-filter"
           label="По жанру"
+          showLabel
           value={
             selectedType
           }
@@ -568,10 +438,10 @@ export default function AuthorsPage() {
           }
         />
 
-
         <CustomSelect
           id="authors-letter-filter"
           label="По алфавиту"
+          showLabel
           value={
             selectedLetters
           }
@@ -588,10 +458,10 @@ export default function AuthorsPage() {
           }
         />
 
-
         <CustomSelect
           id="authors-issue-filter"
           label="По номеру"
+          showLabel
           value={
             selectedIssue
           }
@@ -602,7 +472,6 @@ export default function AuthorsPage() {
             setIssueFilter
           }
         />
-
       </FilterPanel>
 
 
@@ -620,6 +489,18 @@ export default function AuthorsPage() {
             }
           </strong>
         </p>
+
+        {hasActiveFilters && (
+          <button
+            type="button"
+            className="authors-page__reset"
+            onClick={
+              resetFilters
+            }
+          >
+            Сбросить фильтры
+          </button>
+        )}
       </div>
 
 
@@ -631,9 +512,7 @@ export default function AuthorsPage() {
       0 ? (
         <div className="authors-page__grid">
           {filteredAuthors.map(
-            (
-              author,
-            ) => (
+            (author) => (
               <AuthorCard
                 key={
                   author.id
@@ -654,7 +533,7 @@ export default function AuthorsPage() {
         <div className="authors-page__empty">
           <p>
             По выбранным критериям
-            авторов пока нет.
+            авторов пока нет
           </p>
 
           <button
@@ -668,7 +547,6 @@ export default function AuthorsPage() {
           </button>
         </div>
       )}
-
     </section>
   )
 }

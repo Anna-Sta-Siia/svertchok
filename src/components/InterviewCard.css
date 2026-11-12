@@ -202,23 +202,11 @@
 
 
 .interview-card__issue {
-  display:
-    inline-block;
+  align-self:
+    flex-start;
 
   margin-bottom:
     13px;
-
-  color:
-    var(--color-text-soft);
-
-  font-size:
-    0.78rem;
-
-  font-weight:
-    600;
-
-  text-decoration:
-    none;
 }
 
 
@@ -238,17 +226,8 @@
 
 
 .interview-card__action {
-  color:
-    var(--color-accent);
-
-  font-size:
-    0.9rem;
-
-  font-weight:
-    700;
-
-  text-decoration:
-    none;
+  align-self:
+    flex-start;
 }
 
 
@@ -302,9 +281,7 @@
 ) and (
   pointer: fine
 ) {
-  .interview-card__author-link:hover,
-  .interview-card__issue:hover,
-  .interview-card__action:hover {
+  .interview-card__author-link:hover {
     color:
       var(--color-accent);
   }
@@ -315,9 +292,7 @@
    FOCUS
    ========================= */
 
-.interview-card__author-link:focus-visible,
-.interview-card__issue:focus-visible,
-.interview-card__action:focus-visible {
+.interview-card__author-link:focus-visible {
   outline:
     2px
     solid
