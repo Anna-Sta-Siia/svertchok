@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -6,6 +7,7 @@ import {
 import InterviewCard from '../components/InterviewCard'
 import CustomSelect from '../components/filters/CustomSelect'
 import FilterPanel from '../components/filters/FilterPanel'
+import Button from '../components/ui/Button'
 
 import {
   authors,
@@ -44,6 +46,39 @@ const accessOptions = [
 ]
 
 
+function getInterviewBatchSize() {
+  if (
+    typeof window ===
+    'undefined'
+  ) {
+    return 6
+  }
+
+
+  const width =
+    window.innerWidth
+
+
+  if (
+    width <=
+    700
+  ) {
+    return 2
+  }
+
+
+  if (
+    width <=
+    1024
+  ) {
+    return 4
+  }
+
+
+  return 6
+}
+
+
 export default function InterviewsPage() {
   const [
     selectedAccess,
@@ -59,6 +94,59 @@ export default function InterviewsPage() {
     'all',
   )
 
+  const [
+    batchSize,
+    setBatchSize,
+  ] = useState(
+    getInterviewBatchSize,
+  )
+
+  const [
+    visibleCount,
+    setVisibleCount,
+  ] = useState(
+    getInterviewBatchSize,
+  )
+
+
+  /* =========================
+     RESPONSIVE BATCH SIZE
+     ========================= */
+
+  useEffect(() => {
+    function handleResize() {
+      const nextBatchSize =
+        getInterviewBatchSize()
+
+
+      setBatchSize(
+        nextBatchSize,
+      )
+
+      setVisibleCount(
+        nextBatchSize,
+      )
+    }
+
+
+    window.addEventListener(
+      'resize',
+      handleResize,
+    )
+
+
+    return () => {
+      window.removeEventListener(
+        'resize',
+        handleResize,
+      )
+    }
+  }, [])
+
+
+  /* =========================
+     ISSUES
+     ========================= */
 
   const sortedIssues =
     useMemo(
@@ -105,6 +193,10 @@ export default function InterviewsPage() {
     )
 
 
+  /* =========================
+     INTERVIEWS
+     ========================= */
+
   const interviewCards =
     useMemo(
       () =>
@@ -130,6 +222,7 @@ export default function InterviewsPage() {
                     item.id ===
                     interview.issueId,
                 )
+
 
               if (
                 !author ||
@@ -196,6 +289,71 @@ export default function InterviewsPage() {
     )
 
 
+  /* =========================
+     VISIBLE INTERVIEWS
+     ========================= */
+
+  const visibleInterviewCards =
+    interviewCards.slice(
+      0,
+      visibleCount,
+    )
+
+
+  const remainingInterviews =
+    Math.max(
+      interviewCards.length -
+        visibleInterviewCards.length,
+      0,
+    )
+
+
+  const nextInterviewsCount =
+    Math.min(
+      batchSize,
+      remainingInterviews,
+    )
+
+
+  const hasMoreInterviews =
+    remainingInterviews >
+    0
+
+
+  /* =========================
+     FILTER HANDLERS
+     ========================= */
+
+  function setIssueFilter(
+    value: string,
+  ) {
+    setSelectedIssue(
+      value,
+    )
+
+    setVisibleCount(
+      batchSize,
+    )
+  }
+
+
+  function setAccessFilter(
+    value: string,
+  ) {
+    setSelectedAccess(
+      value as AccessFilter,
+    )
+
+    setVisibleCount(
+      batchSize,
+    )
+  }
+
+
+  /* =========================
+     RESET
+     ========================= */
+
   const hasActiveFilters =
     selectedAccess !==
       'all' ||
@@ -211,6 +369,22 @@ export default function InterviewsPage() {
     setSelectedIssue(
       'all',
     )
+
+    setVisibleCount(
+      batchSize,
+    )
+  }
+
+
+  function showMoreInterviews() {
+    setVisibleCount(
+      (current) =>
+        Math.min(
+          current +
+            batchSize,
+          interviewCards.length,
+        ),
+    )
   }
 
 
@@ -219,13 +393,16 @@ export default function InterviewsPage() {
       <header className="interviews-page__intro">
 
         <p className="interviews-page__description">
-         <span> Разговоры с писателями,
-          поэтами,
-          художниками, 
+          <span>
+            Разговоры с писателями,
+            поэтами,
+            художниками,
           </span>
-          <span>теми,
-          кто создаёт мир детской
-          литературы.
+
+          <span>
+            теми,
+            кто создаёт мир детской
+            литературы.
           </span>
         </p>
       </header>
@@ -251,7 +428,7 @@ export default function InterviewsPage() {
             issueOptions
           }
           onChange={
-            setSelectedIssue
+            setIssueFilter
           }
         />
 
@@ -265,13 +442,8 @@ export default function InterviewsPage() {
           options={
             accessOptions
           }
-          onChange={(
-            value,
-          ) =>
-            setSelectedAccess(
-              value as
-                AccessFilter,
-            )
+          onChange={
+            setAccessFilter
           }
         />
       </FilterPanel>
@@ -292,30 +464,51 @@ export default function InterviewsPage() {
 
       {interviewCards.length >
       0 ? (
-        <div className="interviews-page__grid">
-          {interviewCards.map(
-            ({
-              interview,
-              author,
-              issue,
-            }) => (
-              <InterviewCard
-                key={
-                  interview.id
+        <>
+          <div className="interviews-page__grid">
+            {visibleInterviewCards.map(
+              ({
+                interview,
+                author,
+                issue,
+              }) => (
+                <InterviewCard
+                  key={
+                    interview.id
+                  }
+                  interview={
+                    interview
+                  }
+                  author={
+                    author
+                  }
+                  issue={
+                    issue
+                  }
+                />
+              ),
+            )}
+          </div>
+
+
+          {hasMoreInterviews && (
+            <div className="interviews-page__load-more">
+              <Button
+                variant="secondary"
+                size="medium"
+                type="button"
+                onClick={
+                  showMoreInterviews
                 }
-                interview={
-                  interview
+              >
+                Показать ещё{' '}
+                {
+                  nextInterviewsCount
                 }
-                author={
-                  author
-                }
-                issue={
-                  issue
-                }
-              />
-            ),
+              </Button>
+            </div>
           )}
-        </div>
+        </>
       ) : (
         <div className="interviews-page__empty">
           <p>
@@ -323,15 +516,16 @@ export default function InterviewsPage() {
             бесед пока нет.
           </p>
 
-          <button
+          <Button
+            variant="secondary"
+            size="medium"
             type="button"
-            className="interviews-page__reset"
             onClick={
               resetFilters
             }
           >
             Показать все беседы
-          </button>
+          </Button>
         </div>
       )}
     </section>

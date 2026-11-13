@@ -1,109 +1,431 @@
 .seasonal-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 20;
+  position:
+    sticky;
 
-  width: 100%;
+  top:
+    0;
 
-  overflow: hidden;
+  z-index:
+    20;
 
-  padding: 14px 0;
+  isolation:
+    isolate;
+
+  width:
+    100%;
+
+  overflow:
+    hidden;
+
+  padding:
+    14px
+    0;
+
+  /*
+   * Сам navbar остаётся структурным слоем.
+   * Белая маска создаётся отдельно ниже.
+   */
 
   background:
-      transparent;
+    transparent;
 
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 3%,
-    black 97%,
-    transparent
-  );
-   box-shadow:
-    0 4px 14px rgb(50 50 30 / 5%);
+ 
 }
+
+
+/* =========================
+   WHITE MASK
+
+   Скрывает весь контент,
+   который прокручивается
+   под sticky navbar.
+   ========================= */
+
+.seasonal-navbar::before {
+  content:
+    '';
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    0;
+
+  background:
+    white;
+}
+
+
+/* =========================
+   SEASONAL DECORATION
+
+   Находится поверх белой
+   маски, но под кнопками.
+   ========================= */
+
+.seasonal-navbar__season-layer {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    1;
+
+  overflow:
+    hidden;
+
+  pointer-events:
+    none;
+}
+
+
+.seasonal-navbar__season-image {
+  position:
+    absolute;
+
+  width:
+    54px;
+
+  height:
+    54px;
+
+  object-fit:
+    contain;
+
+  animation:
+    navbar-seasonal-drift
+    12s
+    ease-in-out
+    infinite;
+}
+
+
+.seasonal-navbar__season-image--1 {
+  top:
+    -16px;
+
+  left:
+    6%;
+
+  width:
+    62px;
+
+  height:
+    62px;
+
+  animation-delay:
+    -2s;
+}
+
+
+.seasonal-navbar__season-image--2 {
+  top:
+    18px;
+
+  left:
+    34%;
+
+  width:
+    42px;
+
+  height:
+    42px;
+
+  animation-delay:
+    -5s;
+}
+
+
+.seasonal-navbar__season-image--3 {
+  top:
+    -10px;
+
+  right:
+    28%;
+
+  width:
+    66px;
+
+  height:
+    66px;
+
+  animation-delay:
+    -7s;
+}
+
+
+.seasonal-navbar__season-image--4 {
+  top:
+    12px;
+
+  right:
+    5%;
+
+  width:
+    46px;
+
+  height:
+    46px;
+
+  animation-delay:
+    -3s;
+}
+
+
+/* =========================
+   MARQUEE VIEWPORT
+
+   Именно viewport получает
+   fade по краям.
+
+   Важно: fade больше НЕ
+   применяется ко всему nav,
+   иначе белая маска тоже
+   становилась бы прозрачной.
+   ========================= */
+
+.seasonal-navbar__viewport {
+    position:
+    relative;
+
+  z-index:
+    2;
+
+  width:
+    100%;
+
+  overflow:
+    hidden;
+
+  padding:
+    4px
+    0;
+
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      black 3%,
+      black 97%,
+      transparent
+    );
+
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      black 3%,
+      black 97%,
+      transparent
+    );
+}
+
+
+/* =========================
+   TRACK
+   ========================= */
 
 .seasonal-navbar__track {
-  display: flex;
-  align-items: center;
+  display:
+    flex;
 
-  width: max-content;
+  align-items:
+    center;
 
-  animation: navbar-marquee 34s linear infinite;
+  width:
+    max-content;
 
-  will-change: transform;
+  animation:
+    navbar-marquee
+    34s
+    linear
+    infinite;
+
+  will-change:
+    transform;
 }
+
+
+/* =========================
+   ENTRY
+   ========================= */
 
 .seasonal-navbar__entry {
-  display: inline-flex;
-  align-items: center;
+  display:
+    inline-flex;
 
-  flex: 0 0 auto;
+  align-items:
+    center;
+
+  flex:
+    0
+    0
+    auto;
 }
+
+
+/* =========================
+   SEPARATOR
+   ========================= */
 
 .seasonal-navbar__separator {
-  flex: 0 0 auto;
+  flex:
+    0
+    0
+    auto;
 
-  width: 30px;
-  height: 30px;
+  width:
+    30px;
 
-  margin: 0 12px;
+  height:
+    30px;
 
-  object-fit: contain;
+  margin:
+    0
+    12px;
 
-  opacity: 0.78;
+  object-fit:
+    contain;
 
-  animation: separator-float 6s ease-in-out infinite;
+  opacity:
+    0.78;
+
+  animation:
+    separator-float
+    6s
+    ease-in-out
+    infinite;
 }
 
-/* Pause uniquement pendant l'interaction */
+
+/* =========================
+   INTERACTION
+   ========================= */
 
 .seasonal-navbar:hover
   .seasonal-navbar__track,
 .seasonal-navbar:focus-within
   .seasonal-navbar__track {
-  animation-play-state: paused;
+  animation-play-state:
+    paused;
 }
 
-/* 3 copies identiques = 1 groupe = 33.333% */
+
+/* =========================
+   ANIMATIONS
+   ========================= */
 
 @keyframes navbar-marquee {
   from {
-    transform: translateX(0);
+    transform:
+      translateX(0);
   }
 
   to {
-    transform: translateX(-33.333%);
+    transform:
+      translateX(-33.333%);
   }
 }
+
 
 @keyframes separator-float {
   0%,
   100% {
-    transform: translateY(0) rotate(-2deg);
+    transform:
+      translateY(0)
+      rotate(-2deg);
   }
 
   50% {
-    transform: translateY(-2px) rotate(3deg);
+    transform:
+      translateY(-2px)
+      rotate(3deg);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .seasonal-navbar__track,
-  .seasonal-navbar__separator {
-    animation: none;
+
+@keyframes navbar-seasonal-drift {
+  0% {
+    opacity:
+      0;
+
+    transform:
+      translateY(-8px)
+      rotate(-3deg);
+  }
+
+  15% {
+    opacity:
+      0.48;
+  }
+
+  85% {
+    opacity:
+      0.48;
+  }
+
+  100% {
+    opacity:
+      0;
+
+    transform:
+      translateY(18px)
+      rotate(4deg);
   }
 }
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .seasonal-navbar__track,
+  .seasonal-navbar__separator,
+  .seasonal-navbar__season-image {
+    animation:
+      none;
+  }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
 
 @media (max-width: 650px) {
   .seasonal-navbar__track {
-    animation-duration: 28s;
+    animation-duration:
+      28s;
   }
 
-  .seasonal-navbar__separator {
-    width: 24px;
-    height: 24px;
 
-    margin: 0 7px;
+  .seasonal-navbar__separator {
+    width:
+      24px;
+
+    height:
+      24px;
+
+    margin:
+      0
+      7px;
+  }
+
+
+  .seasonal-navbar__season-image {
+    width:
+      42px;
+
+    height:
+      42px;
   }
 }

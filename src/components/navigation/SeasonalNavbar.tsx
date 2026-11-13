@@ -79,9 +79,11 @@ function matchesPath(
       to,
     )
 
+
   if (!targetPathname) {
     return false
   }
+
 
   if (
     targetPathname ===
@@ -92,6 +94,7 @@ function matchesPath(
       '/'
     )
   }
+
 
   return (
     currentPathname ===
@@ -110,18 +113,6 @@ export default function SeasonalNavbar({
   const location =
     useLocation()
 
-
-  /*
-   * Plusieurs liens peuvent correspondre
-   * au pathname courant.
-   *
-   * Exemple :
-   * /issues
-   * /issues/05-2026
-   *
-   * On garde le chemin correspondant
-   * le plus précis / le plus long.
-   */
 
   const activeItem =
     items
@@ -154,47 +145,92 @@ export default function SeasonalNavbar({
   ]
 
 
+  const seasonalImage =
+    seasonIcons[
+      season
+    ]
+
+
   return (
     <nav
       className="seasonal-navbar"
       aria-label="Основная навигация"
     >
-      <div className="seasonal-navbar__track">
-        {repeatedItems.map(
+
+      {/* =====================
+          SEASONAL LAYER
+          ===================== */}
+
+      <div
+        className="seasonal-navbar__season-layer"
+        aria-hidden="true"
+      >
+        {Array.from({
+          length:
+            4,
+        }).map(
           (
-            item,
+            _,
             index,
           ) => (
-            <div
-              className="seasonal-navbar__entry"
-              key={`${item.to}-${index}`}
-            >
-              <NavItem
-                label={
-                  item.label
-                }
-                to={
-                  item.to
-                }
-                isActive={
-                  item.to ===
-                  activeTo
-                }
-              />
-
-              <img
-                src={
-                  seasonIcons[
-                    season
-                  ]
-                }
-                alt=""
-                aria-hidden="true"
-                className="seasonal-navbar__separator"
-              />
-            </div>
+            <img
+              key={
+                index
+              }
+              src={
+                seasonalImage
+              }
+              alt=""
+              className={`
+                seasonal-navbar__season-image
+                seasonal-navbar__season-image--${index + 1}
+              `}
+            />
           ),
         )}
+      </div>
+
+
+      {/* =====================
+          MARQUEE VIEWPORT
+          ===================== */}
+
+      <div className="seasonal-navbar__viewport">
+        <div className="seasonal-navbar__track">
+          {repeatedItems.map(
+            (
+              item,
+              index,
+            ) => (
+              <div
+                className="seasonal-navbar__entry"
+                key={`${item.to}-${index}`}
+              >
+                <NavItem
+                  label={
+                    item.label
+                  }
+                  to={
+                    item.to
+                  }
+                  isActive={
+                    item.to ===
+                    activeTo
+                  }
+                />
+
+                <img
+                  src={
+                    seasonalImage
+                  }
+                  alt=""
+                  aria-hidden="true"
+                  className="seasonal-navbar__separator"
+                />
+              </div>
+            ),
+          )}
+        </div>
       </div>
     </nav>
   )

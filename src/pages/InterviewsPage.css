@@ -13,7 +13,7 @@
    ========================= */
 
 .interviews-page__intro {
-   width:
+  width:
     min(
       820px,
       calc(
@@ -40,8 +40,8 @@
 
   gap:
     6px;
-  width:
 
+  width:
     min(
       760px,
       100%
@@ -147,6 +147,71 @@
 
 
 /* =========================
+   LOAD MORE
+   ========================= */
+
+.interviews-page__load-more {
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  width:
+    100%;
+
+  margin:
+    34px
+    auto
+    0;
+}
+
+
+/* =========================
+   EMPTY
+   ========================= */
+
+.interviews-page__empty {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  gap:
+    16px;
+
+  width:
+    min(
+      600px,
+      100%
+    );
+
+  margin:
+    48px
+    auto;
+
+  text-align:
+    center;
+}
+
+
+.interviews-page__empty p {
+  margin:
+    0;
+
+  color:
+    var(--color-text-soft);
+
+  line-height:
+    1.6;
+}
+
+
+/* =========================
    TABLET
    ========================= */
 
@@ -177,7 +242,7 @@
   }
 
 
-  .interviews-page__header {
+  .interviews-page__intro {
     margin-bottom:
       30px;
   }
@@ -194,7 +259,7 @@
 
 
 @media (max-width: 480px) {
-  .interviews-page__intro {
+  .interviews-page__description {
     font-size:
       1rem;
   }
