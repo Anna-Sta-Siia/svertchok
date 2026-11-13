@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -6,6 +7,7 @@ import {
 import IssueCard from '../components/IssueCard'
 import CustomSelect from '../components/filters/CustomSelect'
 import FilterPanel from '../components/filters/FilterPanel'
+import Button from '../components/ui/Button'
 
 import {
   publishedIssues,
@@ -39,6 +41,47 @@ type SortDirection =
   | 'desc'
 
 
+function getIssuesBatchSize() {
+  if (
+    typeof window ===
+    'undefined'
+  ) {
+    return 8
+  }
+
+
+  const width =
+    window.innerWidth
+
+
+  if (
+    width <=
+    560
+  ) {
+    return 2
+  }
+
+
+  if (
+    width <=
+    820
+  ) {
+    return 4
+  }
+
+
+  if (
+    width <=
+    1100
+  ) {
+    return 6
+  }
+
+
+  return 8
+}
+
+
 export default function IssuesPage() {
   const [
     selectedYear,
@@ -70,6 +113,58 @@ export default function IssuesPage() {
   ] = useState<SortDirection>(
     'desc',
   )
+
+
+  const [
+    batchSize,
+    setBatchSize,
+  ] = useState(
+    getIssuesBatchSize,
+  )
+
+
+  const [
+    visibleCount,
+    setVisibleCount,
+  ] = useState(
+    getIssuesBatchSize,
+  )
+
+
+  /* =========================
+     RESPONSIVE BATCH SIZE
+     ========================= */
+
+  useEffect(() => {
+    function handleResize() {
+      const nextBatchSize =
+        getIssuesBatchSize()
+
+
+      setBatchSize(
+        nextBatchSize,
+      )
+
+
+      setVisibleCount(
+        nextBatchSize,
+      )
+    }
+
+
+    window.addEventListener(
+      'resize',
+      handleResize,
+    )
+
+
+    return () => {
+      window.removeEventListener(
+        'resize',
+        handleResize,
+      )
+    }
+  }, [])
 
 
   /* =========================
@@ -189,6 +284,59 @@ export default function IssuesPage() {
 
 
   /* =========================
+     FILTER HANDLERS
+     ========================= */
+
+  function setYearFilter(
+    value: string,
+  ) {
+    setSelectedYear(
+      value ===
+        'all'
+        ? 'all'
+        : Number(
+            value,
+          ),
+    )
+
+
+    setVisibleCount(
+      batchSize,
+    )
+  }
+
+
+  function setAccessFilter(
+    value: string,
+  ) {
+    setSelectedAccess(
+      value as
+        AccessFilter,
+    )
+
+
+    setVisibleCount(
+      batchSize,
+    )
+  }
+
+
+  function setThemeFilter(
+    value: string,
+  ) {
+    setSelectedTheme(
+      value as
+        ThemeFilter,
+    )
+
+
+    setVisibleCount(
+      batchSize,
+    )
+  }
+
+
+  /* =========================
      FILTERED ISSUES
      ========================= */
 
@@ -270,6 +418,37 @@ export default function IssuesPage() {
 
 
   /* =========================
+     VISIBLE ISSUES
+     ========================= */
+
+  const visibleIssues =
+    filteredIssues.slice(
+      0,
+      visibleCount,
+    )
+
+
+  const remainingIssues =
+    Math.max(
+      filteredIssues.length -
+        visibleIssues.length,
+      0,
+    )
+
+
+  const nextIssuesCount =
+    Math.min(
+      batchSize,
+      remainingIssues,
+    )
+
+
+  const hasMoreIssues =
+    remainingIssues >
+    0
+
+
+  /* =========================
      RESET
      ========================= */
 
@@ -300,6 +479,10 @@ export default function IssuesPage() {
     setSortDirection(
       'desc',
     )
+
+    setVisibleCount(
+      batchSize,
+    )
   }
 
 
@@ -313,6 +496,23 @@ export default function IssuesPage() {
           ? 'desc'
           : 'asc',
     )
+
+
+    setVisibleCount(
+      batchSize,
+    )
+  }
+
+
+  function showMoreIssues() {
+    setVisibleCount(
+      (current) =>
+        Math.min(
+          current +
+            batchSize,
+          filteredIssues.length,
+        ),
+    )
   }
 
 
@@ -325,19 +525,19 @@ export default function IssuesPage() {
 
       <header className="issues-page__intro">
 
-       <p className="issues-page__description">
-  <span>
-    Здесь собраны все выпуски
-    литературного альманаха
-    «Сверчок»
-  </span>
+        <p className="issues-page__description">
+          <span>
+            Здесь собраны все выпуски
+            литературного альманаха
+            «Сверчок»
+          </span>
 
-  <span>
-    Выбирайте номер,
-    знакомьтесь с его темой
-    и отправляйтесь читать
-  </span>
-</p>
+          <span>
+            Выбирайте номер,
+            знакомьтесь с его темой
+            и отправляйтесь читать
+          </span>
+        </p>
       </header>
 
 
@@ -376,17 +576,8 @@ export default function IssuesPage() {
           options={
             yearOptions
           }
-          onChange={(
-            value,
-          ) =>
-            setSelectedYear(
-              value ===
-                'all'
-                ? 'all'
-                : Number(
-                    value,
-                  ),
-            )
+          onChange={
+            setYearFilter
           }
         />
 
@@ -401,13 +592,8 @@ export default function IssuesPage() {
           options={
             accessOptions
           }
-          onChange={(
-            value,
-          ) =>
-            setSelectedAccess(
-              value as
-                AccessFilter,
-            )
+          onChange={
+            setAccessFilter
           }
         />
 
@@ -422,13 +608,8 @@ export default function IssuesPage() {
           options={
             themeOptions
           }
-          onChange={(
-            value,
-          ) =>
-            setSelectedTheme(
-              value as
-                ThemeFilter,
-            )
+          onChange={
+            setThemeFilter
           }
         />
       </FilterPanel>
@@ -457,21 +638,42 @@ export default function IssuesPage() {
 
       {filteredIssues.length >
       0 ? (
-        <div className="issues-page__grid">
-          {filteredIssues.map(
-            (issue) => (
-              <IssueCard
-                key={
-                  issue.id
+        <>
+          <div className="issues-page__grid">
+            {visibleIssues.map(
+              (issue) => (
+                <IssueCard
+                  key={
+                    issue.id
+                  }
+                  issue={
+                    issue
+                  }
+                  variant="archive"
+                />
+              ),
+            )}
+          </div>
+
+
+          {hasMoreIssues && (
+            <div className="issues-page__load-more">
+              <Button
+                variant="secondary"
+                size="medium"
+                type="button"
+                onClick={
+                  showMoreIssues
                 }
-                issue={
-                  issue
+              >
+                Показать ещё{' '}
+                {
+                  nextIssuesCount
                 }
-                variant="archive"
-              />
-            ),
+              </Button>
+            </div>
           )}
-        </div>
+        </>
       ) : (
         <div className="issues-page__empty">
           <p>
@@ -479,15 +681,16 @@ export default function IssuesPage() {
             номеров пока нет
           </p>
 
-          <button
+          <Button
+            variant="secondary"
+            size="medium"
             type="button"
-            className="issues-page__reset"
             onClick={
               resetFilters
             }
           >
             Показать все номера
-          </button>
+          </Button>
         </div>
       )}
     </section>

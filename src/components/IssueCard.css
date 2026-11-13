@@ -212,12 +212,8 @@
 .issue-card--featured
 .issue-card__content {
   display: flex;
-
   flex-direction: column;
   align-items: flex-start;
-
-  gap: 16px;
-
   width: 100%;
 
   min-width: 0;
@@ -1546,5 +1542,285 @@
   .issue-card__archive-inner {
     transition:
       none;
+  }
+}
+
+
+/* ==================================================
+   FEATURED — COMPACT DENSITY
+
+   Used only on HomePage and IssuePage.
+   Author pages and archive cards are untouched.
+
+   Desktop / large tablet:
+   - larger cover
+   - cover and text have exactly the same height
+   - long text scrolls inside its own column
+   ================================================== */
+
+@media (min-width: 881px) {
+  .issue-card--featured-compact {
+    /*
+     * The two values keep approximately
+     * the same 210 / 297 book ratio.
+     *
+     * As the viewport narrows,
+     * both shrink together.
+     */
+
+    --featured-cover-width:
+      clamp(
+        320px,
+        31vw,
+        382px
+      );
+
+    --featured-panel-height:
+      clamp(
+        452px,
+        43.85vw,
+        540px
+      );
+
+    grid-template-columns:
+      var(
+        --featured-cover-width
+      )
+      minmax(
+        0,
+        1fr
+      );
+
+    gap:
+      clamp(
+        22px,
+        2.2vw,
+        32px
+      );
+
+    align-items:
+      stretch;
+
+    padding:
+      clamp(
+        16px,
+        1.6vw,
+        20px
+      );
+  }
+
+
+  /* =========================
+     COVER
+
+     Same height as text column.
+     ========================= */
+
+  .issue-card--featured-compact
+  .issue-card__cover-link {
+    width:
+      var(
+        --featured-cover-width
+      );
+
+    height:
+      var(
+        --featured-panel-height
+      );
+
+    min-height:
+      0;
+
+    aspect-ratio:
+      auto;
+  }
+
+
+  .issue-card--featured-compact
+  .issue-card__cover {
+    width:
+      100%;
+
+    height:
+      100%;
+
+    object-fit:
+      contain;
+  }
+
+
+  /* =========================
+     CONTENT
+
+     Exactly the same height
+     as the cover.
+     ========================= */
+
+  .issue-card--featured-compact
+  .issue-card__content {
+    width:
+      100%;
+
+    height:
+      var(
+        --featured-panel-height
+      );
+
+    min-width:
+      0;
+
+    min-height:
+      0;
+
+    aspect-ratio:
+      auto;
+
+    overflow:
+      hidden;
+
+    padding:
+      2px
+      0;
+  }
+
+
+  /* =========================
+     DATE
+     ========================= */
+
+  .issue-card--featured-compact
+  .issue-card__date {
+    flex:
+      0
+      0
+      auto;
+
+    margin-bottom:
+      14px;
+
+    font-size:
+      clamp(
+        1.06rem,
+        1.12vw,
+        1.22rem
+      );
+  }
+
+
+  /* =========================
+     DESCRIPTION
+     ========================= */
+
+  .issue-card--featured-compact
+  .issue-card__description {
+    flex:
+      1
+      1
+      auto;
+
+    min-height:
+      0;
+
+    padding-right:
+      10px;
+
+    overflow-x:
+      hidden;
+
+    overflow-y:
+      auto;
+
+    font-size:
+      clamp(
+        1.16rem,
+        1.24vw,
+        1.34rem
+      );
+
+    line-height:
+      1.58;
+
+    overscroll-behavior:
+      contain;
+
+    scrollbar-width:
+      thin;
+
+    scrollbar-color:
+      var(--color-accent)
+      transparent;
+  }
+
+
+  /* Chrome / Edge / Safari */
+
+  .issue-card--featured-compact
+  .issue-card__description::-webkit-scrollbar {
+    width:
+      8px;
+  }
+
+
+  .issue-card--featured-compact
+  .issue-card__description::-webkit-scrollbar-button,
+  .issue-card--featured-compact
+  .issue-card__description::-webkit-scrollbar-button:single-button,
+  .issue-card--featured-compact
+  .issue-card__description::-webkit-scrollbar-button:vertical:decrement,
+  .issue-card--featured-compact
+  .issue-card__description::-webkit-scrollbar-button:vertical:increment {
+    display:
+      none;
+
+    width:
+      0;
+
+    height:
+      0;
+
+    background:
+      transparent;
+  }
+
+
+  .issue-card--featured-compact
+  .issue-card__description::-webkit-scrollbar-track {
+    margin:
+      8px
+      0;
+
+    background:
+      transparent;
+  }
+
+
+  .issue-card--featured-compact
+  .issue-card__description::-webkit-scrollbar-thumb {
+    min-height:
+      32px;
+
+    border:
+      2px
+      solid
+      transparent;
+
+    border-radius:
+      999px;
+
+    background:
+      var(--color-accent);
+
+    background-clip:
+      padding-box;
+  }
+
+
+  .issue-card--featured-compact
+  .issue-card__description::-webkit-scrollbar-thumb:hover {
+    background:
+      var(--color-logo-green);
+
+    background-clip:
+      padding-box;
   }
 }

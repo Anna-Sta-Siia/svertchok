@@ -6,114 +6,233 @@
   box-sizing: border-box;
 }
 
+
 html {
   scroll-behavior: smooth;
-  background: #ffffff;
+
+  background:
+    #ffffff;
 }
+
 
 body {
-  margin: 0;
-  background: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-main);
-  font-size: 1rem;
-  font-weight: var(--font-weight-medium);
-  line-height: 1.6;
-  text-rendering: optimizeLegibility;
+  margin:
+    0;
+
+  background:
+    var(--color-background);
+
+  color:
+    var(--color-text);
+
+  font-family:
+    var(--font-main);
+
+  font-size:
+    1rem;
+
+  font-weight:
+    var(--font-weight-medium);
+
+  line-height:
+    1.6;
+
+  text-rendering:
+    optimizeLegibility;
 }
 
+
 .app-theme {
-  min-height: 100vh;
-  background: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-main);
-  font-weight: var(--font-weight-medium);
+  min-height:
+    100vh;
+
+  background:
+    var(--color-background);
+
+  color:
+    var(--color-text);
+
+  font-family:
+    var(--font-main);
+
+  font-weight:
+    var(--font-weight-medium);
 }
+
 
 button,
 input,
 textarea,
 select {
-  font: inherit;
+  font:
+    inherit;
 }
+
 
 button {
-  cursor: pointer;
+  cursor:
+    pointer;
 }
+
 
 img {
-  display: block;
-  max-width: 100%;
+  display:
+    block;
+
+  max-width:
+    100%;
 }
 
+
 p {
-  text-wrap: pretty;
+  text-wrap:
+    pretty;
 }
+
 
 strong,
 b {
-  font-weight: var(--font-weight-semibold);
+  font-weight:
+    var(--font-weight-semibold);
 }
+
 
 /* =========================
    GLOBAL VARIABLES
    ========================= */
 
 :root {
-  /* Typography */
+
+  /* =====================
+     TYPOGRAPHY
+     ===================== */
+
   --font-main:
     'Cormorant Garamond',
     Georgia,
     'Times New Roman',
     serif;
 
+
   --font-ui:
     'Comfortaa',
     Arial,
     sans-serif;
 
-  /* Compatibility while old components are migrated. */
-  --font-accent: var(--font-ui);
 
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  /* Compatibility while old
+     components are migrated. */
 
-  /* Colors */
-  --color-background: #ffffff;
-  --color-white: #ffffff;
-  --color-logo-green: #4f8a62;
+  --font-accent:
+    var(--font-ui);
 
-  /* Shapes */
-  --radius-card: 14px;
-  --radius-cover: 8px;
-  --radius-button: 999px;
 
-  /* Spacing */
-  --section-space: 70px;
+  --font-weight-light:
+    300;
 
-  /* Motion */
-  --transition-default: 0.2s ease;
+  --font-weight-regular:
+    400;
 
-  /* Compatibility with the previous footer stylesheet. */
-  --color-footer-bg: var(--color-footer-background);
+  --font-weight-medium:
+    500;
+
+  --font-weight-semibold:
+    600;
+
+  --font-weight-bold:
+    700;
+
+
+  /* =====================
+     COLORS
+     ===================== */
+
+  --color-background:
+    #ffffff;
+
+  --color-white:
+    #ffffff;
+
+  --color-logo-green:
+    #4f8a62;
+
+
+  /* =====================
+     GLOBAL SCROLLBAR
+
+     Default:
+     orange
+
+     Hover:
+     bottle green
+     ===================== */
+
+  --color-scrollbar:
+    #b9650b;
+
+  --color-scrollbar-hover:
+    #4f8a62;
+
+
+  /* =====================
+     SHAPES
+     ===================== */
+
+  --radius-card:
+    14px;
+
+  --radius-cover:
+    8px;
+
+  --radius-button:
+    999px;
+
+
+  /* =====================
+     SPACING
+     ===================== */
+
+  --section-space:
+    70px;
+
+
+  /* =====================
+     MOTION
+     ===================== */
+
+  --transition-default:
+    0.2s ease;
+
+
+  /* Compatibility with the
+     previous footer stylesheet. */
+
+  --color-footer-bg:
+    var(--color-footer-background);
 }
+
 
 /* =========================
    TYPOGRAPHIC HELPERS
    ========================= */
 
 .font-ui {
-  font-family: var(--font-ui);
-  font-weight: var(--font-weight-semibold);
+  font-family:
+    var(--font-ui);
+
+  font-weight:
+    var(--font-weight-semibold);
 }
 
+
 .font-editorial {
-  font-family: var(--font-main);
-  font-weight: var(--font-weight-medium);
+  font-family:
+    var(--font-main);
+
+  font-weight:
+    var(--font-weight-medium);
 }
+
 
 /* =========================
    DEFAULT HEADINGS
@@ -125,79 +244,285 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-main);
-  font-weight: var(--font-weight-semibold);
-  text-wrap: balance;
+  font-family:
+    var(--font-main);
+
+  font-weight:
+    var(--font-weight-semibold);
+
+  text-wrap:
+    balance;
 }
 
+
 a {
-  color: inherit;
+  color:
+    inherit;
 }
+
 
 /* =========================
    SPRING
    ========================= */
 
 [data-season='spring'] {
-  --color-surface: #fffdf8;
-  --color-surface-soft: #fff8f3;
-  --color-text: #617445;
-  --color-text-soft: #7a835d;
-  --color-accent: #c77a8e;
-  --color-accent-hover: #ad6477;
-  --color-secondary: #8caf68;
-  --color-footer-background: #f3ddd9;
-  --color-footer-text: #a55f70;
-  --shadow-card: 0 6px 18px rgb(90 76 60 / 8%);
+  --color-surface:
+    #fffdf8;
+
+  --color-surface-soft:
+    #fff8f3;
+
+  --color-text:
+    #617445;
+
+  --color-text-soft:
+    #7a835d;
+
+  --color-accent:
+    #c77a8e;
+
+  --color-accent-hover:
+    #ad6477;
+
+  --color-secondary:
+    #8caf68;
+
+  --color-footer-background:
+    #f3ddd9;
+
+  --color-footer-text:
+    #a55f70;
+
+  --shadow-card:
+    0 6px 18px
+    rgb(90 76 60 / 8%);
 }
+
 
 /* =========================
    SUMMER
    ========================= */
 
 [data-season='summer'] {
-  --color-surface: #fffdf4;
-  --color-surface-soft: #fbf7df;
-  --color-text: #556b32;
-  --color-text-soft: #708052;
-  --color-accent: #73964b;
-  --color-accent-hover: #5f803d;
-  --color-secondary: #d4a63b;
-  --color-footer-background: #e4edcf;
-  --color-footer-text: #637d3e;
-  --shadow-card: 0 6px 18px rgb(70 90 45 / 8%);
+  --color-surface:
+    #fffdf4;
+
+  --color-surface-soft:
+    #fbf7df;
+
+  --color-text:
+    #556b32;
+
+  --color-text-soft:
+    #708052;
+
+  --color-accent:
+    #73964b;
+
+  --color-accent-hover:
+    #5f803d;
+
+  --color-secondary:
+    #d4a63b;
+
+  --color-footer-background:
+    #e4edcf;
+
+  --color-footer-text:
+    #637d3e;
+
+  --shadow-card:
+    0 6px 18px
+    rgb(70 90 45 / 8%);
 }
+
 
 /* =========================
    AUTUMN
    ========================= */
 
 [data-season='autumn'] {
-  --color-surface: #fffdf8;
-  --color-surface-soft: #fffaf0;
-  --color-text: #556326;
-  --color-text-soft: #6d7436;
-  --color-accent: #b9650b;
-  --color-accent-hover: #9f5508;
-  --color-secondary: #9a7a19;
-  --color-footer-background: #efd9d0;
-  --color-footer-text: #b45c0b;
-  --shadow-card: 0 6px 18px rgb(79 67 38 / 8%);
+  --color-surface:
+    #fffdf8;
+
+  --color-surface-soft:
+    #fffaf0;
+
+  --color-text:
+    #556326;
+
+  --color-text-soft:
+    #6d7436;
+
+  --color-accent:
+    #b9650b;
+
+  --color-accent-hover:
+    #9f5508;
+
+  --color-secondary:
+    #9a7a19;
+
+  --color-footer-background:
+    #efd9d0;
+
+  --color-footer-text:
+    #b45c0b;
+
+  --shadow-card:
+    0 6px 18px
+    rgb(79 67 38 / 8%);
 }
+
 
 /* =========================
    WINTER
    ========================= */
 
 [data-season='winter'] {
-  --color-surface: #fbfdff;
-  --color-surface-soft: #f1f6fa;
-  --color-text: #52697a;
-  --color-text-soft: #708291;
-  --color-accent: #6f8fa8;
-  --color-accent-hover: #58778f;
-  --color-secondary: #9aaec0;
-  --color-footer-background: #dde8ef;
-  --color-footer-text: #627f95;
-  --shadow-card: 0 6px 18px rgb(70 90 110 / 8%);
+  --color-surface:
+    #fbfdff;
+
+  --color-surface-soft:
+    #f1f6fa;
+
+  --color-text:
+    #52697a;
+
+  --color-text-soft:
+    #708291;
+
+  --color-accent:
+    #6f8fa8;
+
+  --color-accent-hover:
+    #58778f;
+
+  --color-secondary:
+    #9aaec0;
+
+  --color-footer-background:
+    #dde8ef;
+
+  --color-footer-text:
+    #627f95;
+
+  --shadow-card:
+    0 6px 18px
+    rgb(70 90 110 / 8%);
+}
+
+
+/* ==================================================
+   GLOBAL PAGE SCROLLBAR
+
+   Default:
+   orange
+
+   Hover:
+   bottle green
+   ================================================== */
+
+
+/* =========================
+   CHROME / EDGE / SAFARI
+   ========================= */
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width:
+    10px;
+}
+
+
+/* Remove native arrows */
+
+html::-webkit-scrollbar-button,
+body::-webkit-scrollbar-button,
+html::-webkit-scrollbar-button:single-button,
+body::-webkit-scrollbar-button:single-button,
+html::-webkit-scrollbar-button:vertical:decrement,
+body::-webkit-scrollbar-button:vertical:decrement,
+html::-webkit-scrollbar-button:vertical:increment,
+body::-webkit-scrollbar-button:vertical:increment {
+  display:
+    none;
+
+  width:
+    0;
+
+  height:
+    0;
+
+  background:
+    transparent;
+}
+
+
+/* Track */
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  margin-block:
+    8px;
+
+  background:
+    transparent;
+}
+
+
+/* Thumb — orange */
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  min-height:
+    44px;
+
+  border:
+    2px solid
+    transparent;
+
+  border-radius:
+    999px;
+
+  background:
+    var(--color-scrollbar);
+
+  background-clip:
+    padding-box;
+}
+
+
+/* Thumb hover — bottle green */
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background:
+    var(--color-scrollbar-hover);
+
+  background-clip:
+    padding-box;
+}
+
+
+/* =========================
+   FIREFOX
+
+   Firefox supports custom
+   scrollbar colors, but not
+   a separate thumb hover color.
+   ========================= */
+
+@supports not selector(
+  ::-webkit-scrollbar
+) {
+  html,
+  body {
+    scrollbar-width:
+      thin;
+
+    scrollbar-color:
+      var(--color-scrollbar)
+      transparent;
+  }
 }

@@ -13,9 +13,6 @@ import IssuesList from '../components/IssuesList'
 import IssueContents from '../components/IssueContents'
 import IssueContentsOverlay from '../components/IssueContentsOverlay'
 
-import SubscriptionCard from '../components/SubscriptionCard'
-import ContactCard from '../components/ContactCard'
-
 import Button from '../components/ui/Button'
 
 import {
@@ -146,6 +143,7 @@ export default function IssuePage() {
                   issue
                 }
                 variant="featured"
+                density="compact"
                 longDescription={
                   longDescription
                 }
@@ -196,19 +194,6 @@ export default function IssuePage() {
           }
         />
       </article>
-
-
-      {/* =====================
-          SUBSCRIBE / CONTACT
-          ===================== */}
-
-      <section className="issue-page__connect">
-        <SubscriptionCard
-          to="/subscription"
-        />
-
-        <ContactCard />
-      </section>
 
 
       {/* =====================

@@ -3,20 +3,36 @@
    ========================= */
 
 .issue-page {
-  width: 100%;
+  width:
+    100%;
 }
 
 
 /* =========================
    CURRENT ISSUE
-
-   La géométrie interne
-   de IssueCard est gérée
-   uniquement par IssueCard.css.
    ========================= */
 
 .issue-page__current {
-  min-width: 0;
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  width:
+    min(
+      100%,
+      900px
+    );
+
+  min-width:
+    0;
+
+  min-height:
+    0;
+
+  margin-inline:
+    auto;
 }
 
 
@@ -25,40 +41,58 @@
    ========================= */
 
 .issue-page__actions {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
-  justify-content: center;
+  align-items:
+    center;
 
-  flex-wrap: wrap;
+  justify-content:
+    center;
 
-  gap: 16px;
+  flex-wrap:
+    wrap;
 
-  width: 100%;
+  gap:
+    14px;
 
-  margin-top: 26px;
+  width:
+    100%;
+
+  margin-top:
+    26px;
 }
+
 
 .issue-page__actions
 .button {
-  width: auto;
+  width:
+    auto;
 
-  white-space: nowrap;
+  white-space:
+    nowrap;
 }
 
 
 /* =========================
    RECENT ISSUES
-
-   Le placement à droite
-   ou en dessous est géré
-   par IssueShowcase.css.
    ========================= */
 
 .issue-page__recent {
-  min-width: 0;
+  width:
+    100%;
 
-  scroll-margin-top: 100px;
+  height:
+    100%;
+
+  min-width:
+    0;
+
+  min-height:
+    0;
+
+  scroll-margin-top:
+    100px;
 }
 
 
@@ -67,19 +101,26 @@
    ========================= */
 
 .issue-page__connect {
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     repeat(
       2,
-      minmax(0, 1fr)
+      minmax(
+        0,
+        1fr
+      )
     );
 
-  gap: 24px;
+  gap:
+    24px;
 
-  width: 100%;
+  width:
+    100%;
 
-  padding-top: 18px;
+  padding-top:
+    18px;
 }
 
 
@@ -91,7 +132,9 @@
   width:
     min(
       900px,
-      calc(100% - 40px)
+      calc(
+        100% - 40px
+      )
     );
 
   margin:
@@ -103,8 +146,10 @@
     0;
 }
 
+
 .issue-page__not-found h1 {
-  margin: 0;
+  margin:
+    0;
 
   color:
     var(--color-text);
@@ -118,10 +163,26 @@
 
 
 /* =========================
+   ≤ 1100px
+   ========================= */
+
+@media (
+  max-width: 1100px
+) {
+  .issue-page__recent {
+    height:
+      auto;
+  }
+}
+
+
+/* =========================
    ≤ 768px
    ========================= */
 
-@media (max-width: 768px) {
+@media (
+  max-width: 768px
+) {
   .issue-page {
     padding:
       20px
@@ -130,15 +191,17 @@
   }
 
 
-  /* ACTIONS */
-
   .issue-page__actions {
-    flex-direction: column;
+    flex-direction:
+      column;
 
-    gap: 12px;
+    gap:
+      12px;
 
-    margin-top: 24px;
+    margin-top:
+      22px;
   }
+
 
   .issue-page__actions
   .button {
@@ -153,19 +216,20 @@
 
 /* =========================
    ≤ 700px
-
-   Subscription + Contact
-   passent en colonne.
    ========================= */
 
-@media (max-width: 700px) {
+@media (
+  max-width: 700px
+) {
   .issue-page__connect {
     grid-template-columns:
       1fr;
 
-    gap: 18px;
+    gap:
+      18px;
 
-    padding-bottom: 48px;
+    padding-bottom:
+      48px;
   }
 }
 
@@ -174,7 +238,9 @@
    ≤ 550px
    ========================= */
 
-@media (max-width: 550px) {
+@media (
+  max-width: 550px
+) {
   .issue-page__actions
   .button {
     width:
@@ -184,17 +250,21 @@
       );
   }
 
+
   .issue-page__not-found {
     width:
       min(
         100%,
-        calc(100% - 28px)
+        calc(
+          100% - 28px
+        )
       );
 
     padding:
       60px
       0;
   }
+
 
   .issue-page__not-found h1 {
     font-size:

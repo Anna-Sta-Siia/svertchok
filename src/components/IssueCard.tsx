@@ -24,6 +24,10 @@ type IssueCardProps = {
     | 'archive'
 
   longDescription?: string
+
+  density?:
+    | 'default'
+    | 'compact'
 }
 
 
@@ -112,6 +116,7 @@ export default function IssueCard({
   issue,
   variant = 'featured',
   longDescription,
+  density = 'default',
 }: IssueCardProps) {
   const [
     isArchiveOpen,
@@ -310,7 +315,17 @@ export default function IssueCard({
 
 
   return (
-    <article className="issue-card issue-card--featured">
+    <article
+      className={[
+        'issue-card',
+        'issue-card--featured',
+        density === 'compact'
+          ? 'issue-card--featured-compact'
+          : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
       <Link
         to={issueUrl}
         className="issue-card__cover-link"

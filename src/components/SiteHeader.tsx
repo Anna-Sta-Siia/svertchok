@@ -33,9 +33,6 @@ const FACEBOOK_URL =
 const INSTAGRAM_URL =
   'https://www.instagram.com/boukovki/'
 
-const EMAIL_URL =
-  'mailto:boukovki@hotmail.com'
-
 const DONATION_URL =
   'https://www.helloasso.com/associations/association-des-amateurs-de-la-litterature-russophone-pour-les-enfants-et-la-jeunesse-boukovki/formulaires/1'
 
@@ -251,21 +248,20 @@ export default function SiteHeader({
           </a>
 
 
-          {/* =====================
-              EMAIL
-              ===================== */}
+      {/* =====================
+    CONTACT
+    ===================== */}
 
-          <a
-            href={EMAIL_URL}
-            className="site-header__icon-link"
-            data-tooltip="Написать"
-            aria-label="Написать «Буковкам» по электронной почте"
-          >
-            <HeaderIcon
-              src={emailIcon}
-            />
-          </a>
-
+<Link
+  to="#contact"
+  className="site-header__icon-link"
+  data-tooltip="Написать"
+  aria-label="Написать «Сверчку»"
+>
+  <HeaderIcon
+    src={emailIcon}
+  />
+</Link>
 
           {/* =====================
               SUPPORT

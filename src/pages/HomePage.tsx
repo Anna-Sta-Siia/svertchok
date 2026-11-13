@@ -127,6 +127,7 @@ export default function HomePage() {
                 currentIssue
               }
               variant="featured"
+              density="compact"
               longDescription={
                 currentIssueLongDescription
               }

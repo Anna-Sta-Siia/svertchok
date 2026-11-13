@@ -3,11 +3,32 @@
    ========================= */
 
 #current-issue {
-  scroll-margin-top: 100px;
+  scroll-margin-top:
+    100px;
 }
 
+
 .home-issues__current {
-  min-width: 0;
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  width:
+    min(
+      100%,
+      900px
+    );
+
+  min-width:
+    0;
+
+  min-height:
+    0;
+
+  margin-inline:
+    auto;
 }
 
 
@@ -16,31 +37,36 @@
    ========================= */
 
 .home-issues__heading {
-  margin-bottom: 24px;
+  margin-bottom:
+    20px;
 }
 
+
 .home-issues__intro {
-  margin: 0;
+  margin:
+    0;
 
   color:
     var(--color-logo-green);
 
   font-family:
-    var(--font-ui);
+    var(--font-accent);
 
   font-size:
     clamp(
-      1.5rem,
-      2.2vw,
-      1.9rem
+      1.75rem,
+      2.35vw,
+      2.25rem
     );
 
   font-weight:
     600;
 
-  line-height: 1.2;
+  line-height:
+    1.15;
 
-  text-align: center;
+  text-align:
+    center;
 }
 
 
@@ -49,25 +75,36 @@
    ========================= */
 
 .home-issues__actions {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
-  justify-content: center;
+  align-items:
+    center;
 
-  flex-wrap: wrap;
+  justify-content:
+    center;
 
-  gap: 16px;
+  flex-wrap:
+    wrap;
 
-  width: 100%;
+  gap:
+    14px;
 
-  margin-top: 26px;
+  width:
+    100%;
+
+  margin-top:
+    26px;
 }
+
 
 .home-issues__actions
 .button {
-  width: auto;
+  width:
+    auto;
 
-  white-space: nowrap;
+  white-space:
+    nowrap;
 }
 
 
@@ -75,14 +112,20 @@
    ACTIONS — MOBILE
    ========================= */
 
-@media (max-width: 768px) {
+@media (
+  max-width: 768px
+) {
   .home-issues__actions {
-    flex-direction: column;
+    flex-direction:
+      column;
 
-    gap: 12px;
+    gap:
+      12px;
 
-    margin-top: 24px;
+    margin-top:
+      22px;
   }
+
 
   .home-issues__actions
   .button {
@@ -94,7 +137,10 @@
   }
 }
 
-@media (max-width: 550px) {
+
+@media (
+  max-width: 550px
+) {
   .home-issues__actions
   .button {
     width:
@@ -111,25 +157,54 @@
    ========================= */
 
 .home-connect {
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     repeat(
       2,
-      minmax(0, 1fr)
+      minmax(
+        0,
+        1fr
+      )
     );
 
-  gap: 24px;
+  align-items:
+    stretch;
 
-  padding-top: 18px;
+  gap:
+    24px;
+
+  padding-top:
+    45px;
 }
 
-@media (max-width: 700px) {
+
+.home-connect
+> * {
+  height:
+    100%;
+}
+
+
+/* =========================
+   HOME CONNECT — MOBILE
+   ========================= */
+
+@media (
+  max-width: 700px
+) {
   .home-connect {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
 
-    gap: 18px;
+    gap:
+      18px;
 
-    padding-bottom: 48px;
+    padding-top:
+      36px;
+
+    padding-bottom:
+      48px;
   }
 }

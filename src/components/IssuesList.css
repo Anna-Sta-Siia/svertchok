@@ -19,7 +19,7 @@
   margin:
     0
     0
-    24px;
+    20px;
 
   color:
     var(--color-text);
@@ -29,9 +29,9 @@
 
   font-size:
     clamp(
-      1.55rem,
-      2.2vw,
-      2.2rem
+      1.5rem,
+      2vw,
+      2rem
     );
 
   font-weight:
@@ -54,7 +54,7 @@
     grid;
 
   gap:
-    22px;
+    18px;
 
   width:
     100%;
@@ -68,10 +68,62 @@
    RECENT
    ========================= */
 
+.issues-list--recent {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    0;
+}
+
+
 .issues-list--recent
 .issues-list__items {
+  flex:
+    1
+    1
+    auto;
+
   grid-template-columns:
     1fr;
+
+  gap:
+    14px;
+
+  min-height:
+    0;
+
+  overflow-x:
+    hidden;
+
+  overflow-y:
+    auto;
+
+  padding-right:
+    8px;
+
+  overscroll-behavior:
+    contain;
+
+  scrollbar-width:
+    thin;
+
+  scrollbar-color:
+    color-mix(
+      in srgb,
+      var(--color-accent) 58%,
+      transparent
+    )
+    transparent;
 }
 
 
@@ -80,11 +132,108 @@
   width:
     min(
       100%,
-      280px
+      250px
     );
 
   justify-self:
     center;
+}
+
+
+.issues-list--recent
+.issue-card--compact
+.issue-card__description {
+  -webkit-line-clamp:
+    4;
+
+  line-clamp:
+    4;
+}
+
+
+/* =========================
+   RECENT SCROLLBAR
+   ========================= */
+
+.issues-list--recent
+.issues-list__items::-webkit-scrollbar {
+  width:
+    8px;
+}
+
+
+.issues-list--recent
+.issues-list__items::-webkit-scrollbar-button,
+.issues-list--recent
+.issues-list__items::-webkit-scrollbar-button:single-button,
+.issues-list--recent
+.issues-list__items::-webkit-scrollbar-button:vertical:decrement,
+.issues-list--recent
+.issues-list__items::-webkit-scrollbar-button:vertical:increment {
+  display:
+    none;
+
+  width:
+    0;
+
+  height:
+    0;
+
+  background:
+    transparent;
+}
+
+
+.issues-list--recent
+.issues-list__items::-webkit-scrollbar-track {
+  margin:
+    8px
+    0;
+
+  border-radius:
+    999px;
+
+  background:
+    transparent;
+}
+
+
+.issues-list--recent
+.issues-list__items::-webkit-scrollbar-thumb {
+  min-height:
+    30px;
+
+  border:
+    2px
+    solid
+    transparent;
+
+  border-radius:
+    999px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-accent) 58%,
+      transparent
+    );
+
+  background-clip:
+    padding-box;
+}
+
+
+.issues-list--recent
+.issues-list__items::-webkit-scrollbar-thumb:hover {
+  background:
+    color-mix(
+      in srgb,
+      var(--color-accent) 76%,
+      transparent
+    );
+
+  background-clip:
+    padding-box;
 }
 
 
@@ -114,33 +263,35 @@
   display:
     flex;
 
+  flex:
+    0
+    0
+    auto;
+
   justify-content:
     center;
 
   margin-top:
-    24px;
+    22px;
 }
 
 
-/*
- * Aucun style typographique
- * spécifique ici.
- *
- * Le Button tertiary reçoit
- * directement toute son apparence
- * depuis Button.css.
- */
-
-
 /* =========================
-   ≤ 880px
+   STACKED ISSUE SHOWCASE
    ========================= */
 
-@media (
-  max-width: 880px
-) {
+@media (max-width: 1100px) {
+  .issues-list--recent {
+    height:
+      auto;
+  }
+
+
   .issues-list--recent
   .issues-list__items {
+    flex:
+      none;
+
     grid-template-columns:
       repeat(
         3,
@@ -149,23 +300,40 @@
           1fr
         )
       );
+
+    gap:
+      14px;
+
+    overflow:
+      visible;
+
+    padding-right:
+      0;
+  }
+
+
+  .issues-list--recent
+  .issue-card--compact {
+    width:
+      100%;
   }
 
 
   .issues-list__footer {
     justify-content:
       flex-end;
+
+    margin-top:
+      18px;
   }
 }
 
 
 /* =========================
-   ≤ 768px
+   TABLET
    ========================= */
 
-@media (
-  max-width: 768px
-) {
+@media (max-width: 768px) {
   .issues-list--recent
   .issues-list__items {
     grid-template-columns:
@@ -181,19 +349,17 @@
 
 
 /* =========================
-   ≤ 550px
+   MOBILE
    ========================= */
 
-@media (
-  max-width: 550px
-) {
+@media (max-width: 550px) {
   .issues-list--recent
   .issues-list__items {
     grid-template-columns:
       1fr;
 
     gap:
-      20px;
+      16px;
   }
 
 
@@ -202,7 +368,7 @@
     width:
       min(
         100%,
-        280px
+        260px
       );
   }
 
@@ -210,5 +376,8 @@
   .issues-list__footer {
     justify-content:
       center;
+
+    margin-top:
+      16px;
   }
 }
