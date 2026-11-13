@@ -12,35 +12,68 @@
    HEADER
    ========================= */
 
-.interviews-page__header {
-  width:
+.interviews-page__intro {
+   width:
     min(
-      760px,
-      100%
+      820px,
+      calc(
+        100% - 40px
+      )
     );
 
   margin:
     0
     auto
-    42px;
+    38px;
 
   text-align:
     center;
 }
 
 
-.interviews-page__intro {
+.interviews-page__description {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    6px;
+  width:
+
+    min(
+      760px,
+      100%
+    );
+
   margin:
-    0;
+    0 auto;
 
   color:
     var(--color-text-soft);
 
+  font-family:
+    var(--font-main);
+
   font-size:
-    1.08rem;
+    clamp(
+      1.22rem,
+      1.65vw,
+      1.5rem
+    );
+
+  font-weight:
+    500;
 
   line-height:
     1.65;
+
+  letter-spacing:
+    0.01em;
+
+  text-align:
+    center;
 }
 
 

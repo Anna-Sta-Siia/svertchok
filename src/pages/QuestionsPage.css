@@ -12,11 +12,13 @@
    HEADER
    ========================= */
 
-.questions-page__header {
-  width:
+.questions-page__intro {
+   width:
     min(
-      760px,
-      calc(100% - 40px)
+      820px,
+      calc(
+        100% - 40px
+      )
     );
 
   margin:
@@ -28,31 +30,41 @@
     center;
 }
 
-.questions-page__intro {
+.questions-page__description {
   width:
+
     min(
-      650px,
+      760px,
       100%
     );
 
   margin:
-    0
-    auto;
+    0 auto;
 
   color:
-    var(--color-text);
+    var(--color-text-soft);
 
   font-family:
     var(--font-main);
 
   font-size:
-    1.1rem;
+    clamp(
+      1.22rem,
+      1.65vw,
+      1.5rem
+    );
 
   font-weight:
     500;
 
   line-height:
     1.65;
+
+  letter-spacing:
+    0.01em;
+
+  text-align:
+    center;
 }
 
 

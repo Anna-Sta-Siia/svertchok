@@ -19,6 +19,8 @@ type CustomSelectProps = {
   onChange: (value: string) => void
   className?: string
   showLabel?: boolean
+  placeholder?: string
+  placeholderValue?: string
 }
 
 export default function CustomSelect({
@@ -29,6 +31,8 @@ export default function CustomSelect({
   onChange,
   className = '',
   showLabel = false,
+  placeholder,
+  placeholderValue = 'all',
 }: CustomSelectProps) {
   const [isOpen, setIsOpen] =
     useState(false)
@@ -48,9 +52,12 @@ export default function CustomSelect({
     )
 
   const selectedLabel =
-    selectedOption?.label ??
-    options[0]?.label ??
-    ''
+    placeholder &&
+    value === placeholderValue
+      ? placeholder
+      : selectedOption?.label ??
+        options[0]?.label ??
+        ''
 
   function openSelect() {
     const selectedIndex =

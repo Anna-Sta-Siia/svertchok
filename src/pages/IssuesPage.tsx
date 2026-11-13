@@ -121,7 +121,7 @@ export default function IssuesPage() {
         'all',
 
       label:
-        'По году',
+        'Все годы',
     },
 
     ...years.map(
@@ -146,7 +146,7 @@ export default function IssuesPage() {
         'all',
 
       label:
-        'По номеру',
+        'Все',
     },
 
     {
@@ -173,7 +173,7 @@ export default function IssuesPage() {
         'all',
 
       label:
-        'По теме',
+        'Все темы',
     },
 
     ...themes.map(
@@ -364,6 +364,7 @@ export default function IssuesPage() {
         <CustomSelect
           id="issues-year"
           label="Год"
+          placeholder="По году"
           value={
             selectedYear ===
             'all'
@@ -393,6 +394,7 @@ export default function IssuesPage() {
         <CustomSelect
           id="issues-access"
           label="Доступ"
+          placeholder="По доступу"
           value={
             selectedAccess
           }
@@ -413,6 +415,7 @@ export default function IssuesPage() {
         <CustomSelect
           id="issues-theme"
           label="Тема"
+          placeholder="По теме"
           value={
             selectedTheme
           }

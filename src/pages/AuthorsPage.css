@@ -7,12 +7,9 @@
     100%;
 }
 
+  /* INTRO */
 
-/* =========================
-   HEADER
-   ========================= */
-
-.authors-page__header {
+.authors-page__intro {
   width:
     min(
       820px,
@@ -31,9 +28,16 @@
 }
 
 
-.authors-page__intro {
+.authors-page__description {
+   width:
+
+    min(
+      760px,
+      100%
+    );
+
   margin:
-    0;
+    0 auto;
 
   color:
     var(--color-text-soft);
@@ -43,9 +47,9 @@
 
   font-size:
     clamp(
-      1.18rem,
-      1.5vw,
-      1.4rem
+      1.22rem,
+      1.65vw,
+      1.5rem
     );
 
   font-weight:
@@ -56,6 +60,9 @@
 
   letter-spacing:
     0.01em;
+
+  text-align:
+    center;
 }
 
 

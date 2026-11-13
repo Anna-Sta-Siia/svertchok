@@ -174,8 +174,8 @@ export default function QuestionsPage() {
           HEADER
           ===================== */}
 
-      <header className="questions-page__header">
-        <p className="questions-page__intro">
+      <header className="questions-page__intro">
+        <p className="questions-page__description">
           Читатели спрашивают —
           Сверчок отвечает
         </p>
@@ -206,6 +206,7 @@ export default function QuestionsPage() {
         <CustomSelect
           id="questions-category-filter"
           label="По теме"
+          placeholder="По теме"
           value={
             selectedCategory
           }

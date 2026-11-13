@@ -100,7 +100,7 @@ const typeOptions = [
       'all',
 
     label:
-      'По жанру',
+      'Все жанры',
   },
 
   {
@@ -127,7 +127,7 @@ const letterOptions = [
       'all',
 
     label:
-      'По алфавиту',
+      'Все авторы',
   },
 
   {
@@ -332,7 +332,7 @@ export default function AuthorsPage() {
             'all',
 
           label:
-            'По номеру',
+            'Все номера',
         },
 
         ...sortedIssues.map(
@@ -354,6 +354,33 @@ export default function AuthorsPage() {
         sortedIssues,
       ],
     )
+
+
+
+  function setTypeFilter(
+    value: string,
+  ) {
+    setSelectedType(
+      value as TypeFilter,
+    )
+
+    setVisibleCount(
+      initialVisibleCount,
+    )
+  }
+
+
+  function setLetterFilter(
+    value: string,
+  ) {
+    setSelectedLetters(
+      value as LetterFilter,
+    )
+
+    setVisibleCount(
+      initialVisibleCount,
+    )
+  }
 
 
   function setIssueFilter(
@@ -382,6 +409,10 @@ export default function AuthorsPage() {
 
     setSearchParams(
       nextSearchParams,
+    )
+
+    setVisibleCount(
+      initialVisibleCount,
     )
   }
 
@@ -547,23 +578,6 @@ export default function AuthorsPage() {
     )
 
 
-  /*
-   * Dès qu'un filtre change,
-   * on revient à la première portion.
-   */
-
-  useEffect(() => {
-    setVisibleCount(
-      initialVisibleCount,
-    )
-  }, [
-    selectedType,
-    selectedLetters,
-    selectedIssue,
-    initialVisibleCount,
-  ])
-
-
   const visibleAuthors =
     filteredAuthors.slice(
       0,
@@ -638,11 +652,11 @@ export default function AuthorsPage() {
           HEADER
           ===================== */}
 
-      <header className="authors-page__header">
-        <p className="authors-page__intro">
-          Поэты и прозаики,
+      <header className="authors-page__intro">
+        <p className="authors-page__description">
+          Поэты и прозаики,<br/>
           чьи произведения встречаются
-          на страницах нашего альманаха.
+          на страницах нашего альманаха
         </p>
       </header>
 
@@ -663,19 +677,15 @@ export default function AuthorsPage() {
         <CustomSelect
           id="authors-type-filter"
           label="По жанру"
+          placeholder="По жанру"
           value={
             selectedType
           }
           options={
             typeOptions
           }
-          onChange={(
-            value,
-          ) =>
-            setSelectedType(
-              value as
-                TypeFilter,
-            )
+          onChange={
+            setTypeFilter
           }
         />
 
@@ -683,19 +693,15 @@ export default function AuthorsPage() {
         <CustomSelect
           id="authors-letter-filter"
           label="По алфавиту"
+          placeholder="По алфавиту"
           value={
             selectedLetters
           }
           options={
             letterOptions
           }
-          onChange={(
-            value,
-          ) =>
-            setSelectedLetters(
-              value as
-                LetterFilter,
-            )
+          onChange={
+            setLetterFilter
           }
         />
 
@@ -703,6 +709,7 @@ export default function AuthorsPage() {
         <CustomSelect
           id="authors-issue-filter"
           label="По номеру"
+          placeholder="По номеру"
           value={
             selectedIssue
           }
@@ -783,7 +790,7 @@ export default function AuthorsPage() {
         <div className="authors-page__empty">
           <p>
             По выбранным критериям
-            авторов пока нет.
+            авторов пока нет
           </p>
 
           <Button

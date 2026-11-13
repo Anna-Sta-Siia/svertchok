@@ -60,10 +60,6 @@ export default function InterviewsPage() {
   )
 
 
-  /* =========================
-     ISSUES
-     ========================= */
-
   const sortedIssues =
     useMemo(
       () =>
@@ -109,10 +105,6 @@ export default function InterviewsPage() {
     )
 
 
-  /* =========================
-     INTERVIEWS
-     ========================= */
-
   const interviewCards =
     useMemo(
       () =>
@@ -139,7 +131,6 @@ export default function InterviewsPage() {
                     interview.issueId,
                 )
 
-
               if (
                 !author ||
                 !issue
@@ -155,7 +146,6 @@ export default function InterviewsPage() {
               }
             },
           )
-
           .filter(
             (
               item,
@@ -164,7 +154,6 @@ export default function InterviewsPage() {
             > =>
               item !== null,
           )
-
           .filter(
             ({
               issue,
@@ -174,7 +163,6 @@ export default function InterviewsPage() {
                   'all' ||
                 issue.accessType ===
                   selectedAccess
-
 
               const matchesIssue =
                 selectedIssue ===
@@ -189,7 +177,6 @@ export default function InterviewsPage() {
               )
             },
           )
-
           .sort(
             (
               a,
@@ -208,10 +195,6 @@ export default function InterviewsPage() {
       ],
     )
 
-
-  /* =========================
-     RESET
-     ========================= */
 
   const hasActiveFilters =
     selectedAccess !==
@@ -233,30 +216,23 @@ export default function InterviewsPage() {
 
   return (
     <section className="interviews-page">
+      <header className="interviews-page__intro">
 
-      {/* =====================
-          HEADER
-          ===================== */}
-
-      <header className="interviews-page__header">
-      
-        <p className="interviews-page__intro">
-          Разговоры с писателями,
-          поэтами, переводчиками,
-          художниками и теми,<br/>
+        <p className="interviews-page__description">
+         <span> Разговоры с писателями,
+          поэтами,
+          художниками, 
+          </span>
+          <span>теми,
           кто создаёт мир детской
-          литературы
+          литературы.
+          </span>
         </p>
       </header>
 
 
-      {/* =====================
-          FILTERS
-          ===================== */}
-
       <FilterPanel
         ariaLabel="Фильтры бесед"
-        size="compact"
         onReset={
           resetFilters
         }
@@ -267,6 +243,7 @@ export default function InterviewsPage() {
         <CustomSelect
           id="interviews-issue-filter"
           label="По номеру"
+          placeholder="По номеру"
           value={
             selectedIssue
           }
@@ -281,6 +258,7 @@ export default function InterviewsPage() {
         <CustomSelect
           id="interviews-access-filter"
           label="По доступу"
+          placeholder="По доступу"
           value={
             selectedAccess
           }
@@ -299,10 +277,6 @@ export default function InterviewsPage() {
       </FilterPanel>
 
 
-      {/* =====================
-          RESULTS
-          ===================== */}
-
       <div className="interviews-page__results">
         <p className="interviews-page__count">
           Бесед:{' '}
@@ -315,10 +289,6 @@ export default function InterviewsPage() {
         </p>
       </div>
 
-
-      {/* =====================
-          INTERVIEW CARDS
-          ===================== */}
 
       {interviewCards.length >
       0 ? (
