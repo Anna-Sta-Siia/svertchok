@@ -152,6 +152,46 @@
 
 
 /* =========================
+   ISSUE SHOWCASE — EQUAL VISUAL HEIGHT
+
+   Desktop only.
+
+   The height below is exactly:
+   featured panel
+   + top padding
+   + bottom padding
+   + 2px outer border.
+
+   The footer link is intentionally
+   excluded from this height, just like
+   the action buttons below the featured
+   card are excluded.
+   ========================= */
+
+@media (min-width: 1101px) {
+  .showcase--issue
+  .issues-list--recent
+  .issues-list__items {
+    flex:
+      0
+      0
+      auto;
+
+    height:
+      calc(
+        var(--issue-featured-panel-height)
+        +
+        var(--issue-featured-card-padding)
+        +
+        var(--issue-featured-card-padding)
+        +
+        2px
+      );
+  }
+}
+
+
+/* =========================
    RECENT SCROLLBAR
    ========================= */
 

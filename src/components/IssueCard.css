@@ -1576,10 +1576,23 @@
       );
 
     --featured-panel-height:
-      clamp(
-        452px,
-        43.85vw,
-        540px
+      var(
+        --issue-featured-panel-height,
+        clamp(
+          452px,
+          43.85vw,
+          540px
+        )
+      );
+
+    --featured-card-padding:
+      var(
+        --issue-featured-card-padding,
+        clamp(
+          16px,
+          1.6vw,
+          20px
+        )
       );
 
     grid-template-columns:
@@ -1602,10 +1615,8 @@
       stretch;
 
     padding:
-      clamp(
-        16px,
-        1.6vw,
-        20px
+      var(
+        --featured-card-padding
       );
   }
 

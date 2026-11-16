@@ -47,6 +47,32 @@
    ========================= */
 
 .showcase--issue {
+  /*
+   * Shared dimensions for the two visual blocks:
+   *
+   * featured IssueCard
+   * ↔
+   * recent issues cards area
+   *
+   * Both sides use the same values, so their
+   * lower edges stay perfectly aligned while
+   * the showcase is displayed in two columns.
+   */
+
+  --issue-featured-panel-height:
+    clamp(
+      452px,
+      43.85vw,
+      540px
+    );
+
+  --issue-featured-card-padding:
+    clamp(
+      16px,
+      1.6vw,
+      20px
+    );
+
   grid-template-columns:
     minmax(
       0,
