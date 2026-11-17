@@ -109,11 +109,7 @@ export default function QuestionCard({
 
       <div className="question-card__top">
         {variant ===
-          'featured' && (
-          <span className="question-card__featured-label">
-            Вопрос месяца
-          </span>
-        )}
+          'featured'}
 
         <span className="question-card__category">
           {

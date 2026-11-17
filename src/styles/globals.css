@@ -61,11 +61,22 @@ body {
 
 
 button,
-input,
-textarea,
 select {
-  font:
-    inherit;
+  font-family:
+    var(--font-ui);
+
+  font-weight:
+    var(--font-weight-medium);
+}
+
+
+input,
+textarea {
+  font-family:
+    var(--font-main);
+
+  font-weight:
+    var(--font-weight-medium);
 }
 
 
@@ -108,7 +119,7 @@ b {
      ===================== */
 
   --font-main:
-    'Cormorant Garamond',
+    'Lora',
     Georgia,
     'Times New Roman',
     serif;
@@ -116,6 +127,7 @@ b {
 
   --font-ui:
     'Comfortaa',
+    'Trebuchet MS',
     Arial,
     sans-serif;
 
@@ -128,19 +140,19 @@ b {
 
 
   --font-weight-light:
-    300;
+    150;
 
   --font-weight-regular:
-    400;
+    200;
 
   --font-weight-medium:
-    500;
+    300;
 
   --font-weight-semibold:
-    600;
+    400;
 
   --font-weight-bold:
-    700;
+    600;
 
 
   /* =====================
@@ -153,8 +165,40 @@ b {
   --color-white:
     #ffffff;
 
-  --color-logo-green:
+
+  /* =====================
+     BRAND COLORS
+
+     Fixed across all seasons:
+     bottle green + orange
+     ===================== */
+
+  --color-brand-green:
     #4f8a62;
+
+  --color-brand-orange:
+    #b9650b;
+
+  --color-logo-green:
+    var(--color-brand-green);
+
+  --color-text:
+    var(--color-brand-green);
+
+  --color-text-soft:
+    var(--color-brand-green);
+
+  --color-accent:
+    var(--color-brand-orange);
+
+  --color-accent-hover:
+    var(--color-brand-green);
+
+  --color-secondary:
+    var(--color-brand-orange);
+
+  --color-footer-text:
+    var(--color-brand-green);
 
 
   /* =====================
@@ -171,13 +215,13 @@ b {
     #fff4f1;
 
   --color-status-success:
-    #4f8a62;
+    var(--color-brand-green);
 
   --color-status-warning:
-    #b9650b;
+    var(--color-brand-orange);
 
   --color-status-info:
-    #52697a;
+    var(--color-brand-green);
 
   /* =====================
      GLOBAL SCROLLBAR
@@ -190,10 +234,10 @@ b {
      ===================== */
 
   --color-scrollbar:
-    #b9650b;
+    var(--color-brand-orange);
 
   --color-scrollbar-hover:
-    #4f8a62;
+    var(--color-brand-green);
 
 
   /* =====================
@@ -235,10 +279,11 @@ b {
 
 
 /* =========================
-   TYPOGRAPHIC HELPERS
+   TYPOGRAPHIC ROLES
    ========================= */
 
-.font-ui {
+.font-ui,
+.font-heading {
   font-family:
     var(--font-ui);
 
@@ -247,7 +292,8 @@ b {
 }
 
 
-.font-editorial {
+.font-editorial,
+.font-body {
   font-family:
     var(--font-main);
 
@@ -267,7 +313,7 @@ h4,
 h5,
 h6 {
   font-family:
-    var(--font-main);
+    var(--font-ui);
 
   font-weight:
     var(--font-weight-semibold);
@@ -283,6 +329,15 @@ a {
 }
 
 
+/* ==================================================
+   SEASONS ONLY CHANGE
+   SURFACES / BACKGROUNDS / SHADOWS
+
+   Brand colors and typography remain fixed
+   across the whole site.
+   ================================================== */
+
+
 /* =========================
    SPRING
    ========================= */
@@ -294,26 +349,8 @@ a {
   --color-surface-soft:
     #fff8f3;
 
-  --color-text:
-    #617445;
-
-  --color-text-soft:
-    #7a835d;
-
-  --color-accent:
-    #c77a8e;
-
-  --color-accent-hover:
-    #ad6477;
-
-  --color-secondary:
-    #8caf68;
-
   --color-footer-background:
     #f3ddd9;
-
-  --color-footer-text:
-    #a55f70;
 
   --shadow-card:
     0 6px 18px
@@ -332,26 +369,8 @@ a {
   --color-surface-soft:
     #fbf7df;
 
-  --color-text:
-    #556b32;
-
-  --color-text-soft:
-    #708052;
-
-  --color-accent:
-    #73964b;
-
-  --color-accent-hover:
-    #5f803d;
-
-  --color-secondary:
-    #d4a63b;
-
   --color-footer-background:
     #e4edcf;
-
-  --color-footer-text:
-    #637d3e;
 
   --shadow-card:
     0 6px 18px
@@ -370,26 +389,8 @@ a {
   --color-surface-soft:
     #fffaf0;
 
-  --color-text:
-    #556326;
-
-  --color-text-soft:
-    #6d7436;
-
-  --color-accent:
-    #b9650b;
-
-  --color-accent-hover:
-    #9f5508;
-
-  --color-secondary:
-    #9a7a19;
-
   --color-footer-background:
     #efd9d0;
-
-  --color-footer-text:
-    #b45c0b;
 
   --shadow-card:
     0 6px 18px
@@ -408,26 +409,8 @@ a {
   --color-surface-soft:
     #f1f6fa;
 
-  --color-text:
-    #52697a;
-
-  --color-text-soft:
-    #708291;
-
-  --color-accent:
-    #6f8fa8;
-
-  --color-accent-hover:
-    #58778f;
-
-  --color-secondary:
-    #9aaec0;
-
   --color-footer-background:
     #dde8ef;
-
-  --color-footer-text:
-    #627f95;
 
   --shadow-card:
     0 6px 18px

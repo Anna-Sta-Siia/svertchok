@@ -33,8 +33,7 @@
 }
 
 
-.question-card__category,
-.question-card__featured-label {
+.question-card__category {
   font-family:
     var(--font-ui);
 
@@ -49,18 +48,6 @@
 .question-card__category {
   color:
     var(--color-accent);
-}
-
-
-.question-card__featured-label {
-  color:
-    var(--color-logo-green);
-
-  letter-spacing:
-    0.05em;
-
-  text-transform:
-    uppercase;
 }
 
 
@@ -102,9 +89,6 @@
 
   font-family:
     var(--font-main);
-
-  font-weight:
-    600;
 
   text-wrap:
     pretty;
