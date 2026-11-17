@@ -6,10 +6,12 @@ import {
 
 import './CustomSelect.css'
 
+
 export type CustomSelectOption = {
   value: string
   label: string
 }
+
 
 type CustomSelectProps = {
   id: string
@@ -21,7 +23,12 @@ type CustomSelectProps = {
   showLabel?: boolean
   placeholder?: string
   placeholderValue?: string
+
+  onBlur?: () => void
+  ariaInvalid?: boolean
+  ariaDescribedBy?: string
 }
+
 
 export default function CustomSelect({
   id,
@@ -33,76 +40,111 @@ export default function CustomSelect({
   showLabel = false,
   placeholder,
   placeholderValue = 'all',
+  onBlur,
+  ariaInvalid = false,
+  ariaDescribedBy,
 }: CustomSelectProps) {
-  const [isOpen, setIsOpen] =
-    useState(false)
+  const [
+    isOpen,
+    setIsOpen,
+  ] = useState(false)
+
 
   const [
     highlightedIndex,
     setHighlightedIndex,
   ] = useState(0)
 
+
   const selectRef =
-    useRef<HTMLDivElement>(null)
+    useRef<HTMLDivElement>(
+      null,
+    )
+
 
   const selectedOption =
     options.find(
       (option) =>
-        option.value === value,
+        option.value ===
+        value,
     )
+
 
   const selectedLabel =
     placeholder &&
-    value === placeholderValue
+    value ===
+      placeholderValue
       ? placeholder
       : selectedOption?.label ??
         options[0]?.label ??
         ''
 
+
   function openSelect() {
     const selectedIndex =
       options.findIndex(
         (option) =>
-          option.value === value,
+          option.value ===
+          value,
       )
 
+
     setHighlightedIndex(
-      selectedIndex >= 0
+      selectedIndex >=
+        0
         ? selectedIndex
         : 0,
     )
 
-    setIsOpen(true)
+
+    setIsOpen(
+      true,
+    )
   }
 
+
   function closeSelect() {
-    setIsOpen(false)
+    setIsOpen(
+      false,
+    )
   }
+
 
   function chooseOption(
     optionValue: string,
   ) {
-    onChange(optionValue)
+    onChange(
+      optionValue,
+    )
+
     closeSelect()
   }
+
 
   function handleKeyDown(
     event:
       React.KeyboardEvent<HTMLButtonElement>,
   ) {
     if (
-      event.key === 'Enter' ||
-      event.key === ' '
+      event.key ===
+        'Enter' ||
+      event.key ===
+        ' '
     ) {
       event.preventDefault()
+
 
       if (!isOpen) {
         openSelect()
         return
       }
 
+
       const option =
-        options[highlightedIndex]
+        options[
+          highlightedIndex
+        ]
+
 
       if (option) {
         chooseOption(
@@ -110,8 +152,10 @@ export default function CustomSelect({
         )
       }
 
+
       return
     }
+
 
     if (
       event.key ===
@@ -119,19 +163,26 @@ export default function CustomSelect({
     ) {
       event.preventDefault()
 
+
       if (!isOpen) {
         openSelect()
         return
       }
 
+
       setHighlightedIndex(
         (current) =>
-          (current + 1) %
+          (
+            current +
+            1
+          ) %
           options.length,
       )
 
+
       return
     }
+
 
     if (
       event.key ===
@@ -139,10 +190,12 @@ export default function CustomSelect({
     ) {
       event.preventDefault()
 
+
       if (!isOpen) {
         openSelect()
         return
       }
+
 
       setHighlightedIndex(
         (current) =>
@@ -154,8 +207,10 @@ export default function CustomSelect({
           options.length,
       )
 
+
       return
     }
+
 
     if (
       event.key ===
@@ -165,63 +220,116 @@ export default function CustomSelect({
     }
   }
 
-  useEffect(() => {
-    function handleOutsideClick(
-      event: MouseEvent,
+
+  function handleFieldBlur(
+    event:
+      React.FocusEvent<HTMLDivElement>,
+  ) {
+    const nextFocused =
+      event.relatedTarget as
+        Node | null
+
+
+    if (
+      nextFocused &&
+      event.currentTarget.contains(
+        nextFocused,
+      )
     ) {
-      if (
-        selectRef.current &&
-        !selectRef.current.contains(
-          event.target as Node,
-        )
-      ) {
-        closeSelect()
-      }
+      return
     }
 
-    document.addEventListener(
-      'mousedown',
-      handleOutsideClick,
-    )
 
-    return () => {
-      document.removeEventListener(
+    onBlur?.()
+  }
+
+
+  useEffect(
+    () => {
+      function handleOutsideClick(
+        event:
+          MouseEvent,
+      ) {
+        if (
+          selectRef.current &&
+          !selectRef.current.contains(
+            event.target as
+              Node,
+          )
+        ) {
+          closeSelect()
+        }
+      }
+
+
+      document.addEventListener(
         'mousedown',
         handleOutsideClick,
       )
-    }
-  }, [])
+
+
+      return () => {
+        document.removeEventListener(
+          'mousedown',
+          handleOutsideClick,
+        )
+      }
+    },
+    [],
+  )
+
 
   return (
     <div
       className={[
         'custom-select-field',
+
         showLabel
           ? 'custom-select-field--with-label'
           : '',
+
         className,
       ]
         .filter(Boolean)
         .join(' ')}
     >
       <label
-        htmlFor={id}
+        htmlFor={
+          id
+        }
         className="custom-select-field__label"
       >
         {label}
       </label>
 
+
       <div
-        ref={selectRef}
+        ref={
+          selectRef
+        }
         className="custom-select"
+        onBlur={
+          handleFieldBlur
+        }
       >
         <button
-          id={id}
+          id={
+            id
+          }
           type="button"
           className="custom-select__button"
           aria-haspopup="listbox"
-          aria-expanded={isOpen}
+          aria-expanded={
+            isOpen
+          }
           aria-controls={`${id}-listbox`}
+          aria-invalid={
+            ariaInvalid ||
+            undefined
+          }
+          aria-describedby={
+            ariaDescribedBy
+          }
           onClick={() =>
             isOpen
               ? closeSelect()
@@ -234,6 +342,7 @@ export default function CustomSelect({
           <span className="custom-select__value">
             {selectedLabel}
           </span>
+
 
           <span
             className={`
@@ -250,12 +359,15 @@ export default function CustomSelect({
           </span>
         </button>
 
+
         {isOpen && (
           <div
             id={`${id}-listbox`}
             className="custom-select__menu"
             role="listbox"
-            aria-label={label}
+            aria-label={
+              label
+            }
           >
             {options.map(
               (

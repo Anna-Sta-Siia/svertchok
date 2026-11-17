@@ -1,12 +1,26 @@
 import {
+  useEffect,
   useState,
-  type SyntheticEvent,
+  type FormEvent,
 } from 'react'
 
 import Button from './ui/Button'
 import CustomSelect from './filters/CustomSelect'
 
+import {
+  CONTACT_LIMITS,
+  getContactMessageLength,
+  normalizeContactEmail,
+  normalizeContactMessage,
+  normalizeContactName,
+  validateContactField,
+  validateContactForm,
+  type ContactField,
+  type ContactValidationErrors,
+} from '../utils/contactValidation'
+
 import './ContactForm.css'
+
 
 export type ContactFormData = {
   name: string
@@ -16,13 +30,34 @@ export type ContactFormData = {
   allowFaqPublication: boolean
 }
 
-const initialFormData: ContactFormData = {
-  name: '',
-  email: '',
-  subject: 'general',
-  message: '',
-  allowFaqPublication: false,
+
+type ContactFormProps = {
+  onDirtyChange?: (
+    isDirty: boolean,
+  ) => void
 }
+
+
+const initialFormData:
+  ContactFormData = {
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    allowFaqPublication: false,
+  }
+
+
+const initialTouched:
+  Record<
+    ContactField,
+    boolean
+  > = {
+    name: false,
+    email: false,
+    subject: false,
+    message: false,
+  }
 
 
 const subjectOptions = [
@@ -52,7 +87,10 @@ const subjectOptions = [
   },
 ]
 
-export default function ContactForm() {
+
+export default function ContactForm({
+  onDirtyChange,
+}: ContactFormProps) {
   const [
     formData,
     setFormData,
@@ -60,54 +98,393 @@ export default function ContactForm() {
     initialFormData,
   )
 
+
+  const [
+    touched,
+    setTouched,
+  ] = useState(
+    initialTouched,
+  )
+
+
+  const [
+    errors,
+    setErrors,
+  ] = useState<ContactValidationErrors>(
+    {},
+  )
+
+
   const [
     isSubmitting,
     setIsSubmitting,
   ] = useState(false)
+
 
   const [
     isSuccess,
     setIsSuccess,
   ] = useState(false)
 
+
   const [
-    error,
-    setError,
+    submitError,
+    setSubmitError,
   ] = useState('')
 
+
+  const messageLength =
+    getContactMessageLength(
+      formData.message,
+    )
+
+
+  const isDirty =
+    Boolean(
+      formData.name.trim() ||
+      formData.email.trim() ||
+      formData.subject ||
+      formData.message.trim() ||
+      formData.allowFaqPublication,
+    )
+
+
+  useEffect(
+    () => {
+      onDirtyChange?.(
+        isDirty,
+      )
+    },
+    [
+      isDirty,
+      onDirtyChange,
+    ],
+  )
+
+
+  useEffect(
+    () => {
+      return () => {
+        onDirtyChange?.(
+          false,
+        )
+      }
+    },
+    [
+      onDirtyChange,
+    ],
+  )
+
+
+  function getValidationInput(
+    data:
+      ContactFormData,
+  ) {
+    return {
+      name:
+        data.name,
+
+      email:
+        data.email,
+
+      subject:
+        data.subject,
+
+      message:
+        data.message,
+    }
+  }
+
+
+  function setFieldError(
+    field:
+      ContactField,
+    value:
+      string | undefined,
+  ) {
+    setErrors(
+      (current) => {
+        const next = {
+          ...current,
+        }
+
+
+        if (value) {
+          next[
+            field
+          ] = value
+        } else {
+          delete next[
+            field
+          ]
+        }
+
+
+        return next
+      },
+    )
+  }
+
+
+  function validateField(
+    field:
+      ContactField,
+    data:
+      ContactFormData = formData,
+  ) {
+    const error =
+      validateContactField(
+        field,
+        getValidationInput(
+          data,
+        ),
+      )
+
+
+    setFieldError(
+      field,
+      error,
+    )
+  }
+
+
+  function touchField(
+    field:
+      ContactField,
+  ) {
+    setTouched(
+      (current) => ({
+        ...current,
+
+        [field]:
+          true,
+      }),
+    )
+
+
+    validateField(
+      field,
+    )
+  }
+
+
+  function updateTextField(
+    field:
+      | 'name'
+      | 'email'
+      | 'message',
+    value: string,
+  ) {
+    const nextData = {
+      ...formData,
+
+      [field]:
+        value,
+    }
+
+
+    setFormData(
+      nextData,
+    )
+
+
+    if (
+      touched[
+        field
+      ]
+    ) {
+      const error =
+        validateContactField(
+          field,
+          getValidationInput(
+            nextData,
+          ),
+        )
+
+
+      setFieldError(
+        field,
+        error,
+      )
+    }
+
+
+    if (
+      submitError
+    ) {
+      setSubmitError(
+        '',
+      )
+    }
+  }
+
+
+  function updateSubject(
+    value: string,
+  ) {
+    const nextData = {
+      ...formData,
+
+      subject:
+        value,
+    }
+
+
+    setFormData(
+      nextData,
+    )
+
+
+    /*
+     * Selecting a topic is an explicit
+     * interaction, so validation may
+     * update immediately
+     */
+    const error =
+      validateContactField(
+        'subject',
+        getValidationInput(
+          nextData,
+        ),
+      )
+
+
+    setFieldError(
+      'subject',
+      error,
+    )
+
+
+    setTouched(
+      (current) => ({
+        ...current,
+
+        subject:
+          true,
+      }),
+    )
+  }
+
+
+  function focusFirstError(
+    nextErrors:
+      ContactValidationErrors,
+  ) {
+    const fieldOrder:
+      ContactField[] = [
+        'name',
+        'email',
+        'subject',
+        'message',
+      ]
+
+
+    const firstField =
+      fieldOrder.find(
+        (field) =>
+          Boolean(
+            nextErrors[
+              field
+            ],
+          ),
+      )
+
+
+    if (!firstField) {
+      return
+    }
+
+
+    window.requestAnimationFrame(
+      () => {
+        document
+          .getElementById(
+            `contact-${firstField}`,
+          )
+          ?.focus()
+      },
+    )
+  }
+
+
   async function handleSubmit(
-    event: SyntheticEvent<HTMLFormElement>,
+    event:
+      FormEvent<HTMLFormElement>,
   ) {
     event.preventDefault()
 
-    setError('')
+    setSubmitError(
+      '',
+    )
 
-    /* =========================
-       VALIDATION
-       ========================= */
+
+    const nextErrors =
+      validateContactForm(
+        getValidationInput(
+          formData,
+        ),
+      )
+
+
+    setTouched({
+      name: true,
+      email: true,
+      subject: true,
+      message: true,
+    })
+
 
     if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.message.trim()
+      Object.keys(
+        nextErrors,
+      ).length >
+      0
     ) {
-      setError(
-        'Пожалуйста, заполните обязательные поля.',
+      setErrors(
+        nextErrors,
+      )
+
+      focusFirstError(
+        nextErrors,
       )
 
       return
     }
 
+
+    const normalizedData:
+      ContactFormData = {
+        ...formData,
+
+        name:
+          normalizeContactName(
+            formData.name,
+          ),
+
+        email:
+          normalizeContactEmail(
+            formData.email,
+          ),
+
+        message:
+          normalizeContactMessage(
+            formData.message,
+          ),
+      }
+
+
     try {
-      setIsSubmitting(true)
+      setIsSubmitting(
+        true,
+      )
 
-      /* =========================
-         SIMULATION D'ENVOI
 
-         Plus tard :
-         Supabase viendra ici.
-         ========================= */
-
+      /*
+       * Temporary simulation
+       *
+       * CMS / backend request
+       * will replace this block
+       */
       await new Promise<void>(
         (resolve) => {
           window.setTimeout(
@@ -117,25 +494,47 @@ export default function ContactForm() {
         },
       )
 
+
+      console.info(
+        'Contact form ready to send',
+        normalizedData,
+      )
+
+
       setFormData(
         initialFormData,
       )
 
-      setIsSuccess(true)
+      onDirtyChange?.(
+        false,
+      )
+
+      setTouched(
+        initialTouched,
+      )
+
+      setErrors(
+        {},
+      )
+
+      setIsSuccess(
+        true,
+      )
     } catch {
-      setError(
-        'Не удалось отправить сообщение. Попробуйте ещё раз.',
+      setSubmitError(
+        'Не удалось отправить сообщение, попробуйте ещё раз',
       )
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(
+        false,
+      )
     }
   }
 
-  /* =========================
-     SUCCESS
-     ========================= */
 
-  if (isSuccess) {
+  if (
+    isSuccess
+  ) {
     return (
       <div className="contact-form__success">
         <div
@@ -151,18 +550,20 @@ export default function ContactForm() {
 
         <p>
           Ваше письмо отправлено
-          Сверчку.
+          Сверчку
         </p>
 
         <p className="contact-form__success-note">
           Мы постараемся ответить
-          как можно скорее.
+          как можно скорее
         </p>
 
         <Button
           variant="secondary"
           onClick={() =>
-            setIsSuccess(false)
+            setIsSuccess(
+              false,
+            )
           }
         >
           Написать ещё
@@ -171,18 +572,25 @@ export default function ContactForm() {
     )
   }
 
+
   return (
     <form
       className="contact-form"
-      onSubmit={handleSubmit}
+      onSubmit={
+        handleSubmit
+      }
+      noValidate
+      aria-busy={
+        isSubmitting
+      }
     >
-      {/* =====================
-          NAME
-          ===================== */}
+
+      {/* NAME */}
 
       <div className="contact-form__field">
         <label htmlFor="contact-name">
           Как вас зовут?
+
           <span aria-hidden="true">
             {' '}*
           </span>
@@ -192,26 +600,60 @@ export default function ContactForm() {
           id="contact-name"
           type="text"
           autoComplete="name"
-          value={formData.name}
-          onChange={(event) =>
-            setFormData(
-              (current) => ({
-                ...current,
-                name:
-                  event.target.value,
-              }),
+          required
+          minLength={
+            CONTACT_LIMITS.nameMin
+          }
+          maxLength={
+            CONTACT_LIMITS.nameMax
+          }
+          spellCheck
+          value={
+            formData.name
+          }
+          aria-invalid={
+            Boolean(
+              errors.name,
+            )
+          }
+          aria-describedby={
+            errors.name
+              ? 'contact-name-error'
+              : undefined
+          }
+          onBlur={() =>
+            touchField(
+              'name',
+            )
+          }
+          onChange={(
+            event,
+          ) =>
+            updateTextField(
+              'name',
+              event.target.value,
             )
           }
         />
+
+        {errors.name && (
+          <p
+            id="contact-name-error"
+            className="contact-form__field-error"
+            role="alert"
+          >
+            {errors.name}
+          </p>
+        )}
       </div>
 
-      {/* =====================
-          EMAIL
-          ===================== */}
+
+      {/* EMAIL */}
 
       <div className="contact-form__field">
         <label htmlFor="contact-email">
           E-mail
+
           <span aria-hidden="true">
             {' '}*
           </span>
@@ -220,54 +662,108 @@ export default function ContactForm() {
         <input
           id="contact-email"
           type="email"
+          inputMode="email"
           autoComplete="email"
-          value={formData.email}
-          onChange={(event) =>
-            setFormData(
-              (current) => ({
-                ...current,
-                email:
-                  event.target.value,
-              }),
+          required
+          maxLength={
+            CONTACT_LIMITS.emailMax
+          }
+          spellCheck={
+            false
+          }
+          value={
+            formData.email
+          }
+          aria-invalid={
+            Boolean(
+              errors.email,
+            )
+          }
+          aria-describedby={
+            errors.email
+              ? 'contact-email-error'
+              : undefined
+          }
+          onBlur={() =>
+            touchField(
+              'email',
+            )
+          }
+          onChange={(
+            event,
+          ) =>
+            updateTextField(
+              'email',
+              event.target.value,
             )
           }
         />
+
+        {errors.email && (
+          <p
+            id="contact-email-error"
+            className="contact-form__field-error"
+            role="alert"
+          >
+            {errors.email}
+          </p>
+        )}
       </div>
 
-      {/* =====================
-          SUBJECT
-          ===================== */}
 
-      <CustomSelect
-        id="contact-subject"
-        label="Тема"
-        value={
-          formData.subject
-        }
-        options={
-          subjectOptions
-        }
-        className="contact-form__custom-select-field"
-        onChange={(
-          value,
-        ) =>
-          setFormData(
-            (current) => ({
-              ...current,
-              subject:
-                value,
-            }),
-          )
-        }
-      />
+      {/* SUBJECT */}
 
-      {/* =====================
-          MESSAGE
-          ===================== */}
+      <div className="contact-form__field">
+        <CustomSelect
+          id="contact-subject"
+          label="Тема вопроса"
+          placeholder="Тема вопроса"
+          placeholderValue=""
+          value={
+            formData.subject
+          }
+          options={
+            subjectOptions
+          }
+          className="contact-form__custom-select-field"
+          ariaInvalid={
+            Boolean(
+              errors.subject,
+            )
+          }
+          ariaDescribedBy={
+            errors.subject
+              ? 'contact-subject-error'
+              : undefined
+          }
+          onBlur={() =>
+            touchField(
+              'subject',
+            )
+          }
+          onChange={
+            updateSubject
+          }
+        />
+
+        {errors.subject && (
+          <p
+            id="contact-subject-error"
+            className="contact-form__field-error"
+            role="alert"
+          >
+            {errors.subject}
+          </p>
+        )}
+      </div>
+
+
+      {/* MESSAGE */}
 
       <div className="contact-form__field">
         <label htmlFor="contact-message">
           Сообщение
+
           <span aria-hidden="true">
             {' '}*
           </span>
@@ -276,22 +772,86 @@ export default function ContactForm() {
         <textarea
           id="contact-message"
           rows={7}
-          value={formData.message}
-          onChange={(event) =>
-            setFormData(
-              (current) => ({
-                ...current,
-                message:
-                  event.target.value,
-              }),
+          required
+          minLength={
+            CONTACT_LIMITS.messageMin
+          }
+          maxLength={
+            CONTACT_LIMITS.messageMax
+          }
+          spellCheck
+          value={
+            formData.message
+          }
+          aria-invalid={
+            Boolean(
+              errors.message,
+            )
+          }
+          aria-describedby={[
+            errors.message
+              ? 'contact-message-error'
+              : '',
+            'contact-message-counter',
+          ]
+            .filter(Boolean)
+            .join(' ')
+          }
+          onBlur={() =>
+            touchField(
+              'message',
+            )
+          }
+          onChange={(
+            event,
+          ) =>
+            updateTextField(
+              'message',
+              event.target.value,
             )
           }
         />
+
+        <div className="contact-form__field-meta">
+          <span>
+            Минимум{' '}
+            {
+              CONTACT_LIMITS.messageMin
+            }{' '}
+            символов
+          </span>
+
+          <span
+            id="contact-message-counter"
+            className={
+              messageLength >
+              CONTACT_LIMITS.messageMax *
+                0.9
+                ? 'contact-form__counter contact-form__counter--near-limit'
+                : 'contact-form__counter'
+            }
+          >
+            {messageLength}
+            {' / '}
+            {
+              CONTACT_LIMITS.messageMax
+            }
+          </span>
+        </div>
+
+        {errors.message && (
+          <p
+            id="contact-message-error"
+            className="contact-form__field-error"
+            role="alert"
+          >
+            {errors.message}
+          </p>
+        )}
       </div>
 
-      {/* =====================
-          FAQ CONSENT
-          ===================== */}
+
+      {/* FAQ CONSENT */}
 
       <label className="contact-form__faq">
         <input
@@ -299,10 +859,15 @@ export default function ContactForm() {
           checked={
             formData.allowFaqPublication
           }
-          onChange={(event) =>
+          onChange={(
+            event,
+          ) =>
             setFormData(
-              (current) => ({
+              (
+                current,
+              ) => ({
                 ...current,
+
                 allowFaqPublication:
                   event.target.checked,
               }),
@@ -319,36 +884,37 @@ export default function ContactForm() {
           </strong>
 
           <small>
-            Публикация возможна
-            после редакционной проверки.
-            Личные данные и e-mail
-            не публикуются.
+            <span>
+              Публикация возможна
+              после редакционной проверки
+            </span>
+
+            <span>
+              Личные данные и e-mail
+              не публикуются
+            </span>
           </small>
         </span>
       </label>
 
-      {/* =====================
-          ERROR
-          ===================== */}
 
-      {error && (
+      {submitError && (
         <p
           className="contact-form__message"
           role="alert"
         >
-          {error}
+          {submitError}
         </p>
       )}
 
-      {/* =====================
-          SUBMIT
-          ===================== */}
 
       <div className="contact-form__actions">
         <Button
           type="submit"
-          variant="primary"
-          disabled={isSubmitting}
+          variant="secondary"
+          disabled={
+            isSubmitting
+          }
         >
           {isSubmitting
             ? 'Отправляем…'

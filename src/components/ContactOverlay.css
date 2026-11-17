@@ -1,31 +1,42 @@
 .contact-overlay {
-  position: fixed;
+  position:
+    fixed;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 1000;
+  z-index:
+    1000;
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
-  justify-content: center;
+  align-items:
+    flex-start;
+
+  justify-content:
+    center;
 
   padding:
-    90px
+    42px
     24px
     24px;
 }
+
 
 /* =========================
    BACKDROP
    ========================= */
 
 .contact-overlay__backdrop {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  border: 0;
+  border:
+    0;
 
   background:
     rgb(35 38 25 / 36%);
@@ -33,21 +44,27 @@
   backdrop-filter:
     blur(4px);
 
-  cursor: pointer;
+  cursor:
+    pointer;
 }
+
 
 /* =========================
    PANEL
    ========================= */
 
 .contact-overlay__panel {
-  position: relative;
+  position:
+    relative;
 
-  z-index: 1;
+  z-index:
+    1;
 
-  display: flex;
+  display:
+    flex;
 
-  flex-direction: column;
+  flex-direction:
+    column;
 
   width:
     min(
@@ -57,12 +74,23 @@
 
   max-height:
     calc(
-      100dvh - 120px
+      100dvh - 66px
     );
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  border-radius: 24px;
+  border:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 14%,
+      transparent
+    );
+
+  border-radius:
+    24px;
 
   background:
     var(--color-surface);
@@ -74,17 +102,54 @@
     rgb(25 30 20 / 25%);
 }
 
+
+.contact-overlay__panel:focus {
+  outline:
+    none;
+}
+
+
+/* =========================
+   CONTENT
+   ========================= */
+
+.contact-overlay__content {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  min-height:
+    0;
+}
+
+
+.contact-overlay__content[aria-hidden='true'] {
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+}
+
+
 /* =========================
    HEADER
    ========================= */
 
 .contact-overlay__header {
-  display: flex;
+  display:
+    flex;
 
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items:
+    center;
 
-  gap: 24px;
+  justify-content:
+    space-between;
+
+  gap:
+    24px;
 
   padding:
     24px
@@ -92,15 +157,19 @@
     20px;
 
   border-bottom:
-    1px solid
-    rgb(117 111 67 / 12%);
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 12%,
+      transparent
+    );
 }
+
 
 .contact-overlay__eyebrow {
   margin:
-    0
-    0
-    5px;
+    0;
 
   color:
     var(--color-logo-green);
@@ -108,73 +177,131 @@
   font-family:
     var(--font-ui);
 
-  font-size: 1.4rem;
-  font-weight: 600;
-}
-
-.contact-overlay__title {
-  margin: 0;
-
-  color: var(--color-text);
-
   font-size:
     clamp(
-      1.5rem,
-      3vw,
-      2rem
+      1.35rem,
+      2vw,
+      1.65rem
     );
 
-  font-weight: 500;
+  font-weight:
+    600;
 
-  line-height: 1.15;
+  line-height:
+    1.2;
 }
 
-/* CLOSE */
+
+/* =========================
+   CLOSE
+   ========================= */
 
 .contact-overlay__close {
-  appearance: none;
+  appearance:
+    none;
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
-  justify-content: center;
+  align-items:
+    center;
 
-  width: 38px;
-  height: 38px;
+  justify-content:
+    center;
 
-  flex-shrink: 0;
+  width:
+    38px;
+
+  height:
+    38px;
+
+  flex-shrink:
+    0;
 
   border:
-    1px solid
-    rgb(117 111 67 / 18%);
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 18%,
+      transparent
+    );
 
-  border-radius: 50%;
+  border-radius:
+    50%;
 
-  background: transparent;
-
-  color: var(--color-text);
-
-  font-size: 1.7rem;
-
-  line-height: 1;
-
-  cursor: pointer;
-}
-
-.contact-overlay__close:hover {
-  border-color:
-    var(--color-accent);
+  background:
+    transparent;
 
   color:
-    var(--color-accent);
+    var(--color-text);
+
+  font-size:
+    1.7rem;
+
+  line-height:
+    1;
+
+  cursor:
+    pointer;
+
+  transition:
+    border-color
+      var(--transition-default),
+    color
+      var(--transition-default),
+    transform
+      var(--transition-default);
 }
+
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+  .contact-overlay__close:hover {
+    border-color:
+      var(--color-logo-green);
+
+    color:
+      var(--color-logo-green);
+
+    transform:
+      scale(1.05);
+  }
+}
+
+
+.contact-overlay__close:focus-visible {
+  outline:
+    2px
+    solid
+    var(--color-logo-green);
+
+  outline-offset:
+    3px;
+}
+
 
 /* =========================
    BODY
    ========================= */
 
 .contact-overlay__body {
-  overflow-y: auto;
+  flex:
+    1
+    1
+    auto;
+
+  min-height:
+    0;
+
+  overflow-x:
+    hidden;
+
+  overflow-y:
+    auto;
 
   overscroll-behavior:
     contain;
@@ -186,80 +313,106 @@
 
   scrollbar-gutter:
     stable;
-
-  scrollbar-width:
-    thin;
-
-  scrollbar-color:
-    color-mix(
-      in srgb,
-      var(--color-accent) 56%,
-      var(--color-surface)
-    )
-    color-mix(
-      in srgb,
-      var(--color-text) 7%,
-      transparent
-    );
 }
 
 
-/* Chrome / Edge / Safari */
+/* =========================
+   BODY SCROLLBAR
+   CHROME / EDGE / SAFARI
+   ========================= */
 
 .contact-overlay__body::-webkit-scrollbar {
-  width: 10px;
+  width:
+    8px;
 }
 
-.contact-overlay__body::-webkit-scrollbar-track {
-  margin-block: 10px;
 
-  border-radius: 999px;
+.contact-overlay__body::-webkit-scrollbar-button,
+.contact-overlay__body::-webkit-scrollbar-button:single-button,
+.contact-overlay__body::-webkit-scrollbar-button:vertical:decrement,
+.contact-overlay__body::-webkit-scrollbar-button:vertical:increment,
+.contact-overlay__body::-webkit-scrollbar-button:start:decrement,
+.contact-overlay__body::-webkit-scrollbar-button:end:increment {
+  display:
+    none;
+
+  width:
+    0;
+
+  height:
+    0;
+
+  min-width:
+    0;
+
+  min-height:
+    0;
 
   background:
-    color-mix(
-      in srgb,
-      var(--color-text) 7%,
-      transparent
-    );
+    transparent;
 }
 
+
+.contact-overlay__body::-webkit-scrollbar-track {
+  background:
+    transparent;
+}
+
+
 .contact-overlay__body::-webkit-scrollbar-thumb {
+  min-height:
+    40px;
+
   border:
-    2px solid
+    2px
+    solid
     transparent;
 
-  border-radius: 999px;
+  border-radius:
+    999px;
 
   background:
     color-mix(
       in srgb,
       var(--color-accent) 58%,
-      var(--color-surface)
+      transparent
     );
 
   background-clip:
     padding-box;
 }
 
-.contact-overlay__body::-webkit-scrollbar-thumb:hover {
-  background:
-    color-mix(
-      in srgb,
-      var(--color-accent) 78%,
-      var(--color-surface)
-    );
 
-  background-clip:
-    padding-box;
+/* Firefox only */
+
+@supports not selector(
+  ::-webkit-scrollbar
+) {
+  .contact-overlay__body {
+    scrollbar-width:
+      thin;
+
+    scrollbar-color:
+      color-mix(
+        in srgb,
+        var(--color-accent) 58%,
+        transparent
+      )
+      transparent;
+  }
 }
+
 
 /* =========================
    MOBILE
    ========================= */
 
-@media (max-width: 650px) {
+@media (
+  max-width: 650px
+) {
   .contact-overlay {
-    align-items: flex-end;
+    align-items:
+      flex-end;
 
     padding:
       76px
@@ -267,14 +420,17 @@
       12px;
   }
 
+
   .contact-overlay__panel {
     max-height:
       calc(
         100dvh - 88px
       );
 
-    border-radius: 20px;
+    border-radius:
+      20px;
   }
+
 
   .contact-overlay__header {
     padding:
@@ -282,6 +438,7 @@
       20px
       17px;
   }
+
 
   .contact-overlay__body {
     padding:
@@ -291,7 +448,10 @@
   }
 }
 
-@media (max-width: 450px) {
+
+@media (
+  max-width: 450px
+) {
   .contact-overlay {
     padding:
       74px
@@ -299,18 +459,243 @@
       8px;
   }
 
+
   .contact-overlay__header {
-    gap: 14px;
+    gap:
+      14px;
 
     padding:
       17px
       16px;
   }
 
+
+  .contact-overlay__eyebrow {
+    font-size:
+      1.25rem;
+  }
+
+
   .contact-overlay__body {
     padding:
       18px
       16px
       24px;
+  }
+}
+
+
+
+
+/* =========================
+   UNSAVED DATA CONFIRMATION
+   ========================= */
+
+.contact-overlay__confirm-layer {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    5;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  padding:
+    24px;
+
+  border-radius:
+    inherit;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface) 94%,
+      transparent
+    );
+
+  backdrop-filter:
+    blur(4px);
+}
+
+
+.contact-overlay__confirm {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  width:
+    min(
+      100%,
+      440px
+    );
+
+  padding:
+    34px
+    30px;
+
+  border:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--color-secondary) 18%,
+      transparent
+    );
+
+  border-radius:
+    var(--radius-card);
+
+  background:
+    var(--color-surface);
+
+  box-shadow:
+    0
+    18px
+    44px
+    rgb(25 30 20 / 12%);
+
+  text-align:
+    center;
+}
+
+
+.contact-overlay__confirm-title {
+  margin:
+    0;
+
+  color:
+    var(--color-logo-green);
+
+  font-family:
+    var(--font-ui);
+
+  font-size:
+    clamp(
+      1.45rem,
+      2.5vw,
+      1.8rem
+    );
+
+  font-weight:
+    600;
+
+  line-height:
+    1.2;
+}
+
+
+.contact-overlay__confirm-text {
+  margin:
+    14px
+    0
+    0;
+
+  color:
+    var(--color-text);
+
+  font-family:
+    var(--font-main);
+
+  font-size:
+    1.08rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1.5;
+}
+
+
+.contact-overlay__confirm-actions {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    12px;
+
+  width:
+    100%;
+
+  margin-top:
+    26px;
+}
+
+
+.contact-overlay__confirm-actions
+.button {
+  min-width:
+    170px;
+}
+
+
+@media (
+  max-width: 520px
+) {
+  .contact-overlay__confirm-layer {
+    padding:
+      16px;
+  }
+
+
+  .contact-overlay__confirm {
+    padding:
+      28px
+      20px;
+  }
+
+
+  .contact-overlay__confirm-actions {
+    flex-direction:
+      column;
+
+    width:
+      100%;
+  }
+
+
+  .contact-overlay__confirm-actions
+  .button {
+    width:
+      min(
+        100%,
+        280px
+      );
+  }
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .contact-overlay__close {
+    transition:
+      none;
   }
 }

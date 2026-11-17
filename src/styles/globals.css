@@ -158,6 +158,28 @@ b {
 
 
   /* =====================
+     STATUS COLORS
+
+     Shared by forms,
+     alerts and system states.
+     ===================== */
+
+  --color-status-error:
+    #a65349;
+
+  --color-status-error-soft:
+    #fff4f1;
+
+  --color-status-success:
+    #4f8a62;
+
+  --color-status-warning:
+    #b9650b;
+
+  --color-status-info:
+    #52697a;
+
+  /* =====================
      GLOBAL SCROLLBAR
 
      Default:

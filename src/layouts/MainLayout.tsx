@@ -1,5 +1,7 @@
 import {
   useEffect,
+  useRef,
+  useState,
 } from 'react'
 
 import {
@@ -86,9 +88,41 @@ export default function MainLayout() {
      CONTACT OVERLAY
      ========================= */
 
-  const isContactOpen =
+  const isContactRoute =
     location.hash ===
     '#contact'
+
+
+  const [
+    isContactDirty,
+    setIsContactDirty,
+  ] = useState(false)
+
+
+  const isContactVisible =
+    isContactRoute ||
+    isContactDirty
+
+
+  const isNavigationConfirmOpen =
+    isContactDirty &&
+    !isContactRoute
+
+
+  const contactLocationRef =
+    useRef<{
+      pathname: string
+      search: string
+      hash: string
+    } | null>(
+      null,
+    )
+
+
+  const contactHistoryIndexRef =
+    useRef<number | null>(
+      null,
+    )
 
 
   /* =========================
@@ -131,8 +165,7 @@ export default function MainLayout() {
      */
 
     if (
-      location.hash ===
-      '#contact'
+      isContactRoute
     ) {
       return
     }
@@ -174,7 +207,131 @@ export default function MainLayout() {
     location.pathname,
     location.hash,
     location.key,
+    isContactRoute,
   ])
+
+
+  /* =========================
+     CONTACT NAVIGATION GUARD
+
+     Covers SPA navigation and
+     browser Back / Forward
+
+     Hard reload / tab close is
+     handled by beforeunload inside
+     ContactOverlay
+     ========================= */
+
+  useEffect(
+    () => {
+      if (
+        !isContactRoute
+      ) {
+        return
+      }
+
+
+      contactLocationRef.current = {
+        pathname:
+          location.pathname,
+
+        search:
+          location.search,
+
+        hash:
+          location.hash,
+      }
+
+
+      const historyIndex =
+        window.history.state
+          ?.idx
+
+
+      contactHistoryIndexRef.current =
+        typeof historyIndex ===
+        'number'
+          ? historyIndex
+          : null
+    },
+    [
+      isContactRoute,
+      location.pathname,
+      location.search,
+      location.hash,
+      location.key,
+    ],
+  )
+
+
+  function continueContactForm() {
+    const currentHistoryIndex =
+      window.history.state
+        ?.idx
+
+
+    const contactHistoryIndex =
+      contactHistoryIndexRef.current
+
+
+    if (
+      typeof currentHistoryIndex ===
+        'number' &&
+      typeof contactHistoryIndex ===
+        'number'
+    ) {
+      const delta =
+        contactHistoryIndex -
+        currentHistoryIndex
+
+
+      if (
+        delta !==
+        0
+      ) {
+        window.history.go(
+          delta,
+        )
+
+        return
+      }
+    }
+
+
+    const contactLocation =
+      contactLocationRef.current
+
+
+    if (
+      contactLocation
+    ) {
+      navigate(
+        contactLocation,
+        {
+          replace:
+            true,
+        },
+      )
+
+      return
+    }
+
+
+    navigate(
+      '#contact',
+      {
+        replace:
+          true,
+      },
+    )
+  }
+
+
+  function leaveContactForm() {
+    setIsContactDirty(
+      false,
+    )
+  }
 
 
   /* =========================
@@ -182,6 +339,11 @@ export default function MainLayout() {
      ========================= */
 
   function closeContact() {
+    setIsContactDirty(
+      false,
+    )
+
+
     navigate(
       {
         pathname:
@@ -285,7 +447,7 @@ export default function MainLayout() {
           GLOBAL ANNOUNCEMENT
           ===================== */}
 
-      {!isContactOpen && (
+      {!isContactVisible && (
         <AnnouncementOverlay />
       )}
 
@@ -296,13 +458,29 @@ export default function MainLayout() {
 
       <ContactOverlay
         isOpen={
-          isContactOpen
+          isContactVisible
+        }
+        isDirty={
+          isContactDirty
+        }
+        isNavigationConfirmOpen={
+          isNavigationConfirmOpen
+        }
+        onContinueNavigation={
+          continueContactForm
+        }
+        onConfirmNavigation={
+          leaveContactForm
         }
         onClose={
           closeContact
         }
       >
-        <ContactForm />
+        <ContactForm
+          onDirtyChange={
+            setIsContactDirty
+          }
+        />
       </ContactOverlay>
 
     </div>
