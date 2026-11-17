@@ -55,55 +55,16 @@ function ArchiveNumber({
   issueNumber,
 }: ArchiveNumberProps) {
   return (
-    <div
+    <p
       className="issue-card__archive-number"
       aria-label={
         issueNumber
       }
     >
-      <span className="issue-card__archive-number-symbol">
-        №
-      </span>
-
-      {monthNumber
-        .split('')
-        .map(
-          (
-            digit,
-            index,
-          ) => (
-            <span
-              key={`month-${index}`}
-              className="issue-card__archive-number-digit"
-            >
-              {digit}
-            </span>
-          ),
-        )}
-
-      <span
-        className="issue-card__archive-separator"
-        aria-hidden="true"
-      >
-        ·
-      </span>
-
-      {String(year)
-        .split('')
-        .map(
-          (
-            digit,
-            index,
-          ) => (
-            <span
-              key={`year-${index}`}
-              className="issue-card__archive-year-digit"
-            >
-              {digit}
-            </span>
-          ),
-        )}
-    </div>
+      №{monthNumber}
+      {' · '}
+      {year}
+    </p>
   )
 }
 

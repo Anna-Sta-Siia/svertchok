@@ -3,10 +3,6 @@ import {
   useState,
 } from 'react'
 
-import {
-  Link,
-} from 'react-router-dom'
-
 import FilterPanel, {
   type SortDirection,
 } from '../components/filters/FilterPanel'
@@ -16,6 +12,7 @@ import CustomSelect from '../components/filters/CustomSelect'
 import Showcase from '../components/Showcase'
 
 import QuestionCard from '../components/QuestionCard'
+import Button from '../components/ui/Button'
 
 import {
   questions,
@@ -249,13 +246,21 @@ export default function QuestionsPage() {
           layout="question"
 
           featuredHeading={
-            <h2 className="showcase__heading-title">
+            <h2 className="
+              showcase__heading-title
+              questions-page__showcase-title
+              questions-page__showcase-title--featured
+            ">
               Вопрос месяца
             </h2>
           }
 
           secondaryHeading={
-            <h2 className="showcase__heading-title">
+            <h2 className="
+              showcase__heading-title
+              questions-page__showcase-title
+              questions-page__showcase-title--secondary
+            ">
               Другие вопросы
             </h2>
           }
@@ -328,18 +333,18 @@ export default function QuestionsPage() {
         </h2>
 
         <p>
-          Спросите Сверчка сами.
+          Спросите Сверчка сами.<br/>
           Возможно, ваш вопрос
           окажется полезен и другим
           читателям.
         </p>
 
-        <Link
+        <Button
+          variant="secondary"
           to="#contact"
-          className="questions-page__ask-link"
         >
           Задать вопрос Сверчку →
-        </Link>
+        </Button>
       </section>
     </section>
   )

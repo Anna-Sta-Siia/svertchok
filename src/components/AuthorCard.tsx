@@ -772,7 +772,7 @@ export default function AuthorCard({
         to={authorUrl}
         className="author-card__details-link"
       >
-        Страница автора →
+        Читать далее →
       </Button>
     </article>
   )

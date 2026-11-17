@@ -128,7 +128,7 @@ text-align: center;
       4,
       minmax(
         0,
-        245px
+        280px
       )
     );
 
@@ -136,7 +136,7 @@ text-align: center;
     center;
 
   gap:
-    22px;
+    24px;
 
   align-items:
     stretch;
@@ -237,7 +237,7 @@ text-align: center;
         3,
         minmax(
           0,
-          245px
+          280px
         )
       );
   }
@@ -256,7 +256,7 @@ text-align: center;
         2,
         minmax(
           0,
-          245px
+          280px
         )
       );
   }
@@ -311,7 +311,7 @@ text-align: center;
     grid-template-columns:
       minmax(
         0,
-        245px
+        280px
       );
 
     width:

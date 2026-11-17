@@ -129,6 +129,108 @@
 
 
 /* =========================
+   QUESTION SHOWCASE TITLES
+
+   Two accent colors only:
+   bottle green + orange
+   ========================= */
+
+.questions-page
+.showcase--question
+.questions-page__showcase-title {
+  color:
+    var(--color-logo-green);
+}
+
+
+.questions-page__showcase-title--featured {
+  font-size:
+    clamp(
+      2rem,
+      2.7vw,
+      2.55rem
+    );
+}
+
+
+.questions-page__showcase-title--secondary {
+  font-size:
+    clamp(
+      1.6rem,
+      2vw,
+      1.95rem
+    );
+
+  font-weight:
+    500;
+}
+
+
+/* =========================
+   QUESTION SHOWCASE
+   EQUAL HEIGHT — DESKTOP
+
+   The featured question defines the
+   natural height of the shared row.
+
+   The compact questions fill exactly
+   that height and scroll inside it.
+   ========================= */
+
+@media (
+  min-width: 881px
+) {
+  .questions-page
+  .showcase--question
+  .showcase__featured {
+    align-self:
+      start;
+
+    min-height:
+      0;
+  }
+
+
+  .questions-page
+  .showcase--question
+  .showcase__secondary {
+    position:
+      relative;
+
+    align-self:
+      stretch;
+
+    min-height:
+      0;
+
+    overflow:
+      hidden;
+  }
+
+
+  .questions-page
+  .showcase--question
+  .showcase__secondary
+  > .questions-page__compact-list {
+    position:
+      absolute;
+
+    inset:
+      0;
+
+    height:
+      100%;
+
+    min-height:
+      0;
+
+    max-height:
+      none;
+  }
+}
+
+
+/* =========================
    COMPACT QUESTIONS
    ========================= */
 
@@ -369,17 +471,10 @@
     var(--radius-card);
 
   background:
-    color-mix(
-      in srgb,
-      var(--color-surface-soft) 76%,
-      transparent
-    );
+    transparent;
 
   box-shadow:
-    0
-    8px
-    24px
-    rgb(55 45 20 / 4%);
+    none;
 
   text-align:
     center;
@@ -442,91 +537,10 @@
 }
 
 
-.questions-page__ask-link {
-  display:
-    inline-flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  padding:
-    11px
-    20px;
-
-  border:
-    1px
-    solid
-    var(--color-accent);
-
-  border-radius:
-    var(--radius-button);
-
-  background:
-    transparent;
-
-  color:
-    var(--color-accent);
-
-  font-family:
-    var(--font-main);
-
-  font-size:
-    1rem;
-
-  font-weight:
-    600;
-
-  text-decoration:
-    none;
-
-  transition:
-    background
-      var(--transition-default),
-    color
-      var(--transition-default),
-    transform
-      var(--transition-default),
-    box-shadow
-      var(--transition-default);
-}
 
 
-@media (
-  hover: hover
-) and (
-  pointer: fine
-) {
-  .questions-page__ask-link:hover {
-    transform:
-      translateY(-2px);
-
-    background:
-      var(--color-accent);
-
-    color:
-      var(--color-white);
-
-    box-shadow:
-      0
-      7px
-      18px
-      rgb(55 45 20 / 7%);
-  }
-}
 
 
-.questions-page__ask-link:focus-visible {
-  outline:
-    2px
-    solid
-    var(--color-accent);
-
-  outline-offset:
-    4px;
-}
 
 
 /* =========================
@@ -536,6 +550,35 @@
 @media (
   max-width: 880px
 ) {
+  .questions-page
+  .showcase--question
+  .showcase__secondary {
+    position:
+      static;
+
+    align-self:
+      start;
+
+    overflow:
+      visible;
+  }
+
+
+  .questions-page
+  .showcase--question
+  .showcase__secondary
+  > .questions-page__compact-list {
+    position:
+      static;
+
+    inset:
+      auto;
+
+    height:
+      auto;
+  }
+
+
   .questions-page__compact-list {
     display:
       grid;
@@ -633,7 +676,6 @@
   prefers-reduced-motion:
   reduce
 ) {
-  .questions-page__ask-link,
   .questions-page__empty button {
     transition:
       none;

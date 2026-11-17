@@ -1,7 +1,3 @@
-import {
-  Link,
-} from 'react-router-dom'
-
 import Showcase from '../components/Showcase'
 import BookCard from '../components/BookCard'
 import Button from '../components/ui/Button'
@@ -69,7 +65,7 @@ export default function AboutPage() {
                 русскоязычной литературы
                 для детей и юношества,
                 созданная во Франции
-                в 2015 году. <br/>Нам хочется,
+                в 2015 году. Нам хочется,
                 чтобы хорошие книги
                 и истории на русском языке
                 находили своих читателей,
@@ -107,12 +103,12 @@ export default function AboutPage() {
 
 
               <div className="about-page__issues-link-row">
-                <Link
+                <Button
+                  variant="tertiary"
                   to="/issues"
-                  className="about-page__issues-link"
                 >
                   Заглянуть в номера →
-                </Link>
+                </Button>
               </div>
 
             </div>
@@ -160,12 +156,14 @@ export default function AboutPage() {
                 проекты и сборники.
               </p>
 
-              <a
-                href="#about-books"
-                className="about-page__direction-link"
-              >
-                Наши книги ↓
-              </a>
+              <div className="about-page__direction-action">
+                <Button
+                  variant="tertiary"
+                  href="#about-books"
+                >
+                  Наши книги ↓
+                </Button>
+              </div>
             </article>
 
           </div>
@@ -185,11 +183,6 @@ export default function AboutPage() {
           <h2>
             Наши книги
           </h2>
-
-          <p>
-            Книжные проекты «Буковок»
-            для детей и взрослых
-          </p>
         </header>
 
 
@@ -217,18 +210,14 @@ export default function AboutPage() {
           ===================== */}
 
       <section className="about-page__join">
-        <div className="about-page__join-copy">
-          <h2>
-            Присоединяйтесь к нам
-          </h2>
+  
 
-          <p>
+          <p className="about-page__join">
             Хотите участвовать
             в проектах «Буковок»,
             предложить идею
             или помочь нам?
           </p>
-        </div>
 
 
         <Button

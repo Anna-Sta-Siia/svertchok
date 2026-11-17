@@ -900,15 +900,17 @@
 }
 
 /* ==================================================
-   ARCHIVE — COMPACT
+   ARCHIVE — REDESIGNED
 
    FRONT:
-   vertical number | cover
-   one action below
+   number on top
+   larger cover
+   centered action
 
    BACK:
-   vertical number | description
-   two actions below
+   same number on top
+   description in the middle
+   actions anchored below
    ================================================== */
 
 .issue-card--archive {
@@ -919,7 +921,7 @@
     0;
 
   min-height:
-    325px;
+    410px;
 
   perspective:
     1400px;
@@ -941,15 +943,15 @@
     100%;
 
   min-height:
-    325px;
+    410px;
 
   transform-style:
     preserve-3d;
 
   transition:
     transform
-    0.55s
-    ease;
+      0.55s
+      ease;
 }
 
 
@@ -964,9 +966,6 @@
 
 /* =========================
    FACES
-
-   number | cover / description
-   actions below
    ========================= */
 
 .issue-card__archive-face {
@@ -980,24 +979,21 @@
     grid;
 
   grid-template-columns:
-    30px
     minmax(
       0,
       1fr
     );
 
   grid-template-rows:
+    auto
     minmax(
       0,
       1fr
     )
     auto;
 
-  column-gap:
-    8px;
-
   row-gap:
-    10px;
+    12px;
 
   align-items:
     stretch;
@@ -1012,7 +1008,7 @@
     0;
 
   padding:
-    11px;
+    14px;
 
   overflow:
     hidden;
@@ -1028,14 +1024,14 @@
   background:
     color-mix(
       in srgb,
-      var(--color-surface) 52%,
+      var(--color-surface) 46%,
       transparent
     );
 
   box-shadow:
     0
-    7px
-    18px
+    8px
+    20px
     rgb(55 45 20 / 5%);
 
   backface-visibility:
@@ -1063,120 +1059,39 @@
 
 
 /* =========================
-   VERTICAL NUMBER
-
-   №
-   0
-   5
-   ·
-   2
-   0
-   2
-   6
+   NUMBER
    ========================= */
 
 .issue-card__archive-number {
-  grid-column:
-    1;
-
   grid-row:
     1;
 
-  display:
-    flex;
-
-  flex-direction:
-    column;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  gap:
-    1px;
-
-  min-width:
-    0;
+  width:
+    100%;
 
   margin:
-    0;
-
-  padding:
-    0;
-
-  border:
     0;
 
   color:
     var(--color-accent);
 
+  font-family:
+    var(--font-main);
+
+  font-size:
+    1.18rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.2;
+
+  letter-spacing:
+    0.05em;
+
   text-align:
     center;
-}
-
-
-.issue-card__archive-number-symbol,
-.issue-card__archive-number-digit,
-.issue-card__archive-year-digit {
-  display:
-    block;
-
-  line-height:
-    1;
-}
-
-
-.issue-card__archive-number-symbol {
-  margin-bottom:
-    2px;
-
-  font-size:
-    0.78rem;
-
-  font-weight:
-    600;
-}
-
-
-.issue-card__archive-number-digit {
-  font-size:
-    0.9rem;
-
-  font-weight:
-    600;
-}
-
-
-.issue-card__archive-separator {
-  display:
-    block;
-
-  margin:
-    2px
-    0;
-
-  color:
-    var(--color-secondary);
-
-  font-size:
-    0.82rem;
-
-  line-height:
-    0.8;
-}
-
-
-.issue-card__archive-year-digit {
-  color:
-    var(--color-text-soft);
-
-  font-size:
-    0.76rem;
-
-  font-weight:
-    600;
 }
 
 
@@ -1185,11 +1100,8 @@
    ========================= */
 
 .issue-card__archive-cover {
-  grid-column:
-    2;
-
   grid-row:
-    1;
+    2;
 
   display:
     grid;
@@ -1203,11 +1115,12 @@
   min-height:
     0;
 
+  padding:
+    0
+    4px;
+
   overflow:
     hidden;
-
-  border-radius:
-    var(--radius-cover);
 }
 
 
@@ -1217,9 +1130,15 @@
     block;
 
   width:
-    100%;
+    auto;
 
   height:
+    100%;
+
+  max-width:
+    100%;
+
+  max-height:
     100%;
 
   min-height:
@@ -1233,9 +1152,9 @@
 
   box-shadow:
     0
-    7px
-    16px
-    rgb(55 45 20 / 9%);
+    9px
+    20px
+    rgb(55 45 20 / 11%);
 }
 
 
@@ -1244,11 +1163,8 @@
    ========================= */
 
 .issue-card__archive-description {
-  grid-column:
-    2;
-
   grid-row:
-    1;
+    2;
 
   min-width:
     0;
@@ -1260,10 +1176,8 @@
     0;
 
   padding:
-    4px
-    5px
-    4px
-    0;
+    8px
+    10px;
 
   overflow-y:
     auto;
@@ -1275,13 +1189,19 @@
     var(--color-text-soft);
 
   font-size:
-    0.9rem;
+    1.1rem;
+
+  font-weight:
+    500;
 
   line-height:
-    1.52;
+    1.62;
 
   text-align:
-    left;
+    center;
+
+  overscroll-behavior:
+    contain;
 
   scrollbar-width:
     thin;
@@ -1298,7 +1218,22 @@
 
 .issue-card__archive-description::-webkit-scrollbar {
   width:
-    5px;
+    6px;
+}
+
+
+.issue-card__archive-description::-webkit-scrollbar-button,
+.issue-card__archive-description::-webkit-scrollbar-button:single-button,
+.issue-card__archive-description::-webkit-scrollbar-button:vertical:decrement,
+.issue-card__archive-description::-webkit-scrollbar-button:vertical:increment {
+  display:
+    none;
+
+  width:
+    0;
+
+  height:
+    0;
 }
 
 
@@ -1309,15 +1244,23 @@
 
 
 .issue-card__archive-description::-webkit-scrollbar-thumb {
+  border:
+    1px
+    solid
+    transparent;
+
   border-radius:
     999px;
 
   background:
     color-mix(
       in srgb,
-      var(--color-accent) 38%,
+      var(--color-accent) 44%,
       transparent
     );
+
+  background-clip:
+    padding-box;
 }
 
 
@@ -1326,11 +1269,8 @@
    ========================= */
 
 .issue-card__archive-actions {
-  grid-column:
-    1 / -1;
-
   grid-row:
-    2;
+    3;
 
   display:
     flex;
@@ -1341,31 +1281,22 @@
   align-items:
     center;
 
+  justify-content:
+    center;
+
   gap:
-    7px;
+    8px;
 
   width:
     min(
       100%,
-      164px
+      190px
     );
 
   justify-self:
     center;
 }
 
-
-/*
- * La logique visuelle vient
- * directement de Button.css.
- *
- * FRONT:
- *   Подробнее → secondary
- *
- * BACK:
- *   Вернуться → secondary
- *   Перейти к номеру → primary
- */
 
 .issue-card__archive-action {
   width:
@@ -1380,7 +1311,9 @@
    MOBILE
    ========================= */
 
-@media (max-width: 560px) {
+@media (
+  max-width: 560px
+) {
   .issue-card--archive {
     min-height:
       0;
@@ -1426,21 +1359,15 @@
       auto;
 
     grid-template-columns:
-      28px
-      minmax(
-        0,
-        1fr
-      );
+      1fr;
 
     grid-template-rows:
       auto
+      auto
       auto;
 
-    column-gap:
-      7px;
-
     row-gap:
-      10px;
+      12px;
 
     width:
       100%;
@@ -1452,7 +1379,7 @@
       0;
 
     padding:
-      10px;
+      12px;
 
     transform:
       none;
@@ -1485,19 +1412,34 @@
   }
 
 
+  .issue-card__archive-number {
+    font-size:
+      1.05rem;
+  }
+
+
   .issue-card__archive-cover {
     min-height:
-      205px;
+      285px;
+
+    padding:
+      0;
   }
 
 
   .issue-card--archive
   .issue-card__cover {
     width:
-      100%;
+      auto;
 
     height:
+      auto;
+
+    max-width:
       100%;
+
+    max-height:
+      300px;
 
     object-fit:
       contain;
@@ -1509,14 +1451,14 @@
       visible;
 
     padding:
-      3px
-      2px;
+      5px
+      3px;
 
     font-size:
-      0.9rem;
+      1.04rem;
 
     line-height:
-      1.5;
+      1.55;
   }
 
 
@@ -1524,7 +1466,7 @@
     width:
       min(
         100%,
-        158px
+        184px
       );
   }
 }
