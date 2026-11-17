@@ -3,30 +3,55 @@ import {
 } from 'react-router-dom'
 
 import Showcase from '../components/Showcase'
+import BookCard from '../components/BookCard'
+import Button from '../components/ui/Button'
+
+import {
+  books,
+} from '../assets/data/books'
 
 import titleSvertchok from '../assets/images/title-svertchok.png'
 
 import './AboutPage.css'
 
 
-const FACEBOOK_URL =
-  'https://www.facebook.com/BoukovkiFrance/'
+const JOIN_EMAIL =
+  'boukovki@hotmail.com'
 
-const INSTAGRAM_URL =
-  'https://www.instagram.com/boukovki/'
+
+const JOIN_SUBJECT =
+  'Хочу присоединиться к ассоциации «Буковки»'
+
+
+const JOIN_BODY =
+  `Здравствуйте!
+
+Я хотел(а) бы присоединиться к ассоциации «Буковки» и узнать больше о возможности участия в ваших проектах`
+
+
+const JOIN_MAILTO =
+  `mailto:${JOIN_EMAIL}?subject=${encodeURIComponent(
+    JOIN_SUBJECT,
+  )}&body=${encodeURIComponent(
+    JOIN_BODY,
+  )}`
 
 
 export default function AboutPage() {
   return (
     <article className="about-page">
 
+      {/* =====================
+          WHO WE ARE
+          ===================== */}
+
       <Showcase
         layout="issue"
 
         featuredHeading={
-          <p className="about-page__heading">
-            Мы — «Буковки»
-          </p>
+          <h1 className="about-page__heading">
+            Кто такие «Буковки»
+          </h1>
         }
 
         secondaryHeading={
@@ -36,130 +61,184 @@ export default function AboutPage() {
         }
 
         featured={
-          <div className="about-page__story">
+          <section className="about-page__story">
 
-            <p className="about-page__lead">
-              Мы — ассоциация
-              любителей русскоязычной
-              литературы для детей
-              и юношества, созданная
-              во Франции в 2015 году.
-            </p>
-
-            <p className="about-page__text">
-              Нам хочется, чтобы хорошие
-              книги и истории на русском
-              языке находили своих
-              читателей — детей
-              и взрослых, где бы они
-              ни жили.
-            </p>
-
-            <p className="about-page__text">
-              Чтобы знакомые имена
-              встречались с новыми,
-              а чтение становилось
-              поводом для разговора,
-              открытия и новых встреч.
-            </p>
+            <div className="about-page__story-copy">
+              <p className="about-page__lead">
+                Буковки — ассоциация любителей
+                русскоязычной литературы
+                для детей и юношества,
+                созданная во Франции
+                в 2015 году. <br/>Нам хочется,
+                чтобы хорошие книги
+                и истории на русском языке
+                находили своих читателей,
+                где бы они ни жили.
+              </p>
+            </div>
 
 
             <div className="about-page__svertchok">
-              <p className="about-page__svertchok-intro">
-                Так у нас появился
-              </p>
 
-              <img
-                src={titleSvertchok}
-                alt="Сверчок"
-                className="about-page__svertchok-logo"
-              />
+              <div className="about-page__svertchok-heading">
+                <p className="about-page__svertchok-intro">
+                  Так у нас появился
+                </p>
 
-              <p className="about-page__text">
-                литературный альманах
+                <img
+                  src={
+                    titleSvertchok
+                  }
+                  alt="Сверчок"
+                  className="about-page__svertchok-logo"
+                />
+              </div>
+
+
+              <p className="about-page__svertchok-text">
+                Литературный альманах
                 на русском языке
-                для детей и родителей.
+                для детей и родителей,
+                на страницах которого
+                встречаются стихи и проза,
+                беседы с авторами,
+                новые имена и новые книги.
               </p>
 
-              <p className="about-page__text">
-                На его страницах
-                встречаются стихи
-                и проза, беседы
-                с авторами, новые имена
-                и новые книги.
-              </p>
 
-              <Link
-                to="/issues"
-                className="about-page__issues-link"
-              >
-                Заглянуть в номера →
-              </Link>
+              <div className="about-page__issues-link-row">
+                <Link
+                  to="/issues"
+                  className="about-page__issues-link"
+                >
+                  Заглянуть в номера →
+                </Link>
+              </div>
+
             </div>
-          </div>
+
+          </section>
         }
 
         secondary={
-          <aside className="about-page__more">
+          <div className="about-page__directions">
 
-            <p>
-              «Буковки» устраивают
-              и поддерживают
-              литературные встречи,
-              чтения и творческие
-              проекты для детей.
-            </p>
+            <article className="about-page__direction">
+              <h3>
+                Встречаемся
+              </h3>
 
-            <p>
-              Мы проводим конкурсы,
-              где можно читать,
-              переводить,
-              придумывать
-              и делиться своими
-              работами.
-            </p>
+              <p>
+                Литературные встречи,
+                чтения и творческие
+                события для детей.
+              </p>
+            </article>
 
-            <p>
-              Среди них —
-              международный
-              русско-французский
-              конкурс перевода
-              имени Михаила Яснова.
-            </p>
 
-          </aside>
+            <article className="about-page__direction">
+              <h3>
+                Придумываем вместе
+              </h3>
+
+              <p>
+                Конкурсы, праздники
+                и совместные проекты
+                со школами, авторами
+                и издательствами.
+              </p>
+            </article>
+
+
+            <article className="about-page__direction">
+              <h3>
+                Издаём книги
+              </h3>
+
+              <p>
+                Собственные книжные
+                проекты и сборники.
+              </p>
+
+              <a
+                href="#about-books"
+                className="about-page__direction-link"
+              >
+                Наши книги ↓
+              </a>
+            </article>
+
+          </div>
         }
       />
 
 
       {/* =====================
-          SOCIALS
+          BOOKS
           ===================== */}
 
-      <section className="about-page__socials">
-        <p className="about-page__social-title">
-          Оставайтесь рядом
-        </p>
+      <section
+        id="about-books"
+        className="about-page__books-section"
+      >
+        <header className="about-page__books-header">
+          <h2>
+            Наши книги
+          </h2>
 
-        <div className="about-page__social-links">
-          <a
-            href={FACEBOOK_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="about-page__social-link"
-          >
-            Facebook →
-          </a>
+          <p>
+            Книжные проекты «Буковок»
+            для детей и взрослых
+          </p>
+        </header>
 
-          <a
-            href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="about-page__social-link"
-          >
-            Instagram →
-          </a>
+
+        <div className="about-page__books-grid">
+          {books.map(
+            (
+              book,
+            ) => (
+              <BookCard
+                key={
+                  book.id
+                }
+                book={
+                  book
+                }
+              />
+            ),
+          )}
         </div>
+      </section>
+
+
+      {/* =====================
+          JOIN US
+          ===================== */}
+
+      <section className="about-page__join">
+        <div className="about-page__join-copy">
+          <h2>
+            Присоединяйтесь к нам
+          </h2>
+
+          <p>
+            Хотите участвовать
+            в проектах «Буковок»,
+            предложить идею
+            или помочь нам?
+          </p>
+        </div>
+
+
+        <Button
+          variant="secondary"
+          href={
+            JOIN_MAILTO
+          }
+        >
+          Присоединиться →
+        </Button>
       </section>
 
     </article>

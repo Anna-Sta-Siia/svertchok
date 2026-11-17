@@ -86,19 +86,31 @@ export type IssueAccessType =
   | 'paid'
 
 export type IssueTheme =
-  | 'Новый год'
-  | 'Путешествия'
-  | 'Подростки'
-  | 'Животные'
-  | 'Дружба'
-  | 'Фантазия и сказки'
+  | 'Зимние истории'
+  | 'Мир вокруг'
+  | 'Мальчишки и девчонки'
+  | 'Звериный калейдоскоп'
+  | 'Возможное и невозможное'
+  | 'Просто сказки'
+  | 'Теплые истории холодных стран'
   | 'Школа'
-  | 'Времена года'
+  | 'Солнечно!'
+  | 'Праздник'
+  | 'Мал мала меньше'
+  | 'Другие'
+  | 'Как-то летом...'
+  | 'Время'
+  | 'Весна'
   | 'Любовь'
+  | 'Кошки'
   | 'Семья'
+  | 'Радость и грусть'
+  | 'Собаки'
   | 'Музыка'
+  | 'Дружба'
+  | 'Путешествия'
+  | 'Чудеса'
   | 'Творчество'
-  | 'Другое'
 
 export type Issue = {
   id: string
@@ -151,7 +163,7 @@ export const issues: Issue[] = [
 
     title: 'Сверчок',
 
-    theme: 'Времена года',
+    theme: 'Зимние истории',
 
     coverImage:
       february2019Cover,
@@ -177,7 +189,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Путешествия',
+    theme: 'Мир вокруг',
 
     coverImage:
       october2019Cover,
@@ -207,7 +219,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Подростки',
+    theme: 'Мальчишки и девчонки',
 
     coverImage:
       january2020Cover,
@@ -233,7 +245,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Животные',
+    theme: 'Звериный калейдоскоп',
 
     coverImage:
       april2020Cover,
@@ -259,7 +271,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Фантазия и сказки',
+    theme: 'Возможное и невозможное',
 
     coverImage:
       september2020Cover,
@@ -285,7 +297,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Фантазия и сказки',
+    theme: 'Просто сказки',
 
     coverImage:
       december2020Cover,
@@ -315,7 +327,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Путешествия',
+    theme: 'Теплые истории холодных стран',
 
     coverImage:
       february2021Cover,
@@ -372,7 +384,7 @@ export const issues: Issue[] = [
   title: 'Сверчок',
 
 
-  theme: 'Времена года',
+  theme: 'Солнечно!',
 
   coverImage:
     september2021Cover,
@@ -398,7 +410,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Новый год',
+    theme: 'Праздник',
 
     coverImage:
       december2021Cover,
@@ -428,7 +440,7 @@ export const issues: Issue[] = [
   title: 'Сверчок',
 
 
-  theme: 'Другое',
+  theme: 'Мал мала меньше',
 
   coverImage: march2022Cover,
 
@@ -459,7 +471,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Дружба',
+    theme: 'Другие',
 
     coverImage:
       mayJune2022Cover,
@@ -485,7 +497,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Времена года',
+    theme: 'Как-то летом...',
 
     coverImage:
       october2022Cover,
@@ -511,7 +523,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Времена года',
+    theme: 'Время',
 
     coverImage:
       december2022Cover,
@@ -541,7 +553,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Времена года',
+    theme: 'Весна',
 
     coverImage:
       march2023Cover,
@@ -599,7 +611,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Животные',
+    theme: 'Кошки',
 
     coverImage:
       october2023Cover,
@@ -661,7 +673,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Времена года',
+    theme: 'Радость и грусть',
 
     coverImage:
       march2024Cover,
@@ -693,7 +705,7 @@ export const issues: Issue[] = [
       'Подросток',
 
 
-    theme: 'Подростки',
+    theme: 'Радость и грусть',
 
     coverImage:
       june2024Cover,
@@ -722,7 +734,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Животные',
+    theme: 'Собаки',
 
     coverImage:
       october2024Cover,
@@ -813,7 +825,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Подростки',
+    theme: 'Дружба',
 
     coverImage:
       june2025Cover,
@@ -871,7 +883,7 @@ export const issues: Issue[] = [
     title: 'Сверчок',
 
 
-    theme: 'Времена года',
+    theme: 'Чудеса',
 
     coverImage:
       december2025Cover,
@@ -888,6 +900,13 @@ export const issues: Issue[] = [
 
     isCurrent: false,
   },
+  /*
+   * Тема выпуска 05/2026 не указана
+   * в презентации Юлии с темами 2019–2025.
+   * Пока сохраняем текущее значение проекта:
+   * «Творчество».
+   */
+
   {
   id: '05-2026',
   slug: '05-2026',
