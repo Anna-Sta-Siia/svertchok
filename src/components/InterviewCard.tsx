@@ -14,6 +14,10 @@ import type {
   Interview,
 } from '../assets/data/interviews/types'
 
+import {
+  getInterviewPdfUrl,
+} from '../assets/data/interviews/pdfUrls'
+
 import Button from '../components/ui/Button'
 
 import './InterviewCard.css'
@@ -68,7 +72,15 @@ export default function InterviewCard({
     'free'
 
   const pdfUrl =
-    `${import.meta.env.BASE_URL}interviews/${interview.id}.pdf`
+    isFree
+      ? getInterviewPdfUrl(
+          interview.id,
+        )
+      : null
+
+
+  const paidUrl =
+    issue.accessUrl
 
   return (
    <article
@@ -140,32 +152,51 @@ export default function InterviewCard({
 
         <div className="interview-card__action-wrap">
           {isFree ? (
-            <>
-              <Button
-                variant="tertiary"
-                size="medium"
-                href={pdfUrl}
-                external
-                className="interview-card__action"
-              >
-                Читать далее →
-              </Button>
+            pdfUrl ? (
+              <>
+                <Button
+                  variant="tertiary"
+                  size="medium"
+                  href={pdfUrl}
+                  external
+                  className="interview-card__action"
+                >
+                  Читать PDF →
+                </Button>
 
+                <p className="interview-card__note">
+                  PDF можно читать,
+                  распечатать или скачать
+                </p>
+              </>
+            ) : (
               <p className="interview-card__note">
-                PDF можно читать,
-                распечатать или скачать
+                PDF этой беседы
+                пока недоступен
               </p>
-            </>
+            )
           ) : (
             <>
-              <Button
-                variant="tertiary"
-                size="medium"
-                to={`/issues/${issue.slug}`}
-                className="interview-card__action"
-              >
-                Читать далее →
-              </Button>
+              {paidUrl ? (
+                <Button
+                  variant="tertiary"
+                  size="medium"
+                  href={paidUrl}
+                  external
+                  className="interview-card__action"
+                >
+                  Приобрести номер →
+                </Button>
+              ) : (
+                <Button
+                  variant="tertiary"
+                  size="medium"
+                  to={`/issues/${issue.slug}`}
+                  className="interview-card__action"
+                >
+                  О номере →
+                </Button>
+              )}
 
               <p className="interview-card__note">
                 Полная версия беседы
